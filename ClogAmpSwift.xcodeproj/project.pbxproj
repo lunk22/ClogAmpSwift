@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		50043ED52080C76C0025DC2D /* FileSystemUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50043ED42080C76C0025DC2D /* FileSystemUtils.swift */; };
+		504E5FA42080F4E0003DBA66 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E5FA32080F4E0003DBA66 /* Song.swift */; };
+		50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAA207FF03D0020E218 /* AppDelegate.swift */; };
+		50A37BAD207FF03D0020E218 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAC207FF03D0020E218 /* MainView.swift */; };
+		50A37BAF207FF03E0020E218 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A37BAE207FF03E0020E218 /* Assets.xcassets */; };
+		50A37BB2207FF03E0020E218 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A37BB0207FF03E0020E218 /* Main.storyboard */; };
+		50DC6D862081D22F00B7C347 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D852081D22F00B7C347 /* Model.swift */; };
+		50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D872081D68100B7C347 /* PlayerView.swift */; };
+		50DC6D8F2081F06600B7C347 /* PlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		50043ED42080C76C0025DC2D /* FileSystemUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemUtils.swift; sourceTree = "<group>"; };
+		504E5FA32080F4E0003DBA66 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		50A37BA7207FF03D0020E218 /* ClogAmpSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClogAmpSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50A37BAA207FF03D0020E218 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		50A37BAC207FF03D0020E218 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		50A37BAE207FF03E0020E218 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50A37BB1207FF03E0020E218 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		50A37BB3207FF03E0020E218 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClogAmpSwift.entitlements; sourceTree = "<group>"; };
+		50DC6D852081D22F00B7C347 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		50DC6D872081D68100B7C347 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDelegate.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50A37BA4207FF03D0020E218 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		50A37B9E207FF03D0020E218 = {
+			isa = PBXGroup;
+			children = (
+				50A37BA9207FF03D0020E218 /* ClogAmpSwift */,
+				50A37BA8207FF03D0020E218 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		50A37BA8207FF03D0020E218 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50A37BA7207FF03D0020E218 /* ClogAmpSwift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50A37BA9207FF03D0020E218 /* ClogAmpSwift */ = {
+			isa = PBXGroup;
+			children = (
+				50DC6D8D2081F03E00B7C347 /* Delegates */,
+				50DC6D8A2081DA4B00B7C347 /* Objects */,
+				50DC6D892081DA3100B7C347 /* ViewController */,
+				50DC6D8B2081DA6400B7C347 /* Utils */,
+				50A37BB0207FF03E0020E218 /* Main.storyboard */,
+				50A37BAA207FF03D0020E218 /* AppDelegate.swift */,
+				50A37BAE207FF03E0020E218 /* Assets.xcassets */,
+				50A37BB3207FF03E0020E218 /* Info.plist */,
+				50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */,
+			);
+			path = ClogAmpSwift;
+			sourceTree = "<group>";
+		};
+		50DC6D892081DA3100B7C347 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				50A37BAC207FF03D0020E218 /* MainView.swift */,
+				50DC6D872081D68100B7C347 /* PlayerView.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		50DC6D8A2081DA4B00B7C347 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				504E5FA32080F4E0003DBA66 /* Song.swift */,
+				50DC6D852081D22F00B7C347 /* Model.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		50DC6D8B2081DA6400B7C347 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				50043ED42080C76C0025DC2D /* FileSystemUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		50DC6D8D2081F03E00B7C347 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50A37BA6207FF03D0020E218 /* ClogAmpSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50A37BB7207FF03E0020E218 /* Build configuration list for PBXNativeTarget "ClogAmpSwift" */;
+			buildPhases = (
+				50A37BA3207FF03D0020E218 /* Sources */,
+				50A37BA4207FF03D0020E218 /* Frameworks */,
+				50A37BA5207FF03D0020E218 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClogAmpSwift;
+			productName = ClogAmpSwift;
+			productReference = 50A37BA7207FF03D0020E218 /* ClogAmpSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50A37B9F207FF03D0020E218 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Pascal Roessel";
+				TargetAttributes = {
+					50A37BA6207FF03D0020E218 = {
+						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 50A37BA2207FF03D0020E218 /* Build configuration list for PBXProject "ClogAmpSwift" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 50A37B9E207FF03D0020E218;
+			productRefGroup = 50A37BA8207FF03D0020E218 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50A37BA6207FF03D0020E218 /* ClogAmpSwift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50A37BA5207FF03D0020E218 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50A37BAF207FF03E0020E218 /* Assets.xcassets in Resources */,
+				50A37BB2207FF03E0020E218 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50A37BA3207FF03D0020E218 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50DC6D862081D22F00B7C347 /* Model.swift in Sources */,
+				504E5FA42080F4E0003DBA66 /* Song.swift in Sources */,
+				50043ED52080C76C0025DC2D /* FileSystemUtils.swift in Sources */,
+				50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */,
+				50A37BAD207FF03D0020E218 /* MainView.swift in Sources */,
+				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
+				50DC6D8F2081F06600B7C347 /* PlayerDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		50A37BB0207FF03E0020E218 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50A37BB1207FF03E0020E218 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		50A37BB5207FF03E0020E218 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		50A37BB6207FF03E0020E218 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		50A37BB8207FF03E0020E218 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 86S7CBP97U;
+				INFOPLIST_FILE = ClogAmpSwift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		50A37BB9207FF03E0020E218 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 86S7CBP97U;
+				INFOPLIST_FILE = ClogAmpSwift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50A37BA2207FF03D0020E218 /* Build configuration list for PBXProject "ClogAmpSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50A37BB5207FF03E0020E218 /* Debug */,
+				50A37BB6207FF03E0020E218 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50A37BB7207FF03E0020E218 /* Build configuration list for PBXNativeTarget "ClogAmpSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50A37BB8207FF03E0020E218 /* Debug */,
+				50A37BB9207FF03E0020E218 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50A37B9F207FF03D0020E218 /* Project object */;
+}
