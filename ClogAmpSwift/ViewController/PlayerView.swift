@@ -136,23 +136,28 @@ class PlayerView: NSViewController {
 extension PlayerView: PlayerDelegate {
     func loadSong(song: Song) {
         self.currentSong = song
-        
     }
     func play() {
-        self.avAudioPlayer!.play()
-            
-        //Start the Update of the UI every .1 seconds
-        self.tick()
+        if((self.avAudioPlayer?.play() ?? false)){
+            //Start the Update of the UI every .1 seconds
+            self.tick()
+        }
     }
     func pause() {
-        if(self.avAudioPlayer!.isPlaying) {
-            self.avAudioPlayer!.pause()
+        if((self.avAudioPlayer?.isPlaying ?? false)) {
+            self.avAudioPlayer?.pause()
         } else {
-            self.avAudioPlayer!.play()
+            self.play()
         }
     }
     func stop() {
-        self.avAudioPlayer!.stop()
-        self.avAudioPlayer!.currentTime = 0.0
+        self.avAudioPlayer?.stop()
+        self.avAudioPlayer?.currentTime = 0.0
+    }
+    func increaseSpeed() {
+        self.speedSlider.floatValue += 1
+    }
+    func decreaseSpeed() {
+        self.speedSlider.floatValue -= 1
     }
 }

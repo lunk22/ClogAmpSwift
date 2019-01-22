@@ -13,4 +13,6 @@ protocol PlayerDelegate: class {
     func play()
     func pause()
     func stop()
+    func increaseSpeed()
+    func decreaseSpeed()
 }
