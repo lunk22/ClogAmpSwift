@@ -14,8 +14,8 @@ class View: NSView {
         super.draw(dirtyRect)
     }
     
-    override func performKeyEquivalent(with event: NSEvent) -> Bool {
-        return true
-    }
+//    override func performKeyEquivalent(with event: NSEvent) -> Bool {
+//        return true
+//    }
     
 }
