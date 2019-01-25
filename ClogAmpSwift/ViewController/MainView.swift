@@ -3,7 +3,7 @@
 //  ClogAmpSwift
 //
 //  Created by Pascal Roessel on 12.04.18.
-//  Copyright © 2018 Pascal Roessel. All rights reserved.
+//  MIT License
 //
 
 import AppKit
@@ -25,10 +25,6 @@ class MainView: NSViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-
-        //FOR TESTING ONLY
-        self.setMusicDirectory("/Users/d043610/private/clogging/Musik")
     }
     
     override func keyDown(with event: NSEvent) {

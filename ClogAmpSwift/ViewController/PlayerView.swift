@@ -3,7 +3,7 @@
 //  ClogAmpSwift
 //
 //  Created by Pascal Roessel on 14.04.18.
-//  Copyright © 2018 Pascal Roessel. All rights reserved.
+//  MIT License
 //
 
 import AppKit
@@ -92,28 +92,30 @@ class PlayerView: NSViewController {
     
     func updateRate(){
         self.avAudioPlayer?.rate      = 1.0 + Float(Float(self.currentSong!.speed) / 100)
-        self.speedSlider.integerValue = self.currentSong!.speed
-        self.speedText.stringValue    = "\(self.currentSong!.speed)%"
+        self.speedSlider.integerValue = self.currentSong?.speed ?? 0
+        self.speedText.stringValue    = "\(self.currentSong?.speed ?? 0)%"
     }
     func updateTime() {
-        //Time Field: e.g. 3:24
-        let calcBase = /*self.avAudioPlayer!.duration -*/ self.avAudioPlayer?.currentTime
-        let durMinutes = Int(((calcBase ?? 0) / 60).rounded(.down))
-        let durSeconds = Int((calcBase ?? 0).truncatingRemainder(dividingBy: 60))
+        var percent: Int = 0;
+        if(self.currentSong != nil) {
+            //Time Field: e.g. 3:24
+            let calcBase = /*self.avAudioPlayer!.duration -*/ self.avAudioPlayer?.currentTime
+            let durMinutes = Int(((calcBase ?? 0) / 60).rounded(.down))
+            let durSeconds = Int((calcBase ?? 0).truncatingRemainder(dividingBy: 60))
+            
+            self.lengthField.stringValue = durSeconds >= 10 ? "\(durMinutes):\(durSeconds)" : "\(durMinutes):0\(durSeconds)"
+            
+            //Position Slider
+            percent = lround((self.avAudioPlayer?.currentTime ?? 0) / (self.avAudioPlayer?.duration ?? 0) * 10000)
+        }
         
-        self.lengthField.stringValue = durSeconds >= 10 ? "\(durMinutes):\(durSeconds)" : "\(durMinutes):0\(durSeconds)"
-        
-        //Position Slider
-        let duration = self.avAudioPlayer?.duration
-        let currentTime = self.avAudioPlayer?.currentTime
-        let percent = lround((currentTime ?? 0) / (duration ?? 0) * 10000)
         self.timeSlider.integerValue = percent
     }
     
     func updateVolume(){
         self.avAudioPlayer?.volume     = Float(self.currentSong?.volume ?? 0) / 100
-        self.volumeSlider.integerValue = Int(self.currentSong!.volume)
-        self.volumeText.stringValue    = "\(self.currentSong!.volume)%"
+        self.volumeSlider.integerValue = Int(self.currentSong?.volume ?? 100)
+        self.volumeText.stringValue    = "\(self.currentSong?.volume ?? 100)%"
     }
     
     /*
@@ -143,8 +145,7 @@ class PlayerView: NSViewController {
     }
     
     @IBAction func timeChanged(_ sender: NSSlider) {
-        let currentTime = Double(sender.integerValue) / 10000 * self.avAudioPlayer!.duration
-        self.avAudioPlayer!.currentTime = currentTime;
+        self.avAudioPlayer?.currentTime = Double(sender.integerValue) / 10000 * (self.avAudioPlayer?.duration ?? 0);
         self.updateTime()
     }
 }
