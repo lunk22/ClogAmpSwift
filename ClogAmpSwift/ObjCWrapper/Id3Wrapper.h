@@ -9,12 +9,17 @@
 
 @property (nonatomic, retain) NSString *path;
 
-- (NSString *) readArtist;
 - (NSString *) readTitle;
+- (NSString *) readArtist;
 - (NSString *) readUserText:(const char*)text;
 - (bool) hasPositions;
 - (NSString *) loadPositions;
-    
+
+- (void) saveTitle:(NSString *)sValue;
+- (void) saveArtist:(NSString *)sValue;
+- (void) saveUserText:(NSString *)text sValue:(NSString *)sValue;
+- (void) savePositions:(NSString *)text sValue:(NSString *)sValue;
+
 - (id)init:(NSString*)path;
 
 @end

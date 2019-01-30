@@ -859,7 +859,7 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     </tableColumn>
-                                                                    <tableColumn identifier="hasPositions" width="60" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="kX3-wl-bXv">
+                                                                    <tableColumn identifier="hasPositions" width="60" minWidth="10" maxWidth="3.4028234663852886e+38" id="kX3-wl-bXv">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Positions">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -872,7 +872,7 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     </tableColumn>
-                                                                    <tableColumn identifier="path" width="219" minWidth="10" maxWidth="3.4028234663852886e+38" id="uYz-xz-RzO">
+                                                                    <tableColumn identifier="path" width="156" minWidth="10" maxWidth="3.4028234663852886e+38" id="uYz-xz-RzO">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Path">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1094,13 +1094,13 @@
             <objects>
                 <viewController id="4AT-Fd-CjS" customClass="TimePanelView" customModule="ClogAmpSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="KBA-WW-jAg">
-                        <rect key="frame" x="0.0" y="0.0" width="376" height="123"/>
+                        <rect key="frame" x="0.0" y="0.0" width="403" height="114"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUN-p4-e6G">
-                                <rect key="frame" x="1" y="0.0" width="375" height="113"/>
+                                <rect key="frame" x="3" y="4" width="398" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="12:34:56" id="XXI-xF-OOh">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="00:00:00" usesSingleLineMode="YES" id="XXI-xF-OOh">
                                     <font key="font" metaFont="system" size="95"/>
                                     <color key="textColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1114,7 +1114,7 @@
                 </viewController>
                 <customObject id="a6b-4c-sGW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1538" y="338"/>
+            <point key="canvasLocation" x="1551.5" y="333"/>
         </scene>
         <!--Player View-->
         <scene sceneID="Pvh-Bu-1XD">
