@@ -25,7 +25,12 @@ class SongTableView: NSViewController {
     
     //Overrides
     override func keyDown(with event: NSEvent) {
-        self.mainView?.keyDown(with: event)
+        let keyPressed = (event.characters ?? "").lowercased()
+        
+        if(keyPressed == "enter"){
+        }else{
+            self.mainView?.keyDown(with: event)
+        }
     }
     
     func setMusicDirectory(_ dir: String){
@@ -98,40 +103,18 @@ class SongTableView: NSViewController {
             }
         }
     }
-    
-    @IBAction func handleSelectPosition(_ sender: NSTableView) {
-        self.mainView?.playerView?.handlePositionSelected(sender.selectedRow)
-    }
 }
 
 extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if(tableView == self.songTable){
-            if(self.aSongsForTable.count < (row - 1)){ return "" }
+        if(self.aSongsForTable.count <= (row)){ return "" }
             
-            return self.aSongsForTable[row].getValueAsString(tableColumn!.identifier.rawValue)
-        }else{
-            if(tableColumn!.identifier.rawValue == "number"){
-                return row + 1
-            }else if let song = self.mainView?.playerView?.getSong() {
-                return song.positions[row].getValueAsString(tableColumn!.identifier.rawValue)
-            }else{
-                return ""
-            }
-        }
+        return self.aSongsForTable[row].getValueAsString(tableColumn!.identifier.rawValue)
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if(tableView == self.songTable){
-            return self.aSongsForTable.count
-        }else{
-            if let song = self.mainView?.playerView?.getSong() {
-                return song.positions.count
-            }else{
-                return 0
-            }
-        }
+        return self.aSongsForTable.count
     }
     
     func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
@@ -140,6 +123,24 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
             self.sortSongs(by: oDesc.key!, ascending: oDesc.ascending )
         }
         
+    }
+    
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        let text = object ?? ""
+        let identifier = tableColumn!.identifier.rawValue
+        
+        let song = self.aSongsForTable[row]
+        
+        switch identifier {
+        case "title":
+            song.title = "\(text)"
+        case "artist":
+            song.artist = "\(text)"
+        default:
+            return
+        }
+        
+        song.saveChanges()
     }
 }
 
