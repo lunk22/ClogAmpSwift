@@ -16,6 +16,8 @@ class SongTableView: NSViewController {
     var sSortBy        = "title"
     var bSortAsc       = true
     
+    var fontSize       = 12
+    
     weak var mainView: MainView?
     
     //Outlets
@@ -117,17 +119,38 @@ class SongTableView: NSViewController {
             }
         }
     }
+    
+    @IBAction func handleIncreaseTextSize(_ sender: NSButton) {
+        self.fontSize += 1
+        self.songTable.reloadData()
+    }
+    
+    @IBAction func handleDecreaseTextSize(_ sender: NSButton) {
+        self.fontSize -= 1
+        self.songTable.reloadData()
+    }
 }
 
 extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
-//    func tableView(_ tableView: NSTableView, shouldEdit tableColumn: NSTableColumn?, row: Int) -> Bool {
-//        return false
-//    }
-    
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if(self.aSongsForTable.count <= (row)){ return "" }
+
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
+        if let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: nil) as? NSTableCellView {
+            let textField = cell.textField!
+            let fontDescriptor = textField.font!.fontDescriptor
             
-        return self.aSongsForTable[row].getValueAsString(tableColumn!.identifier.rawValue)
+            textField.stringValue = self.aSongsForTable[row].getValueAsString(tableColumn!.identifier.rawValue)
+            textField.font = NSFont.init(descriptor: fontDescriptor, size: CGFloat(self.fontSize))
+            textField.sizeToFit()
+            textField.setFrameOrigin(NSZeroPoint)
+            return cell
+        }
+        
+        return nil
+    }
+    
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return CGFloat(self.fontSize + 3)
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
