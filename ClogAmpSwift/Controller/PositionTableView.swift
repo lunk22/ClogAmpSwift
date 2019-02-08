@@ -52,6 +52,8 @@ class PositionTableView: NSViewController {
                 positionIndex = 8
             case 29: // 0
                 positionIndex = 9
+            case 36: // Enter
+                positionIndex = self.positionTable.selectedRow
             default:
                 self.mainView?.keyDown(with: event)
                 return
