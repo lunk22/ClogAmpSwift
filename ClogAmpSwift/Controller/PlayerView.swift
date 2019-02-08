@@ -10,6 +10,9 @@ import AppKit
 import AVFoundation
 
 class PlayerView: ViewController {
+    
+    weak var mainView: MainView?
+    
     /*
      * Outlets
      */
@@ -73,17 +76,27 @@ class PlayerView: ViewController {
     /*
      * Update related stuff
      */
-    func tick(single: Bool = false) {
+    func tick(single: Bool, updateSongTab: Bool = false, updatePositionTab: Bool = true) {
         //Do Some Stuff while the track is playing to update the UI...
-        self.updateRate()
         self.updateTime()
-        self.updateVolume()
         
+        if(updatePositionTab){
+            self.updatePositionTable(single: single)
+        }
+        
+        if(single){
+            self.updateRate()
+            self.updateVolume()
+        }
+        
+        if(updateSongTab){
+            self.updateSongTable()
+        }
         
         //re-trigger the update while the player is playing
         if (self.avAudioPlayer?.isPlaying ?? false) || !single {
-            delayWithSeconds(0.01) {
-                self.tick()
+            delayWithSeconds(0.1) {
+                self.tick(single: false)
             }
         }
     }
@@ -114,6 +127,14 @@ class PlayerView: ViewController {
         self.avAudioPlayer?.volume     = Float(self.currentSong?.volume ?? 0) / 100
         self.volumeSlider.integerValue = Int(self.currentSong?.volume ?? 100)
         self.volumeText.stringValue    = "\(self.currentSong?.volume ?? 100)%"
+    }
+    
+    func updatePositionTable(single: Bool){
+        self.mainView?.positionTableView?.refreshTable(single: single)
+    }
+    
+    func updateSongTable(){
+        self.mainView?.songTableView?.refreshTable()
     }
     
     /*
@@ -153,6 +174,11 @@ class PlayerView: ViewController {
 // */
 //extension PlayerView: PlayerDelegate {
     func handlePositionSelected(_ index: Int) {
+        //Check the index is in range
+        if(index == -1 || self.currentSong?.positions.count ?? -1 <= index){
+            return
+        }
+        
         if let oPosition = self.currentSong?.positions[index] {
             let timeInterval = (Double(oPosition.time) / 1000) as TimeInterval
             self.avAudioPlayer?.currentTime = timeInterval
@@ -166,20 +192,23 @@ class PlayerView: ViewController {
     func getSong() -> Song? {
         return self.currentSong
     }
-    func play() {
-        //If play is called while the song is playing, it should start over
-        self.stop()
+    func play(unpause: Bool = false) {
+        if(!unpause){
+            //If play is called while the song is playing, it should start over
+            self.stop()
+        }
         
         if((self.avAudioPlayer?.play() ?? false)){
-            //Start the Update of the UI every .1 seconds
-            self.tick()
+            //Start the Update of the UI every .xxx seconds
+            self.tick(single: false)
         }
     }
     func pause() {
         if((self.avAudioPlayer?.isPlaying ?? false)) {
             self.avAudioPlayer?.pause()
+            self.tick(single: true)
         } else {
-            self.play()
+            self.play(unpause: true)
         }
     }
     func stop() {
@@ -187,12 +216,30 @@ class PlayerView: ViewController {
         self.avAudioPlayer?.currentTime = 0.0
         self.tick(single: true)
     }
+    func jump(_ seconds: Int) {
+        if var currentTime = self.avAudioPlayer?.currentTime {
+            currentTime = currentTime + Double(seconds)
+            self.avAudioPlayer?.currentTime = currentTime
+        }
+        
+        self.tick(single: true, updateSongTab: false, updatePositionTab: false)
+    }
     func increaseSpeed() {
+        if(self.currentSong?.speed == 40){
+            return
+        }
         self.currentSong?.speed += 1
-        self.tick(single: true)
+        self.tick(single: true, updateSongTab: true, updatePositionTab: false)
     }
     func decreaseSpeed() {
+        if(self.currentSong?.speed == -40){
+            return
+        }
         self.currentSong?.speed -= 1
-        self.tick(single: true)
+        self.tick(single: true, updateSongTab: true, updatePositionTab: false)
+    }
+    func resetSpeed() {
+        self.currentSong?.speed = 0
+        self.tick(single: true, updateSongTab: true, updatePositionTab: false)
     }
 }

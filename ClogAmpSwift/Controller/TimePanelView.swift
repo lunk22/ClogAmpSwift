@@ -29,11 +29,6 @@ class TimePanelView: ViewController {
         self.tick()
     }
     
-//    override func viewDidAppear() {
-//        self.bViewVisible = true
-//        self.tick()
-//    }
-    
     override func viewDidDisappear() {
         self.bViewVisible = false
     }

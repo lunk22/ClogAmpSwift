@@ -3,29 +3,38 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "SongTableView.keyDown(with:):SongTableView.swift">
+         contextName = "SongTableView.tableView(_:objectValueFor:row:):SongTableView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainView.tabView(_:didSelect:):MainView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "event.keyCode">
+               value = "tabViewItem?.lable">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PositionTableView.viewDidLoad():PositionTableView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SongTableView.sortSongs(by:ascending:):SongTableView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SongTableView.tableView(_:sortDescriptorsDidChange:):SongTableView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "oDesc.key">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SongTableView.setMusicDirectory(_:):SongTableView.swift">
       </ContextState>
       <ContextState
          contextName = "MainView.tableView(_:viewFor:row:):MainView.swift">
          <PersistentStrings>
             <PersistentString
                value = "tableColumn!.identifier">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SongTableView.tableView(_:objectValueFor:row:):SongTableView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "PositionTableView.numberOfRows(in:):PositionTableView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.mainView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -42,6 +51,33 @@
          <PersistentStrings>
             <PersistentString
                value = "self.children">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PositionTableView.numberOfRows(in:):PositionTableView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.mainView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SongTableView.viewDidLoad():SongTableView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SongTableView.performSortSongs():SongTableView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.aSongsForTable">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SongTableView.keyDown(with:):SongTableView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "event.keyCode">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
