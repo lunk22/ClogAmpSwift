@@ -12,6 +12,7 @@ class Song {
     
     //  Properties
     var path: URL
+    var filePathAsUrl: URL
     var title: String { didSet { self.titleChanged = true } }
     var artist: String { didSet { self.artistChanged = true } }
     var level: String { didSet { self.levelChanged = true } }
@@ -43,16 +44,17 @@ class Song {
     //  Initializer
     init(path: URL) {
         //Initial Values
-        self.path         = path
-        self.title        = path.deletingPathExtension().lastPathComponent
-        self.artist       = ""
-        self.level        = ""
-        self.duration     = ""
-        self.speed        = 0
-        self.bpm          = 0
-        self.volume       = 100
-        self.hasPositions = false
-        self.positions    = []
+        self.path          = path
+        self.filePathAsUrl = URL(fileURLWithPath: self.path.absoluteString.removingPercentEncoding!)
+        self.title         = path.deletingPathExtension().lastPathComponent
+        self.artist        = ""
+        self.level         = ""
+        self.duration      = ""
+        self.speed         = 0
+        self.bpm           = 0
+        self.volume        = 100
+        self.hasPositions  = false
+        self.positions     = []
         
         //Read ID3 Info
         if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){

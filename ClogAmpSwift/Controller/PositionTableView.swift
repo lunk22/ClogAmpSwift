@@ -89,10 +89,11 @@ class PositionTableView: NSViewController {
                 }
             
                 var currentPosition = -1
-                let currentTime = self.mainView?.playerView?.avAudioPlayer?.currentTime ?? 0
+                
+                let currentTime = self.mainView?.playerView?.avPlayer?.currentTime().value ?? 0
                 
                 for position in song.positions {
-                    if(Double(position.time / 1000) <= currentTime){
+                    if(Int64(Double(position.time / 1000)) <= currentTime){
                         currentPosition = song.positions.firstIndex(where: {
                             return $0 === position
                         }) ?? -1
@@ -145,7 +146,7 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
                 textField.backgroundColor = NSColor.controlColor
                 textField.textColor       = NSColor.controlTextColor
                 
-                if(self.mainView?.playerView?.avAudioPlayer?.isPlaying ?? false){
+                if(self.mainView?.playerView?.avPlayer?.rate ?? 0.0 > 0.0){
 //                    var currentPosition = -1
 //                    let currentTime = self.mainView?.playerView?.avAudioPlayer?.currentTime ?? 0
 //

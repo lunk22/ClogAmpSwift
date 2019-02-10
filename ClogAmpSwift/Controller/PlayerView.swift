@@ -34,35 +34,29 @@ class PlayerView: ViewController {
             self.currentSong?.saveChanges()
         }
         didSet {
-            do {
-                self.stop()
-                
-                self.currentSong!.loadPositions()
-                self.avAudioPlayer = try AVAudioPlayer(contentsOf: self.currentSong!.path)
-                
-//                self.avPlayer = AVPlayer(url: self.currentSong!.path)
-                
-                //Update UI
-                //Text of selected song
-                self.descriptionField.stringValue = self.currentSong!.getValueAsString("title")
-                //Speed, Volume, Time
-                self.tick(single: true)
-            } catch {
-            }
+            self.stop()
+            
+            self.currentSong!.loadPositions()
+            self.avPlayer = AVPlayer(url: self.currentSong!.filePathAsUrl)
+            //Update UI
+            //Text of selected song
+            self.descriptionField.stringValue = self.currentSong!.getValueAsString("title")
+            //Speed, Volume, Time
+            self.tick(single: true)
         }
     }
-    var avAudioPlayer: AVAudioPlayer? {
-        didSet {
-            self.avAudioPlayer!.prepareToPlay()
-            self.avAudioPlayer!.enableRate = true
-        }
-    }
-    
-//    var avPlayer: AVPlayer? {
+//    var avAudioPlayer: AVAudioPlayer? {
 //        didSet {
-////            self.avPlayer!.rate
+//            self.avAudioPlayer!.prepareToPlay()
+//            self.avAudioPlayer!.enableRate = true
 //        }
 //    }
+    
+    var avPlayer: AVPlayer? {
+        didSet {
+            self.tick(single: true)
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -102,7 +96,7 @@ class PlayerView: ViewController {
         }
         
         //re-trigger the update while the player is playing
-        if (self.avAudioPlayer?.isPlaying ?? false) || !single {
+        if (self.avPlayer?.rate ?? 0.0 > 0.0) || !single {
             delayWithSeconds(0.1) {
                 self.tick(single: false)
             }
@@ -110,7 +104,10 @@ class PlayerView: ViewController {
     }
     
     func updateRate(){
-        self.avAudioPlayer?.rate      = 1.0 + Float(Float(self.currentSong!.speed) / 100)
+        if(self.avPlayer?.rate ?? 0.0 > 0.0){
+            self.avPlayer?.rate = 1.0 + Float(Float(self.currentSong!.speed) / 100)
+        }
+        
         self.speedSlider.integerValue = self.currentSong?.speed ?? 0
         self.speedText.stringValue    = "\(self.currentSong?.speed ?? 0)%"
     }
@@ -118,21 +115,25 @@ class PlayerView: ViewController {
         var percent: Int = 0;
         if(self.currentSong != nil) {
             //Time Field: e.g. 3:24
-            let calcBase = /*self.avAudioPlayer!.duration -*/ self.avAudioPlayer?.currentTime
-            let durMinutes = Int(((calcBase ?? 0) / 60).rounded(.down))
-            let durSeconds = Int((calcBase ?? 0).truncatingRemainder(dividingBy: 60))
+            let calcBase = /*self.avAudioPlayer!.duration -*/ self.avPlayer?.currentTime().value ?? 0
+            let durMinutes = Int(Float(calcBase / 60).rounded(.down))
+            let durSeconds = Int(Double(calcBase).truncatingRemainder(dividingBy: 60))
             
             self.lengthField.stringValue = durSeconds >= 10 ? "\(durMinutes):\(durSeconds)" : "\(durMinutes):0\(durSeconds)"
             
             //Position Slider
-            percent = lround((self.avAudioPlayer?.currentTime ?? 0) / (self.avAudioPlayer?.duration ?? 0) * 10000)
+            let v1 = self.avPlayer?.currentTime().value ?? 0
+            let v2 = self.avPlayer?.currentItem?.asset.duration.value ?? 0
+            if(v2 > 0){
+                percent = lround(Double(v1 / v2 * 10000))
+            }
         }
         
         self.timeSlider.integerValue = percent
     }
     
     func updateVolume(){
-        self.avAudioPlayer?.volume     = Float(self.currentSong?.volume ?? 0) / 100
+        self.avPlayer?.volume          = Float(self.currentSong?.volume ?? 0) / 100
         self.volumeSlider.integerValue = Int(self.currentSong?.volume ?? 100)
         self.volumeText.stringValue    = "\(self.currentSong?.volume ?? 100)%"
     }
@@ -172,7 +173,10 @@ class PlayerView: ViewController {
     }
     
     @IBAction func timeChanged(_ sender: NSSlider) {
-        self.avAudioPlayer?.currentTime = Double(sender.integerValue) / 10000 * (self.avAudioPlayer?.duration ?? 0);
+        let v1 = Double(sender.integerValue)
+        let v2 = self.avPlayer?.currentItem?.asset.duration.value ?? 0
+        let time = Int64(v1 / 10 * Double(v2))
+        self.avPlayer?.seek(to: CMTimeMake(value: time, timescale: 1000))
         self.updateTime()
     }
 //}
@@ -188,8 +192,7 @@ class PlayerView: ViewController {
         }
         
         if let oPosition = self.currentSong?.positions[index] {
-            let timeInterval = (Double(oPosition.time) / 1000) as TimeInterval
-            self.avAudioPlayer?.currentTime = timeInterval
+            self.avPlayer?.seek(to: CMTimeMake(value: Int64(oPosition.time), timescale: 1000))
             self.tick(single: true)
         }
     } //func handlePositionSelected
@@ -201,37 +204,34 @@ class PlayerView: ViewController {
         return self.currentSong
     }
     func play() {
-        if(self.avAudioPlayer?.isPlaying ?? false){
+        if(self.avPlayer?.rate ?? 0.0 > 0.0){
             //If play is called while the song is playing, it should start over
             self.stop()
         }
         
-        if((self.avAudioPlayer?.play() ?? false)){
-            //Start the Update of the UI every .xxx seconds
-            self.tick(single: false)
-        }
+        self.avPlayer?.play()
+        //        self.avPlayer?.rate = 1.0
+        //Start the Update of the UI every .xxx seconds
+        self.tick(single: false)
         
-//        self.avPlayer?.rate = 1.0
-//
-//        print("\(self.avPlayer?.rate)")
     }
     func pause() {
-        if((self.avAudioPlayer?.isPlaying ?? false)) {
-            self.avAudioPlayer?.pause()
+        if(self.avPlayer?.rate ?? 0.0 > 0.0) {
+            self.avPlayer?.rate = 0.0
             self.tick(single: true)
         } else {
             self.play()
         }
     }
     func stop() {
-        self.avAudioPlayer?.stop()
-        self.avAudioPlayer?.currentTime = 0.0
+        self.avPlayer?.rate = 0.0
+        self.avPlayer?.seek(to: CMTimeMake(value: 0, timescale: 1000))
         self.tick(single: true)
     }
     func jump(_ seconds: Int) {
-        if var currentTime = self.avAudioPlayer?.currentTime {
-            currentTime = currentTime + Double(seconds)
-            self.avAudioPlayer?.currentTime = currentTime
+        if var currentTime = self.avPlayer?.currentTime().value {
+            currentTime = currentTime + Int64(seconds*1000)
+            self.avPlayer?.seek(to: CMTimeMake(value: currentTime, timescale: 1000))
         }
         
         self.tick(single: true, updateSongTab: false, updatePositionTab: false)
