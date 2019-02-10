@@ -12,6 +12,8 @@
 		5017716721FB2CE500D8A95A /* libid3-3.8.3.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5017716521FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017716821FF58C700D8A95A /* TimePanelView.swift */; };
 		504E5FA42080F4E0003DBA66 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E5FA32080F4E0003DBA66 /* Song.swift */; };
+		50A09BAC22104B0A00365544 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAB22104B0A00365544 /* TableView.swift */; };
+		50A09BAE22104BA800365544 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAD22104BA800365544 /* TableViewDelegate.swift */; };
 		50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAA207FF03D0020E218 /* AppDelegate.swift */; };
 		50A37BAD207FF03D0020E218 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAC207FF03D0020E218 /* MainView.swift */; };
 		50A37BAF207FF03E0020E218 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A37BAE207FF03E0020E218 /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 		5017716521FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libid3-3.8.3.0.0.dylib"; sourceTree = "<group>"; };
 		5017716821FF58C700D8A95A /* TimePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePanelView.swift; sourceTree = "<group>"; };
 		504E5FA32080F4E0003DBA66 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		50A09BAB22104B0A00365544 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		50A09BAD22104BA800365544 /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		50A37BA7207FF03D0020E218 /* ClogAmpSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClogAmpSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A37BAA207FF03D0020E218 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50A37BAC207FF03D0020E218 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */,
+				50A09BAD22104BA800365544 /* TableViewDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				B70E24BD21F5E5E700387D0A /* View.swift */,
+				50A09BAB22104B0A00365544 /* TableView.swift */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -283,7 +289,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A09BAE22104BA800365544 /* TableViewDelegate.swift in Sources */,
 				B70E24BE21F5E5E700387D0A /* View.swift in Sources */,
+				50A09BAC22104B0A00365544 /* TableView.swift in Sources */,
 				50DC6D862081D22F00B7C347 /* Model.swift in Sources */,
 				504E5FA42080F4E0003DBA66 /* Song.swift in Sources */,
 				5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */,

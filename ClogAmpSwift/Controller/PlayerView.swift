@@ -40,6 +40,8 @@ class PlayerView: ViewController {
                 self.currentSong!.loadPositions()
                 self.avAudioPlayer = try AVAudioPlayer(contentsOf: self.currentSong!.path)
                 
+//                self.avPlayer = AVPlayer(url: self.currentSong!.path)
+                
                 //Update UI
                 //Text of selected song
                 self.descriptionField.stringValue = self.currentSong!.getValueAsString("title")
@@ -55,6 +57,12 @@ class PlayerView: ViewController {
             self.avAudioPlayer!.enableRate = true
         }
     }
+    
+//    var avPlayer: AVPlayer? {
+//        didSet {
+////            self.avPlayer!.rate
+//        }
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -202,6 +210,10 @@ class PlayerView: ViewController {
             //Start the Update of the UI every .xxx seconds
             self.tick(single: false)
         }
+        
+//        self.avPlayer?.rate = 1.0
+//
+//        print("\(self.avPlayer?.rate)")
     }
     func pause() {
         if((self.avAudioPlayer?.isPlaying ?? false)) {

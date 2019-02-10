@@ -17,10 +17,13 @@ class PositionTableView: NSViewController {
     weak var mainView: MainView?
     
     //Outlets
-    @IBOutlet weak var positionTable: NSTableView!
+    @IBOutlet weak var positionTable: TableView!
     
     //Overrides
     override func viewDidLoad() {
+        
+        self.positionTable.selectionDelegate = self
+        
         self.fontSize = UserDefaults.standard.integer(forKey: "positionTableFontSize")
         if(self.fontSize == 0){
             self.fontSize = 12
@@ -116,13 +119,13 @@ class PositionTableView: NSViewController {
     
     @IBAction func handleIncreaseTextSize(_ sender: NSButton) {
         self.fontSize += 1
-        self.refreshTable()
+        self.refreshTable(single: true)
         
         UserDefaults.standard.set(self.fontSize, forKey: "positionTableFontSize")
     }
     @IBAction func handleDecreaseTextSize(_ sender: NSButton) {
         self.fontSize -= 1
-        self.refreshTable()
+        self.refreshTable(single: true)
         
         UserDefaults.standard.set(self.fontSize, forKey: "positionTableFontSize")
     }
@@ -190,4 +193,12 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
             return 0
         }
     }
+}
+
+extension PositionTableView: TableViewDelegate {
+    
+    func rowSelected() {
+        print("Row selected")
+    }
+    
 }
