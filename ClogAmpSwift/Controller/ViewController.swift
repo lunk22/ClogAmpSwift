@@ -11,9 +11,7 @@ import AppKit
 class ViewController : NSViewController {
     
     func delayWithSeconds(_ seconds: Double, closure: @escaping () -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            closure()
-        }
+        Tools.delayWithSeconds(seconds, closure: closure)
     }
     
 }

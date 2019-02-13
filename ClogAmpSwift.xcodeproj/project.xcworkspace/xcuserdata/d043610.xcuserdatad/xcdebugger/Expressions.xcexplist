@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Player.play():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.getCurrentTime()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SongTableView.tableView(_:objectValueFor:row:):SongTableView.swift">
       </ContextState>
       <ContextState
@@ -15,6 +23,17 @@
       </ContextState>
       <ContextState
          contextName = "PositionTableView.viewDidLoad():PositionTableView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PlayerView.timeChanged(_:):PlayerView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.avPlayer?.currentItem?.duration">
+            </PersistentString>
+            <PersistentString
+               value = "sender.integerValue">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "SongTableView.sortSongs(by:ascending:):SongTableView.swift">
@@ -63,6 +82,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Player.seek(seconds:timescale:):Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "seconds / timescale">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SongTableView.viewDidLoad():SongTableView.swift">
       </ContextState>
       <ContextState
@@ -83,6 +110,9 @@
       </ContextState>
       <ContextState
          contextName = "Song.saveChanges():Song.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Player.getCurrentTime():Player.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
