@@ -31,10 +31,6 @@ class HistoryTableView: ViewController {
         historyItems = Database.getSongHistory(nil, to: nil) as? [SongHistoryItem]
         self.historyTable.reloadData()
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd 'at' h:mm a" // superset of OP's format
-        let str = dateFormatter.string(from: Date())
-        print(str)
         super.viewDidLoad()
     }
 }

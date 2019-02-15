@@ -89,7 +89,7 @@ class SongTableView: ViewController {
                         self.directoryLabel.stringValue = "\(dir)"
                         self.aSongs[20].determineBassBPM(){
                             let bpm = $0
-                            print("BPM of \(self.aSongs[20].getValueAsString("title")): \(bpm)")
+//                            print("BPM of \(self.aSongs[20].getValueAsString("title")): \(bpm)")
                         }
                     }
                 }

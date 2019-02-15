@@ -252,8 +252,6 @@ class Song {
                     posString.append("\(position.time)")
                 }
                 
-                print(posString)
-                
                 oId3Wrapper.savePositions(posString)
             }
             
