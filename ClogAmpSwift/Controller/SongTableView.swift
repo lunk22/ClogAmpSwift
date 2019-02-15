@@ -70,6 +70,8 @@ class SongTableView: ViewController {
     }
     
     func setMusicDirectory(_ dir: String){
+        self.aSongs.removeAll()
+        
         DispatchQueue.global(qos: .background).async {
             var positionLoaded = false
 //            self.aSongs =
@@ -87,10 +89,10 @@ class SongTableView: ViewController {
                         self.performSortSongs()
                         
                         self.directoryLabel.stringValue = "\(dir)"
-                        self.aSongs[20].determineBassBPM(){
-                            let bpm = $0
+//                        self.aSongs[20].determineBassBPM(){
+//                            let bpm = $0
 //                            print("BPM of \(self.aSongs[20].getValueAsString("title")): \(bpm)")
-                        }
+//                        }
                     }
                 }
                 
@@ -158,9 +160,11 @@ class SongTableView: ViewController {
     }
     
     func refreshTable() {
-        let selRow = self.songTable.selectedRow
-        self.songTable.reloadData()
-        self.songTable.selectRowIndexes([selRow], byExtendingSelection: false)
+        DispatchQueue.main.async {
+            let selRow = self.songTable.selectedRow
+            self.songTable.reloadData()
+            self.songTable.selectRowIndexes([selRow], byExtendingSelection: false)
+        }
     }
     
     func loadSelectedSong() {
@@ -170,6 +174,14 @@ class SongTableView: ViewController {
             DispatchQueue.main.async {
                 self.mainView?.positionTableView?.refreshTable()
             }
+        }
+    }
+    
+    @IBAction func determineBpmForCurrentSong(_ sender: Any) {
+        self.mainView?.playerView?.currentSong?.determineBassBPM(){
+            _ = $0
+//            print("BPM of \(self.aSongs[20].getValueAsString("title")): \(bpm)")
+            self.refreshTable()
         }
     }
     

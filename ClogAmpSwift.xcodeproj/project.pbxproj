@@ -28,6 +28,10 @@
 		B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75955852216D1A300D11E3F /* TimePanelWindow.swift */; };
 		B75955882216DD5800D11E3F /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75955872216DD5800D11E3F /* MainWindow.swift */; };
 		B78780F42216A131002B74B4 /* BassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B78780F32216A131002B74B4 /* BassWrapper.m */; };
+		B79853322217073500BDE678 /* libbass_fx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B79853302217073500BDE678 /* libbass_fx.dylib */; };
+		B79853332217073500BDE678 /* libbass.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B79853312217073500BDE678 /* libbass.dylib */; };
+		B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B79853302217073500BDE678 /* libbass_fx.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B79853312217073500BDE678 /* libbass.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */; };
 		B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1A21F9A87E00532C1A /* Position.swift */; };
 		B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */; };
@@ -44,6 +48,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */,
+				B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */,
 				5017716721FB2CE500D8A95A /* libid3-3.8.3.0.0.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
@@ -76,6 +82,10 @@
 		B75955872216DD5800D11E3F /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		B78780F32216A131002B74B4 /* BassWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BassWrapper.m; sourceTree = "<group>"; };
 		B78780F52216A13C002B74B4 /* BassWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BassWrapper.h; sourceTree = "<group>"; };
+		B79853302217073500BDE678 /* libbass_fx.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libbass_fx.dylib; sourceTree = "<group>"; };
+		B79853312217073500BDE678 /* libbass.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libbass.dylib; sourceTree = "<group>"; };
+		B79853342217074400BDE678 /* bass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bass.h; sourceTree = "<group>"; };
+		B79853352217074500BDE678 /* bass_fx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bass_fx.h; sourceTree = "<group>"; };
 		B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClogAmpSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		B7BD8F0621F7597800532C1A /* id3lib_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id3lib_frame.h; sourceTree = "<group>"; };
 		B7BD8F0721F7597800532C1A /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
@@ -108,7 +118,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B79853332217073500BDE678 /* libbass.dylib in Frameworks */,
 				5017716621FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib in Frameworks */,
+				B79853322217073500BDE678 /* libbass_fx.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +156,8 @@
 				50A37BAA207FF03D0020E218 /* AppDelegate.swift */,
 				50A37BAE207FF03E0020E218 /* Assets.xcassets */,
 				5017716521FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib */,
+				B79853302217073500BDE678 /* libbass_fx.dylib */,
+				B79853312217073500BDE678 /* libbass.dylib */,
 				50A37BB3207FF03E0020E218 /* Info.plist */,
 				50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */,
 			);
@@ -209,6 +223,8 @@
 			children = (
 				B7BD8F0521F7597800532C1A /* id3 */,
 				B7BD8F1321F7597900532C1A /* id3.h */,
+				B79853352217074500BDE678 /* bass_fx.h */,
+				B79853342217074400BDE678 /* bass.h */,
 				B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */,
 				B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */,
 				B7BD8F1921F7611000532C1A /* Id3Wrapper.h */,
