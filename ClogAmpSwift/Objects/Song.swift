@@ -57,28 +57,23 @@ class Song {
         self.positions     = []
         
         //Read ID3 Info
-        if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){
-            //Artist
-            if let sArtist = oId3Wrapper.readArtist(){
-                if(sArtist != ""){
-                    self.artist = sArtist;
-                }
-            }
+        if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")) {
+            let map = oId3Wrapper.readBasicInfo()
+            
             //Title
-            if let sTitle = oId3Wrapper.readTitle(){
-                if(sTitle != ""){
-                    self.title = sTitle;
-                }
-            }
-            //Read Level
-            if let sLevel = oId3Wrapper.readUserText("CloggingLevel"){
-                if(sLevel != ""){
-                    self.level = sLevel;
-                }
+            self.title = map?.value(forKey: "title") as? String ?? ""
+            if self.title == "" {
+                self.title = self.path.deletingPathExtension().lastPathComponent
             }
             
+            //Artist
+            self.artist = map?.value(forKey: "artist") as? String ?? ""
+            
+            //Read Level
+            self.level = map?.value(forKey: "cloggingLevel") as? String ?? ""
+            
             //Read Tempo
-            if let sTempo = oId3Wrapper.readUserText("LastTempo"){
+            if let sTempo = map?.value(forKey: "lastTempo") as? String{
                 if(sTempo != ""){
                     if let dTempo = Double(sTempo) {
                         self.speed = lround(dTempo);
@@ -88,13 +83,13 @@ class Song {
                 }
             }
             
-            self.duration = UInt(oId3Wrapper.readDuration())
-
-//            //Read BPM
-//            bpm = [Tools getBPMs:id3Tag];
+            self.duration = UInt(map?.value(forKey: "duration") as? Int ?? 0)
             
             //Has Positions
-            self.hasPositions = oId3Wrapper.hasPositions()
+            self.hasPositions = map?.value(forKey: "hasPositions") as? Bool ?? false
+            
+//            //Read BPM
+//            bpm = [Tools getBPMs:id3Tag];
         }
     } //init
     
@@ -151,6 +146,20 @@ class Song {
             return ""
         }
     } //func getValueAsString
+    
+    func determineBassBPM( callback: @escaping (Float) -> Void ) {
+//        DispatchQueue.global(qos: .background).async {
+//            var bpm = BassWrapper.determineBPM(self.getValueAsString("path"), length: Int32(self.duration))
+//            
+//            if bpm > 150 {
+//                bpm /= 2
+//            }else if bpm < 60 {
+//                bpm *= 2
+//            }
+//            
+//            callback(bpm)
+//        }
+    }
     
     func loadPositions(_ force: Bool = true) {
         if(force){

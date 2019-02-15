@@ -6,42 +6,62 @@
 
 @synthesize path;
 
-- (NSString *) readTitle {
+- (NSMutableDictionary *) readBasicInfo {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+
     ID3_Tag *id3Tag = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
+    ID3_Frame *frame = nil;
+    
+    //Title
     char *title = ID3_GetTitle(id3Tag);
     
-    id3Tag->Clear();
-    delete id3Tag;
-    
     if(title != nil){
-        return [NSString stringWithUTF8String:title];
-    }else{
-        return @"";
+        [dict setValue: [NSString stringWithUTF8String:title] forKey:@"title"];
     }
-}
-
-- (NSString *) readArtist {
-    ID3_Tag *id3Tag = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
+    
+    //Artist
     char *artist = ID3_GetArtist(id3Tag);
     
     if(artist != nil){
-        return [NSString stringWithUTF8String:artist];
-    }else{
-        return @"";
+        [dict setValue: [NSString stringWithUTF8String:artist] forKey:@"artist"];
     }
-}
-
-- (int) readDuration {
-    ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
-    ID3_Frame *frame = nil;
     
+    //Duration
     frame = id3Tag->Find(ID3FID_SONGLEN);
-    
     const Mp3_Headerinfo* mp3Info = id3Tag->GetMp3HeaderInfo();
+    [dict setValue: [NSNumber numberWithInt:mp3Info->time] forKey:@"duration"];
     
-//    NSString *returnText = [NSString stringWithFormat:@"%d", mp3Info->time];
+    //CloggingLevel
+    frame = nil;
+
+    frame = id3Tag->Find(ID3FID_USERTEXT, ID3FN_DESCRIPTION, [@"CloggingLevel" cStringUsingEncoding:NSUTF8StringEncoding]);
+    if (frame){
+        char *usertext = ID3_GetString(frame, ID3FN_TEXT);
+        [dict setValue: [NSString stringWithUTF8String:usertext] forKey:@"cloggingLevel"];
+    }
     
-    return mp3Info->time;
+    //LastTempo
+    frame = nil;
+    
+    frame = id3Tag->Find(ID3FID_USERTEXT, ID3FN_DESCRIPTION, [@"LastTempo" cStringUsingEncoding:NSUTF8StringEncoding]);
+    if (frame){
+        char *usertext = ID3_GetString(frame, ID3FN_TEXT);
+        [dict setValue: [NSString stringWithUTF8String:usertext] forKey:@"lastTempo"];
+    }
+    
+    //Has Positions
+    size_t dataSize;
+    const unsigned char *positionsUChar;
+    
+    ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, NULL, "ClogChoreoParts", positionsUChar, dataSize);
+    
+    if (found != nil && dataSize != 0){
+        [dict setValue: [NSNumber numberWithBool:true] forKey:@"hasPositions"];
+    }else{
+        [dict setValue: [NSNumber numberWithBool:false] forKey:@"hasPositions"];
+    }
+    
+    return dict;
 }
 
 - (NSString *) readUserText:(const char*)text {
@@ -276,7 +296,7 @@
 - (id)init:(NSString*)path {
     self = [super init];
     if (self) {
-        self.path   = path;
+        self.path = path;
     }
     
     return self;
