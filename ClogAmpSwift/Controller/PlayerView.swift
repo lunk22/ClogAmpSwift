@@ -48,8 +48,10 @@ class PlayerView: ViewController {
             let duration = self.currentSong!.getValueAsString("duration")
             
             self.descriptionField.stringValue = "\(title) (\(duration))"
-            //Speed, Volume, Time
+            //Speed, Volume
             self.tick(single: true)
+            //Time
+            self.updateTime()
         }
     }
     
@@ -91,9 +93,6 @@ class PlayerView: ViewController {
     }
     
     func tick(single: Bool, updateSongTab: Bool = false, updatePositionTab: Bool = true) {
-        //Do Some Stuff while the track is playing to update the UI...
-        self.updateTime()
-        
         if(updatePositionTab){
             self.updatePositionTable(single: single)
         }

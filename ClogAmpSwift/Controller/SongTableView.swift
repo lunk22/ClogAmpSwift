@@ -71,8 +71,30 @@ class SongTableView: ViewController {
     
     func setMusicDirectory(_ dir: String){
         DispatchQueue.global(qos: .background).async {
-            
-            self.aSongs = FileSystemUtils.readFolderContentsAsSong(sPath: dir, oView: self)
+            var positionLoaded = false
+//            self.aSongs =
+            FileSystemUtils.readFolderContentsAsSong(sPath: dir, oView: self) {
+                let song    = $0
+                let percent = $1
+                
+                self.aSongs.append(song)
+                self.aSongsForTable = self.aSongs
+                
+                DispatchQueue.main.async {
+                    if percent < 100 {
+                        self.directoryLabel.stringValue = "\(dir) - \(percent)%"
+                    }else{
+                        self.directoryLabel.stringValue = "\(dir)"
+                    }
+                    
+                    self.performSortSongs()
+                }
+                
+                if !positionLoaded {
+                    self.aSongs[0].loadPositions(true)
+                    positionLoaded = true
+                }
+            }
             
             if(self.aSongs.count > 0){
                 self.aSongs[0].loadPositions(true)

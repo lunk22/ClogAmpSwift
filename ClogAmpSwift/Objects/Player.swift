@@ -61,7 +61,7 @@ class Player {
     }
     
     private func seek(seconds: Float64, timescale: CMTimeScale, using block: @escaping (Bool) -> Void) {
-//        print("Raw: \(seconds), TimeScale: \(timescale),  Seconds: \(seconds / Double(timescale))")
+        //        print("Raw: \(seconds), TimeScale: \(timescale),  Seconds: \(seconds / Double(timescale))")
         
         self.avPlayer.seek(
             to: CMTimeMake(value: Int64(lround(seconds)), timescale: timescale),

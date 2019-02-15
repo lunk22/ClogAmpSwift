@@ -8,18 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface SongHistoryItem : NSObject {
 //    bool      selectToPrint;
 	NSString *title;
 	NSString *artist;
 	NSString *file;
-	NSDate   *date;
+	NSString   *date;
 }
 
 //@property (nonatomic, readwrite) bool selectToPrint;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *artist;
 @property (nonatomic, retain) NSString *file;
-@property (nonatomic, retain) NSDate *date;
+@property (nonatomic, retain) NSString *date;
 @end

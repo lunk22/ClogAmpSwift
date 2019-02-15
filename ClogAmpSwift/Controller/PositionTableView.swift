@@ -171,9 +171,15 @@ class PositionTableView: NSViewController {
             case "time":
                 if text.range(of: "[0-9]+:[0-9][0-9]:[0-9][0-9][0-9]", options: .regularExpression, range: nil, locale: nil) != nil {
                     let parts    = text.components(separatedBy: ":")
-                    let min      = Int((Int(parts[0]) ?? 0) * 60 * 1000)
-                    let sec      = Int((Int(parts[1]) ?? 0) * 1000)
+                    
+                    let iPart0   = Int(parts[0]) ?? 0
+                    let min      = Int(iPart0 * 60 * 1000)
+                    
+                    let iPart1   = Int(parts[1]) ?? 0
+                    let sec      = Int(iPart1 * 1000)
+                    
                     let msec     = Int(parts[2]) ?? 0
+                    
                     let time     = UInt(Int(min+sec+msec))
                     
                     if position.time != time {
