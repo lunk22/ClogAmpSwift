@@ -134,9 +134,9 @@
                                                 <segue destination="kFC-bL-dcm" kind="show" id="xku-6Z-S4A"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Determine BPM" keyEquivalent="b" id="hEg-Op-LJI">
+                                        <menuItem title="Determine BPM" keyEquivalent="b" id="Zhg-Sn-7pH">
                                             <connections>
-                                                <action selector="determineBpmForCurrentSong:" target="Ady-hI-5gd" id="kYB-WF-30A"/>
+                                                <action selector="determineBpm:" target="Ady-hI-5gd" id="ksC-du-SGg"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="History..." id="sC0-Fk-FMh">
@@ -895,6 +895,9 @@
                             </tabView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="tabView" destination="eHG-h3-WsL" id="zCn-Rd-UO0"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1116,6 +1119,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="bpmText" destination="77m-pt-wor" id="z7y-6r-mn6"/>
                         <outlet property="descriptionField" destination="CeO-Ek-rC9" id="aDA-4c-d4f"/>
                         <outlet property="lengthField" destination="8hl-L5-8Y8" id="J8Z-eV-DWr"/>
                         <outlet property="speedSlider" destination="low-o2-qsA" id="u5a-Bs-RoW"/>
@@ -1149,12 +1153,13 @@
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9TZ-NU-mJx">
                                 <rect key="frame" x="800" y="225" width="172" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="nsD-QE-R90">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" drawsBackground="YES" id="nsD-QE-R90">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <action selector="handleSearchEnter:" target="uTS-cM-QNI" id="xiQ-JH-h3G"/>
                                     <outlet property="delegate" destination="uTS-cM-QNI" id="JnL-e4-JI0"/>
                                 </connections>
                             </textField>

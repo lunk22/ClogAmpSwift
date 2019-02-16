@@ -24,6 +24,7 @@ class PlayerView: ViewController {
     @IBOutlet weak var speedSlider: NSSlider!
     @IBOutlet weak var speedText: NSTextField!
     @IBOutlet weak var timeSlider: NSSlider!
+    @IBOutlet weak var bpmText: NSTextField!
     
     
     /*
@@ -121,6 +122,14 @@ class PlayerView: ViewController {
         
         self.speedSlider.integerValue = self.currentSong?.speed ?? 0
         self.speedText.stringValue    = "\(self.currentSong?.speed ?? 0)%"
+        
+        if var bpm = self.currentSong?.bpm {
+            if bpm > 0 {
+                let percent = Double(Int(100) + Int(self.currentSong?.speed ?? 0)) / 100
+                bpm = UInt(lround((Double(bpm) * percent)))
+                self.bpmText.stringValue = "\(bpm) bpm"
+            }
+        }
     }
     func updateTime(_ seconds: Double = -1) {
         var percent: Int = 0;
@@ -205,6 +214,18 @@ class PlayerView: ViewController {
             _ in
             self.updateTime()
             self.registerPeriodicUpdate()
+        }
+    }
+    
+    func determineBpmFCS() {
+        self.currentSong?.determineBassBPM(){
+            _ = $0
+            print("bpm \($0)")
+            //            print("BPM of \(self.aSongs[20].getValueAsString("title")): \(bpm)")
+            DispatchQueue.main.async {
+                self.mainView?.songTableView?.refreshTable()
+                self.updateRate()
+            }
         }
     }
 
