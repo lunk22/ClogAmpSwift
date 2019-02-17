@@ -16,6 +16,9 @@ class Player {
     var observer: Any?
     var songHistoryWritten: Bool
     
+//    var callbackClosure: @escaping (CMTime) -> Void
+    var theClosure: ((CMTime) -> Void)?
+    
     init(song: Song) {
         self.song = song
         self.avPlayer = AVPlayer(url: self.song.filePathAsUrl)
@@ -107,8 +110,21 @@ class Player {
         return 0.0
     }
     
+    @objc func songFinished() {
+        let x = self.theClosure!
+        x(CMTimeMake(value: -1, timescale: 1000))
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func addPeriodicTimeObserver(using block: @escaping (CMTime) -> Void) {
-        self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: nil, using: block)
+        self.theClosure = block
+        self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: nil, using: self.theClosure!)
+        
+        NotificationCenter.default.addObserver(self,
+           selector: #selector(songFinished),
+           name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+           object: nil) // Add observer
+
     }
     
     func removeTimeObserver() {

@@ -84,6 +84,10 @@ class PlayerView: ViewController {
         self.avPlayer?.addPeriodicTimeObserver() {
             [weak self] time in
             //Do stuff
+            if(time.value == -1){
+                self?.stop()
+            }
+            
             self?.updateTime(Double(time.value / Int64(time.timescale)))
             self?.updatePositionTable(single: false)
         }
@@ -120,46 +124,56 @@ class PlayerView: ViewController {
     func updateRate(){
         self.avPlayer?.updateRate()
         
-        self.speedSlider.integerValue = self.currentSong?.speed ?? 0
-        self.speedText.stringValue    = "\(self.currentSong?.speed ?? 0)%"
-        
-        if var bpm = self.currentSong?.bpm {
-            if bpm > 0 {
-                let percent = Double(Int(100) + Int(self.currentSong?.speed ?? 0)) / 100
-                bpm = UInt(lround((Double(bpm) * percent)))
-                self.bpmText.stringValue = "\(bpm) bpm"
+        DispatchQueue.main.async {
+            self.speedSlider.integerValue = self.currentSong?.speed ?? 0
+            self.speedText.stringValue    = "\(self.currentSong?.speed ?? 0)%"
+            
+            if var bpm = self.currentSong?.bpm {
+                if bpm > 0 {
+                    let percent = Double(Int(100) + Int(self.currentSong?.speed ?? 0)) / 100
+                    bpm = UInt(lround((Double(bpm) * percent)))
+                    self.bpmText.stringValue = "\(bpm) bpm"
+                }else{
+                    self.bpmText.stringValue = ""
+                }
+            }else{
+                self.bpmText.stringValue = ""
             }
         }
     }
     func updateTime(_ seconds: Double = -1) {
-        var percent: Int = 0;
-        if(self.currentSong != nil) {
-            //Time Field: e.g. 3:24
-            var currentTime = seconds
-            if(currentTime == -1){
-                currentTime = self.avPlayer?.getCurrentTime() ?? 0
-            }
-            
-            let durMinutes = Int(Float(currentTime / 60).rounded(.down))
-            let durSeconds = Int(Double(currentTime).truncatingRemainder(dividingBy: 60))
+        DispatchQueue.main.async {
+            var percent: Int = 0;
+            if(self.currentSong != nil) {
+                //Time Field: e.g. 3:24
+                var currentTime = seconds
+                if(currentTime == -1){
+                    currentTime = self.avPlayer?.getCurrentTime() ?? 0
+                }
+                
+                let durMinutes = Int(Float(currentTime / 60).rounded(.down))
+                let durSeconds = Int(Double(currentTime).truncatingRemainder(dividingBy: 60))
 
-            self.lengthField.stringValue = durSeconds >= 10 ? "\(durMinutes):\(durSeconds)" : "\(durMinutes):0\(durSeconds)"
-            
-            //Position Slider
-            let duration = self.avPlayer?.getDuration() ?? 0
-            if(duration > 0.0){
-                percent = lround(Double(currentTime / duration * 10000))
+                self.lengthField.stringValue = durSeconds >= 10 ? "\(durMinutes):\(durSeconds)" : "\(durMinutes):0\(durSeconds)"
+                
+                //Position Slider
+                let duration = self.avPlayer?.getDuration() ?? 0
+                if(duration > 0.0){
+                    percent = lround(Double(currentTime / duration * 10000))
+                }
             }
+            
+            self.timeSlider.integerValue = percent
         }
-        
-        self.timeSlider.integerValue = percent
     }
     
     func updateVolume(){
         self.avPlayer?.updateVolume()
         
-        self.volumeSlider.integerValue = Int(self.currentSong?.volume ?? 100)
-        self.volumeText.stringValue    = "\(self.currentSong?.volume ?? 100)%"
+        DispatchQueue.main.async {
+            self.volumeSlider.integerValue = Int(self.currentSong?.volume ?? 100)
+            self.volumeText.stringValue    = "\(self.currentSong?.volume ?? 100)%"
+        }
     }
     
     func updatePositionTable(single: Bool){
@@ -197,15 +211,6 @@ class PlayerView: ViewController {
     }
     
     @IBAction func timeChanged(_ sender: NSSlider) {
-//        let date = Date()
-//        let calendar = Calendar.current
-//        let hour = calendar.component(.hour, from: date)
-//        let minutes = calendar.component(.minute, from: date)
-//        let seconds = calendar.component(.second, from: date)
-//        let nseconds = calendar.component(.nanosecond, from: date)
-//        
-//        print("timeChanged \(hour):\(minutes):\(seconds):\(nseconds)")
-        
         self.deregisterPeriodicUpdates()
         let v1 = Double(sender.integerValue) / sender.maxValue
         let duration = self.avPlayer?.getDuration() ?? 0
@@ -219,13 +224,9 @@ class PlayerView: ViewController {
     
     func determineBpmFCS() {
         self.currentSong?.determineBassBPM(){
-            _ = $0
-            print("bpm \($0)")
-            //            print("BPM of \(self.aSongs[20].getValueAsString("title")): \(bpm)")
-            DispatchQueue.main.async {
-                self.mainView?.songTableView?.refreshTable()
-                self.updateRate()
-            }
+            _ in
+            self.mainView?.songTableView?.refreshTable()
+            self.updateRate()
         }
     }
 
@@ -255,7 +256,6 @@ class PlayerView: ViewController {
             self.stop()
         }
         
-//        self.avPlayer?.rate = 1.0
         self.avPlayer?.play()
         //Start the Update of the UI every .xxx seconds
         self.tick(single: false)
