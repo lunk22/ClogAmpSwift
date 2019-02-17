@@ -69,6 +69,11 @@ class PositionTableView: NSViewController {
         }
         
         self.mainView?.playerView?.handlePositionSelected(positionIndex)
+        
+        if(positionIndex < self.mainView?.playerView?.currentSong?.positions.count ?? 0){
+            let indexSet = IndexSet(integer: positionIndex)
+            self.positionTable.selectRowIndexes(indexSet, byExtendingSelection: false)
+        }
     }
     
     func refreshTable(single: Bool = false) {
