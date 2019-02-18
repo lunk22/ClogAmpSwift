@@ -21,6 +21,7 @@ class Player {
     
     init(song: Song) {
         self.song = song
+
         self.avPlayer = AVPlayer(url: self.song.filePathAsUrl)
         self.avPlayer.automaticallyWaitsToMinimizeStalling = false
         self.avPlayer.currentItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithm.spectral // High Quality Pitch Algorithm
