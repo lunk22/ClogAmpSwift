@@ -32,6 +32,7 @@
 		B79853332217073500BDE678 /* libbass.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B79853312217073500BDE678 /* libbass.dylib */; };
 		B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B79853302217073500BDE678 /* libbass_fx.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B79853312217073500BDE678 /* libbass.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B7985339221A812600BDE678 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7985338221A812600BDE678 /* PreferencesView.swift */; };
 		B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */; };
 		B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1A21F9A87E00532C1A /* Position.swift */; };
 		B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */; };
@@ -86,6 +87,7 @@
 		B79853312217073500BDE678 /* libbass.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libbass.dylib; sourceTree = "<group>"; };
 		B79853342217074400BDE678 /* bass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bass.h; sourceTree = "<group>"; };
 		B79853352217074500BDE678 /* bass_fx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bass_fx.h; sourceTree = "<group>"; };
+		B7985338221A812600BDE678 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClogAmpSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		B7BD8F0621F7597800532C1A /* id3lib_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id3lib_frame.h; sourceTree = "<group>"; };
 		B7BD8F0721F7597800532C1A /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				B7D9C06722145A3200A70F4A /* HistoryTableView.swift */,
 				B75955852216D1A300D11E3F /* TimePanelWindow.swift */,
 				B75955872216DD5800D11E3F /* MainWindow.swift */,
+				B7985338221A812600BDE678 /* PreferencesView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				50A37BAD207FF03D0020E218 /* MainView.swift in Sources */,
 				B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */,
 				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
+				B7985339221A812600BDE678 /* PreferencesView.swift in Sources */,
 				B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */,
 				B7DDFCB322141F5F00637831 /* Database.m in Sources */,
 				B78780F42216A131002B74B4 /* BassWrapper.m in Sources */,

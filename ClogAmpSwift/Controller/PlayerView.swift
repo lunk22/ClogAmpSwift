@@ -240,6 +240,12 @@ class PlayerView: ViewController {
             self.avPlayer?.seek(seconds: Float64(oPosition.time / 1000)){
                 _ in
                 self.tick(single: true)
+                
+                let prefPlayPositionOnSelection = UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")
+                
+                if prefPlayPositionOnSelection && !(self.avPlayer?.isPlaying() ?? false){
+                    self.play()
+                }
             }
         }
     } //func handlePositionSelected

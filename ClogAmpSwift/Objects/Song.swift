@@ -153,9 +153,19 @@ class Song {
         DispatchQueue.global(qos: .background).async {
             var bpm = BassWrapper.determineBPM(self.getValueAsString("path"), length: Int32(self.duration))
             
-            if bpm > 150 {
+            var prefBpmUpperBound = UserDefaults.standard.integer(forKey: "prefBpmUpperBound")
+            if prefBpmUpperBound == 0 {
+                prefBpmUpperBound = 140
+            }
+            
+            var prefBpmLowerBound = UserDefaults.standard.integer(forKey: "prefBpmLowerBound")
+            if prefBpmLowerBound == 0 {
+                prefBpmLowerBound = 70
+            }
+            
+            if bpm > Float(prefBpmUpperBound) {
                 bpm /= 2
-            }else if bpm < 60 {
+            }else if bpm < Float(prefBpmLowerBound) {
                 bpm *= 2
             }
             

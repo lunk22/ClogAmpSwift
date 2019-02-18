@@ -45,11 +45,19 @@ class MainView: NSViewController {
             case 49: // Space
                 self.playerView!.pause()
             case 3: // F
-                self.playerView!.jump(5)
+                var prefSkipForwardSeconds = UserDefaults.standard.integer(forKey: "prefSkipForwardSeconds")
+                if prefSkipForwardSeconds == 0 {
+                    prefSkipForwardSeconds = 5
+                }
+                self.playerView!.jump(prefSkipForwardSeconds)
 //            case 48: // Tab
 //                
             case 11: // B
-                self.playerView!.jump(-5)
+                var prefSkipBackSeconds = UserDefaults.standard.integer(forKey: "prefSkipBackSeconds")
+                if prefSkipBackSeconds == 0 {
+                    prefSkipBackSeconds = 5
+                }
+                self.playerView!.jump((prefSkipBackSeconds * -1))
             default:
                 self.interpretKeyEvents([event])
         }
