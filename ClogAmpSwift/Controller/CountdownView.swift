@@ -36,6 +36,9 @@ class CountdownView: ViewController {
     }
     
     @IBAction func start(_ sender: NSButton) {
+        if (self.timer?.isValid ?? false) {
+            return
+        }
         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: {
             timer in
             
