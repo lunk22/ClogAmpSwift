@@ -33,6 +33,8 @@
 		B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B79853302217073500BDE678 /* libbass_fx.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B79853312217073500BDE678 /* libbass.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B7985339221A812600BDE678 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7985338221A812600BDE678 /* PreferencesView.swift */; };
+		B7A3A9C0221AFCBD00CA5FE8 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */; };
+		B7A3A9C2221BE44400CA5FE8 /* CountdownWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */; };
 		B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */; };
 		B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1A21F9A87E00532C1A /* Position.swift */; };
 		B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */; };
@@ -88,6 +90,8 @@
 		B79853342217074400BDE678 /* bass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bass.h; sourceTree = "<group>"; };
 		B79853352217074500BDE678 /* bass_fx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bass_fx.h; sourceTree = "<group>"; };
 		B7985338221A812600BDE678 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
+		B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownWindow.swift; sourceTree = "<group>"; };
 		B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClogAmpSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		B7BD8F0621F7597800532C1A /* id3lib_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id3lib_frame.h; sourceTree = "<group>"; };
 		B7BD8F0721F7597800532C1A /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
@@ -171,14 +175,16 @@
 			children = (
 				50A37BAC207FF03D0020E218 /* MainView.swift */,
 				50DC6D872081D68100B7C347 /* PlayerView.swift */,
-				5017716821FF58C700D8A95A /* TimePanelView.swift */,
 				B722991E2200223B00AEFA90 /* ViewController.swift */,
 				B72299202202C9FD00AEFA90 /* SongTableView.swift */,
 				B72299222202D0EA00AEFA90 /* PositionTableView.swift */,
 				B7D9C06722145A3200A70F4A /* HistoryTableView.swift */,
+				5017716821FF58C700D8A95A /* TimePanelView.swift */,
 				B75955852216D1A300D11E3F /* TimePanelWindow.swift */,
 				B75955872216DD5800D11E3F /* MainWindow.swift */,
 				B7985338221A812600BDE678 /* PreferencesView.swift */,
+				B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */,
+				B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 			files = (
 				50A09BAE22104BA800365544 /* TableViewDelegate.swift in Sources */,
 				B70E24BE21F5E5E700387D0A /* View.swift in Sources */,
+				B7A3A9C0221AFCBD00CA5FE8 /* CountdownView.swift in Sources */,
 				50A09BAC22104B0A00365544 /* TableView.swift in Sources */,
 				50DC6D862081D22F00B7C347 /* Model.swift in Sources */,
 				B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */,
@@ -355,6 +362,7 @@
 				B72299232202D0EA00AEFA90 /* PositionTableView.swift in Sources */,
 				B722991F2200223B00AEFA90 /* ViewController.swift in Sources */,
 				B75955882216DD5800D11E3F /* MainWindow.swift in Sources */,
+				B7A3A9C2221BE44400CA5FE8 /* CountdownWindow.swift in Sources */,
 				50A37BAD207FF03D0020E218 /* MainView.swift in Sources */,
 				B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */,
 				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
