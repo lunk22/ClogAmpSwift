@@ -56,6 +56,8 @@
 	<string></string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIconGreen.icns</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
