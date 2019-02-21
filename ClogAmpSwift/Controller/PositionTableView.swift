@@ -392,6 +392,11 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
             return 0
         }
     }
+    
+    //Don't ask why, but this function prevents the cells from switching to edit mode on a single click in a non-selected row
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        return nil;
+    }
 }
 
 extension PositionTableView: TableViewDelegate {

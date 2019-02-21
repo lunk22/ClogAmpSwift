@@ -14,10 +14,13 @@
 @implementation Database
 
 + (NSString *)getDBPath{
-    NSString *dbFolderPath = @"~/Library/Application Support/ClogAmpSwift/";
-    dbFolderPath = [dbFolderPath stringByExpandingTildeInPath];
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *paths = [fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask];
+    NSURL *url = [paths firstObject];
+    NSString *dbFolderPath = dbFolderPath = [[url path] stringByAppendingString:@"/ClogAmpSwift"];
+    
+    NSLog(@"Path: %@", dbFolderPath);
+    
     if ([fileManager fileExistsAtPath: dbFolderPath] == false){
         [fileManager createDirectoryAtPath:dbFolderPath withIntermediateDirectories:false attributes:nil error:nil];
     }
