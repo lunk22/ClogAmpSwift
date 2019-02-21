@@ -16,8 +16,8 @@
 
     // Initialize default device.
     if (!BASS_Init(-1, 44100, 0, NULL, NULL)) {
-        NSLog(@"Can't initialize device");
-
+        //Failes on the 2nd ... attempt, no worries
+        //NSLog(@"Can't initialize device");
     }
     
     HSTREAM  bpmStream = BASS_StreamCreateFile(FALSE, [path UTF8String], 0, 0, BASS_STREAM_PRESCAN|BASS_SAMPLE_FLOAT|BASS_STREAM_DECODE);

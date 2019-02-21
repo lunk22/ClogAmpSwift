@@ -216,7 +216,6 @@ class PositionTableView: NSViewController {
         openDialog.allowsOtherFileTypes    = false
         
         if openDialog.runModal() == NSApplication.ModalResponse.OK {
-//            print(openDialog.url)
             let xmlParser = XMLParser(contentsOf: openDialog.url!)
             let posParser = PositionXmlParser()
             posParser.song = self.mainView?.playerView?.currentSong

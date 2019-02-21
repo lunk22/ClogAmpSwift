@@ -80,10 +80,6 @@ class PreferenceView: ViewController {
         if let iconName = sender.identifier?.rawValue {
             UserDefaults.standard.set(iconName, forKey: "AppIconName")
             NSApplication.shared.applicationIconImage = NSImage(contentsOfFile: Bundle.main.path(forResource: iconName, ofType: "icns") ?? "")
-            
-//            print(Bundle.main.object(forInfoDictionaryKey: "CFBundleIconFile"))
-//            Bundle.main.object(forInfoDictionaryKey: "CFBundleIconFile")
-//            Bundle.main.setValuesForKeys(["CFBundleIconFile": "\(iconName).icns"])
         }
     }
 }

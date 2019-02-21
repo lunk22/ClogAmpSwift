@@ -57,7 +57,6 @@ extension PositionXmlParser: XMLParserDelegate {
         if elementName == "position" {
             self.song?.positions.append(self.position!)
             self.song?.positionsChanged = true
-//            print(self.position)
         }
     }
     
