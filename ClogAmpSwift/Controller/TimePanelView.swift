@@ -18,56 +18,51 @@ class TimePanelView: ViewController {
     /*
      * Properties
      */
-    var bViewVisible: Bool = false
+    var timer: Timer?
     
     
     /*
      * Functions
      */
     override func viewWillAppear() {
-        self.bViewVisible = true
-        self.tick()
+
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {
+            timer in
+            
+            //Do Some Stuff while the track is playing to update the UI...
+            let date     = Date()
+            let calendar = Calendar.current
+            let hours    = calendar.component(.hour, from: date)
+            let minutes  = calendar.component(.minute, from: date)
+            let seconds  = calendar.component(.second, from: date)
+            
+            var time = ""
+            if(hours < 10) {
+                time += "0\(hours)"
+            }else{
+                time += "\(hours)"
+            }
+            
+            if(minutes < 10) {
+                time += ":0\(minutes)"
+            }else{
+                time += ":\(minutes)"
+            }
+            
+            if(seconds < 10) {
+                time += ":0\(seconds)"
+            }else{
+                time += ":\(seconds)"
+            }
+            
+            DispatchQueue.main.async {
+                self.textFieldTime.stringValue = time
+            }
+            
+        })
     }
     
     override func viewDidDisappear() {
-        self.bViewVisible = false
+        self.timer?.invalidate()
     }
-    
-    func tick(single: Bool = false) {
-        //Do Some Stuff while the track is playing to update the UI...
-        let date     = Date()
-        let calendar = Calendar.current
-        let hours    = calendar.component(.hour, from: date)
-        let minutes  = calendar.component(.minute, from: date)
-        let seconds  = calendar.component(.second, from: date)
-        
-        var time = ""
-        if(hours < 10) {
-            time += "0\(hours)"
-        }else{
-            time += "\(hours)"
-        }
-        
-        if(minutes < 10) {
-            time += ":0\(minutes)"
-        }else{
-            time += ":\(minutes)"
-        }
-        
-        if(seconds < 10) {
-            time += ":0\(seconds)"
-        }else{
-            time += ":\(seconds)"
-        }
-        
-        textFieldTime.stringValue = time
-        
-        //re-trigger the update while the player is playing
-        if self.bViewVisible {
-            delayWithSeconds(0.01) {
-                self.tick()
-            }
-        }
-    }
-    
 }

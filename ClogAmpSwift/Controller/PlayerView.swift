@@ -110,15 +110,6 @@ class PlayerView: ViewController {
         if(updateSongTab){
             self.updateSongTable()
         }
-        
-//        //re-trigger the update while the player is playing
-//        if(!single){
-//            if(self.avPlayer?.isPlaying() ?? false){
-//                self.delayWithSeconds(0.1) {
-//                    self.tick(single: false)
-//                }
-//            }
-//        }
     }
     
     func updateRate(){
@@ -239,7 +230,7 @@ class PlayerView: ViewController {
         if let oPosition = self.currentSong?.positions[index] {
             self.avPlayer?.seek(seconds: Float64(oPosition.time / 1000)){
                 _ in
-                self.tick(single: true)
+                self.tick(single: true, updateSongTab: false, updatePositionTab: false)
                 
                 let prefPlayPositionOnSelection = UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")
                 
@@ -263,8 +254,8 @@ class PlayerView: ViewController {
         }
         
         self.avPlayer?.play()
-        //Start the Update of the UI every .xxx seconds
-        self.tick(single: false)
+        //Update UI
+        self.tick(single: true)
         
     }
     func pause() {

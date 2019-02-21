@@ -1009,7 +1009,7 @@
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Application" identifier="" id="K8K-xe-QFe">
-                                        <view key="view" id="jkI-4W-dPL">
+                                        <view key="view" ambiguous="YES" id="jkI-4W-dPL">
                                             <rect key="frame" x="10" y="33" width="447" height="249"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -1142,7 +1142,7 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Icon" identifier="" id="xQu-NP-vS3">
-                                        <view key="view" ambiguous="YES" id="7wO-cn-abr">
+                                        <view key="view" id="7wO-cn-abr">
                                             <rect key="frame" x="10" y="33" width="447" height="249"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -2299,13 +2299,45 @@
                                     <action selector="handleSetTime:" target="ogj-Ej-2Vt" id="giS-1w-kD6"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="umW-Jo-zYE">
+                                <rect key="frame" x="155" y="1" width="56" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="check" title="Loop:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="bHI-pD-B57">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleLoopChanged:" target="ogj-Ej-2Vt" id="gzZ-VX-szu"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwP-Hm-Nmw">
+                                <rect key="frame" x="217" y="-1" width="36" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="a1v-IK-wFn">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r7o-BK-0BK">
+                                <rect key="frame" x="253" y="2" width="11" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="x" id="n27-Ni-WE3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="cbLoop" destination="umW-Jo-zYE" id="ysa-Xq-J7B"/>
                         <outlet property="positionTable" destination="02w-V8-VKM" id="2nE-yZ-Exj"/>
+                        <outlet property="txtLoopTimes" destination="iwP-Hm-Nmw" id="182-gO-Dpd"/>
                     </connections>
                 </viewController>
                 <customObject id="Ipd-wm-y1w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="BaK-7o-xSc"/>
             </objects>
             <point key="canvasLocation" x="-145.5" y="1263"/>
         </scene>
