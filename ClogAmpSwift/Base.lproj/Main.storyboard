@@ -931,7 +931,7 @@
             <objects>
                 <windowController showSeguePresentationStyle="single" id="kFC-bL-dcm" customClass="TimePanelWindow" customModule="ClogAmpSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Time" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="0rm-mN-eUt" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" nonactivatingPanel="YES" HUD="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" nonactivatingPanel="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="245" y="301" width="250" height="91"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -1064,6 +1064,7 @@
                                                             </textField>
                                                         </subviews>
                                                     </view>
+                                                    <font key="titleFont" metaFont="smallSystem"/>
                                                 </box>
                                                 <box fixedFrame="YES" title="Positions" translatesAutoresizingMaskIntoConstraints="NO" id="sAK-Pk-Jg2">
                                                     <rect key="frame" x="224" y="133" width="216" height="114"/>
@@ -1085,6 +1086,7 @@
                                                             </button>
                                                         </subviews>
                                                     </view>
+                                                    <font key="titleFont" metaFont="smallSystem"/>
                                                 </box>
                                                 <box fixedFrame="YES" title="BPM Correction" translatesAutoresizingMaskIntoConstraints="NO" id="8dq-r9-d9O">
                                                     <rect key="frame" x="6" y="15" width="216" height="114"/>
@@ -1137,6 +1139,7 @@
                                                             </textField>
                                                         </subviews>
                                                     </view>
+                                                    <font key="titleFont" metaFont="smallSystem"/>
                                                 </box>
                                             </subviews>
                                         </view>
@@ -1221,6 +1224,7 @@
                                                             </button>
                                                         </subviews>
                                                     </view>
+                                                    <font key="titleFont" metaFont="smallSystem"/>
                                                 </box>
                                             </subviews>
                                         </view>
@@ -1321,6 +1325,7 @@
                                                     </textField>
                                                 </subviews>
                                             </view>
+                                            <font key="titleFont" metaFont="smallSystem"/>
                                         </box>
                                         <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ajf-m0-qta">
                                             <rect key="frame" x="65" y="2" width="447" height="24"/>
@@ -1365,6 +1370,7 @@
                                                     </textField>
                                                 </subviews>
                                             </view>
+                                            <font key="titleFont" metaFont="smallSystem"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-L5-8Y8">
                                             <rect key="frame" x="67" y="64" width="124" height="50"/>
@@ -1405,6 +1411,7 @@
                                         </button>
                                     </subviews>
                                 </view>
+                                <font key="titleFont" metaFont="smallSystem"/>
                             </box>
                         </subviews>
                     </view>
@@ -1503,6 +1510,7 @@
                                         </button>
                                     </subviews>
                                 </view>
+                                <font key="titleFont" metaFont="smallSystem"/>
                             </box>
                             <box fixedFrame="YES" title="Reset" translatesAutoresizingMaskIntoConstraints="NO" id="r7f-h9-I7n">
                                 <rect key="frame" x="33" y="152" width="239" height="49"/>
@@ -1524,6 +1532,7 @@
                                         </button>
                                     </subviews>
                                 </view>
+                                <font key="titleFont" metaFont="smallSystem"/>
                             </box>
                             <box fixedFrame="YES" title="Controls" translatesAutoresizingMaskIntoConstraints="NO" id="fC8-zM-O70">
                                 <rect key="frame" x="33" y="16" width="239" height="64"/>
@@ -1567,6 +1576,7 @@
                                         </button>
                                     </subviews>
                                 </view>
+                                <font key="titleFont" metaFont="smallSystem"/>
                             </box>
                         </subviews>
                     </view>
@@ -1944,15 +1954,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBY-hW-7Nn" userLabel="Directory Text">
-                                <rect key="frame" x="756" y="227" width="4" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" alignment="left" id="RIz-5V-WIF">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9TZ-NU-mJx">
                                 <rect key="frame" x="800" y="225" width="172" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -1995,7 +1996,19 @@
                                     <font key="font" metaFont="smallSystem"/>
                                 </pathCell>
                             </pathControl>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RBY-hW-7Nn" userLabel="Directory Text">
+                                <rect key="frame" x="428" y="91" width="118" height="66"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" alignment="center" title="99%" id="RIz-5V-WIF">
+                                    <font key="font" metaFont="system" size="55"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="RBY-hW-7Nn" firstAttribute="centerX" secondItem="b06-Er-8KR" secondAttribute="centerX" id="5Ab-6S-ie9"/>
+                            <constraint firstItem="RBY-hW-7Nn" firstAttribute="centerY" secondItem="b06-Er-8KR" secondAttribute="centerY" id="ysi-7Y-dLq"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="directoryLabel" destination="RBY-hW-7Nn" id="XUc-Bv-h7n"/>

@@ -122,7 +122,7 @@ class PositionTableView: NSViewController {
                     if self.cbLoop.state == NSControl.StateValue.on {
                         self.loopCount += 1
                         
-                        if self.loopCount >= self.txtLoopTimes.integerValue {
+                        if self.txtLoopTimes.integerValue != 0 && self.loopCount >= self.txtLoopTimes.integerValue {
                             self.cbLoop.state = NSControl.StateValue.off
                         }
                         
