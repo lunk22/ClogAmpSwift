@@ -16,6 +16,7 @@ class PreferenceView: ViewController {
     @IBOutlet weak var cbPlayPosOnSelection: NSButton!
     @IBOutlet weak var txtBpmUpperBound: NSTextField!
     @IBOutlet weak var txtBpmLowerBound: NSTextField!
+    @IBOutlet weak var txtLoopDelay: NSTextField!
     
     //Overrides
     override func viewDidLoad() {
@@ -24,13 +25,11 @@ class PreferenceView: ViewController {
         var prefSkipForwardSeconds = UserDefaults.standard.integer(forKey: "prefSkipForwardSeconds")
         if prefSkipForwardSeconds == 0 {
             prefSkipForwardSeconds = 5
-//            UserDefaults.standard.set(5, forKey: "prefSkipForwardSeconds")
         }
         
         var prefSkipBackSeconds = UserDefaults.standard.integer(forKey: "prefSkipBackSeconds")
         if prefSkipBackSeconds == 0 {
             prefSkipBackSeconds = 5
-//            UserDefaults.standard.set(5, forKey: "prefSkipBackSeconds")
         }
         
         let prefPlayPositionOnSelection = UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")
@@ -38,42 +37,46 @@ class PreferenceView: ViewController {
         var prefBpmUpperBound = UserDefaults.standard.integer(forKey: "prefBpmUpperBound")
         if prefBpmUpperBound == 0 {
             prefBpmUpperBound = 140
-//            UserDefaults.standard.set(140, forKey: "prefBpmUpperBound")
         }
         
         var prefBpmLowerBound = UserDefaults.standard.integer(forKey: "prefBpmLowerBound")
         if prefBpmLowerBound == 0 {
             prefBpmLowerBound = 70
-//            UserDefaults.standard.set(70, forKey: "prefBpmLowerBound")
         }
         
-        txtSkipForward.stringValue = "\(prefSkipForwardSeconds)"
-        txtSkipBack.stringValue = "\(prefSkipBackSeconds)"
+        let prefLoopDelay = UserDefaults.standard.double(forKey: "prefLoopDelay")
+        
+        self.txtSkipForward.stringValue = "\(prefSkipForwardSeconds)"
+        self.txtSkipBack.stringValue = "\(prefSkipBackSeconds)"
         
         if(prefPlayPositionOnSelection == true){
-            cbPlayPosOnSelection.state = NSControl.StateValue.on
+            self.cbPlayPosOnSelection.state = NSControl.StateValue.on
         }else{
-            cbPlayPosOnSelection.state = NSControl.StateValue.off
+            self.cbPlayPosOnSelection.state = NSControl.StateValue.off
         }
         
-        txtBpmUpperBound.stringValue = "\(prefBpmUpperBound)"
-        txtBpmLowerBound.stringValue = "\(prefBpmLowerBound)"
+        self.txtBpmUpperBound.integerValue = prefBpmUpperBound
+        self.txtBpmLowerBound.integerValue = prefBpmLowerBound
+        
+        self.txtLoopDelay.doubleValue = prefLoopDelay
         
         super.viewDidLoad()
     }
     
     @IBAction func setValue(_ sender: AnyObject) {
         if sender === self.txtSkipForward! {
-            UserDefaults.standard.set(sender.stringValue ?? 5, forKey: "prefSkipForwardSeconds")
+            UserDefaults.standard.set(self.txtSkipForward.integerValue, forKey: "prefSkipForwardSeconds")
         }else if sender === self.txtSkipBack! {
-            UserDefaults.standard.set(sender.stringValue ?? 5, forKey: "prefSkipBackSeconds")
+            UserDefaults.standard.set(self.txtSkipBack.integerValue, forKey: "prefSkipBackSeconds")
         }else if sender === self.cbPlayPosOnSelection! {
             let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
             UserDefaults.standard.set(state, forKey: "prefPlayPositionOnSelection")
         }else if sender === self.txtBpmUpperBound! {
-            UserDefaults.standard.set(sender.stringValue ?? 140, forKey: "prefBpmUpperBound")
+            UserDefaults.standard.set(self.txtBpmUpperBound.integerValue, forKey: "prefBpmUpperBound")
         }else if sender === self.txtBpmLowerBound! {
-            UserDefaults.standard.set(sender.stringValue ?? 70, forKey: "prefBpmLowerBound")
+            UserDefaults.standard.set(self.txtBpmLowerBound.integerValue, forKey: "prefBpmLowerBound")
+        }else if sender === self.txtLoopDelay! {
+            UserDefaults.standard.set(self.txtLoopDelay.doubleValue, forKey: "prefLoopDelay")
         }
     }
     @IBAction func setAppIcon(_ sender: NSButton) {

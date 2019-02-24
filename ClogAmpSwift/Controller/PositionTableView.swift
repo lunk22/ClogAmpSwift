@@ -17,6 +17,8 @@ class PositionTableView: NSViewController {
     
     var loopCount       = 0
     
+    var loopTimer: Timer?
+    
     weak var mainView: MainView?
     
     //MARK: Outlets
@@ -120,13 +122,20 @@ class PositionTableView: NSViewController {
                 
                 if((self.mainView?.playerView?.avPlayer?.isPlaying() ?? false ) && self.currentPosition != currentPosition){
                     if self.cbLoop.state == NSControl.StateValue.on {
-                        self.loopCount += 1
-                        
-                        if self.txtLoopTimes.integerValue != 0 && self.loopCount >= self.txtLoopTimes.integerValue {
-                            self.cbLoop.state = NSControl.StateValue.off
+                        if !(self.loopTimer?.isValid ?? false) {
+                            let prefLoopDelay = UserDefaults.standard.double(forKey: "prefLoopDelay")
+                            let loopPos = self.currentPosition
+                            self.loopTimer = Timer.scheduledTimer(withTimeInterval: prefLoopDelay, repeats: false, block: {
+                                _ in
+                                self.loopCount += 1
+                                
+                                if self.txtLoopTimes.integerValue != 0 && self.loopCount >= self.txtLoopTimes.integerValue {
+                                    self.cbLoop.state = NSControl.StateValue.off
+                                }
+                                
+                                self.mainView?.playerView?.handlePositionSelected(loopPos)
+                            })
                         }
-                        
-                        self.mainView?.playerView?.handlePositionSelected(self.currentPosition)
                     }else{
                         self.cbLoop.state = NSControl.StateValue.off
                         self.currentPosition = currentPosition
@@ -150,6 +159,8 @@ class PositionTableView: NSViewController {
            => refreshTable evaluates currentPosition. If it fits the current time, no update is triggered => old highligt would stay
         */
         self.loopCount = 0
+        self.loopTimer?.invalidate()
+        self.loopTimer = nil
         self.currentPosition = self.positionTable.selectedRow
         self.refreshTable(single: true)
         self.mainView?.playerView?.handlePositionSelected(self.positionTable.selectedRow)
@@ -334,9 +345,9 @@ class PositionTableView: NSViewController {
     }
     
     @IBAction func handleLoopChanged(_ sender: NSButton) {
-//        if sender.state == NSControl.StateValue.on {
-            self.loopCount = 0
-//        }
+        self.loopCount = 0
+        self.loopTimer?.invalidate()
+        self.loopTimer = nil
     }
 }
 
