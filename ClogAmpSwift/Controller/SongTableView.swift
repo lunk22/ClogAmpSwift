@@ -34,12 +34,15 @@ class SongTableView: ViewController {
     
     //MARK: Overrides
     override func viewDidLoad() {
-        
-        self.delayWithSeconds(1.25, closure: {
-            DispatchQueue.main.async {
-                self.searchField.refusesFirstResponder = false
-            }
-        })
+        if !UserDefaults.standard.bool(forKey: "prefStartFocusFilter") {
+            self.delayWithSeconds(1.25, closure: {
+                DispatchQueue.main.async {
+                    self.searchField.refusesFirstResponder = false
+                }
+            })
+        } else {
+            self.searchField.refusesFirstResponder = false
+        }
         
         self.songTable.selectionDelegate = self
         self.songTable.delegate          = self

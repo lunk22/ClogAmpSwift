@@ -84,10 +84,6 @@ class PlayerView: ViewController {
         self.avPlayer?.addPeriodicTimeObserver() {
             [weak self] time in
             //Do stuff
-            if(time.value == -1){
-                self?.stop()
-            }
-            
             self?.updateTime(Double(time.value / Int64(time.timescale)))
             self?.updatePositionTable(single: false)
         }

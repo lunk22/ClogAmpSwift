@@ -17,6 +17,7 @@ class PreferenceView: ViewController {
     @IBOutlet weak var txtBpmUpperBound: NSTextField!
     @IBOutlet weak var txtBpmLowerBound: NSTextField!
     @IBOutlet weak var txtLoopDelay: NSTextField!
+    @IBOutlet weak var cbStartFocusFilter: NSButton!
     
     //Overrides
     override func viewDidLoad() {
@@ -46,8 +47,13 @@ class PreferenceView: ViewController {
         
         let prefLoopDelay = UserDefaults.standard.double(forKey: "prefLoopDelay")
         
-        self.txtSkipForward.stringValue = "\(prefSkipForwardSeconds)"
-        self.txtSkipBack.stringValue = "\(prefSkipBackSeconds)"
+        let prefStartFocusFilter = UserDefaults.standard.bool(forKey: "prefStartFocusFilter")
+        
+        self.txtSkipForward.integerValue   = prefSkipForwardSeconds
+        self.txtSkipBack.integerValue      = prefSkipBackSeconds
+        self.txtBpmUpperBound.integerValue = prefBpmUpperBound
+        self.txtBpmLowerBound.integerValue = prefBpmLowerBound
+        self.txtLoopDelay.doubleValue      = prefLoopDelay
         
         if(prefPlayPositionOnSelection == true){
             self.cbPlayPosOnSelection.state = NSControl.StateValue.on
@@ -55,10 +61,11 @@ class PreferenceView: ViewController {
             self.cbPlayPosOnSelection.state = NSControl.StateValue.off
         }
         
-        self.txtBpmUpperBound.integerValue = prefBpmUpperBound
-        self.txtBpmLowerBound.integerValue = prefBpmLowerBound
-        
-        self.txtLoopDelay.doubleValue = prefLoopDelay
+        if(prefStartFocusFilter == true){
+            self.cbStartFocusFilter.state = NSControl.StateValue.on
+        }else{
+            self.cbStartFocusFilter.state = NSControl.StateValue.off
+        }
         
         super.viewDidLoad()
     }
@@ -68,15 +75,18 @@ class PreferenceView: ViewController {
             UserDefaults.standard.set(self.txtSkipForward.integerValue, forKey: "prefSkipForwardSeconds")
         }else if sender === self.txtSkipBack! {
             UserDefaults.standard.set(self.txtSkipBack.integerValue, forKey: "prefSkipBackSeconds")
-        }else if sender === self.cbPlayPosOnSelection! {
-            let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
-            UserDefaults.standard.set(state, forKey: "prefPlayPositionOnSelection")
         }else if sender === self.txtBpmUpperBound! {
             UserDefaults.standard.set(self.txtBpmUpperBound.integerValue, forKey: "prefBpmUpperBound")
         }else if sender === self.txtBpmLowerBound! {
             UserDefaults.standard.set(self.txtBpmLowerBound.integerValue, forKey: "prefBpmLowerBound")
         }else if sender === self.txtLoopDelay! {
             UserDefaults.standard.set(self.txtLoopDelay.doubleValue, forKey: "prefLoopDelay")
+        }else if sender === self.cbPlayPosOnSelection! {
+            let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
+            UserDefaults.standard.set(state, forKey: "prefPlayPositionOnSelection")
+        }else if sender === self.cbStartFocusFilter! {
+            let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
+            UserDefaults.standard.set(state, forKey: "prefStartFocusFilter")
         }
     }
     @IBAction func setAppIcon(_ sender: NSButton) {
