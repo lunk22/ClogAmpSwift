@@ -36,8 +36,15 @@ class FileSystemUtils {
         var count = 0
 
         for url in aUrls {
+            let song = Song(path: url)
             count = count + 1
-            block(Song(path: url), (count*100)/aUrls.count)
+            
+            //Load the positions for the first 9 songs to make sure the framework works alright
+            if count < 10 {
+                song.loadPositions()
+            }
+            
+            block(song, (count*100)/aUrls.count)
         }
     }
 }
