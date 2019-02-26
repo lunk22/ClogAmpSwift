@@ -44,6 +44,7 @@
 		B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */; };
 		B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */; };
 		B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1A21F9A87E00532C1A /* Position.swift */; };
+		B7C8358422250E5700CF3360 /* AppIconBlue.icns in Resources */ = {isa = PBXBuildFile; fileRef = B7C8358322250E5700CF3360 /* AppIconBlue.icns */; };
 		B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */; };
 		B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C0632214513B00A70F4A /* SongHistoryItem.m */; };
 		B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C06722145A3200A70F4A /* HistoryTableView.swift */; };
@@ -124,6 +125,7 @@
 		B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Id3Wrapper.mm; sourceTree = "<group>"; };
 		B7BD8F1921F7611000532C1A /* Id3Wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Id3Wrapper.h; sourceTree = "<group>"; };
 		B7BD8F1A21F9A87E00532C1A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		B7C8358322250E5700CF3360 /* AppIconBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIconBlue.icns; sourceTree = "<group>"; };
 		B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player-AVAudioPlayer.swift"; sourceTree = "<group>"; };
 		B7D9C0622214513B00A70F4A /* SongHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongHistoryItem.h; sourceTree = "<group>"; };
 		B7D9C0632214513B00A70F4A /* SongHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongHistoryItem.m; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		B70F1810221D955C00FE1149 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				B7C8358322250E5700CF3360 /* AppIconBlue.icns */,
 				B70F1811221D957600FE1149 /* AppIconGreen.icns */,
 				B70F1815221D957600FE1149 /* AppIconNeonGreen.icns */,
 				B70F1816221D957700FE1149 /* AppIconRed.icns */,
@@ -362,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B70F180F221D781800FE1149 /* Assets.xcassets in Resources */,
+				B7C8358422250E5700CF3360 /* AppIconBlue.icns in Resources */,
 				B70F181A221D957700FE1149 /* AppIconYellow.icns in Resources */,
 				B70F1817221D957700FE1149 /* AppIconGreen.icns in Resources */,
 				B70F181B221D957700FE1149 /* AppIconNeonGreen.icns in Resources */,
