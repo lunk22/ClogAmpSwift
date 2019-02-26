@@ -66,9 +66,9 @@ class MainView: NSViewController {
     }
     
     override func viewDidAppear() {
-        self.playerView        = self.children[0] as? PlayerView
-        self.songTableView     = self.children[1] as? SongTableView
-        self.positionTableView = self.children[2] as? PositionTableView
+        self.playerView        = self.children[2] as? PlayerView
+        self.songTableView     = self.children[0] as? SongTableView
+        self.positionTableView = self.children[1] as? PositionTableView
         
         self.playerView?.mainView        = self
         self.songTableView?.mainView     = self
