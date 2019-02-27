@@ -50,9 +50,9 @@ class Player {
         }
     }
     
-    func stop() {
+    func stop(_ block: @escaping (Bool) -> Void) {
         self.avPlayer.rate = 0.0
-        self.seek(seconds: 0.0){_ in }
+        self.seek(seconds: 0.0, using: block)
     }
     
     func isPlaying() -> Bool {
@@ -109,7 +109,7 @@ class Player {
     }
     
     @objc func songFinished() {
-        self.stop()
+        self.stop({_ in})
         let x = self.theClosure!
         x(CMTimeMake(value: 0, timescale: 1000))
         NotificationCenter.default.removeObserver(self)

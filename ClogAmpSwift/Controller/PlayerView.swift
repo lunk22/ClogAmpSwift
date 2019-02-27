@@ -26,6 +26,10 @@ class PlayerView: ViewController {
     @IBOutlet weak var timeSlider: NSSlider!
     @IBOutlet weak var bpmText: NSTextField!
     
+    @IBOutlet weak var btnPlay: NSButton!
+    @IBOutlet weak var btnPause: NSButton!
+    @IBOutlet weak var btnStop: NSButton!
+    
     
     /*
      * Properties
@@ -50,7 +54,7 @@ class PlayerView: ViewController {
             
             self.descriptionField.stringValue = " \(title) (\(duration))"
             //Speed, Volume
-            self.tick(single: true)
+            self.tick()
             //Time
             self.updateTime()
         }
@@ -93,18 +97,36 @@ class PlayerView: ViewController {
         self.avPlayer?.removeTimeObserver()
     }
     
-    func tick(single: Bool, updateSongTab: Bool = false, updatePositionTab: Bool = true) {
+    func tick(updateSongTab: Bool = false, updatePositionTab: Bool = true) {
         if(updatePositionTab){
-            self.updatePositionTable(single: single)
+            self.updatePositionTable(single: true)
         }
-        
-        if(single){
-            self.updateRate()
-            self.updateVolume()
-        }
-        
+
+        self.updateRate()
+        self.updateVolume()
+
         if(updateSongTab){
             self.updateSongTable()
+        }
+
+        if UserDefaults.standard.bool(forKey: "prefColorPlayerState") {
+            if self.avPlayer?.isPlaying() ?? false {
+                self.btnPlay.image  = NSImage(named: "play")
+                self.btnPause.image = NSImage(named: "pauseGray")
+                self.btnStop.image  = NSImage(named: "stopGray")
+            }else if (self.avPlayer?.getCurrentTime() ?? 0.0) > 0.0 && !(self.avPlayer?.isPlaying() ?? false) {
+                self.btnPlay.image  = NSImage(named: "playGray")
+                self.btnPause.image = NSImage(named: "pause")
+                self.btnStop.image  = NSImage(named: "stopGray")
+            }else if (self.avPlayer?.getCurrentTime() ?? 0.0) == 0.0 && !(self.avPlayer?.isPlaying() ?? false) {
+                self.btnPlay.image  = NSImage(named: "playGray")
+                self.btnPause.image = NSImage(named: "pauseGray")
+                self.btnStop.image  = NSImage(named: "stop")
+            }
+        }else{
+            self.btnPlay.image  = NSImage(named: "playGray")
+            self.btnPause.image = NSImage(named: "pauseGray")
+            self.btnStop.image  = NSImage(named: "stopGray")
         }
     }
     
@@ -226,7 +248,7 @@ class PlayerView: ViewController {
         if let oPosition = self.currentSong?.positions[index] {
             self.avPlayer?.seek(seconds: Float64(oPosition.time / 1000)){
                 _ in
-                self.tick(single: true, updateSongTab: false, updatePositionTab: false)
+                self.tick(updateSongTab: false, updatePositionTab: false)
                 
                 let prefPlayPositionOnSelection = UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")
                 
@@ -251,42 +273,44 @@ class PlayerView: ViewController {
         
         self.avPlayer?.play()
         //Update UI
-        self.tick(single: true)
-        
+        self.tick()
     }
     func pause() {
         if(self.avPlayer?.isPlaying() ?? false){
             self.avPlayer?.pause()
+            self.tick()
         }else{
             self.play()
         }
     }
     func stop() {
-        self.avPlayer?.stop()
-        self.tick(single: true)
+        self.avPlayer?.stop({
+            _ in
+            self.tick()
+        })
     }
     func jump(_ seconds: Int) {
         self.avPlayer?.jump(seconds)
         self.updateTime()
         
-        self.tick(single: true, updateSongTab: false, updatePositionTab: false)
+        self.tick(updateSongTab: false, updatePositionTab: false)
     }
     func increaseSpeed() {
         if(self.currentSong?.speed == 40){
             return
         }
         self.currentSong?.speed += 1
-        self.tick(single: true, updateSongTab: true, updatePositionTab: false)
+        self.tick(updateSongTab: true, updatePositionTab: false)
     }
     func decreaseSpeed() {
         if(self.currentSong?.speed == -40){
             return
         }
         self.currentSong?.speed -= 1
-        self.tick(single: true, updateSongTab: true, updatePositionTab: false)
+        self.tick(updateSongTab: true, updatePositionTab: false)
     }
     func resetSpeed() {
         self.currentSong?.speed = 0
-        self.tick(single: true, updateSongTab: true, updatePositionTab: false)
+        self.tick(updateSongTab: true, updatePositionTab: false)
     }
 }

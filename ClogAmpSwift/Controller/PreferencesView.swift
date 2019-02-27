@@ -18,6 +18,7 @@ class PreferenceView: ViewController {
     @IBOutlet weak var txtBpmLowerBound: NSTextField!
     @IBOutlet weak var txtLoopDelay: NSTextField!
     @IBOutlet weak var cbStartFocusFilter: NSButton!
+    @IBOutlet weak var cbColorizePlayerState: NSButton!
     
     //Overrides
     override func viewDidLoad() {
@@ -49,6 +50,8 @@ class PreferenceView: ViewController {
         
         let prefStartFocusFilter = UserDefaults.standard.bool(forKey: "prefStartFocusFilter")
         
+        let prefColorPlayerState = UserDefaults.standard.bool(forKey: "prefColorPlayerState")
+        
         self.txtSkipForward.integerValue   = prefSkipForwardSeconds
         self.txtSkipBack.integerValue      = prefSkipBackSeconds
         self.txtBpmUpperBound.integerValue = prefBpmUpperBound
@@ -65,6 +68,12 @@ class PreferenceView: ViewController {
             self.cbStartFocusFilter.state = NSControl.StateValue.on
         }else{
             self.cbStartFocusFilter.state = NSControl.StateValue.off
+        }
+        
+        if(prefColorPlayerState == true){
+            self.cbColorizePlayerState.state = NSControl.StateValue.on
+        }else{
+            self.cbColorizePlayerState.state = NSControl.StateValue.off
         }
         
         super.viewDidLoad()
@@ -87,6 +96,9 @@ class PreferenceView: ViewController {
         }else if sender === self.cbStartFocusFilter! {
             let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
             UserDefaults.standard.set(state, forKey: "prefStartFocusFilter")
+        }else if sender === self.cbColorizePlayerState! {
+            let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
+            UserDefaults.standard.set(state, forKey: "prefColorPlayerState")
         }
     }
     @IBAction func setAppIcon(_ sender: NSButton) {
