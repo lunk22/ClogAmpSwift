@@ -57,6 +57,10 @@ class PlayerView: ViewController {
             self.tick()
             //Time
             self.updateTime()
+            
+//            if self.currentSong!.bpm == 0 {
+//                self.determineBpmFCS()
+//            }
         }
     }
     

@@ -833,16 +833,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="678"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabView drawsBackground="NO" allowsTruncatedLabels="NO" initialItem="84A-Vs-Rhv" translatesAutoresizingMaskIntoConstraints="NO" id="eHG-h3-WsL">
+                            <tabView fixedFrame="YES" drawsBackground="NO" allowsTruncatedLabels="NO" initialItem="84A-Vs-Rhv" translatesAutoresizingMaskIntoConstraints="NO" id="eHG-h3-WsL">
                                 <rect key="frame" x="13" y="185" width="1086" height="479"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Songs" identifier="songs" id="84A-Vs-Rhv">
-                                        <view key="view" id="nyG-NY-YAM">
+                                        <view key="view" ambiguous="YES" id="nyG-NY-YAM">
                                             <rect key="frame" x="10" y="33" width="1066" height="433"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <containerView translatesAutoresizingMaskIntoConstraints="NO" id="W8q-2v-WEP">
+                                                <containerView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8q-2v-WEP">
                                                     <rect key="frame" x="3" y="3" width="1060" height="427"/>
                                                     <connections>
                                                         <segue destination="uTS-cM-QNI" kind="embed" id="Oul-NZ-EIj"/>
@@ -886,13 +887,14 @@
                                     <outlet property="delegate" destination="XfG-lQ-9wD" id="xFS-qL-byv"/>
                                 </connections>
                             </tabView>
-                            <stackView distribution="fill" orientation="horizontal" alignment="bottom" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qON-uj-rfP">
+                            <stackView distribution="fill" orientation="horizontal" alignment="bottom" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qON-uj-rfP">
                                 <rect key="frame" x="279" y="19" width="554" height="168"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xzZ-uM-Pio">
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xzZ-uM-Pio">
                                         <rect key="frame" x="0.0" y="0.0" width="554" height="168"/>
                                         <subviews>
-                                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="9sI-nV-Tep">
+                                            <containerView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9sI-nV-Tep">
                                                 <rect key="frame" x="0.0" y="0.0" width="554" height="168"/>
                                                 <connections>
                                                     <segue destination="jBr-hw-2XV" kind="embed" id="Bfr-Mx-LFt"/>
@@ -915,16 +917,6 @@
                                 </customSpacing>
                             </stackView>
                         </subviews>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="qON-uj-rfP" secondAttribute="bottom" constant="19" id="295-X0-36g"/>
-                            <constraint firstItem="eHG-h3-WsL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="9ST-rX-0jz"/>
-                            <constraint firstItem="qON-uj-rfP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="279" id="GYW-5G-AzO"/>
-                            <constraint firstItem="qON-uj-rfP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="491" id="acH-mm-FQy"/>
-                            <constraint firstItem="eHG-h3-WsL" firstAttribute="centerX" secondItem="qON-uj-rfP" secondAttribute="centerX" id="cmQ-4v-RpG"/>
-                            <constraint firstAttribute="trailing" secondItem="eHG-h3-WsL" secondAttribute="trailing" constant="20" symbolic="YES" id="fZR-L2-6Z3"/>
-                            <constraint firstItem="qON-uj-rfP" firstAttribute="top" secondItem="eHG-h3-WsL" secondAttribute="bottom" constant="8" symbolic="YES" id="gaE-Q3-kKz"/>
-                            <constraint firstItem="eHG-h3-WsL" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="sFV-xD-ilc"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tabView" destination="eHG-h3-WsL" id="zCn-Rd-UO0"/>
