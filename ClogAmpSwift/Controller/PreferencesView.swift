@@ -19,6 +19,7 @@ class PreferenceView: ViewController {
     @IBOutlet weak var txtLoopDelay: NSTextField!
     @IBOutlet weak var cbStartFocusFilter: NSButton!
     @IBOutlet weak var cbColorizePlayerState: NSButton!
+    @IBOutlet weak var cbAutoDetermineBPM: NSButton!
     
     //Overrides
     override func viewDidLoad() {
@@ -46,11 +47,10 @@ class PreferenceView: ViewController {
             prefBpmLowerBound = 70
         }
         
-        let prefLoopDelay = UserDefaults.standard.double(forKey: "prefLoopDelay")
-        
+        let prefLoopDelay        = UserDefaults.standard.double(forKey: "prefLoopDelay")
         let prefStartFocusFilter = UserDefaults.standard.bool(forKey: "prefStartFocusFilter")
-        
         let prefColorPlayerState = UserDefaults.standard.bool(forKey: "prefColorPlayerState")
+        let prefAutoDetermineBPM = UserDefaults.standard.bool(forKey: "prefAutoDetermineBPM")
         
         self.txtSkipForward.integerValue   = prefSkipForwardSeconds
         self.txtSkipBack.integerValue      = prefSkipBackSeconds
@@ -76,6 +76,12 @@ class PreferenceView: ViewController {
             self.cbColorizePlayerState.state = NSControl.StateValue.off
         }
         
+        if(prefAutoDetermineBPM == true){
+            self.cbAutoDetermineBPM.state = NSControl.StateValue.on
+        }else{
+            self.cbAutoDetermineBPM.state = NSControl.StateValue.off
+        }
+        
         super.viewDidLoad()
     }
     
@@ -99,6 +105,9 @@ class PreferenceView: ViewController {
         }else if sender === self.cbColorizePlayerState! {
             let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
             UserDefaults.standard.set(state, forKey: "prefColorPlayerState")
+        }else if sender === self.cbAutoDetermineBPM! {
+            let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
+            UserDefaults.standard.set(state, forKey: "prefAutoDetermineBPM")
         }
     }
     @IBAction func setAppIcon(_ sender: NSButton) {
