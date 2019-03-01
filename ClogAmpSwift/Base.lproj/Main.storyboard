@@ -239,7 +239,7 @@
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Songs" identifier="songs" id="84A-Vs-Rhv">
-                                        <view key="view" id="nyG-NY-YAM">
+                                        <view key="view" ambiguous="YES" id="nyG-NY-YAM">
                                             <rect key="frame" x="10" y="33" width="1066" height="433"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -254,7 +254,7 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Positions" identifier="positions" id="ruU-r9-Lws">
-                                        <view key="view" ambiguous="YES" id="eai-KZ-jSO">
+                                        <view key="view" id="eai-KZ-jSO">
                                             <rect key="frame" x="10" y="33" width="1066" height="433"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -1208,7 +1208,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="duration" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="Ia4-dB-gaO">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Duration">
-                                                        <font key="font" metaFont="systemMedium" size="11"/>
+                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1379,16 +1379,20 @@
                                                             <rect key="frame" x="813" y="1" width="156" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Da-Ci-p2T">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8Da-Ci-p2T">
                                                                     <rect key="frame" x="-2" y="0.0" width="160" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" usesSingleLineMode="YES" id="pnD-LF-Ph5">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" usesSingleLineMode="YES" id="pnD-LF-Ph5">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="8Da-Ci-p2T" firstAttribute="centerY" secondItem="iiA-bf-Hlf" secondAttribute="centerY" id="BiG-ny-NIJ"/>
+                                                                <constraint firstItem="8Da-Ci-p2T" firstAttribute="centerX" secondItem="iiA-bf-Hlf" secondAttribute="centerX" id="T1Y-tP-toA"/>
+                                                                <constraint firstItem="8Da-Ci-p2T" firstAttribute="leading" secondItem="iiA-bf-Hlf" secondAttribute="leading" id="m0z-Xm-53z"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="8Da-Ci-p2T" id="h4b-qn-BgG"/>
                                                             </connections>

@@ -9,6 +9,22 @@
          contextName = "PlayerView.play(unpause:):PlayerView.swift">
       </ContextState>
       <ContextState
+         contextName = "SongTableView.tableView(_:viewFor:row:):SongTableView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableColumn!.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Song.getValueAsString(_:):Song.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.path.absoluteString.removingPercentEncoding!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "PlayerView.currentSong.didset:PlayerView.swift">
          <PersistentStrings>
             <PersistentString
