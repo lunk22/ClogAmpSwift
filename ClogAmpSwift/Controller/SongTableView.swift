@@ -29,7 +29,7 @@ class SongTableView: ViewController {
     //MARK: Outlets
     @IBOutlet weak var songTable: TableView!
     @IBOutlet weak var searchField: NSTextField!
-    @IBOutlet weak var directoryLabel: NSTextField!
+    @IBOutlet weak var percentLabel: NSTextField!
     @IBOutlet weak var pathControl: NSPathControl!
     
     //MARK: Overrides
@@ -148,7 +148,7 @@ class SongTableView: ViewController {
         self.aSongs.removeAll()
         
         self.pathControl.url = URL(fileURLWithPath: dir)
-        self.directoryLabel.isHidden = false
+        self.percentLabel.isHidden = false
         
         DispatchQueue.global(qos: .background).async {
             var positionLoaded = false
@@ -162,11 +162,11 @@ class SongTableView: ViewController {
                 
                 DispatchQueue.main.async {
                     if percent < 100 {
-                        self.directoryLabel.stringValue = "\(percent)%"
+                        self.percentLabel.stringValue = "\(percent)%"
                     }else{
                         self.performSortSongs()
-                        self.directoryLabel.stringValue = ""
-                        self.directoryLabel.isHidden    = true
+                        self.percentLabel.stringValue = ""
+//                        self.percentLabel.isHidden    = true
                     }
                 }
                 
@@ -370,6 +370,7 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
             textField.stringValue = self.aSongsForTable[row].getValueAsString(tableColumn!.identifier.rawValue)
             textField.font = NSFont.init(descriptor: fontDescriptor, size: CGFloat(self.fontSize))
             textField.sizeToFit()
+//            textField.alignment = NSTextAlignment.right
             textField.setFrameOrigin(NSZeroPoint)
             return cell
         }
