@@ -36,7 +36,7 @@ class FileSystemUtils {
         var count = 0
 
         for url in aUrls {
-            let song = Song(path: url)
+            let song = Song.retrieveSong(path: url)
             count = count + 1
             
             //Load the positions for the first 9 songs to make sure the framework works alright
