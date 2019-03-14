@@ -75,7 +75,7 @@
 		504E5FA32080F4E0003DBA66 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		50A09BAB22104B0A00365544 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		50A09BAD22104BA800365544 /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
-		50A37BA7207FF03D0020E218 /* ClogAmpSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClogAmpSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50A37BA7207FF03D0020E218 /* ClogAmpMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClogAmpMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A37BAA207FF03D0020E218 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50A37BAC207FF03D0020E218 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		50A37BB1207FF03E0020E218 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		50A37BA8207FF03D0020E218 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				50A37BA7207FF03D0020E218 /* ClogAmpSwift.app */,
+				50A37BA7207FF03D0020E218 /* ClogAmpMac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -319,7 +319,7 @@
 			);
 			name = ClogAmpSwift;
 			productName = ClogAmpSwift;
-			productReference = 50A37BA7207FF03D0020E218 /* ClogAmpSwift.app */;
+			productReference = 50A37BA7207FF03D0020E218 /* ClogAmpMac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -575,7 +575,7 @@
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ClogAmpSwift/ObjCWrapper/ClogAmpSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -615,7 +615,7 @@
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ClogAmpSwift/ObjCWrapper/ClogAmpSwift-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

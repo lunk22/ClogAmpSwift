@@ -8,8 +8,8 @@
 /* Class = "NSTextFieldCell"; placeholderString = "100%"; ObjectID = "1PM-YH-KjY"; */
 "1PM-YH-KjY.placeholderString" = "100%";
 
-/* Class = "NSMenuItem"; title = "ClogAmpSwift"; ObjectID = "1Xt-HY-uBw"; */
-"1Xt-HY-uBw.title" = "ClogAmpSwift";
+/* Class = "NSMenuItem"; title = "ClogAmpMac"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "ClogAmpMac";
 
 /* Class = "NSMenuItem"; title = "Tools"; ObjectID = "1z7-FS-h8l"; */
 "1z7-FS-h8l.title" = "Werkzeuge";
@@ -26,8 +26,8 @@
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4J7-dP-txa"; */
 "4J7-dP-txa.title" = "Enter Full Screen";
 
-/* Class = "NSMenuItem"; title = "Quit ClogAmpSwift"; ObjectID = "4sb-4s-VLi"; */
-"4sb-4s-VLi.title" = "ClogAmpSwift schließen";
+/* Class = "NSMenuItem"; title = "Quit ClogAmpMac"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "ClogAmpMac schließen";
 
 /* Class = "NSButtonCell"; title = "1"; ObjectID = "5Ph-ar-jJO"; */
 "5Ph-ar-jJO.title" = "1";
@@ -38,8 +38,8 @@
 /* Class = "NSTextFieldCell"; title = "Skip Forward (s)"; ObjectID = "5UA-Z5-rDQ"; */
 "5UA-Z5-rDQ.title" = "Vorwärts springen (s)";
 
-/* Class = "NSMenuItem"; title = "About ClogAmpSwift"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "Über ClogAmpSwift";
+/* Class = "NSMenuItem"; title = "About ClogAmpMac"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "Über ClogAmpMac";
 
 /* Class = "NSMenuItem"; title = "Export Positions..."; ObjectID = "5mT-mF-117"; */
 "5mT-mF-117.title" = "Positionen exportieren...";
@@ -98,8 +98,8 @@
 /* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
 "F2S-fz-NVQ.title" = "Hilfe";
 
-/* Class = "NSMenuItem"; title = "ClogAmpSwift Help"; ObjectID = "FKE-Sm-Kum"; */
-"FKE-Sm-Kum.title" = "ClogAmpSwift Hilfe";
+/* Class = "NSMenuItem"; title = "ClogAmpMac Help"; ObjectID = "FKE-Sm-Kum"; */
+"FKE-Sm-Kum.title" = "ClogAmpMac Hilfe";
 
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk"; */
 "Fal-I4-PZk.title" = "Text";
@@ -125,8 +125,8 @@
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "Oek-lJ-OsP"; */
 "Oek-lJ-OsP.headerCell.title" = "Künstler";
 
-/* Class = "NSMenuItem"; title = "Hide ClogAmpSwift"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "ClogAmpSwift verstecken";
+/* Class = "NSMenuItem"; title = "Hide ClogAmpMac"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "ClogAmpMac verstecken";
 
 /* Class = "NSTextFieldCell"; title = "Playlist active"; ObjectID = "Owl-es-RPo"; */
 "Owl-es-RPo.title" = "Playlist aktiv";
@@ -293,8 +293,8 @@
 /* Class = "NSButtonCell"; title = "0:00:00"; ObjectID = "u6q-We-efW"; */
 "u6q-We-efW.title" = "0:00:00";
 
-/* Class = "NSMenu"; title = "ClogAmpSwift"; ObjectID = "uQy-DD-JDr"; */
-"uQy-DD-JDr.title" = "ClogAmpSwift";
+/* Class = "NSMenu"; title = "ClogAmpMac"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "ClogAmpMac";
 
 /* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG"; */
 "uRl-iY-unG.title" = "Ausschneiden";
