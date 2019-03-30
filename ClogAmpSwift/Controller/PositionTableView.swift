@@ -362,6 +362,10 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
             
             if let song = self.mainView?.playerView?.getSong() {
                 
+                if song.positions.count <= row {
+                    return nil
+                }
+                
                 textField.drawsBackground = false
                 textField.backgroundColor = NSColor.controlColor
                 textField.textColor       = NSColor.controlTextColor
