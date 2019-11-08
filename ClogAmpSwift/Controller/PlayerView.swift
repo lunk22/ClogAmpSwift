@@ -61,6 +61,11 @@ class PlayerView: ViewController {
             //Time
             self.updateTime()
             
+            self.mainView?.pdfView?.findPdfForSong(
+                songName: self.currentSong?.getValueAsString("title") ?? "",
+                fileName: self.currentSong?.filePathAsUrl.lastPathComponent ?? ""
+            )
+            
             if UserDefaults.standard.bool(forKey: "prefAutoDetermineBPM") && self.currentSong!.bpm == 0 {
                 self.determineBpmFCS()
             }
