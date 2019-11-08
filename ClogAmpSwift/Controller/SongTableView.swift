@@ -37,11 +37,15 @@ class SongTableView: ViewController {
         if !UserDefaults.standard.bool(forKey: "prefStartFocusFilter") {
             self.delayWithSeconds(1.25, closure: {
                 DispatchQueue.main.async {
-                    self.searchField.refusesFirstResponder = false
+                    self.songTable.enclosingScrollView?.becomeFirstResponder()
                 }
             })
         } else {
-            self.searchField.refusesFirstResponder = false
+            self.delayWithSeconds(1.25, closure: {
+                DispatchQueue.main.async {
+                    self.searchField.becomeFirstResponder()
+                }
+            })
         }
         
         self.songTable.selectionDelegate = self
