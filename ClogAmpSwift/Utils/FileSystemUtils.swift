@@ -9,7 +9,7 @@
 import AppKit
 
 class FileSystemUtils {
-    static func readFolderContentsAsURL(sPath: String) -> [URL] {
+    static func readFolderContentsAsURL(sPath: String, filterExtension: String = "mp3") -> [URL] {
         let sPathEncoded = sPath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
         
         let fileManager = FileManager.default
@@ -18,20 +18,26 @@ class FileSystemUtils {
         //paths of all files and directories
         var aPaths = fileManager.subpaths(atPath: sPath)
         
-        //filter to only use MP3s
-        aPaths = aPaths?.filter{ $0.hasSuffix("mp3") }
+        //filter to only use the disired file extension
+        aPaths = aPaths?.filter{ $0.hasSuffix(filterExtension) }
         
         //convert strings to URLs
         for sFilePath in aPaths! {
             let sFilePathEncoded = sFilePath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
-            let url = URL(string: "\(sPathEncoded)/\(sFilePathEncoded)")
-            aFileURLs.append(url!)
+            let stringPath = "\(sPathEncoded)/\(sFilePathEncoded)"
+//            if(filterExtension == "pdf"){
+//                let fileUrl = URL(fileURLWithPath: stringPath)
+//                aFileURLs.append(fileUrl)
+//            }else{
+                let url = URL(string: stringPath)
+                aFileURLs.append(url!)
+//            }
         }
         
         return aFileURLs
     }
     
-    static func readFolderContentsAsSong(sPath: String, oView: ViewController, using block: @escaping (Song, Int/* Percent */) -> Void) {
+    static func readFolderContentsAsSong(sPath: String, using block: @escaping (Song, Int/* Percent */) -> Void) {
         let aUrls = readFolderContentsAsURL(sPath: sPath)
         var count = 0
 

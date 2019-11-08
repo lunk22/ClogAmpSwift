@@ -111,7 +111,7 @@
 "EZL-nN-5Iw.title" = "Table View Cell";
 
 /* Class = "NSMenuItem"; title = "Open Folder…"; ObjectID = "IAo-SY-fd9"; */
-"IAo-SY-fd9.title" = "Open Folder…";
+"IAo-SY-fd9.title" = "Open Song Folder…";
 
 /* Class = "NSTableColumn"; headerCell.title = "Duration"; ObjectID = "Ia4-dB-gaO"; */
 "Ia4-dB-gaO.headerCell.title" = "Duration";

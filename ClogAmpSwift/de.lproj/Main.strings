@@ -105,7 +105,7 @@
 "Fal-I4-PZk.title" = "Text";
 
 /* Class = "NSMenuItem"; title = "Open Folder…"; ObjectID = "IAo-SY-fd9"; */
-"IAo-SY-fd9.title" = "Ordner öffnen…";
+"IAo-SY-fd9.title" = "Lied-Ordner öffnen…";
 
 /* Class = "NSTableColumn"; headerCell.title = "Duration"; ObjectID = "Ia4-dB-gaO"; */
 "Ia4-dB-gaO.headerCell.title" = "Dauer";

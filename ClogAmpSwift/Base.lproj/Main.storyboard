@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.pdfkit.ibplugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,9 +48,15 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="Open Folder…" keyEquivalent="o" id="IAo-SY-fd9">
+                                        <menuItem title="Open Song Folder…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
-                                                <action selector="handleSelectMusicDirectory:" target="Ady-hI-5gd" id="bzD-M6-OhF"/>
+                                                <action selector="handleSelectMusicDirectory:" target="Ady-hI-5gd" id="d5I-kJ-Zc1"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Open PDF Folder..." id="7Dt-8U-nbt">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="handleSelectPdfDirectory:" target="Ady-hI-5gd" id="twe-V3-yeT"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Export Positions..." id="5mT-mF-117">
@@ -239,7 +246,7 @@
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Songs" identifier="songs" id="84A-Vs-Rhv">
-                                        <view key="view" ambiguous="YES" id="nyG-NY-YAM">
+                                        <view key="view" id="nyG-NY-YAM">
                                             <rect key="frame" x="10" y="33" width="1066" height="433"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -263,6 +270,21 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                                     <connections>
                                                         <segue destination="ogj-Ej-2Vt" kind="embed" id="oCm-4b-lXT"/>
+                                                    </connections>
+                                                </containerView>
+                                            </subviews>
+                                        </view>
+                                    </tabViewItem>
+                                    <tabViewItem label="PDF" identifier="pdf" id="yda-ES-Prf">
+                                        <view key="view" ambiguous="YES" id="YUc-fT-s4j">
+                                            <rect key="frame" x="10" y="33" width="1066" height="433"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tbY-Wt-Fx1">
+                                                    <rect key="frame" x="3" y="10" width="1060" height="427"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                                    <connections>
+                                                        <segue destination="Xpb-W6-vjd" kind="embed" id="Lat-l8-hNm"/>
                                                     </connections>
                                                 </containerView>
                                             </subviews>
@@ -811,7 +833,7 @@
                                 <rect key="frame" x="15" y="24" width="42" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="- bpm" id="ygE-ap-Vgv">
-                                    <font key="font" metaFont="label" size="9"/>
+                                    <font key="font" metaFont="menu" size="9"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -872,7 +894,29 @@
                 </viewController>
                 <customObject id="XUw-5S-rFu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-208" y="1203"/>
+            <point key="canvasLocation" x="163" y="1219"/>
+        </scene>
+        <!--PDF View-->
+        <scene sceneID="R0u-LD-O8w">
+            <objects>
+                <viewController title="PDF View" id="Xpb-W6-vjd" customClass="PDFViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" identifier="pdfViewerView" translatesAutoresizingMaskIntoConstraints="NO" id="1f7-rJ-Gf1">
+                        <rect key="frame" x="0.0" y="0.0" width="973" height="247"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pdfView identifier="pdfViewer" autoresizesSubviews="NO" wantsLayer="YES" appearanceType="aqua" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-xR-5N4">
+                                <rect key="frame" x="0.0" y="0.0" width="973" height="247"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </pdfView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="pdfView" destination="JG5-xR-5N4" id="a7S-WX-pHH"/>
+                    </connections>
+                </viewController>
+                <customObject id="PYz-VR-zO6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-631.5" y="1330.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="QZ5-wx-4U1">
@@ -1408,7 +1452,7 @@
                                     <font key="font" metaFont="message" size="11"/>
                                 </pathCell>
                             </pathControl>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RBY-hW-7Nn" userLabel="Directory Text">
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RBY-hW-7Nn" userLabel="Directory Text">
                                 <rect key="frame" x="428" y="91" width="118" height="65"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" alignment="center" title="99%" id="RIz-5V-WIF">
                                     <font key="font" metaFont="system" size="55"/>
@@ -1453,7 +1497,7 @@
                 </viewController>
                 <customObject id="Egk-O0-ygv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-684" y="1588"/>
+            <point key="canvasLocation" x="-1628" y="1358"/>
         </scene>
         <!--Position Table View-->
         <scene sceneID="JJ0-sb-7aP">
@@ -1789,7 +1833,7 @@
                 <customObject id="Ipd-wm-y1w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="BaK-7o-xSc"/>
             </objects>
-            <point key="canvasLocation" x="-1367" y="1241"/>
+            <point key="canvasLocation" x="-900" y="1688"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="OFV-Aa-lpx">
@@ -1992,6 +2036,19 @@
                 <customObject id="at9-e5-zna" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="681" y="589"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dpr-Io-3DF">
+            <objects>
+                <viewController id="QCK-im-WxA" sceneMemberID="viewController">
+                    <view key="view" id="ccr-2b-aPR">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="qgj-vE-ZfL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1710" y="613"/>
         </scene>
     </scenes>
     <resources>
