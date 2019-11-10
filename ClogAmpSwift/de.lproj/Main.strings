@@ -23,11 +23,14 @@
 /* Class = "NSTextFieldCell"; placeholderString = "0:00"; ObjectID = "2Ro-6R-ZgD"; */
 "2Ro-6R-ZgD.placeholderString" = "0:00";
 
-/* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4J7-dP-txa"; */
-"4J7-dP-txa.title" = "Enter Full Screen";
-
 /* Class = "NSMenuItem"; title = "Quit ClogAmpMac"; ObjectID = "4sb-4s-VLi"; */
 "4sb-4s-VLi.title" = "ClogAmpMac schließen";
+
+/* Class = "NSMenuItem"; title = "About ClogAmpMac"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "Über ClogAmpMac";
+
+/* Class = "NSMenuItem"; title = "Export Positions..."; ObjectID = "5mT-mF-117"; */
+"5mT-mF-117.title" = "Positionen exportieren...";
 
 /* Class = "NSButtonCell"; title = "1"; ObjectID = "5Ph-ar-jJO"; */
 "5Ph-ar-jJO.title" = "1";
@@ -38,12 +41,6 @@
 /* Class = "NSTextFieldCell"; title = "Skip Forward (s)"; ObjectID = "5UA-Z5-rDQ"; */
 "5UA-Z5-rDQ.title" = "Vorwärts springen (s)";
 
-/* Class = "NSMenuItem"; title = "About ClogAmpMac"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "Über ClogAmpMac";
-
-/* Class = "NSMenuItem"; title = "Export Positions..."; ObjectID = "5mT-mF-117"; */
-"5mT-mF-117.title" = "Positionen exportieren...";
-
 /* Class = "NSTableColumn"; headerCell.title = "BPM"; ObjectID = "7I5-S5-XyB"; */
 "7I5-S5-XyB.headerCell.title" = "BPM";
 
@@ -53,14 +50,14 @@
 /* Class = "NSTabViewItem"; label = "Songs"; ObjectID = "84A-Vs-Rhv"; */
 "84A-Vs-Rhv.label" = "Lieder";
 
-/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "8MF-KG-Jq5"; */
-"8MF-KG-Jq5.headerCell.title" = "Name";
-
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "8dP-Hm-3sg"; */
 "8dP-Hm-3sg.headerCell.title" = "Künstler";
 
 /* Class = "NSBox"; title = "BPM Correction"; ObjectID = "8dq-r9-d9O"; */
 "8dq-r9-d9O.title" = "BPM Korrektur";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "8MF-KG-Jq5"; */
+"8MF-KG-Jq5.headerCell.title" = "Name";
 
 /* Class = "NSTableColumn"; headerCell.title = "Speed"; ObjectID = "9ft-gW-ecw"; */
 "9ft-gW-ecw.headerCell.title" = "Tempo";
@@ -77,140 +74,35 @@
 /* Class = "NSTableColumn"; headerCell.title = "Path"; ObjectID = "Ayq-oo-l5x"; */
 "Ayq-oo-l5x.headerCell.title" = "Pfad";
 
-/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
-"BOF-NM-1cW.title" = "Einstellungen…";
-
-/* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A"; */
-"Bw7-FT-i3A.title" = "Save As…";
-
-/* Class = "NSButtonCell"; title = "-"; ObjectID = "CcZ-zn-W5m"; */
-"CcZ-zn-W5m.title" = "-";
-
-/* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
-"DVo-aG-piG.title" = "Schließen";
-
-/* Class = "NSMenuItem"; title = "Forward 5 Sec."; ObjectID = "EZ4-Ig-6vu"; */
-"EZ4-Ig-6vu.title" = "Springen forwärts";
-
-/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "EZL-nN-5Iw"; */
-"EZL-nN-5Iw.title" = "Table View Cell";
-
-/* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
-"F2S-fz-NVQ.title" = "Hilfe";
-
-/* Class = "NSMenuItem"; title = "ClogAmpMac Help"; ObjectID = "FKE-Sm-Kum"; */
-"FKE-Sm-Kum.title" = "ClogAmpMac Hilfe";
-
-/* Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk"; */
-"Fal-I4-PZk.title" = "Text";
-
-/* Class = "NSMenuItem"; title = "Open Folder…"; ObjectID = "IAo-SY-fd9"; */
-"IAo-SY-fd9.title" = "Lied-Ordner öffnen…";
-
-/* Class = "NSTableColumn"; headerCell.title = "Duration"; ObjectID = "Ia4-dB-gaO"; */
-"Ia4-dB-gaO.headerCell.title" = "Dauer";
-
-/* Class = "NSBox"; title = "Add Minutes"; ObjectID = "JyX-yW-qs2"; */
-"JyX-yW-qs2.title" = "Minuten hinzufügen";
-
-/* Class = "NSTabViewItem"; label = "Application"; ObjectID = "K8K-xe-QFe"; */
-"K8K-xe-QFe.label" = "App";
-
-/* Class = "NSBox"; title = "App Start"; ObjectID = "KI2-HL-1bJ"; */
-"KI2-HL-1bJ.title" = "App Start";
-
-/* Class = "NSTextFieldCell"; title = "Wait a number of seconds before looping after the position finished (for example to avoid looping too early)"; ObjectID = "MQb-sL-sbJ"; */
-"MQb-sL-sbJ.title" = "Wartezeit in Sekunden bevor die Position wiederholt wird (zum Beispiel um zu frühes Springen zu vermeiden)";
-
-/* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "Oek-lJ-OsP"; */
-"Oek-lJ-OsP.headerCell.title" = "Künstler";
-
-/* Class = "NSMenuItem"; title = "Hide ClogAmpMac"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "ClogAmpMac verstecken";
-
-/* Class = "NSTextFieldCell"; title = "Playlist active"; ObjectID = "Owl-es-RPo"; */
-"Owl-es-RPo.title" = "Playlist aktiv";
-
-/* Class = "NSMenuItem"; title = "Back 5 Sec."; ObjectID = "P91-JH-KOo"; */
-"P91-JH-KOo.title" = "Springen rückwärts";
-
-/* Class = "NSBox"; title = "Select Icon when App is running"; ObjectID = "PTi-iI-tup"; */
-"PTi-iI-tup.title" = "Icon wenn die App läuft";
-
-/* Class = "NSTableColumn"; headerCell.title = "Date"; ObjectID = "Paz-Hv-eDP"; */
-"Paz-Hv-eDP.headerCell.title" = "Datum";
-
-/* Class = "NSMenuItem"; title = "Player"; ObjectID = "QLk-u7-0rp"; */
-"QLk-u7-0rp.title" = "Player";
-
-/* Class = "NSTextFieldCell"; title = "99%"; ObjectID = "RIz-5V-WIF"; */
-"RIz-5V-WIF.title" = "99%";
-
-/* Class = "NSMenuItem"; title = "Show Time"; ObjectID = "Scw-3x-0hP"; */
-"Scw-3x-0hP.title" = "Zeit anzeigen";
-
-/* Class = "NSButtonCell"; title = "+"; ObjectID = "Sg8-Uf-sex"; */
-"Sg8-Uf-sex.title" = "+";
-
-/* Class = "NSViewController"; title = "Preferences"; ObjectID = "TPq-mw-tuz"; */
-"TPq-mw-tuz.title" = "Einstellungen";
-
-/* Class = "NSTableColumn"; headerCell.title = "Level"; ObjectID = "TvH-eh-RPC"; */
-"TvH-eh-RPC.headerCell.title" = "Level";
-
-/* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "UUK-R8-ct4"; */
-"UUK-R8-ct4.title" = "Sekunden";
-
-/* Class = "NSViewController"; title = "Countdown"; ObjectID = "UdJ-VP-3PA"; */
-"UdJ-VP-3PA.title" = "Countdown";
-
-/* Class = "NSMenuItem"; title = "Filter..."; ObjectID = "VUf-no-TEU"; */
-"VUf-no-TEU.title" = "Filter...";
-
-/* Class = "NSButtonCell"; title = "Colorize Player State"; ObjectID = "VVc-b7-FTX"; */
-"VVc-b7-FTX.title" = "Farbiger Player Status";
-
-/* Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl"; */
-"W48-6f-4Dl.title" = "Bearbeiten";
-
-/* Class = "NSMenuItem"; title = "Import Positions..."; ObjectID = "W5r-HN-rbH"; */
-"W5r-HN-rbH.title" = "Positionen importieren...";
-
-/* Class = "NSTableColumn"; headerCell.title = "Time"; ObjectID = "WKV-fn-Sat"; */
-"WKV-fn-Sat.headerCell.title" = "Zeit";
-
-/* Class = "NSTextFieldCell"; title = "00:00:00"; ObjectID = "XXI-xF-OOh"; */
-"XXI-xF-OOh.title" = "00:00:00";
-
-/* Class = "NSBox"; title = "Music / Player"; ObjectID = "XeW-uo-oq7"; */
-"XeW-uo-oq7.title" = "Musik / Player";
-
-/* Class = "NSTextFieldCell"; title = "Lower Bound"; ObjectID = "YfJ-rO-vhk"; */
-"YfJ-rO-vhk.title" = "Untere Grenze";
-
-/* Class = "NSMenuItem"; title = "Determine BPM"; ObjectID = "Zhg-Sn-7pH"; */
-"Zhg-Sn-7pH.title" = "BPM ermitteln";
-
 /* Class = "NSTableColumn"; headerCell.title = "#"; ObjectID = "b0B-hh-Zom"; */
 "b0B-hh-Zom.headerCell.title" = "#";
 
 /* Class = "NSMenuItem"; title = "Stop"; ObjectID = "b5K-ny-6MC"; */
 "b5K-ny-6MC.title" = "Stop";
 
-/* Class = "NSButtonCell"; title = "Loop:"; ObjectID = "bHI-pD-B57"; */
-"bHI-pD-B57.title" = "Schleife:";
-
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "bdd-kO-v2s"; */
 "bdd-kO-v2s.headerCell.title" = "Titel";
 
+/* Class = "NSButtonCell"; title = "Loop:"; ObjectID = "bHI-pD-B57"; */
+"bHI-pD-B57.title" = "Schleife:";
+
 /* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
 "bib-Uj-vzu.title" = "Datei";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
+"BOF-NM-1cW.title" = "Einstellungen…";
+
+/* Class = "NSButtonCell"; title = "-"; ObjectID = "CcZ-zn-W5m"; */
+"CcZ-zn-W5m.title" = "-";
 
 /* Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ"; */
 "dMs-cI-mzQ.title" = "Datei";
 
 /* Class = "NSTextFieldCell"; title = "Speed"; ObjectID = "dOs-ll-4nC"; */
 "dOs-ll-4nC.title" = "Tempo";
+
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
+"DVo-aG-piG.title" = "Schließen";
 
 /* Class = "NSButtonCell"; title = "Focus Filter Field"; ObjectID = "dwD-8M-CBO"; */
 "dwD-8M-CBO.title" = "Fokusiere Filter Feld";
@@ -220,6 +112,12 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "eoz-Nu-Vim"; */
 "eoz-Nu-Vim.headerCell.title" = "Beschreibung";
+
+/* Class = "NSMenuItem"; title = "Forward 5 Sec."; ObjectID = "EZ4-Ig-6vu"; */
+"EZ4-Ig-6vu.title" = "Springen forwärts";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "EZL-nN-5Iw"; */
+"EZL-nN-5Iw.title" = "Table View Cell";
 
 /* Class = "NSMenuItem"; title = "Decrease Speed"; ObjectID = "f7m-rQ-0TS"; */
 "f7m-rQ-0TS.title" = "Tempo verringern";
@@ -242,8 +140,26 @@
 /* Class = "NSTextFieldCell"; title = "Skip Back (s)"; ObjectID = "hcc-KD-bgS"; */
 "hcc-KD-bgS.title" = "Zurück springen (s)";
 
+/* Class = "NSTableColumn"; headerCell.title = "Duration"; ObjectID = "Ia4-dB-gaO"; */
+"Ia4-dB-gaO.headerCell.title" = "Dauer";
+
+/* Class = "NSMenuItem"; title = "Open Folder…"; ObjectID = "IAo-SY-fd9"; */
+"IAo-SY-fd9.title" = "Lied-Ordner öffnen…";
+
+/* Class = "NSBox"; title = "Add Minutes"; ObjectID = "JyX-yW-qs2"; */
+"JyX-yW-qs2.title" = "Minuten hinzufügen";
+
+/* Class = "NSTabViewItem"; label = "Application"; ObjectID = "K8K-xe-QFe"; */
+"K8K-xe-QFe.label" = "App";
+
+/* Class = "NSBox"; title = "App Start"; ObjectID = "KI2-HL-1bJ"; */
+"KI2-HL-1bJ.title" = "App Start";
+
 /* Class = "NSTextFieldCell"; title = "Upper Bound"; ObjectID = "l7c-qL-Ath"; */
 "l7c-qL-Ath.title" = "Obere Grenze";
+
+/* Class = "NSTextFieldCell"; title = "Wait a number of seconds before looping after the position finished (for example to avoid looping too early)"; ObjectID = "MQb-sL-sbJ"; */
+"MQb-sL-sbJ.title" = "Wartezeit in Sekunden bevor die Position wiederholt wird (zum Beispiel um zu frühes Springen zu vermeiden)";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "n27-Ni-WE3"; */
 "n27-Ni-WE3.title" = "x";
@@ -251,11 +167,29 @@
 /* Class = "NSButtonCell"; title = "Set Time"; ObjectID = "nni-aM-Zao"; */
 "nni-aM-Zao.title" = "Aktuelle Zeit";
 
+/* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "Oek-lJ-OsP"; */
+"Oek-lJ-OsP.headerCell.title" = "Künstler";
+
+/* Class = "NSTextFieldCell"; title = "Playlist active"; ObjectID = "Owl-es-RPo"; */
+"Owl-es-RPo.title" = "Playlist aktiv";
+
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "p4V-ry-y2M"; */
 "p4V-ry-y2M.headerCell.title" = "Titel";
 
+/* Class = "NSMenuItem"; title = "Back 5 Sec."; ObjectID = "P91-JH-KOo"; */
+"P91-JH-KOo.title" = "Springen rückwärts";
+
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k"; */
 "pa3-QI-u2k.title" = "Löschen";
+
+/* Class = "NSTableColumn"; headerCell.title = "Date"; ObjectID = "Paz-Hv-eDP"; */
+"Paz-Hv-eDP.headerCell.title" = "Datum";
+
+/* Class = "NSBox"; title = "Select Icon when App is running"; ObjectID = "PTi-iI-tup"; */
+"PTi-iI-tup.title" = "Icon wenn die App läuft";
+
+/* Class = "NSMenuItem"; title = "Player"; ObjectID = "QLk-u7-0rp"; */
+"QLk-u7-0rp.title" = "Player";
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "qmF-AN-kTn"; */
 "qmF-AN-kTn.title" = "Einstellungen";
@@ -266,32 +200,50 @@
 /* Class = "NSBox"; title = "Reset"; ObjectID = "r7f-h9-I7n"; */
 "r7f-h9-I7n.title" = "Zurücksetzen";
 
-/* Class = "NSMenuItem"; title = "Pause"; ObjectID = "rYj-zB-AYc"; */
-"rYj-zB-AYc.title" = "Pause";
-
 /* Class = "NSButtonCell"; title = "15"; ObjectID = "rag-Z8-f4y"; */
 "rag-Z8-f4y.title" = "15";
+
+/* Class = "NSTextFieldCell"; title = "99%"; ObjectID = "RIz-5V-WIF"; */
+"RIz-5V-WIF.title" = "99%";
 
 /* Class = "NSTabViewItem"; label = "Positions"; ObjectID = "ruU-r9-Lws"; */
 "ruU-r9-Lws.label" = "Positionen";
 
+/* Class = "NSMenuItem"; title = "Pause"; ObjectID = "rYj-zB-AYc"; */
+"rYj-zB-AYc.title" = "Pause";
+
 /* Class = "NSBox"; title = "Positions"; ObjectID = "sAK-Pk-Jg2"; */
 "sAK-Pk-Jg2.title" = "Positionen";
-
-/* Class = "NSMenuItem"; title = "History..."; ObjectID = "sC0-Fk-FMh"; */
-"sC0-Fk-FMh.title" = "Verlauf...";
 
 /* Class = "NSButtonCell"; title = "+"; ObjectID = "sbD-Gm-mSv"; */
 "sbD-Gm-mSv.title" = "+";
 
+/* Class = "NSMenuItem"; title = "History..."; ObjectID = "sC0-Fk-FMh"; */
+"sC0-Fk-FMh.title" = "Verlauf...";
+
+/* Class = "NSMenuItem"; title = "Show Time"; ObjectID = "Scw-3x-0hP"; */
+"Scw-3x-0hP.title" = "Zeit anzeigen";
+
+/* Class = "NSButtonCell"; title = "+"; ObjectID = "Sg8-Uf-sex"; */
+"Sg8-Uf-sex.title" = "+";
+
 /* Class = "NSButtonCell"; title = "-"; ObjectID = "t1r-b8-GX7"; */
 "t1r-b8-GX7.title" = "-";
+
+/* Class = "NSViewController"; title = "Preferences"; ObjectID = "TPq-mw-tuz"; */
+"TPq-mw-tuz.title" = "Einstellungen";
 
 /* Class = "NSButtonCell"; title = "Play on Selection"; ObjectID = "ttV-OR-48e"; */
 "ttV-OR-48e.title" = "Positionen direkt abspielen";
 
+/* Class = "NSTableColumn"; headerCell.title = "Level"; ObjectID = "TvH-eh-RPC"; */
+"TvH-eh-RPC.headerCell.title" = "Level";
+
 /* Class = "NSButtonCell"; title = "0:00:00"; ObjectID = "u6q-We-efW"; */
 "u6q-We-efW.title" = "0:00:00";
+
+/* Class = "NSViewController"; title = "Countdown"; ObjectID = "UdJ-VP-3PA"; */
+"UdJ-VP-3PA.title" = "Countdown";
 
 /* Class = "NSMenu"; title = "ClogAmpMac"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "ClogAmpMac";
@@ -302,11 +254,26 @@
 /* Class = "NSViewController"; title = "Song Table"; ObjectID = "uTS-cM-QNI"; */
 "uTS-cM-QNI.title" = "Lied Tabelle";
 
+/* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "UUK-R8-ct4"; */
+"UUK-R8-ct4.title" = "Sekunden";
+
 /* Class = "NSTextFieldCell"; title = " 0:00:00"; ObjectID = "uwe-P1-jN1"; */
 "uwe-P1-jN1.title" = " 0:00:00";
 
 /* Class = "NSMenuItem"; title = "Play"; ObjectID = "vhe-J9-EqH"; */
 "vhe-J9-EqH.title" = "Abspielen";
+
+/* Class = "NSMenuItem"; title = "Filter..."; ObjectID = "VUf-no-TEU"; */
+"VUf-no-TEU.title" = "Filter...";
+
+/* Class = "NSButtonCell"; title = "Colorize Player State"; ObjectID = "VVc-b7-FTX"; */
+"VVc-b7-FTX.title" = "Farbiger Player Status";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl"; */
+"W48-6f-4Dl.title" = "Bearbeiten";
+
+/* Class = "NSMenuItem"; title = "Import Positions..."; ObjectID = "W5r-HN-rbH"; */
+"W5r-HN-rbH.title" = "Positionen importieren...";
 
 /* Class = "NSTextFieldCell"; title = "Volume"; ObjectID = "w6d-9C-Brh"; */
 "w6d-9C-Brh.title" = "Lautstärke";
@@ -314,17 +281,143 @@
 /* Class = "NSMenu"; title = "Player"; ObjectID = "wgL-C6-NQV"; */
 "wgL-C6-NQV.title" = "Player";
 
+/* Class = "NSTableColumn"; headerCell.title = "Time"; ObjectID = "WKV-fn-Sat"; */
+"WKV-fn-Sat.headerCell.title" = "Zeit";
+
 /* Class = "NSWindow"; title = "Countdown"; ObjectID = "x0l-k3-DSE"; */
 "x0l-k3-DSE.title" = "Countdown";
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU"; */
 "x3v-GG-iWU.title" = "Kopieren";
 
+/* Class = "NSBox"; title = "Music / Player"; ObjectID = "XeW-uo-oq7"; */
+"XeW-uo-oq7.title" = "Musik / Player";
+
 /* Class = "NSTabViewItem"; label = "Icon"; ObjectID = "xQu-NP-vS3"; */
 "xQu-NP-vS3.label" = "Icon";
+
+/* Class = "NSTextFieldCell"; title = "00:00:00"; ObjectID = "XXI-xF-OOh"; */
+"XXI-xF-OOh.title" = "00:00:00";
 
 /* Class = "NSButtonCell"; title = "-"; ObjectID = "yBc-if-q5C"; */
 "yBc-if-q5C.title" = "-";
 
+/* Class = "NSTextFieldCell"; title = "Lower Bound"; ObjectID = "YfJ-rO-vhk"; */
+"YfJ-rO-vhk.title" = "Untere Grenze";
+
 /* Class = "NSTextFieldCell"; placeholderString = "- bpm"; ObjectID = "ygE-ap-Vgv"; */
 "ygE-ap-Vgv.placeholderString" = "- bpm";
+
+/* Class = "NSMenuItem"; title = "Determine BPM"; ObjectID = "Zhg-Sn-7pH"; */
+"Zhg-Sn-7pH.title" = "BPM ermitteln";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "01o-e3-GZV"; */
+"01o-e3-GZV.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "0fS-RF-5fv"; */
+"0fS-RF-5fv.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "1sq-mK-pcg"; */
+"1sq-mK-pcg.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "6jp-mA-OPl"; */
+"6jp-mA-OPl.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "a4t-qx-9W0"; */
+"a4t-qx-9W0.title" = "";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "azT-hj-mHm"; */
+"azT-hj-mHm.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "bAA-0a-sIt"; */
+"bAA-0a-sIt.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "DrZ-oQ-bWO"; */
+"DrZ-oQ-bWO.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ETI-yC-gaK"; */
+"ETI-yC-gaK.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "foI-lo-pxg"; */
+"foI-lo-pxg.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "g37-Jx-HNm"; */
+"g37-Jx-HNm.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "hsJ-fm-vPg"; */
+"hsJ-fm-vPg.title" = "";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
+"hz9-B4-Xy5.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "is7-NN-n9r"; */
+"is7-NN-n9r.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "lrU-Na-IvH"; */
+"lrU-Na-IvH.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "MNV-ol-uqW"; */
+"MNV-ol-uqW.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "n9N-o0-bBE"; */
+"n9N-o0-bBE.title" = "";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
+"NMo-om-nkz.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "pnD-LF-Ph5"; */
+"pnD-LF-Ph5.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Psg-Cc-PIc"; */
+"Psg-Cc-PIc.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "rEk-CK-n7p"; */
+"rEk-CK-n7p.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "RT7-kh-1DK"; */
+"RT7-kh-1DK.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "sbN-7L-K9a"; */
+"sbN-7L-K9a.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "TaE-7x-9V4"; */
+"TaE-7x-9V4.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "VAl-k6-Qe4"; */
+"VAl-k6-Qe4.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "vnX-YF-mx0"; */
+"vnX-YF-mx0.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "vQ9-DZ-tbg"; */
+"vQ9-DZ-tbg.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wzc-Qu-7pp"; */
+"wzc-Qu-7pp.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Y9U-Yb-7ZW"; */
+"Y9U-Yb-7ZW.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "YDx-P1-QZ2"; */
+"YDx-P1-QZ2.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "YHG-sw-9lC"; */
+"YHG-sw-9lC.title" = "";
+
+/* Class = "NSButtonCell"; title = "Switch Time"; ObjectID = "YoY-zn-RNJ"; */
+"YoY-zn-RNJ.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "YQJ-Nq-R2q"; */
+"YQJ-Nq-R2q.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yrO-zl-itQ"; */
+"yrO-zl-itQ.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "YXQ-hq-0I8"; */
+"YXQ-hq-0I8.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "zsi-If-4eB"; */
+"zsi-If-4eB.title" = "";

@@ -595,7 +595,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "1.1.1 beta";
+				MARKETING_VERSION = "1.1.2 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -636,7 +636,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "1.1.1 beta";
+				MARKETING_VERSION = "1.1.2 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";

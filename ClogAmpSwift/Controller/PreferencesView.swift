@@ -20,6 +20,8 @@ class PreferenceView: ViewController {
     @IBOutlet weak var cbStartFocusFilter: NSButton!
     @IBOutlet weak var cbColorizePlayerState: NSButton!
     @IBOutlet weak var cbAutoDetermineBPM: NSButton!
+    @IBOutlet weak var cbMonoSongs: NSButton!
+    @IBOutlet weak var cbMonoPositions: NSButton!
     
     //Overrides
     override func viewDidLoad() {
@@ -52,6 +54,9 @@ class PreferenceView: ViewController {
         let prefColorPlayerState = UserDefaults.standard.bool(forKey: "prefColorPlayerState")
         let prefAutoDetermineBPM = UserDefaults.standard.bool(forKey: "prefAutoDetermineBPM")
         
+        let prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
+        let prefMonoFontPositons = UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
+        
         self.txtSkipForward.integerValue   = prefSkipForwardSeconds
         self.txtSkipBack.integerValue      = prefSkipBackSeconds
         self.txtBpmUpperBound.integerValue = prefBpmUpperBound
@@ -82,6 +87,18 @@ class PreferenceView: ViewController {
             self.cbAutoDetermineBPM.state = NSControl.StateValue.off
         }
         
+        if(prefMonoFontSongs == true){
+            self.cbMonoSongs.state = NSControl.StateValue.on
+        }else{
+            self.cbMonoSongs.state = NSControl.StateValue.off
+        }
+        
+        if(prefMonoFontPositons == true){
+            self.cbMonoPositions.state = NSControl.StateValue.on
+        }else{
+            self.cbMonoPositions.state = NSControl.StateValue.off
+        }
+        
         super.viewDidLoad()
     }
     
@@ -108,6 +125,12 @@ class PreferenceView: ViewController {
         }else if sender === self.cbAutoDetermineBPM! {
             let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
             UserDefaults.standard.set(state, forKey: "prefAutoDetermineBPM")
+        }else if sender === self.cbMonoSongs! {
+            let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
+            UserDefaults.standard.set(state, forKey: "prefMonoFontSongs")
+        }else if sender === self.cbMonoPositions! {
+            let state = (sender.state ?? NSControl.StateValue.off) == NSControl.StateValue.on
+            UserDefaults.standard.set(state, forKey: "prefMonoFontPositons")
         }
     }
     @IBAction func setAppIcon(_ sender: NSButton) {
