@@ -10,6 +10,8 @@ import AppKit
 
 class MainView: NSViewController {
     
+    weak var mainWindow: MainWindow?
+    
     weak var playerView: PlayerView?
     weak var songTableView: SongTableView?
     weak var positionTableView: PositionTableView?
@@ -151,9 +153,18 @@ extension MainView: NSTabViewDelegate {
     func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
         self.positionTableView?.visible = false
         
-        if(tabViewItem?.identifier as? String == "positions"){
+        if(tabViewItem?.identifier as? String == "songs"){
+            if(tabViewItem?.tabState == NSTabViewItem.State.selectedTab){
+                self.mainWindow?.segTabs.selectedSegment = 0
+            }
+        }else if(tabViewItem?.identifier as? String == "positions"){
             if(tabViewItem?.tabState == NSTabViewItem.State.selectedTab){
                 self.positionTableView?.visible = true
+                self.mainWindow?.segTabs.selectedSegment = 1
+            }
+        }else if(tabViewItem?.identifier as? String == "pdf"){
+            if(tabViewItem?.tabState == NSTabViewItem.State.selectedTab){
+                self.mainWindow?.segTabs.selectedSegment = 2
             }
         }
     }

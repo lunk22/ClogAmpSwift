@@ -32,6 +32,8 @@ class PlayerView: ViewController {
     @IBOutlet weak var btnStop: NSButton!
     
     
+    
+    
     /*
      * Properties
      */
@@ -126,19 +128,35 @@ class PlayerView: ViewController {
                 self.btnPlay.image  = NSImage(named: "play")
                 self.btnPause.image = NSImage(named: "pauseGray")
                 self.btnStop.image  = NSImage(named: "stopGray")
+                
+                self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "play")
+                self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pauseGray")
+                self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stopGray")
             }else if (self.avPlayer?.getCurrentTime() ?? 0.0) > 0.0 && !(self.avPlayer?.isPlaying() ?? false) {
                 self.btnPlay.image  = NSImage(named: "playGray")
                 self.btnPause.image = NSImage(named: "pause")
                 self.btnStop.image  = NSImage(named: "stopGray")
+                
+                self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "playGray")
+                self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pause")
+                self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stopGray")
             }else if (self.avPlayer?.getCurrentTime() ?? 0.0) == 0.0 && !(self.avPlayer?.isPlaying() ?? false) {
                 self.btnPlay.image  = NSImage(named: "playGray")
                 self.btnPause.image = NSImage(named: "pauseGray")
                 self.btnStop.image  = NSImage(named: "stop")
+                
+                self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "playGray")
+                self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pauseGray")
+                self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stop")
             }
         }else{
             self.btnPlay.image  = NSImage(named: "playGray")
             self.btnPause.image = NSImage(named: "pauseGray")
             self.btnStop.image  = NSImage(named: "stopGray")
+            
+            self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "playGray")
+            self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pauseGray")
+            self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stopGray")
         }
     }
     

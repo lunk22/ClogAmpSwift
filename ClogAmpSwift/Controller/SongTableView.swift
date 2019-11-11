@@ -475,3 +475,17 @@ extension SongTableView: NSTextFieldDelegate {
     
 }
 
+//extension SongTableView: NSTouchBarDelegate {
+//  override func makeTouchBar() -> NSTouchBar? {
+//    // 1
+//    let touchBar = NSTouchBar()
+//    touchBar.delegate = self
+//    // 2
+//    touchBar.customizationIdentifier = .travelBar
+//    // 3
+//    touchBar.defaultItemIdentifiers = [.infoLabelItem]
+//    // 4
+//    touchBar.customizationAllowedItemIdentifiers = [.infoLabelItem]
+//    return touchBar
+//  }
+//}

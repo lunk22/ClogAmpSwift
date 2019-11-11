@@ -202,7 +202,6 @@
 				50DC6D8B2081DA6400B7C347 /* Utils */,
 				B70F1810221D955C00FE1149 /* Icons */,
 				50A37BB0207FF03E0020E218 /* Main.storyboard */,
-				50A37BAA207FF03D0020E218 /* AppDelegate.swift */,
 				B70F180E221D781800FE1149 /* Assets.xcassets */,
 				5017716521FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib */,
 				B79853302217073500BDE678 /* libbass_fx.dylib */,
@@ -259,6 +258,7 @@
 		50DC6D8D2081F03E00B7C347 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				50A37BAA207FF03D0020E218 /* AppDelegate.swift */,
 				50A09BAD22104BA800365544 /* TableViewDelegate.swift */,
 			);
 			path = Delegates;
