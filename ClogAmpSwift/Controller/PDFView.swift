@@ -106,7 +106,9 @@ class PDFViewController: NSViewController {
         do {
             try ObjC.catchException {
                 self.pdfView.document = nil
-                self.pdfView.updateLayer()
+                DispatchQueue.main.async {
+                    self.pdfView.updateLayer()
+                }
             }
         }
         catch {
