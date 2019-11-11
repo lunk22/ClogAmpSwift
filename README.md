@@ -7,3 +7,6 @@ ClogAmp from Mac (Swift)
 - [id3Lib](http://id3lib.sourceforge.net/) => Read mp3 info
 - [BASS & BASS FX](http://www.un4seen.com/) => Determine BPM
 - [SwiftyStringScore](https://github.com/yichizhang/SwiftyStringScore) => Find matching PDFs
+
+## Used fonts:
+- [B612](https://github.com/polarsys/b612)
