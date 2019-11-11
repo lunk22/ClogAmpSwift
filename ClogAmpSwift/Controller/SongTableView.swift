@@ -287,13 +287,13 @@ class SongTableView: ViewController {
     @IBAction func handleSelectMusicDirectory(_ sender: Any) {
         let dialog = NSOpenPanel();
         
-        dialog.title                   = "Choose a folder";
-        dialog.showsResizeIndicator    = true;
-        dialog.showsHiddenFiles        = false;
-        dialog.canChooseDirectories    = true;
-        dialog.canChooseFiles          = false;
-        dialog.canCreateDirectories    = false;
-        dialog.allowsMultipleSelection = false;
+        dialog.title                   = NSLocalizedString("chooseFolder", tableName: "Main", comment: "")
+        dialog.showsResizeIndicator    = true
+        dialog.showsHiddenFiles        = false
+        dialog.canChooseDirectories    = true
+        dialog.canChooseFiles          = false
+        dialog.canCreateDirectories    = false
+        dialog.allowsMultipleSelection = false
         
         if let savedPath = UserDefaults.standard.string(forKey: "musicFolderPath") {
             dialog.directoryURL        = URL(fileURLWithPath: savedPath)

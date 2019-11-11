@@ -421,3 +421,18 @@
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "zsi-If-4eB"; */
 "zsi-If-4eB.title" = "Table View Cell";
+
+// Manually Added
+
+/* Class = "NSMenuItem"; title = "Open PDF Folder…"; ObjectID = "7Dt-8U-nbt"; */
+"7Dt-8U-nbt.title" = "Open PDF Folder…";
+
+/* Class = "NSMenuItem"; title = "Assign PDF..."; ObjectID = "KGz-G6-Nt9"; */
+"KGz-G6-Nt9.title" = "Assign PDF…";
+
+/* Class = "NSMenuItem"; title = "Remove PDF Assignment"; ObjectID = "2yv-Bl-R2B"; */
+"2yv-Bl-R2B.title" = "Remove PDF Assignment";
+
+// Used in Sourcecode
+"choosePdf" = "Choose PDF";
+"chooseFolder" = "Choose Folder";

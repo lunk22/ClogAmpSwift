@@ -15,13 +15,13 @@
 
 + (bool)buildDatabaseTablesIfNeeded;
 
-//+ (bool)insertIntoCuesheetAssignment:(NSString *)fileName assignedPDFPath:(NSString *)pdfPath;
-//
-//+ (bool)deleteFromCuesheetAssignment:(NSString *)fileName;
++ (bool)insertIntoCuesheetAssignment:(NSString *)fileName assignedPDFPath:(NSString *)pdfPath;
+
++ (bool)deleteFromCuesheetAssignment:(NSString *)fileName;
 
 + (bool)insertSongIntoHistory:(NSString *)songTitle withArtist:(NSString *)songArtist withPath:(NSString *)songPath;
 
-//+ (NSString *)getAssignedPDF:(NSString *)fileName;
++ (NSString *)getAssignedPDF:(NSString *)fileName;
 
 //+ (NSMutableArray *)getPlaylists;
 //

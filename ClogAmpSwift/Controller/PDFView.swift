@@ -10,7 +10,11 @@ import Foundation
 import PDFKit
 
 class PDFViewController: NSViewController {
-
+    
+    var aPdfUrls: [URL] = []
+    
+    weak var mainView: MainView?
+    
     @IBOutlet weak var pdfView: PDFView!
     
     override func viewDidAppear() {
@@ -20,13 +24,13 @@ class PDFViewController: NSViewController {
     @IBAction func handleSelectPdfDirectory(_ sender: Any) {
         let dialog = NSOpenPanel();
         
-        dialog.title                   = "Choose a folder";
-        dialog.showsResizeIndicator    = true;
-        dialog.showsHiddenFiles        = false;
-        dialog.canChooseDirectories    = true;
-        dialog.canChooseFiles          = false;
-        dialog.canCreateDirectories    = false;
-        dialog.allowsMultipleSelection = false;
+        dialog.title                   = NSLocalizedString("chooseFolder", tableName: "Main", comment: "")
+        dialog.showsResizeIndicator    = true
+        dialog.showsHiddenFiles        = false
+        dialog.canChooseDirectories    = true
+        dialog.canChooseFiles          = false
+        dialog.canCreateDirectories    = false
+        dialog.allowsMultipleSelection = false
         
         if let savedPath = UserDefaults.standard.string(forKey: "pdfFolderPath") {
             dialog.directoryURL        = URL(fileURLWithPath: savedPath)
@@ -35,9 +39,53 @@ class PDFViewController: NSViewController {
         if (dialog.runModal() == NSApplication.ModalResponse.OK) {
             if let result = dialog.url { // Pathname of the file
                 //Open directory
-//                self.setPdfDirectory(result.path)
                 UserDefaults.standard.set(result.path, forKey: "pdfFolderPath")
+                
+                //Clear existing URLs, even if it's the same folder (do a refresh)
+                self.clearPdfInUi()
+                self.aPdfUrls = []
+                
+                self.findPdfForCurrentSong()
             }
+        }
+    }
+    
+    @IBAction func handleAssignSinglePdf(_ sender: Any) {
+        let dialog = NSOpenPanel();
+        
+        dialog.title                   = NSLocalizedString("choosePdf", tableName: "Main", comment: "")
+        dialog.showsResizeIndicator    = true
+        dialog.showsHiddenFiles        = false
+        dialog.canChooseDirectories    = false
+        dialog.canChooseFiles          = true
+        dialog.canCreateDirectories    = false
+        dialog.allowsMultipleSelection = false
+        dialog.allowedFileTypes        = ["pdf"]
+        
+        if let savedPath = UserDefaults.standard.string(forKey: "pdfFolderPath") {
+            dialog.directoryURL        = URL(fileURLWithPath: savedPath)
+        }
+        
+        if (dialog.runModal() == NSApplication.ModalResponse.OK) {
+            if let result = dialog.url { // Pathname of the file
+                //Assign & open file
+                Database.insert(
+                    intoCuesheetAssignment: self.mainView?.playerView?.currentSong?.filePathAsUrl.lastPathComponent,
+                    assignedPDFPath: result.path
+                )
+                
+                self.openPdfInUi(result)
+            }
+        }
+    }
+    
+    @IBAction func handleRemovePdfAssignment(_ sender: Any) {
+        let bDeleted = Database.delete(fromCuesheetAssignment: self.mainView?.playerView?.currentSong?.filePathAsUrl.lastPathComponent)
+        
+        if bDeleted {
+            self.clearPdfInUi()
+            
+            self.findPdfForCurrentSong()
         }
     }
     
@@ -55,7 +103,22 @@ class PDFViewController: NSViewController {
     }
     
     func clearPdfInUi() {
-        self.pdfView.document = nil
+        do {
+            try ObjC.catchException {
+                self.pdfView.document = nil
+                self.pdfView.updateLayer()
+            }
+        }
+        catch {
+            print("An error ocurred: \(error)")
+        }
+    }
+    
+    func findPdfForCurrentSong() {
+        self.findPdfForSong(
+            songName: self.mainView?.playerView?.currentSong?.getValueAsString("title") ?? "",
+            fileName: self.mainView?.playerView?.currentSong?.filePathAsUrl.lastPathComponent ?? ""
+        )
     }
     
     func findPdfForSong(songName: String, fileName: String) {
@@ -70,12 +133,19 @@ class PDFViewController: NSViewController {
                 self.score = score
             }
         }
-        if let savedPath = UserDefaults.standard.string(forKey: "pdfFolderPath") {
+        
+        let pdfPath = Database.getAssignedPDF(fileName)
+        
+        if pdfPath != nil {
+            self.openPdfInUi(URL(string: pdfPath!)!)
+        } else if let savedPath = UserDefaults.standard.string(forKey: "pdfFolderPath") {
             DispatchQueue.global(qos: .background).async {
-                let aUrls = FileSystemUtils.readFolderContentsAsURL(sPath: savedPath, filterExtension: "pdf")
-                if(aUrls.count > 0) {
+                if self.aPdfUrls.count == 0 {
+                    self.aPdfUrls = FileSystemUtils.readFolderContentsAsURL(sPath: savedPath, filterExtension: "pdf")
+                }
+                if(self.aPdfUrls.count > 0) {
                     var dictResults = [Result]()
-                    for url in aUrls {
+                    for url in self.aPdfUrls {
                         let lastPathComponent = url.deletingPathExtension().lastPathComponent
                         
                         if fileName.replacingOccurrences(of: ".mp3", with: "") == lastPathComponent {
