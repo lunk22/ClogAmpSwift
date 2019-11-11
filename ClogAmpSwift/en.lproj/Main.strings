@@ -433,6 +433,15 @@
 /* Class = "NSMenuItem"; title = "Remove PDF Assignment"; ObjectID = "2yv-Bl-R2B"; */
 "2yv-Bl-R2B.title" = "Remove PDF Assignment";
 
+/* Class = "NSBox"; title = "Font (requires restart)"; ObjectID = "B6L-DL-PqA"; */
+"B6L-DL-PqA.title" = "Font (requires restart)";
+
+/* Class = "NSButtonCell"; title = "Use Mono Font for Songs"; ObjectID = "OUP-oz-FBE"; */
+"OUP-oz-FBE.title" = "Use Mono Font for Songs";
+
+/* Class = "NSButtonCell"; title = "Use Mono Font for Positions"; ObjectID = "D27-I2-QtF"; */
+"D27-I2-QtF.title" = "Use Mono Font for Positions";
+
 // Used in Sourcecode
 "choosePdf" = "Choose PDF";
 "chooseFolder" = "Choose Folder";
