@@ -70,7 +70,16 @@
     
     ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, "eng", "ClogChoreoParts", positionsUChar, dataSize);
     
-    bool isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
+    bool isEmpty;
+    
+    //        isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
+    char *testChar = (char *)positionsUChar;
+    NSUInteger testLength = strlen(testChar);
+    if ((int)testLength > 0) {
+        isEmpty = false;
+    }else{
+        isEmpty = true;
+    }
     
     if (found != nil && (dataSize != 0 || !isEmpty)){
         [dict setValue: [NSNumber numberWithBool:true] forKey:@"hasPositions"];
@@ -108,7 +117,16 @@
     ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
     ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, "eng", "ClogChoreoParts", positionsUChar, dataSize);
     
-    bool isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
+    bool isEmpty;
+    
+    //        isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
+    char *testChar = (char *)positionsUChar;
+    NSUInteger testLength = strlen(testChar);
+    if ((int)testLength > 0) {
+        isEmpty = false;
+    }else{
+        isEmpty = true;
+    }
     
     if (found != nil && (dataSize != 0 || !isEmpty)){
         return true;
@@ -126,7 +144,16 @@
     ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
     ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, "eng", "ClogChoreoParts", positionsUChar, dataSize);
     
-    bool isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
+    bool isEmpty;
+
+//        isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
+    char *testChar = (char *)positionsUChar;
+    NSUInteger testLength = strlen(testChar);
+    if ((int)testLength > 0) {
+        isEmpty = false;
+    }else{
+        isEmpty = true;
+    }
     
     if (found != nil && (dataSize != 0 || !isEmpty)){
         
