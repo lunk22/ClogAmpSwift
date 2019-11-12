@@ -153,7 +153,7 @@
                                                 <segue destination="Rx2-bm-TSd" kind="modal" id="01v-Ll-Ffv"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Refresh List" keyEquivalent="r" id="rJe-5J-acX">
+                                        <menuItem title="Reload List" keyEquivalent="r" id="rJe-5J-acX">
                                             <connections>
                                                 <action selector="handleRefreshList:" target="Ady-hI-5gd" id="Qtb-du-c1k"/>
                                             </connections>
@@ -363,7 +363,7 @@
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Songs" identifier="songs" id="84A-Vs-Rhv">
-                                        <view key="view" id="nyG-NY-YAM">
+                                        <view key="view" ambiguous="YES" id="nyG-NY-YAM">
                                             <rect key="frame" x="10" y="33" width="1066" height="433"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -393,7 +393,7 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="PDF" identifier="pdf" id="yda-ES-Prf">
-                                        <view key="view" ambiguous="YES" id="YUc-fT-s4j">
+                                        <view key="view" id="YUc-fT-s4j">
                                             <rect key="frame" x="10" y="33" width="1066" height="433"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
