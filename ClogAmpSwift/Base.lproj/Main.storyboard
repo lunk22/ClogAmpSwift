@@ -153,6 +153,11 @@
                                                 <segue destination="Rx2-bm-TSd" kind="modal" id="01v-Ll-Ffv"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Refresh List" keyEquivalent="r" id="rJe-5J-acX">
+                                            <connections>
+                                                <action selector="handleRefreshList:" target="Ady-hI-5gd" id="Qtb-du-c1k"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
