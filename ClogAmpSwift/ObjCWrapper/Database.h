@@ -23,19 +23,19 @@
 
 + (NSString *)getAssignedPDF:(NSString *)fileName;
 
-//+ (NSMutableArray *)getPlaylists;
-//
++ (NSArray *)getPlaylists;
+
 //+ (NSMutableArray *)getPlaylistSongs:(int)playlistID;
 
 + (NSMutableArray *)getSongHistory:(NSDate *)fromDate toDate:(NSDate *)toDate;
 
-//+ (int)addPlaylist:(NSString *)desc withContPlayback:(bool)contPlayback;
-//
-//+ (bool)updatePlaylist:(int)plID withDesc:(NSString *)desc withContPlayback:(bool)contPlayback withPause:(int)pause withOrder:(int)order;
-//
++ (int)addPlaylist:(NSString *)desc withContPlayback:(bool)contPlayback;
+
++ (bool)updatePlaylist:(int)plID withDesc:(NSString *)desc withContPlayback:(bool)contPlayback withPause:(int)pause withOrder:(int)order;
+
 //+ (bool)assignSongsToPlaylist:(int)plID withSongs:(NSMutableArray *)songs;
-//
-//+ (bool)deletePlaylist:(int)plID;
+
++ (bool)deletePlaylist:(int)plID;
 
 @end
 

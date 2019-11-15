@@ -372,7 +372,6 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
         
         if let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: nil) as? NSTableCellView {
             let textField = cell.textField!
-//            let fontDescriptor = textField.font!.fontDescriptor
             
             if let song = self.mainView?.playerView?.getSong() {
                 

@@ -7,3 +7,4 @@
 #import "Database.h"
 #import "SongHistoryItem.h"
 #import "ObjC.h"
+#import "Playlist.h"
