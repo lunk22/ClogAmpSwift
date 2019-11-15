@@ -363,7 +363,7 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="MainView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
+                    <view key="view" id="m2S-Jp-Qdl" customClass="View" customModule="ClogAmpMac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="678"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -464,7 +464,7 @@
         <scene sceneID="ieG-rq-9wv">
             <objects>
                 <viewController id="4AT-Fd-CjS" customClass="TimePanelView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="KBA-WW-jAg">
+                    <view key="view" id="KBA-WW-jAg" customClass="View" customModule="ClogAmpMac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="370" height="82"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -512,7 +512,7 @@
         <scene sceneID="aJh-2P-vUi">
             <objects>
                 <viewController title="Preferences" id="TPq-mw-tuz" customClass="PreferenceView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="rgJ-nY-pu0">
+                    <view key="view" id="rgJ-nY-pu0" customClass="View" customModule="ClogAmpMac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="654" height="432"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1270,8 +1270,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" placeholderString="0:00" drawsBackground="YES" id="2Ro-6R-ZgD">
                                     <font key="font" size="46" name="Geneva"/>
-                                    <color key="textColor" red="0.20779538149999999" green="0.875" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qv4-Zs-RCM">
@@ -1387,7 +1387,7 @@
         <scene sceneID="R0u-LD-O8w">
             <objects>
                 <viewController title="PDF View" id="Xpb-W6-vjd" customClass="PDFViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" identifier="pdfViewerView" translatesAutoresizingMaskIntoConstraints="NO" id="1f7-rJ-Gf1">
+                    <view key="view" identifier="pdfViewerView" translatesAutoresizingMaskIntoConstraints="NO" id="1f7-rJ-Gf1" customClass="View" customModule="ClogAmpMac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="973" height="247"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1430,7 +1430,7 @@
         <scene sceneID="EgP-0i-ri9">
             <objects>
                 <viewController title="Countdown" id="UdJ-VP-3PA" customClass="CountdownView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="NTd-qc-Xaj">
+                    <view key="view" id="NTd-qc-Xaj" customClass="View" customModule="ClogAmpMac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="304" height="299"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1564,7 +1564,7 @@
         <scene sceneID="0p8-ZZ-9fE">
             <objects>
                 <viewController title="Song Table" id="uTS-cM-QNI" customClass="SongTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="b06-Er-8KR">
+                    <view key="view" wantsLayer="YES" id="b06-Er-8KR" customClass="View" customModule="ClogAmpMac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="973" height="247"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1990,7 +1990,7 @@
         <scene sceneID="JJ0-sb-7aP">
             <objects>
                 <viewController id="ogj-Ej-2Vt" customClass="PositionTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="59b-ww-WIv">
+                    <view key="view" id="59b-ww-WIv" customClass="View" customModule="ClogAmpMac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="989" height="282"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -2347,7 +2347,7 @@
         <scene sceneID="g1X-Mk-Y0R">
             <objects>
                 <viewController title="History" id="0uZ-kX-vHB" customClass="HistoryTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="3Sc-ym-HRy">
+                    <view key="view" id="3Sc-ym-HRy" customClass="View" customModule="ClogAmpMac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="686" height="556"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -2523,19 +2523,6 @@
                 <customObject id="at9-e5-zna" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-664" y="-1170"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="dpr-Io-3DF">
-            <objects>
-                <viewController id="QCK-im-WxA" sceneMemberID="viewController">
-                    <view key="view" id="ccr-2b-aPR">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="qgj-vE-ZfL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1710" y="613"/>
         </scene>
     </scenes>
     <resources>

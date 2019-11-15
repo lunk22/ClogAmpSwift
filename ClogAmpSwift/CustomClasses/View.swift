@@ -10,12 +10,14 @@ import Cocoa
 
 class View: NSView {
 
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-    }
-    
-//    override func performKeyEquivalent(with event: NSEvent) -> Bool {
-//        return true
+//    override func draw(_ dirtyRect: NSRect) {
+//        super.draw(dirtyRect)
 //    }
     
+    
+    override func viewDidMoveToSuperview() {
+//        self.appearance = NSAppearance(named: .aqua)     // Light
+//        self.appearance = NSAppearance(named: .darkAqua) // Dark
+//        self.appearance = nil                            // Inherit
+    }
 }
