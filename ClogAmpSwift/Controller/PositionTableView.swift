@@ -174,6 +174,7 @@ class PositionTableView: NSViewController {
             currentTime *= 1000 //Milliseconds
             song.positions.append( Position( name: "Name", comment: "", time: UInt(lround(currentTime)) ) )
             song.positionsChanged = true
+            song.hasPositions = true
             self.refreshTable(single: true)
         }
     }
