@@ -6,6 +6,74 @@
 
 @synthesize path;
 
+- (void) logThis:(NSString*) message {
+    NSArray* findingMachine = [message componentsSeparatedByString:@"%"];
+    NSString* outputString = [NSString stringWithString:[findingMachine objectAtIndex:0]];
+    va_list argptr;
+//    va_start(argptr, message);
+
+    for(int i = 1; i < [findingMachine count]; i++) {
+        if ([[findingMachine objectAtIndex:i] hasPrefix:@"i"]||[[findingMachine objectAtIndex:i] hasPrefix:@"d"]) {
+            int argument = va_arg(argptr, int); /* next Arg */
+            outputString = [outputString stringByAppendingFormat:@"%i", argument];
+            NSRange range;
+            range.location = 0;
+            range.length = 1;
+            NSString* tmpStr = [[findingMachine objectAtIndex:i] stringByReplacingCharactersInRange:range withString:@""];
+            outputString = [outputString stringByAppendingString:tmpStr];
+        }
+        else if ([[findingMachine objectAtIndex:i] hasPrefix:@"@"]) {
+            id argument = va_arg(argptr, id);
+            // add argument and next patr of message
+            outputString = [outputString stringByAppendingFormat:@"%@", argument];
+            NSRange range;
+            range.location = 0;
+            range.length = 1;
+            NSString* tmpStr = [[findingMachine objectAtIndex:i] stringByReplacingCharactersInRange:range withString:@""];
+            outputString = [outputString stringByAppendingString:tmpStr];
+        }
+        else if ([[findingMachine objectAtIndex:i] hasPrefix:@"."]) {
+            double argument = va_arg(argptr, double);
+            // add argument and next patr of message
+            outputString = [outputString stringByAppendingFormat:@"%f", argument];
+            NSRange range;
+            range.location = 0;
+            range.length = 3;
+            NSString* tmpStr = [[findingMachine objectAtIndex:i] stringByReplacingCharactersInRange:range withString:@""];
+            outputString = [outputString stringByAppendingString:tmpStr];
+        }
+        else if ([[findingMachine objectAtIndex:i] hasPrefix:@"f"]) {
+            double argument = va_arg(argptr, double);
+            // add argument and next patr of message
+            outputString = [outputString stringByAppendingFormat:@"%f", argument];
+            NSRange range;
+            range.location = 0;
+            range.length = 1;
+            NSString* tmpStr = [[findingMachine objectAtIndex:i] stringByReplacingCharactersInRange:range withString:@""];
+            outputString = [outputString stringByAppendingString:tmpStr];
+        }
+        else {
+            outputString = [outputString stringByAppendingString:@"%"];
+            outputString = [outputString stringByAppendingString:[findingMachine objectAtIndex:i]];
+        }
+    }
+//    va_end(argptr);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *  filePath = [[paths objectAtIndex:0]stringByAppendingPathComponent:@"logFile.txt"];
+    NSError* theError = nil;
+    NSString * fileString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&theError];
+    if (theError != nil||[fileString length]==0) {
+        fileString = [NSString stringWithString:@""];
+    }
+    fileString = [fileString stringByAppendingFormat:@"\n%@",outputString];
+    if(![fileString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&theError])
+    {
+            NSLog(@"Loging problem");
+    }
+
+    NSLog(@"%@",outputString);
+}
+
 - (NSMutableDictionary *) readBasicInfo {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
@@ -74,14 +142,11 @@
     
     //        isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
     char *testChar = (char *)positionsUChar;
-    NSUInteger testLength = 0;
-    if (testChar != NULL && ![@"" isEqualToString:[NSString stringWithUTF8String:testChar]]) {
-        testLength = strlen(testChar);
-    }
-    if ((int)testLength > 0) {
+    
+    if (testChar != NULL) {
+       isEmpty = true;
+    } else {
         isEmpty = false;
-    }else{
-        isEmpty = true;
     }
     
     if (found != nil && (dataSize != 0 || !isEmpty)){
@@ -124,14 +189,11 @@
     
     //        isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
     char *testChar = (char *)positionsUChar;
-    NSUInteger testLength = 0;
-    if (testChar != NULL && ![@"" isEqualToString:[NSString stringWithUTF8String:testChar]]) {
-        testLength = strlen(testChar);
-    }
-    if ((int)testLength > 0) {
+    
+    if (testChar != NULL) {
+       isEmpty = true;
+    } else {
         isEmpty = false;
-    }else{
-        isEmpty = true;
     }
     
     if (found != nil && (dataSize != 0 || !isEmpty)){
@@ -142,6 +204,7 @@
 }
 
 - (NSString *) loadPositions {
+    
     NSMutableString *returnString = [NSMutableString new];
     
     size_t dataSize;
@@ -151,17 +214,13 @@
     ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, "eng", "ClogChoreoParts", positionsUChar, dataSize);
     
     bool isEmpty;
-
-//        isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
+    
     char *testChar = (char *)positionsUChar;
-    NSUInteger testLength = 0;
-    if (testChar != NULL && ![@"" isEqualToString:[NSString stringWithUTF8String:testChar]]) {
-        testLength = strlen(testChar);
-    }
-    if ((int)testLength > 0) {
-        isEmpty = false;
-    }else{
+
+    if (testChar != NULL) {
         isEmpty = true;
+    } else {
+        isEmpty = false;
     }
     
     if (found != nil && (dataSize != 0 || !isEmpty)){
