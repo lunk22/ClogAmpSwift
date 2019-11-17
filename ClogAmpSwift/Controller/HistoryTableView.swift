@@ -18,19 +18,13 @@ class HistoryTableView: ViewController {
         
     //Overrides
     override func viewDidLoad() {
-        
-//        self.historyTable.selectionDelegate = self
+
         self.historyTable.delegate          = self
         self.historyTable.dataSource        = self
-        
-//        self.fontSize = UserDefaults.standard.integer(forKey: "positionTableFontSize")
-//        if(self.fontSize == 0){
-//            self.fontSize = 12
-//        }
 
         historyItems = Database.getSongHistory(nil, to: nil) as? [SongHistoryItem]
         self.historyTable.reloadData()
-        
+                
         super.viewDidLoad()
     }
 }

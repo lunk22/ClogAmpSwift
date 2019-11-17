@@ -23,19 +23,23 @@
 
 + (NSString *)getAssignedPDF:(NSString *)fileName;
 
-//+ (NSMutableArray *)getPlaylists;
-//
-//+ (NSMutableArray *)getPlaylistSongs:(int)playlistID;
++ (NSArray *)getPlaylists;
 
-+ (NSMutableArray *)getSongHistory:(NSDate *)fromDate toDate:(NSDate *)toDate;
++ (NSArray *)getSongHistory:(NSDate *)fromDate toDate:(NSDate *)toDate;
 
-//+ (int)addPlaylist:(NSString *)desc withContPlayback:(bool)contPlayback;
-//
-//+ (bool)updatePlaylist:(int)plID withDesc:(NSString *)desc withContPlayback:(bool)contPlayback withPause:(int)pause withOrder:(int)order;
-//
-//+ (bool)assignSongsToPlaylist:(int)plID withSongs:(NSMutableArray *)songs;
-//
-//+ (bool)deletePlaylist:(int)plID;
++ (int)addPlaylist:(NSString *)desc withContPlayback:(bool)contPlayback;
+
++ (bool)updatePlaylist:(int)plID withDesc:(NSString *)desc withContPlayback:(bool)contPlayback withPause:(int)pause withOrder:(int)order;
+
++ (bool)addSongToPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName withOrder:(int)orderIndex;
+
++ (bool)updateSongOrderInPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName withOrder:(int)orderIndex;
+
++ (bool)removeSongFromPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName;
+
++ (NSArray *)getPlaylistSongs:(int)playlistID;
+
++ (bool)deletePlaylist:(int)plID;
 
 @end
 

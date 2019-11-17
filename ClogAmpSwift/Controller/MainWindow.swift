@@ -15,7 +15,6 @@ class MainWindow: NSWindowController {
     @IBOutlet weak var tbStop: NSButton!
     @IBOutlet weak var segTabs: NSSegmentedControl!
     
-    
     override func windowDidLoad() {
         window?.setFrameAutosaveName("mainWindowAutosave")
         

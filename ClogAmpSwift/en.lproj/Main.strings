@@ -445,6 +445,10 @@
 /* Class = "NSMenuItem"; title = "Reload List"; ObjectID = "rJe-5J-acX"; */
 "rJe-5J-acX.title" = "Reload List";
 
-// Used in Sourcecode
-"choosePdf" = "Choose PDF";
-"chooseFolder" = "Choose Folder";
+"tZH-HI-Hyz.title" = "Playlists";
+
+/* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "ftq-1a-vQu"; */
+"ftq-1a-vQu.headerCell.title" = "Artist";
+
+/* Class = "NSBox"; title = "Appearance"; ObjectID = "SJi-NZ-Dod"; */
+"SJi-NZ-Dod.title" = "Appearance";
