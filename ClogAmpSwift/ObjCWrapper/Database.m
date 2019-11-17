@@ -608,6 +608,36 @@
     return true;
 }
 
++ (bool)removeSongFromPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName{
+    
+    sqlite3 *database;
+    int result;
+
+    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return false;
+    }
+
+    NSString *exec = @"DELETE FROM PlaylistSong";
+    exec = [exec stringByAppendingString:@" WHERE PID = "];
+    exec = [exec stringByAppendingFormat:@"%d AND SongTitle = \"",plID];
+    exec = [exec stringByAppendingString:title];
+    exec = [exec stringByAppendingString:@"\" AND SongFileName = \""];
+    exec = [exec stringByAppendingString:fileName];
+    exec = [exec stringByAppendingString:@"\""];
+    
+    //Run the update
+    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
+    if (result != SQLITE_OK){
+        sqlite3_close(database);
+        return false;
+    }
+
+    sqlite3_close(database);
+    return true;
+}
+
 + (NSArray *)getPlaylistSongs:(int)playlistID{
     sqlite3 *database;
     int result;

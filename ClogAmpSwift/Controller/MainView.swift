@@ -8,7 +8,7 @@
 
 import AppKit
 
-class MainView: NSViewController {
+class MainView: ViewController {
     
     weak var mainWindow: MainWindow?
     
@@ -30,42 +30,6 @@ class MainView: NSViewController {
     override func viewWillDisappear() {
         self.playerView?.getSong()?.saveChanges()
         NSApplication.shared.terminate(self)
-    }
-    
-    override func keyDown(with event: NSEvent) {
-        
-//        let keyPressed = (event.characters ?? "").lowercased()
-//        print("Key: \(keyPressed) - Code: \(event.keyCode)")
-        
-        switch event.keyCode {
-            case 30: // +
-                self.playerView!.increaseSpeed()
-            case 44: // -
-                self.playerView!.decreaseSpeed()
-            case 45: // N
-                self.playerView!.resetSpeed()
-            case 35: // P
-                self.playerView!.play()
-            case 1: // S
-                self.playerView!.stop()
-            case 49: // Space
-                self.playerView!.pause()
-            case 3: // F
-                var prefSkipForwardSeconds = UserDefaults.standard.integer(forKey: "prefSkipForwardSeconds")
-                if prefSkipForwardSeconds == 0 {
-                    prefSkipForwardSeconds = 5
-                }
-                self.playerView!.jump(prefSkipForwardSeconds)
-            case 11: // B
-                var prefSkipBackSeconds = UserDefaults.standard.integer(forKey: "prefSkipBackSeconds")
-                if prefSkipBackSeconds == 0 {
-                    prefSkipBackSeconds = 5
-                }
-                self.playerView!.jump((prefSkipBackSeconds * -1))
-            default:
-                self.interpretKeyEvents([event])
-        }
-
     }
     
     override func viewDidAppear() {

@@ -10,6 +10,51 @@ import AppKit
 
 class ViewController : NSViewController {
     
+    private weak var _playerView: PlayerView?
+    
+    override func viewDidAppear() {
+        let viewController = NSApplication.shared.windows[0].contentViewController as! MainView
+        self._playerView = viewController.playerView
+
+        super.viewDidAppear()
+    }
+    
+    override func keyDown(with event: NSEvent) {
+            
+    //        let keyPressed = (event.characters ?? "").lowercased()
+    //        print("Key: \(keyPressed) - Code: \(event.keyCode)")
+            
+        switch event.keyCode {
+            case 30: // +
+                self._playerView!.increaseSpeed()
+            case 44: // -
+                self._playerView!.decreaseSpeed()
+            case 45: // N
+                self._playerView!.resetSpeed()
+            case 35: // P
+                self._playerView!.play()
+            case 1: // S
+                self._playerView!.stop()
+            case 49: // Space
+                self._playerView!.pause()
+            case 3: // F
+                var prefSkipForwardSeconds = UserDefaults.standard.integer(forKey: "prefSkipForwardSeconds")
+                if prefSkipForwardSeconds == 0 {
+                    prefSkipForwardSeconds = 5
+                }
+                self._playerView!.jump(prefSkipForwardSeconds)
+            case 11: // B
+                var prefSkipBackSeconds = UserDefaults.standard.integer(forKey: "prefSkipBackSeconds")
+                if prefSkipBackSeconds == 0 {
+                    prefSkipBackSeconds = 5
+                }
+                self._playerView!.jump((prefSkipBackSeconds * -1))
+            default:
+                self.interpretKeyEvents([event])
+        }
+
+    }
+    
     func delayWithSeconds(_ seconds: Double, closure: @escaping () -> ()) {
         Tools.delayWithSeconds(seconds, closure: closure)
     }
