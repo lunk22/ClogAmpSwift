@@ -452,3 +452,9 @@
 
 /* Class = "NSBox"; title = "Appearance"; ObjectID = "SJi-NZ-Dod"; */
 "SJi-NZ-Dod.title" = "Appearance";
+
+/* Class = "NSButtonCell"; title = "Play"; ObjectID = "goz-VW-bu6"; */
+"goz-VW-bu6.title" = "Play";
+
+/* Class = "NSButtonCell"; title = "Continuous Playback"; ObjectID = "wMT-zO-iZk"; */
+"wMT-zO-iZk.title" = "Continuous Playback";
