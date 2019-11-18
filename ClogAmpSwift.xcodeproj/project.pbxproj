@@ -57,6 +57,8 @@
 		B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */; };
 		B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1A21F9A87E00532C1A /* Position.swift */; };
 		B7C8358422250E5700CF3360 /* AppIconBlue.icns in Resources */ = {isa = PBXBuildFile; fileRef = B7C8358322250E5700CF3360 /* AppIconBlue.icns */; };
+		B7D141502382B0FF0056B042 /* PasteboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D1414F2382B0FF0056B042 /* PasteboardType.swift */; };
+		B7D141522382B1F30056B042 /* PasteboardWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D141512382B1F30056B042 /* PasteboardWriter.swift */; };
 		B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */; };
 		B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C0632214513B00A70F4A /* SongHistoryItem.m */; };
 		B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C06722145A3200A70F4A /* HistoryTableView.swift */; };
@@ -166,6 +168,8 @@
 		B7C8358322250E5700CF3360 /* AppIconBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIconBlue.icns; sourceTree = "<group>"; };
 		B7C8358522280FC200CF3360 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		B7C8358922281CB200CF3360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		B7D1414F2382B0FF0056B042 /* PasteboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardType.swift; sourceTree = "<group>"; };
+		B7D141512382B1F30056B042 /* PasteboardWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWriter.swift; sourceTree = "<group>"; };
 		B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player-AVAudioPlayer.swift"; sourceTree = "<group>"; };
 		B7D9C0622214513B00A70F4A /* SongHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongHistoryItem.h; sourceTree = "<group>"; };
 		B7D9C0632214513B00A70F4A /* SongHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongHistoryItem.m; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 				50043ED42080C76C0025DC2D /* FileSystemUtils.swift */,
 				B7DDFCB022141B3600637831 /* Tools.swift */,
 				B7B4660B23754EE600AA9419 /* StringScore.swift */,
+				B7D141512382B1F30056B042 /* PasteboardWriter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 				50A09BAB22104B0A00365544 /* TableView.swift */,
 				B7B3A188237EBCC0009667CF /* Window.swift */,
 				B7B3A18A237EC209009667CF /* Panel.swift */,
+				B7D1414F2382B0FF0056B042 /* PasteboardType.swift */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */,
 				B7B3A179237BDC70009667CF /* SwiftPlaylist.swift in Sources */,
 				B74E7FE623794E8C00569664 /* ObjC.m in Sources */,
+				B7D141522382B1F30056B042 /* PasteboardWriter.swift in Sources */,
 				B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */,
 				B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */,
 				B7B46605237042EB00AA9419 /* PDFView.swift in Sources */,
@@ -488,6 +495,7 @@
 				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
 				B7BB5515237EC46300E153DF /* HistoryWindow.swift in Sources */,
 				B7985339221A812600BDE678 /* PreferencesView.swift in Sources */,
+				B7D141502382B0FF0056B042 /* PasteboardType.swift in Sources */,
 				B7B3A177237ACFC7009667CF /* PlaylistView.swift in Sources */,
 				B7B4660C23754EE600AA9419 /* StringScore.swift in Sources */,
 				B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */,
@@ -665,7 +673,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "1.1.5 beta";
+				MARKETING_VERSION = "1.2.0 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -706,7 +714,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "1.1.5 beta";
+				MARKETING_VERSION = "1.2.0 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
