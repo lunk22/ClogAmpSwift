@@ -12,7 +12,7 @@
 - (void) logThis:(NSString*) message;
 - (NSMutableDictionary *) readBasicInfo;
 - (NSString *) readUserText:(const char*)text;
-- (bool) hasPositions;
+//- (bool) hasPositions;
 - (NSString *) loadPositions;
 
 - (void) saveTitle:(NSString *)sValue;

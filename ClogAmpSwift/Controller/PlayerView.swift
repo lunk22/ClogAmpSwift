@@ -315,12 +315,18 @@ class PlayerView: ViewController {
     func play() {
         if(self.avPlayer?.isPlaying() ?? false){
             //If play is called while the song is playing, it should start over
-            self.stop()
+            self.avPlayer?.stop({ _ in
+                self.avPlayer?.play()
+                //Update UI
+                self.tick()
+            })
+        }else{
+            self.avPlayer?.play()
+            //Update UI
+            self.tick()
         }
         
-        self.avPlayer?.play()
-        //Update UI
-        self.tick()
+        
     }
     func pause() {
         if(self.avPlayer?.isPlaying() ?? false){
