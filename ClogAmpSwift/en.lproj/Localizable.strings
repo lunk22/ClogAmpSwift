@@ -4,3 +4,6 @@
 "darkAppearance" = "Dark";
 "lightAppearance" = "Light";
 "systemAppearance" = "System";
+"songTitle" = "Title";
+"songArtist" = "Artist";
+"songDate" = "Date played";

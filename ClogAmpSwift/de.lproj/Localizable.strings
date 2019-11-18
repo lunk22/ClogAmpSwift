@@ -4,3 +4,6 @@
 "darkAppearance" = "Dunkel";
 "lightAppearance" = "Hell";
 "systemAppearance" = "System";
+"songTitle" = "Titel";
+"songArtist" = "Interpret";
+"songDate" = "Abgespielt am";
