@@ -37,6 +37,7 @@ class HistoryTableView: ViewController {
     func createPDF() {
         if self.historyTable.selectedRow < 0 { return }
         
+        //Read Translatable Table Headers
         let header1 = NSLocalizedString("songTitle", bundle: Bundle.main, comment: "") as NSString as String
         let header2 = NSLocalizedString("songArtist", bundle: Bundle.main, comment: "") as NSString as String
         let header3 = NSLocalizedString("songDate", bundle: Bundle.main, comment: "") as NSString as String
@@ -44,7 +45,8 @@ class HistoryTableView: ViewController {
         var sPdfHtml        = ""
         sPdfHtml = sPdfHtml + "<style>"
         sPdfHtml = sPdfHtml + " th { text-align: left; }"
-        sPdfHtml = sPdfHtml + " table, th, td { border: 1px solid black; border-collapse: collapse; }"
+//        sPdfHtml = sPdfHtml + " table, th, td { border: 1px solid black; border-collapse: collapse; font-family:'Arial' }"
+        sPdfHtml = sPdfHtml + " th, td { border-bottom: 1px solid #ddd; font-family:'Arial'; padding: 10px }"
         sPdfHtml = sPdfHtml + "</style>"
         sPdfHtml = sPdfHtml + "<br/>"
         sPdfHtml = sPdfHtml + "<br/>"
