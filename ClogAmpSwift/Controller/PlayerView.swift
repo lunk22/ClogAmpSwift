@@ -312,6 +312,9 @@ class PlayerView: ViewController {
     func getSong() -> Song? {
         return self.currentSong
     }
+    @objc func songFinished() {
+        self.stop()
+    }
     func play() {
         if(self.avPlayer?.isPlaying() ?? false){
             //If play is called while the song is playing, it should start over
@@ -324,6 +327,12 @@ class PlayerView: ViewController {
             self.avPlayer?.play()
             //Update UI
             self.tick()
+            
+            NotificationCenter.default.addObserver(self,
+               selector: #selector(songFinished),
+               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+               object: nil
+            ) // Add observer
         }
         
         
@@ -341,6 +350,11 @@ class PlayerView: ViewController {
             _ in
             self.tick()
         })
+        
+        NotificationCenter.default.removeObserver(self,
+            name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+            object: nil
+        )
     }
     func jump(_ seconds: Int) {
         self.avPlayer?.jump(seconds)

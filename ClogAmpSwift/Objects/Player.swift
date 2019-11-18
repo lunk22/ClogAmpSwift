@@ -122,7 +122,8 @@ class Player {
         NotificationCenter.default.addObserver(self,
            selector: #selector(songFinished),
            name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-           object: nil) // Add observer
+           object: nil
+        ) // Add observer
 
     }
     
