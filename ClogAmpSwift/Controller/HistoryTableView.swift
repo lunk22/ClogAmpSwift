@@ -19,22 +19,6 @@ class HistoryTableView: ViewController {
     
     //Actions
     @IBAction func printList(_ sender: Any) {
-        self.createPDF()
-    }
-    
-    //Overrides
-    override func viewDidLoad() {
-
-        self.historyTable.delegate          = self
-        self.historyTable.dataSource        = self
-
-        historyItems = Database.getSongHistory(nil, to: nil) as? [SongHistoryItem]
-        self.historyTable.reloadData()
-        
-        super.viewDidLoad()
-    }
-    
-    func createPDF() {
         var aRowIndexes: IndexSet
         
         if self.historyTable.selectedRow >= 0{
@@ -82,6 +66,18 @@ class HistoryTableView: ViewController {
         sPdfHtml = sPdfHtml + "</table>"
         
         CreatePDF(htmlString: sPdfHtml)
+    }
+    
+    //Overrides
+    override func viewDidLoad() {
+
+        self.historyTable.delegate          = self
+        self.historyTable.dataSource        = self
+
+        historyItems = Database.getSongHistory(nil, to: nil) as? [SongHistoryItem]
+        self.historyTable.reloadData()
+        
+        super.viewDidLoad()
     }
 }
 

@@ -364,6 +364,56 @@ class PositionTableView: NSViewController {
             self.refreshTable(single: true)
         }
     }
+    
+    @IBAction func printList(_ sender: Any) {
+        if let song = self.mainView?.playerView?.getSong() {
+            var sPdfHtml        = ""
+            sPdfHtml = sPdfHtml + "<style>"
+            sPdfHtml = sPdfHtml + "  div { display:inline; font-family: Arial; }"
+            sPdfHtml = sPdfHtml + "  table, td { font-family: Arial; border: 0px solid black; border-collapse: collapse; }"
+            sPdfHtml = sPdfHtml + "  td { padding: 0.75rem; vertical-align: top; }"
+            sPdfHtml = sPdfHtml + "  .center {  display: table; margin-right: auto; margin-left: auto; }"
+            sPdfHtml = sPdfHtml + "  .bold {  font-weight: bold; }"
+            sPdfHtml = sPdfHtml + "  .nowrap {  white-space: nowrap; }"
+            sPdfHtml = sPdfHtml + "</style>"
+
+            sPdfHtml = sPdfHtml + "<div class=\"center\">"
+            sPdfHtml = sPdfHtml + "  <div style=\"font-size: 2.5rem\">\(song.title)</div>&nbsp;<div style=\"font-size: 1.2rem\">\(song.artist)</div>"
+            sPdfHtml = sPdfHtml + "</div>"
+            sPdfHtml = sPdfHtml + "<div class=\"center\">"
+            sPdfHtml = sPdfHtml + "  \(song.getValueAsString("duration"))"
+            if song.getValueAsString("level") != "" {
+                sPdfHtml = sPdfHtml + " – \(song.level)"
+            }
+            sPdfHtml = sPdfHtml + "</div>"
+            sPdfHtml = sPdfHtml + "<br/>"
+            sPdfHtml = sPdfHtml + "<br/>"
+            sPdfHtml = sPdfHtml + "<br/>"
+
+            sPdfHtml = sPdfHtml + " <table>"
+            
+            
+            for position in song.positions {
+                var comment = position.comment
+                comment = comment.replacingOccurrences(of: "- ", with: "- <wbr/>")
+                comment = comment.replacingOccurrences(of: "– ", with: "– <wbr/>")
+                comment = comment.replacingOccurrences(of: " (", with: " <wbr/>(")
+                comment = comment.replacingOccurrences(of: ") ", with: ") <wbr/>")
+                comment = comment.replacingOccurrences(of: " [", with: " <wbr/>[")
+                comment = comment.replacingOccurrences(of: "] ", with: "] <wbr/>")
+                comment = comment.replacingOccurrences(of: " ", with: "&nbsp;")
+                
+                sPdfHtml = sPdfHtml + "    <tr>"
+                sPdfHtml = sPdfHtml + "      <td class=\"bold nowrap\">\(position.name)</td>"
+                sPdfHtml = sPdfHtml + "      <td>\(comment)</td>"
+                sPdfHtml = sPdfHtml + "    </tr>"
+            }
+            
+            sPdfHtml = sPdfHtml + " </table>"
+            
+            CreatePDF(htmlString: sPdfHtml, fileName: song.title)
+        }
+    }
 }
 
 extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
