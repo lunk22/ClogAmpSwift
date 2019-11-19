@@ -29,6 +29,8 @@
 		B722991F2200223B00AEFA90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722991E2200223B00AEFA90 /* ViewController.swift */; };
 		B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299202202C9FD00AEFA90 /* SongTableView.swift */; };
 		B72299232202D0EA00AEFA90 /* PositionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299222202D0EA00AEFA90 /* PositionTableView.swift */; };
+		B72660532384070100111C8B /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72660522384070100111C8B /* Sparkle.framework */; };
+		B72660542384070C00111C8B /* Sparkle.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B72660522384070100111C8B /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7364FD7221537AA00FB9C64 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7364FD6221537AA00FB9C64 /* Player.swift */; };
 		B74E7FE623794E8C00569664 /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = B74E7FE523794E8C00569664 /* ObjC.m */; };
 		B74E7FEB23795C6C00569664 /* B612-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = B74E7FE823795A0500569664 /* B612-Regular.ttf */; };
@@ -87,6 +89,7 @@
 				B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */,
 				B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */,
 				5017716721FB2CE500D8A95A /* libid3-3.8.3.0.0.dylib in Embed Libraries */,
+				B72660542384070C00111C8B /* Sparkle.framework in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +121,7 @@
 		B722991E2200223B00AEFA90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B72299202202C9FD00AEFA90 /* SongTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableView.swift; sourceTree = "<group>"; };
 		B72299222202D0EA00AEFA90 /* PositionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableView.swift; sourceTree = "<group>"; };
+		B72660522384070100111C8B /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		B7364FD6221537AA00FB9C64 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		B74E7FE423794E5500569664 /* ObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjC.h; sourceTree = "<group>"; };
 		B74E7FE523794E8C00569664 /* ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjC.m; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			files = (
 				B79853332217073500BDE678 /* libbass.dylib in Frameworks */,
 				5017716621FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib in Frameworks */,
+				B72660532384070100111C8B /* Sparkle.framework in Frameworks */,
 				B7B46608237046D800AA9419 /* PDFKit.framework in Frameworks */,
 				B79853322217073500BDE678 /* libbass_fx.dylib in Frameworks */,
 			);
@@ -229,6 +234,7 @@
 				5017716521FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib */,
 				B79853302217073500BDE678 /* libbass_fx.dylib */,
 				B79853312217073500BDE678 /* libbass.dylib */,
+				B72660522384070100111C8B /* Sparkle.framework */,
 				50A37BB3207FF03E0020E218 /* Info.plist */,
 				50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */,
 				B7B3A17E237C09BC009667CF /* Localizable.strings */,
@@ -658,9 +664,13 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.3.0;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ClogAmpSwift",
+				);
 				GCC_INPUT_FILETYPE = automatic;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -677,8 +687,8 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "1.2.3 beta";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
+				MARKETING_VERSION = "1.3.0 beta";
+				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ClogAmpSwift/ObjCWrapper/ClogAmpSwift-Bridging-Header.h";
@@ -699,9 +709,13 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.3.0;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ClogAmpSwift",
+				);
 				GCC_INPUT_FILETYPE = automatic;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -718,8 +732,8 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "1.2.3 beta";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
+				MARKETING_VERSION = "1.3.0 beta";
+				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ClogAmpSwift/ObjCWrapper/ClogAmpSwift-Bridging-Header.h";
