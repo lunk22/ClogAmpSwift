@@ -183,14 +183,20 @@
     }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     //Save the date/time infos in UTC
     dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    timeFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    timeFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    
     
     dateFormatter.dateFormat = @"yyyyMMdd";
     NSString *date = [dateFormatter stringFromDate: [NSDate new]];
     
-    dateFormatter.dateFormat = @"HHmmss";
-    NSString *time = [dateFormatter stringFromDate: [NSDate new]];
+    timeFormatter.dateFormat = @"HHmmss";
+    NSString *time = [timeFormatter stringFromDate: [NSDate new]];
     
     exec = [exec stringByAppendingString:@"\", \""];
     exec = [exec stringByAppendingString:date];
@@ -430,7 +436,15 @@
             
             [timeFormatter setLocalizedDateFormatFromTemplate:@"HH:mm:ss"];
             timeS = [timeFormatter stringFromDate:time];
-
+            
+            if(dateS == nil){
+                dateS = @"";
+            }
+            
+            if(timeS == nil){
+                timeS = @"";
+            }
+            
         } @catch(NSException *e) {
             dateS = @"";
             timeS = @"";
