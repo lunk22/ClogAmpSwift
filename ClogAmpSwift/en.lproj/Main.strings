@@ -433,8 +433,8 @@
 /* Class = "NSMenuItem"; title = "Remove PDF Assignment"; ObjectID = "2yv-Bl-R2B"; */
 "2yv-Bl-R2B.title" = "Remove PDF Assignment";
 
-/* Class = "NSBox"; title = "Font (requires restart)"; ObjectID = "B6L-DL-PqA"; */
-"B6L-DL-PqA.title" = "Font (requires restart)";
+/* Class = "NSBox"; title = "Font"; ObjectID = "B6L-DL-PqA"; */
+"B6L-DL-PqA.title" = "Font";
 
 /* Class = "NSButtonCell"; title = "Use Mono Font for Songs"; ObjectID = "OUP-oz-FBE"; */
 "OUP-oz-FBE.title" = "Use Mono Font for Songs";

@@ -262,7 +262,7 @@
                                         <menuItem title="Check for Updates..." id="5YP-qf-1zO">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="checkForUpdates:" target="ma5-PI-GkR" id="sdl-Mn-2N9"/>
+                                                <action selector="checkForUpdates:" target="XSk-eZ-J7n" id="Ft3-Kf-saF"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -276,8 +276,8 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ClogAmpMac" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="XSk-eZ-J7n" customClass="SUUpdater"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="ma5-PI-GkR" customClass="SUUpdater"/>
             </objects>
             <point key="canvasLocation" x="-69" y="-405"/>
         </scene>
@@ -303,8 +303,7 @@
                                         <touchBarItem id="wUc-B6-Qre">
                                             <viewController key="viewController" id="tkD-XG-KIf">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dQU-hL-Gs6">
-                                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="play" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g87-Vn-fYM">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -318,8 +317,7 @@
                                         <touchBarItem id="pNj-ls-1Kz">
                                             <viewController key="viewController" id="WU4-Pb-mEN">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3md-Iz-Y3v">
-                                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="pause" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jRX-m8-Ugj">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -333,8 +331,7 @@
                                         <touchBarItem id="loB-7r-049">
                                             <viewController key="viewController" id="WLW-xw-HBx">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GXm-yK-Ude">
-                                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="stop" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XOv-M0-HnM">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -355,8 +352,7 @@
                                         <touchBarItem id="It2-e3-EY4">
                                             <viewController key="viewController" id="onz-Vl-gDI">
                                                 <segmentedControl key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-8T-o1O">
-                                                    <rect key="frame" x="0.0" y="-3" width="207" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="196" height="30"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="kFO-Ya-k29">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -378,8 +374,7 @@
                             <touchBarItem id="jgK-qj-AZp">
                                 <viewController key="viewController" id="n4V-GO-uv3">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T6g-2h-msG">
-                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                                         <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GbW-ks-VPp">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -628,10 +623,10 @@
                                                                 <buttonCell key="cell" type="check" title="Colorize Player State" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VVc-b7-FTX">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
-                                                                    <connections>
-                                                                        <action selector="setValue:" target="TPq-mw-tuz" id="HBC-8A-oHF"/>
-                                                                    </connections>
                                                                 </buttonCell>
+                                                                <connections>
+                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefColorPlayerState" id="maB-0e-LMK"/>
+                                                                </connections>
                                                             </button>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycN-Xw-GmU">
                                                                 <rect key="frame" x="18" y="29" width="217" height="20"/>
@@ -641,7 +636,7 @@
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
                                                                 <connections>
-                                                                    <action selector="setValue:" target="TPq-mw-tuz" id="Ih2-f5-bYn"/>
+                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefAutoDetermineBPM" id="oTs-kr-BtE"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -662,13 +657,13 @@
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
                                                                 <connections>
-                                                                    <action selector="setValue:" target="TPq-mw-tuz" id="cqR-Hs-7Se"/>
+                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefStartFocusFilter" id="wRe-em-wzq"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
                                                     </view>
                                                 </box>
-                                                <box fixedFrame="YES" title="Font (requires restart)" translatesAutoresizingMaskIntoConstraints="NO" id="B6L-DL-PqA">
+                                                <box fixedFrame="YES" title="Font" translatesAutoresizingMaskIntoConstraints="NO" id="B6L-DL-PqA">
                                                     <rect key="frame" x="6" y="72" width="296" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="mAF-Iu-Ncu">
@@ -683,7 +678,8 @@
                                                                     <font key="font" size="13" name="HelveticaNeue"/>
                                                                 </buttonCell>
                                                                 <connections>
-                                                                    <action selector="setValue:" target="TPq-mw-tuz" id="PMB-kC-8kW"/>
+                                                                    <action selector="handleMonoChanged:" target="TPq-mw-tuz" id="zfz-zR-Ip3"/>
+                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefMonoFontSongs" id="AXn-CY-qXc"/>
                                                                 </connections>
                                                             </button>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="77N-TG-Swi">
@@ -694,7 +690,8 @@
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
                                                                 <connections>
-                                                                    <action selector="setValue:" target="TPq-mw-tuz" id="fa1-aZ-UFt"/>
+                                                                    <action selector="handleMonoChanged:" target="TPq-mw-tuz" id="cEV-mC-qmY"/>
+                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefMonoFontPositons" id="KPg-9y-SXp"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -715,7 +712,7 @@
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
                                                                 <connections>
-                                                                    <action selector="setValue:" target="TPq-mw-tuz" id="P30-bQ-RF2"/>
+                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefPlayPositionOnSelection" id="a0q-f4-4ka"/>
                                                                 </connections>
                                                             </button>
                                                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="IUS-qU-cRj">
@@ -847,6 +844,10 @@
                                                                         <binding destination="Lkx-RH-zEQ" name="value" keyPath="automaticallyChecksForUpdates" id="PyB-hJ-Fds"/>
                                                                     </connections>
                                                                 </buttonCell>
+                                                                <connections>
+                                                                    <action selector="handleAutomaticUpdatesChange:" target="TPq-mw-tuz" id="zzz-W2-cDD"/>
+                                                                    <binding destination="Lkx-RH-zEQ" name="value" keyPath="automaticallyChecksForUpdates" id="CeI-tw-lzn"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </view>
@@ -955,12 +956,6 @@
                     </view>
                     <connections>
                         <outlet property="boxAppearance" destination="SJi-NZ-Dod" id="nIX-R7-FOF"/>
-                        <outlet property="cbAutoDetermineBPM" destination="ycN-Xw-GmU" id="0Xh-u5-7O3"/>
-                        <outlet property="cbColorizePlayerState" destination="6H1-T3-dE6" id="CHH-wA-59x"/>
-                        <outlet property="cbMonoPositions" destination="77N-TG-Swi" id="V0a-99-9Uh"/>
-                        <outlet property="cbMonoSongs" destination="ERm-D3-RTl" id="RT1-Nj-iPx"/>
-                        <outlet property="cbPlayPosOnSelection" destination="GND-cm-b48" id="2Oa-ap-xJL"/>
-                        <outlet property="cbStartFocusFilter" destination="3zE-DB-5ie" id="tWT-zn-e85"/>
                         <outlet property="ddlbAppearance" destination="BvG-6b-ivr" id="E2d-hU-3nr"/>
                         <outlet property="txtBpmLowerBound" destination="OE0-k3-QN3" id="Boy-Qy-HMp"/>
                         <outlet property="txtBpmUpperBound" destination="vO2-KA-pvo" id="C43-b2-D18"/>
@@ -971,6 +966,7 @@
                 </viewController>
                 <customObject id="Lkx-RH-zEQ" customClass="SUUpdater"/>
                 <userDefaultsController id="l44-zi-mYm"/>
+                <userDefaultsController id="gXa-Cn-Nwj"/>
             </objects>
             <point key="canvasLocation" x="-770" y="-405.5"/>
         </scene>

@@ -9,7 +9,6 @@
 
 @property (nonatomic, retain) NSString *path;
 
-- (void) logThis:(NSString*) message;
 - (NSMutableDictionary *) readBasicInfo;
 - (NSString *) readUserText:(const char*)text;
 //- (bool) hasPositions;
