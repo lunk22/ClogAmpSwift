@@ -367,6 +367,12 @@ class PositionTableView: NSViewController {
     
     @IBAction func printList(_ sender: Any) {
         if let song = self.mainView?.playerView?.getSong() {
+            var sWait = ""
+            if song.waitBeats > 0 {
+                let sLocWait = (NSLocalizedString("waitBeats", bundle: Bundle.main, comment: "") as NSString as String)
+                sWait = String.localizedStringWithFormat(sLocWait, song.waitBeats)
+            }
+            
             var sPdfHtml        = ""
             sPdfHtml = sPdfHtml + "<style>"
             sPdfHtml = sPdfHtml + "  div { display:inline; font-family: Arial; }"
@@ -382,9 +388,15 @@ class PositionTableView: NSViewController {
             sPdfHtml = sPdfHtml + "</div>"
             sPdfHtml = sPdfHtml + "<div class=\"center\">"
             sPdfHtml = sPdfHtml + "  \(song.getValueAsString("duration"))"
+            
             if song.getValueAsString("level") != "" {
                 sPdfHtml = sPdfHtml + " – \(song.level)"
             }
+            
+            if sWait != "" {
+                sPdfHtml = sPdfHtml + " – \(sWait)"
+            }
+            
             sPdfHtml = sPdfHtml + "</div>"
             sPdfHtml = sPdfHtml + "<br/>"
             sPdfHtml = sPdfHtml + "<br/>"

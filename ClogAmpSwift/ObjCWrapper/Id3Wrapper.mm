@@ -156,6 +156,19 @@
         [dict setValue: [NSNumber numberWithBool:false] forKey:@"hasPositions"];
     }
     
+    //Wait Beats
+    frame = nil;
+    frame = id3Tag->Find(ID3FID_USERTEXT, ID3FN_DESCRIPTION, [@"CloggingBeatsWait" cStringUsingEncoding:NSUTF8StringEncoding]);
+    if (frame != NULL) {
+        char *sWait = ID3_GetString(frame, ID3FN_TEXT);
+        
+        if (sWait != nil) {
+            @try {
+                [dict setValue: [NSNumber numberWithInt:[[NSString stringWithCString:sWait encoding:NSUTF8StringEncoding] intValue]] forKey:@"waitBeats"];
+            }@catch (NSException *e) {}
+        }
+    }
+    
     return dict;
 }
 

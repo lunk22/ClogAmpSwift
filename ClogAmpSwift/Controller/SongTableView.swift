@@ -375,6 +375,11 @@ class SongTableView: ViewController {
                     song.level = text
                     song.saveChanges()
                 }
+            case "waitBeats":
+                if song.waitBeats != Int(text) {
+                    song.waitBeats = Int(text) ?? 0
+                    song.saveChanges()
+                }
             default:
                 return
         }
@@ -399,6 +404,10 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
             let textField = cell.textField!
             
             textField.stringValue = self.aSongsForTable[row].getValueAsString(tableColumn!.identifier.rawValue)
+            
+            if (tableColumn!.identifier.rawValue == "bpm" || tableColumn!.identifier.rawValue == "waitBeats") && textField.stringValue == "0" {
+                textField.stringValue = ""
+            }
             
             if prefMonoFontSongs {
                 textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
