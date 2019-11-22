@@ -26,6 +26,8 @@ class SongTableView: ViewController {
     var searchSting    = ""
     var searchTimer: Timer?
     
+    var filterValue: String = ""
+    
     weak var mainView: MainView?
     
     //MARK: Outlets
@@ -93,7 +95,7 @@ class SongTableView: ViewController {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("monoChanged"), object: nil, queue: nil){ _ in
             DispatchQueue.main.async {
                 self.prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
-                self.songTable.reloadData()
+                self.refreshTable()
             }
         }
         
@@ -211,7 +213,8 @@ class SongTableView: ViewController {
             DispatchQueue.main.async {
                 self.percentLabel.stringValue = ""
                 self.percentLabel.isHidden = true
-                self.songTable.reloadData()
+                self.filterTable()
+                self.refreshTable()
             }
         }
     }
@@ -253,17 +256,17 @@ class SongTableView: ViewController {
         })
         
         //Update the table view to represent the new sort order
-        DispatchQueue.main.async {
-            //don't call self.refreshTable() as it would remember the selection
-            self.songTable.reloadData()
-        }
+        self.refreshTable(false)
     }
     
-    func refreshTable() {
+    func refreshTable(_ rememberSelection: Bool = true) {
         DispatchQueue.main.async {
             let selRow = self.songTable.selectedRow
             self.songTable.reloadData()
-            self.songTable.selectRowIndexes([selRow], byExtendingSelection: false)
+//            self.filterTable()
+            if rememberSelection {
+                self.songTable.selectRowIndexes([selRow], byExtendingSelection: false)
+            }
         }
     }
     
@@ -276,6 +279,23 @@ class SongTableView: ViewController {
                 self.mainView?.positionTableView?.refreshTable(single: true)
             }
         }
+    }
+    
+    func filterTable() {
+        if(self.filterValue != ""){
+            self.aSongsForTable = self.aSongs.filter{
+                return (
+                    $0.getValueAsString("title").lowercased().contains(self.filterValue) ||
+                    $0.getValueAsString("artist").lowercased().contains(self.filterValue) ||
+                    $0.getValueAsString("level").lowercased().contains(self.filterValue) ||
+                    $0.getValueAsString("path").lowercased().contains(self.filterValue)
+                )
+            }
+        }else{
+            self.aSongsForTable = self.aSongs
+        }
+        
+        self.performSortSongs()
     }
     
     //MARK: UI Selectors - Actions
@@ -475,22 +495,9 @@ extension SongTableView: NSTextFieldDelegate {
     
     func controlTextDidChange(_ obj: Notification) {
         guard let textField = obj.object as? NSTextField else { return }
-        let value = textField.stringValue.lowercased()
+        self.filterValue = textField.stringValue.lowercased()
         
-        if(value != ""){
-            self.aSongsForTable = self.aSongs.filter{
-                return (
-                    $0.getValueAsString("title").lowercased().contains(value) ||
-                    $0.getValueAsString("artist").lowercased().contains(value) ||
-                    $0.getValueAsString("level").lowercased().contains(value) ||
-                    $0.getValueAsString("path").lowercased().contains(value)
-                )
-            }
-        }else{
-            self.aSongsForTable = self.aSongs
-        }
-        
-        self.performSortSongs()
+        self.filterTable()
     }
     
 }

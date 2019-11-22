@@ -366,8 +366,10 @@ class PositionTableView: NSViewController {
     
     @IBAction func handleRefreshList(_ sender: Any) {
         if let song = self.mainView?.playerView?.getSong() {
+            song.readBasicInfo()
             song.loadPositions(true)
             
+            self.mainView?.songTableView?.refreshTable()
             self.refreshTable(single: true)
         }
     }
