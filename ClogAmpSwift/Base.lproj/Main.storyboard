@@ -171,6 +171,12 @@
                                                 <segue destination="0fg-Ju-sI0" kind="show" id="aEP-nP-8xB"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Beat Demo" id="nWh-Eb-Wa0">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="xtD-2e-74L" kind="show" id="Bm6-m0-pRd"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -532,6 +538,69 @@
                 <customObject id="a6b-4c-sGW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="501" y="-619"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="S5O-bg-bP8">
+            <objects>
+                <windowController id="xtD-2e-74L" sceneMemberID="viewController">
+                    <window key="window" title="Beats Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="cxp-gb-glH">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="294" y="313" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                        <connections>
+                            <outlet property="delegate" destination="xtD-2e-74L" id="M4f-26-Usv"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="q1X-5U-AxO" kind="relationship" relationship="window.shadowedContentViewController" id="jxs-n9-5I3"/>
+                    </connections>
+                </windowController>
+                <customObject id="mBX-zy-qYb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="976" y="-454"/>
+        </scene>
+        <!--Beat Player View-->
+        <scene sceneID="wDL-R7-5o3">
+            <objects>
+                <viewController id="q1X-5U-AxO" customClass="BeatPlayerView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="jqs-J3-Qx5">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="90"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpr-Pa-Lpf">
+                                <rect key="frame" x="20" y="49" width="440" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="&amp;a1 &amp;2" drawsBackground="YES" id="F5t-fK-HI4">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuE-QR-BfM">
+                                <rect key="frame" x="214" y="13" width="52" height="32"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="playGray" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yIQ-Ej-QMb">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handlePlayBeats:" target="q1X-5U-AxO" id="Ofr-zm-qTc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="jpr-Pa-Lpf" firstAttribute="centerX" secondItem="jqs-J3-Qx5" secondAttribute="centerX" id="5Jh-Yq-LzC"/>
+                            <constraint firstAttribute="trailing" secondItem="jpr-Pa-Lpf" secondAttribute="trailing" constant="20" id="XVJ-d5-C8S"/>
+                            <constraint firstItem="KuE-QR-BfM" firstAttribute="centerX" secondItem="jqs-J3-Qx5" secondAttribute="centerX" id="rXV-BT-2h8"/>
+                            <constraint firstItem="jpr-Pa-Lpf" firstAttribute="leading" secondItem="jqs-J3-Qx5" secondAttribute="leading" constant="20" id="ySu-cJ-Jr0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="txtBeats" destination="jpr-Pa-Lpf" id="zgX-hv-XMu"/>
+                    </connections>
+                </viewController>
+                <customObject id="1VL-49-6KX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1683" y="-569"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="AtZ-iD-YBR">
@@ -1414,7 +1483,7 @@
                                 <rect key="frame" x="18" y="155" width="36" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" alignment="justified" title="Speed" usesSingleLineMode="YES" id="dOs-ll-4nC">
-                                    <font key="font" metaFont="system" size="10"/>
+                                    <font key="font" metaFont="menu" size="10"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1453,7 +1522,7 @@
                                 <rect key="frame" x="494" y="156" width="70" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Volume" id="w6d-9C-Brh">
-                                    <font key="font" metaFont="system" size="10"/>
+                                    <font key="font" metaFont="menu" size="10"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

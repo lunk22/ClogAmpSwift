@@ -8,6 +8,7 @@
 
 import AppKit
 import AVFoundation
+import AudioKit
 
 class PlayerView: ViewController {
     
@@ -85,15 +86,7 @@ class PlayerView: ViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
-//
-//    override var representedObject: Any? {
-//        didSet {
-//            // Update the view, if already loaded.
-//        }
-//    }
     
     /*
      * Update related stuff

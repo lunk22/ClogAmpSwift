@@ -67,6 +67,10 @@
 		B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C06722145A3200A70F4A /* HistoryTableView.swift */; };
 		B7DDFCB122141B3600637831 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDFCB022141B3600637831 /* Tools.swift */; };
 		B7DDFCB322141F5F00637831 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DDFCB222141F5F00637831 /* Database.m */; };
+		B7F48C96238D500D00C3DB01 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F48C94238D500800C3DB01 /* AudioKit.framework */; };
+		B7F48C97238D500D00C3DB01 /* AudioKit.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B7F48C94238D500800C3DB01 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B7F48C99238D59A300C3DB01 /* BeatPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F48C98238D59A300C3DB01 /* BeatPlayerView.swift */; };
+		B7F48C9B238FAA6900C3DB01 /* FMSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F48C9A238FAA6900C3DB01 /* FMSynthesizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,6 +93,7 @@
 				B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */,
 				B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */,
 				5017716721FB2CE500D8A95A /* libid3-3.8.3.0.0.dylib in Embed Libraries */,
+				B7F48C97238D500D00C3DB01 /* AudioKit.framework in Embed Libraries */,
 				B72660542384070C00111C8B /* Sparkle.framework in Embed Libraries */,
 			);
 			name = "Embed Libraries";
@@ -183,6 +188,9 @@
 		B7DDFCB022141B3600637831 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		B7DDFCB222141F5F00637831 /* Database.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		B7DDFCB422141F6B00637831 /* Database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		B7F48C94238D500800C3DB01 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
+		B7F48C98238D59A300C3DB01 /* BeatPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BeatPlayerView.swift; path = ../../../../../BeatPlayerView.swift; sourceTree = "<group>"; };
+		B7F48C9A238FAA6900C3DB01 /* FMSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FMSynthesizer.swift; path = ../../../../../FMSynthesizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7F48C96238D500D00C3DB01 /* AudioKit.framework in Frameworks */,
 				B79853332217073500BDE678 /* libbass.dylib in Frameworks */,
 				5017716621FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib in Frameworks */,
 				B72660532384070100111C8B /* Sparkle.framework in Frameworks */,
@@ -234,6 +243,7 @@
 				5017716521FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib */,
 				B79853302217073500BDE678 /* libbass_fx.dylib */,
 				B79853312217073500BDE678 /* libbass.dylib */,
+				B7F48C94238D500800C3DB01 /* AudioKit.framework */,
 				B72660522384070100111C8B /* Sparkle.framework */,
 				50A37BB3207FF03E0020E218 /* Info.plist */,
 				50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */,
@@ -245,6 +255,7 @@
 		50DC6D892081DA3100B7C347 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B7F48C98238D59A300C3DB01 /* BeatPlayerView.swift */,
 				B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */,
 				B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */,
 				B7D9C06722145A3200A70F4A /* HistoryTableView.swift */,
@@ -306,6 +317,7 @@
 				B7B3A188237EBCC0009667CF /* Window.swift */,
 				B7B3A18A237EC209009667CF /* Panel.swift */,
 				B7D1414F2382B0FF0056B042 /* PasteboardType.swift */,
+				B7F48C9A238FAA6900C3DB01 /* FMSynthesizer.swift */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -489,6 +501,7 @@
 				B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */,
 				B7B46605237042EB00AA9419 /* PDFView.swift in Sources */,
 				B7B3A185237E726A009667CF /* Playlist.mm in Sources */,
+				B7F48C99238D59A300C3DB01 /* BeatPlayerView.swift in Sources */,
 				504E5FA42080F4E0003DBA66 /* Song.swift in Sources */,
 				5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */,
 				B7B3A189237EBCC0009667CF /* Window.swift in Sources */,
@@ -513,6 +526,7 @@
 				B7BB5518237FDBF800E153DF /* PlaylistSongItem.m in Sources */,
 				B78780F42216A131002B74B4 /* BassWrapper.m in Sources */,
 				B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */,
+				B7F48C9B238FAA6900C3DB01 /* FMSynthesizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,7 +677,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.3.8;
+				CURRENT_PROJECT_VERSION = 1.3.9;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -686,7 +700,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "1.3.8 beta";
+				MARKETING_VERSION = "1.3.9 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -707,7 +721,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.3.8;
+				CURRENT_PROJECT_VERSION = 1.3.9;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -730,7 +744,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "1.3.8 beta";
+				MARKETING_VERSION = "1.3.9 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
