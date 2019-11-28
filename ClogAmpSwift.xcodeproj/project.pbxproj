@@ -71,6 +71,8 @@
 		B7F48C97238D500D00C3DB01 /* AudioKit.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B7F48C94238D500800C3DB01 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7F48C99238D59A300C3DB01 /* BeatPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F48C98238D59A300C3DB01 /* BeatPlayerView.swift */; };
 		B7F48C9B238FAA6900C3DB01 /* FMSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F48C9A238FAA6900C3DB01 /* FMSynthesizer.swift */; };
+		B7F48C9D238FE9F000C3DB01 /* Click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7F48C9C238FE9EF00C3DB01 /* Click.mp3 */; };
+		B7F48C9E238FEA0300C3DB01 /* Click.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B7F48C9C238FE9EF00C3DB01 /* Click.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +82,7 @@
 			dstPath = Fonts;
 			dstSubfolderSpec = 7;
 			files = (
+				B7F48C9E238FEA0300C3DB01 /* Click.mp3 in CopyFiles */,
 				B74E7FEB23795C6C00569664 /* B612-Regular.ttf in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,6 +194,7 @@
 		B7F48C94238D500800C3DB01 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 		B7F48C98238D59A300C3DB01 /* BeatPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BeatPlayerView.swift; path = ../../../../../BeatPlayerView.swift; sourceTree = "<group>"; };
 		B7F48C9A238FAA6900C3DB01 /* FMSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FMSynthesizer.swift; path = ../../../../../FMSynthesizer.swift; sourceTree = "<group>"; };
+		B7F48C9C238FE9EF00C3DB01 /* Click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Click.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +250,7 @@
 				B7F48C94238D500800C3DB01 /* AudioKit.framework */,
 				B72660522384070100111C8B /* Sparkle.framework */,
 				50A37BB3207FF03E0020E218 /* Info.plist */,
+				B7F48C9C238FE9EF00C3DB01 /* Click.mp3 */,
 				50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */,
 				B7B3A17E237C09BC009667CF /* Localizable.strings */,
 			);
@@ -469,6 +474,7 @@
 				B7C8358422250E5700CF3360 /* AppIconBlue.icns in Resources */,
 				B70F181A221D957700FE1149 /* AppIconYellow.icns in Resources */,
 				B70F1817221D957700FE1149 /* AppIconGreen.icns in Resources */,
+				B7F48C9D238FE9F000C3DB01 /* Click.mp3 in Resources */,
 				B70F181B221D957700FE1149 /* AppIconNeonGreen.icns in Resources */,
 				B7B3A17C237C09BC009667CF /* Localizable.strings in Resources */,
 				50A37BB2207FF03E0020E218 /* Main.storyboard in Resources */,
