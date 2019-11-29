@@ -67,8 +67,6 @@
 		B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C06722145A3200A70F4A /* HistoryTableView.swift */; };
 		B7DDFCB122141B3600637831 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDFCB022141B3600637831 /* Tools.swift */; };
 		B7DDFCB322141F5F00637831 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DDFCB222141F5F00637831 /* Database.m */; };
-		B7F48C96238D500D00C3DB01 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F48C94238D500800C3DB01 /* AudioKit.framework */; };
-		B7F48C97238D500D00C3DB01 /* AudioKit.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B7F48C94238D500800C3DB01 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7F48C9D238FE9F000C3DB01 /* Click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7F48C9C238FE9EF00C3DB01 /* Click.mp3 */; };
 		B7F48C9E238FEA0300C3DB01 /* Click.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B7F48C9C238FE9EF00C3DB01 /* Click.mp3 */; };
 		B7F48CA02390E37F00C3DB01 /* BeatPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F48C9F2390E37F00C3DB01 /* BeatPlayerView.swift */; };
@@ -98,7 +96,6 @@
 				B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */,
 				B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */,
 				5017716721FB2CE500D8A95A /* libid3-3.8.3.0.0.dylib in Embed Libraries */,
-				B7F48C97238D500D00C3DB01 /* AudioKit.framework in Embed Libraries */,
 				B72660542384070C00111C8B /* Sparkle.framework in Embed Libraries */,
 			);
 			name = "Embed Libraries";
@@ -193,7 +190,6 @@
 		B7DDFCB022141B3600637831 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		B7DDFCB222141F5F00637831 /* Database.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		B7DDFCB422141F6B00637831 /* Database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
-		B7F48C94238D500800C3DB01 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 		B7F48C9C238FE9EF00C3DB01 /* Click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Click.mp3; sourceTree = "<group>"; };
 		B7F48C9F2390E37F00C3DB01 /* BeatPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatPlayerView.swift; sourceTree = "<group>"; };
 		B7F48CA12390EA4400C3DB01 /* PrimeAV.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PrimeAV.mp3; sourceTree = "<group>"; };
@@ -204,7 +200,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7F48C96238D500D00C3DB01 /* AudioKit.framework in Frameworks */,
 				B79853332217073500BDE678 /* libbass.dylib in Frameworks */,
 				5017716621FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib in Frameworks */,
 				B72660532384070100111C8B /* Sparkle.framework in Frameworks */,
@@ -249,7 +244,6 @@
 				5017716521FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib */,
 				B79853302217073500BDE678 /* libbass_fx.dylib */,
 				B79853312217073500BDE678 /* libbass.dylib */,
-				B7F48C94238D500800C3DB01 /* AudioKit.framework */,
 				B72660522384070100111C8B /* Sparkle.framework */,
 				50A37BB3207FF03E0020E218 /* Info.plist */,
 				B7F48CA12390EA4400C3DB01 /* PrimeAV.mp3 */,
