@@ -21,8 +21,13 @@ class Song {
     var bpm: Int { didSet { self.bpmChanged = true } }
     var volume: Int { didSet { self.volumeChanged = true } }
     var hasPositions: Bool
-    var hasId3Positions: Bool
-    var positions: Array<Position>
+    var positions: Array<Position> { didSet {
+        if self.positions.count > 0 {
+            self.hasPositions = true
+        }else{
+            self.hasPositions = false
+        }
+    } }
     var waitBeats: Int { didSet { self.waitBeatsChanged = true } }
     
     var titleChanged: Bool = false
@@ -76,7 +81,6 @@ class Song {
         self.bpm             = 0
         self.volume          = 100
         self.hasPositions    = false
-        self.hasId3Positions = false
         self.positions       = []
         self.waitBeats       = 0
         
@@ -121,7 +125,6 @@ class Song {
             
             //Has Positions
             self.hasPositions    = map?.value(forKey: "hasPositions") as? Bool ?? false
-            self.hasId3Positions = self.hasPositions
             
             //Read Wait Beats
             self.waitBeats = Int(map?.value(forKey: "waitBeats") as? Int ?? 0)
@@ -223,11 +226,6 @@ class Song {
             self.positions = []
             self.positionsChanged = false
             self.hasPositions = false
-        }
-        
-        //If positions have been read or no positions exist => return
-        if(self.positions.count > 0 || !self.hasId3Positions){
-            return
         }
         
         if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){

@@ -183,6 +183,7 @@ class PositionTableView: NSViewController {
             song.positionsChanged = true
             song.hasPositions = true
             self.refreshTable(single: true)
+            self.mainView?.songTableView?.refreshTable()
         }
     }
     
@@ -195,6 +196,7 @@ class PositionTableView: NSViewController {
             song.positions.remove(at: self.positionTable.selectedRow)
             song.positionsChanged = true
             self.refreshTable(single: true)
+            self.mainView?.songTableView?.refreshTable()
         }
     }
     
@@ -243,6 +245,7 @@ class PositionTableView: NSViewController {
             xmlParser?.delegate = posParser
             if xmlParser?.parse() ?? false {
                 self.refreshTable(single: true)
+                self.mainView?.songTableView?.refreshTable()
             }
         }
     }
