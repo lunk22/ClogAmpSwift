@@ -1564,7 +1564,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-L5-8Y8">
-                                <rect key="frame" x="66" y="58" width="140" height="59"/>
+                                <rect key="frame" x="66" y="60" width="140" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="00:00" id="2Ro-6R-ZgD">
                                     <font key="font" metaFont="system" size="50"/>
@@ -1573,7 +1573,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tD9-5l-fTt">
-                                <rect key="frame" x="68" y="57" width="136" height="61"/>
+                                <rect key="frame" x="68" y="59" width="136" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" title="Switch Time" bezelStyle="smallSquare" alignment="center" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="ocP-Rq-8Tj">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2818,11 +2818,11 @@
         <image name="NSTouchBarPauseTemplate" width="11" height="30"/>
         <image name="NSTouchBarPlayTemplate" width="14" height="30"/>
         <image name="NSTouchBarRefreshTemplate" width="19" height="30"/>
-        <image name="pause" width="32" height="32"/>
-        <image name="pauseGray" width="32" height="32"/>
-        <image name="play" width="32" height="32"/>
-        <image name="playGray" width="32" height="32"/>
-        <image name="stop" width="32" height="32"/>
-        <image name="stopGray" width="32" height="32"/>
+        <image name="pause" width="16" height="16"/>
+        <image name="pauseGray" width="16" height="16"/>
+        <image name="play" width="16" height="16"/>
+        <image name="playGray" width="16" height="16"/>
+        <image name="stop" width="16" height="16"/>
+        <image name="stopGray" width="16" height="16"/>
     </resources>
 </document>
