@@ -77,7 +77,6 @@
     }
     
     if (dataSize > 0){
-        NSLog(@"Size: %ld", dataSize);
         [dict setValue: [NSNumber numberWithBool:true] forKey:@"hasPositions"];
     }else{
         [dict setValue: [NSNumber numberWithBool:false] forKey:@"hasPositions"];

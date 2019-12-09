@@ -85,6 +85,17 @@ class PlayerView: ViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let colorFilter = CIFilter(name: "CIFalseColor")!
+//        colorFilter.setDefaults()
+//        if #available(OSX 10.14, *) {
+//            colorFilter.setValue(CIColor(cgColor: NSColor.green.cgColor), forKey: "inputColor0")
+//            colorFilter.setValue(CIColor(cgColor: NSColor.controlTextColor.cgColor), forKey: "inputColor1")
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//
+//        self.timeSlider.contentFilters = [colorFilter]
     }
     
     /*

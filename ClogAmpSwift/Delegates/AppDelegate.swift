@@ -16,6 +16,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         Database.buildTablesIfNeeded()
         
+        if UserDefaults.standard.double(forKey: "prefFilterTitleFactor") == 0 {
+            UserDefaults.standard.set(1.0, forKey: "prefFilterTitleFactor")
+        }
+        
         //Sparkle, if the automatic updates are turned on, perform an initial check on app launch
         if let updater = SUUpdater.shared(){
             if updater.automaticallyChecksForUpdates {
