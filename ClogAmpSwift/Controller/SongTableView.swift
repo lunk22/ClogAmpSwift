@@ -285,11 +285,11 @@ class SongTableView: ViewController {
         if(self.filterValue != ""){
             let titleFactor = UserDefaults.standard.double(forKey: "prefFilterTitleFactor")
             
-            for x in 1...100{
-                print(" ")
-            }
+//            for x in 1...100{
+//                print(" ")
+//            }
             
-            print("Title Factor: \(titleFactor)")
+//            print("Title Factor: \(titleFactor)")
             
             self.aSongsForTable = self.aSongs.filter{
                 var titleScore  = $0.getValueAsString("title").lowercased().score(word: self.filterValue)
@@ -307,12 +307,12 @@ class SongTableView: ViewController {
                     $0.getValueAsString("path").lowercased().contains(self.filterValue)
                 )
                 
-                if titleScore > 0.0 {
-                    print("###################################################")
-                    print("############ \($0.getValueAsString("title"))")
-                    print("Title Score: \(titleScore), rounded: \(titleScoreRounded)")
-                    print("Match: \(match)")
-                }
+//                if titleScore > 0.0 {
+//                    print("###################################################")
+//                    print("############ \($0.getValueAsString("title"))")
+//                    print("Title Score: \(titleScore), rounded: \(titleScoreRounded)")
+//                    print("Match: \(match)")
+//                }
                 
                 return match
             }

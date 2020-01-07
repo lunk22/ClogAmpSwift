@@ -13,26 +13,69 @@ class FileSystemUtils {
     static var aSongs = [Song]()
     
     static func readFolderContentsAsURL(sPath: String, filterExtension: String = "mp3") -> [URL] {
-        let sPathEncoded = sPath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
         
-        let fileManager = FileManager.default
+        func readPathFiles(_ path: String) -> [String] {
+            //paths of all files and directories
+            var aPaths: [String] = []
+            do {
+                aPaths = try FileManager.default.subpathsOfDirectory(atPath: path)
+                
+                aPaths.indices.forEach {
+                    let fileName = aPaths[$0]
+                    let filePath = "\(path)/\(fileName)"
+                    let filePathEncoded = filePath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
+                    
+                    aPaths[$0] = filePathEncoded
+                    
+                    var isDir: ObjCBool = ObjCBool(false)
+
+                    if FileManager.default.fileExists(atPath: filePath, isDirectory: &isDir) && isDir.boolValue {
+                        let symlinkTestUrl = URL(fileURLWithPath: filePath)
+                        do {
+                           if try symlinkTestUrl.checkResourceIsReachable() {
+                            let resourceValues = try symlinkTestUrl.resourceValues(forKeys: [.isSymbolicLinkKey])
+                            if resourceValues.isSymbolicLink ?? false {
+                                let symLinkDestination = symlinkTestUrl.resolvingSymlinksInPath()
+                                let aRecPaths = readPathFiles(symLinkDestination.path)
+                                aPaths.append(contentsOf: aRecPaths)
+                            }
+                           }
+                        } catch {}
+                    }
+                }
+            } catch {}
+            
+            return aPaths
+        }
+        
+//        func adjustPaths(_ inArray: [String], withPath: String) -> [String] {
+//            var resultArray = inArray
+//            resultArray.indices.forEach {
+//                let fileName = resultArray[$0]
+//                let filePath = "\(withPath)/\(fileName)"
+//                let filePathEncoded = filePath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
+//
+//                resultArray[$0] = filePathEncoded
+//            }
+//
+//            return resultArray
+//        }
+        
         var aFileURLs = [URL]()
 
         //paths of all files and directories
-        var aPaths = fileManager.subpaths(atPath: sPath)
-        
+        var aPaths = readPathFiles(sPath)
+                
         //filter to only use the disired file extension
-        aPaths = aPaths?.filter{ $0.hasSuffix(filterExtension) }
+        aPaths = aPaths.filter{ $0.hasSuffix(filterExtension) }
         
         //convert strings to URLs
-        for sFilePath in aPaths ?? [] {
-            let sFilePathEncoded = sFilePath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
-            let stringPath = "\(sPathEncoded)/\(sFilePathEncoded)"
+        for sFilePath in aPaths {
 //            if(filterExtension == "pdf"){
 //                let fileUrl = URL(fileURLWithPath: stringPath)
 //                aFileURLs.append(fileUrl)
 //            }else{
-                let url = URL(string: stringPath)
+                let url = URL(string: sFilePath)
                 aFileURLs.append(url!)
 //            }
         }

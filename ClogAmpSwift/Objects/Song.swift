@@ -336,6 +336,17 @@ class Song {
         }
     }
     
+    func songFileExists() -> Bool {
+        do {
+            if try self.filePathAsUrl.checkResourceIsReachable() {
+                return true
+            }
+        } catch {}
+        
+        return false
+//        FileManager.default.fileExists(atPath: filePath, isDirectory: &isDir)
+    }
+    
     func sortPositions() {
         self.positions.sort(by: { return $0.time < $1.time })
     }
