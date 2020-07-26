@@ -178,6 +178,9 @@ class PlaylistView: ViewController {
     
     @IBAction func handleRemoveSong(_ sender: Any) {
         let selectedIndex = self.songTable.selectedRow
+        if selectedIndex == -1 {
+            return;
+        }
         let song = self.aSongs[selectedIndex]
         
         let removed = Database.removeSong(
