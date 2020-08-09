@@ -408,6 +408,8 @@
             dateS  = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 3) encoding:NSUTF8StringEncoding];
             timeS  = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 4) encoding:NSUTF8StringEncoding];
             
+            NSString *combi = [NSString stringWithFormat:@"%@ %@", dateS, timeS];
+            
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
             
@@ -418,11 +420,11 @@
             dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
             timeFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
             
-            [dateFormatter setDateFormat:@"yyyyMMdd"];
-            [timeFormatter setDateFormat:@"HHmmss"];
+            [dateFormatter setDateFormat:@"yyyyMMdd HHmmss"];
+            [timeFormatter setDateFormat:@"yyyyMMdd HHmmss"];
             
-            NSDate *date = [dateFormatter dateFromString:dateS];
-            NSDate *time = [timeFormatter dateFromString:timeS];
+            NSDate *date = [dateFormatter dateFromString:combi];
+            NSDate *time = [timeFormatter dateFromString:combi];
             
             //Convert the NSDate objects to local format
             [dateFormatter setLocale:NSLocale.currentLocale];
