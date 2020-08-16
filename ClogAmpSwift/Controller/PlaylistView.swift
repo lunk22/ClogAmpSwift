@@ -35,8 +35,7 @@ class PlaylistView: ViewController {
     @IBOutlet weak var btnStop: NSButton!
     @IBOutlet weak var cbContPlayback: NSButton!
     @IBOutlet weak var lblPause: NSTextField!
-    @IBOutlet weak var txtPause: NSTextField!
-    
+    @IBOutlet weak var txtPause: NSTextField!    
     
     override func viewDidLoad() {
         self.aPlaylists = Database.getPlaylists() as! [Playlist]
