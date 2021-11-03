@@ -10,6 +10,7 @@
 		50043ED52080C76C0025DC2D /* FileSystemUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50043ED42080C76C0025DC2D /* FileSystemUtils.swift */; };
 		50113FF8272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */; };
 		50113FF9272AF58A00EEB9A1 /* libid3-3.8.3.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		50113FFB27324F0A00EEB9A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50113FFA27324F0A00EEB9A1 /* Log.swift */; };
 		5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017716821FF58C700D8A95A /* TimePanelView.swift */; };
 		504E5FA42080F4E0003DBA66 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E5FA32080F4E0003DBA66 /* Song.swift */; };
 		50A09BAC22104B0A00365544 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAB22104B0A00365544 /* TableView.swift */; };
@@ -106,6 +107,7 @@
 /* Begin PBXFileReference section */
 		50043ED42080C76C0025DC2D /* FileSystemUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemUtils.swift; sourceTree = "<group>"; };
 		50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libid3-3.8.3.0.0.dylib"; sourceTree = "<group>"; };
+		50113FFA27324F0A00EEB9A1 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		5017716821FF58C700D8A95A /* TimePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePanelView.swift; sourceTree = "<group>"; };
 		504E5FA32080F4E0003DBA66 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		50A09BAB22104B0A00365544 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				B7B4660B23754EE600AA9419 /* StringScore.swift */,
 				B7D141512382B1F30056B042 /* PasteboardWriter.swift */,
 				B7A887B82382DA1B00C82399 /* CocoaPDFCreator.swift */,
+				50113FFA27324F0A00EEB9A1 /* Log.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -428,7 +431,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Pascal Roessel";
 				TargetAttributes = {
 					50A37BA6207FF03D0020E218 = {
@@ -496,6 +499,7 @@
 				B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */,
 				B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */,
 				B7A887B92382DA1B00C82399 /* CocoaPDFCreator.swift in Sources */,
+				50113FFB27324F0A00EEB9A1 /* Log.swift in Sources */,
 				B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */,
 				B7B3A179237BDC70009667CF /* SwiftPlaylist.swift in Sources */,
 				B74E7FE623794E8C00569664 /* ObjC.m in Sources */,
@@ -584,6 +588,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -645,6 +650,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
