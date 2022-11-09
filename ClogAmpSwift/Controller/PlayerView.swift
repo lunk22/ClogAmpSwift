@@ -193,13 +193,17 @@ class PlayerView: ViewController {
                 if(currentTime == -1){
                     currentTime = self.avPlayer?.getCurrentTime() ?? 0
                 }
+
+                if(currentTime.isNaN){
+                    currentTime = 0
+                }
                 
                 //Position Slider
                 let duration = self.currentSong?.duration ?? 0
-//                if(duration.isNaN) {
-//                    duration = 0
-//                }
-                
+/*                if(duration.isNaN) {
+                    duration = 0
+                }
+*/
                 if(duration > 0){
                     percent = lround(Double(currentTime / Double(duration) * 10000))
                 }
@@ -284,6 +288,30 @@ class PlayerView: ViewController {
         self.countTimeDown = !self.countTimeDown
         self.updateTime()
         UserDefaults.standard.set(self.countTimeDown, forKey: "countTimeDown")
+    }
+    
+    @IBAction func increaseSpeedButtonClicked(_ sender: AnyObject) {
+        self.increaseSpeed()
+    }
+    
+    @IBAction func decreaseSpeedButtonClicked(_ sender: AnyObject) {
+        self.decreaseSpeed()
+    }
+    
+    @IBAction func increaseVolumeButtonClicked(_ sender: AnyObject) {
+        let currentVolume = self.currentSong?.volume ?? -1
+        if(currentVolume >= 0 && currentVolume < 100){
+            self.currentSong?.volume = Int(currentVolume + 1)
+        }
+        self.updateVolume()
+    }
+    
+    @IBAction func decreaseVolumeButtonClicked(_ sender: AnyObject) {
+        let currentVolume = self.currentSong?.volume ?? -1
+        if(currentVolume > 0){
+            self.currentSong?.volume = Int(currentVolume - 1)
+        }
+        self.updateVolume()
     }
     
     func determineBpmFCS() {
