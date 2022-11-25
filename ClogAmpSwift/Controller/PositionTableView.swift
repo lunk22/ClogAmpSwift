@@ -11,11 +11,12 @@ import AppKit
 class PositionTableView: NSViewController {
     
     //MARK: Properties
-    var fontSize        = 0
-    var visible         = false
-    var currentPosition = -1
+    var fontSize            = 0
+    var rowHeight : CGFloat = 1.0
+    var visible             = false
+    var currentPosition     = -1
     
-    var loopCount       = 0
+    var loopCount           = 0
     
     var loopTimer: Timer?
     
@@ -99,6 +100,8 @@ class PositionTableView: NSViewController {
     func refreshTable(single: Bool = false) {
         func performRefresh() {
             let selRow = self.positionTable.selectedRow
+            self.positionTable.layoutSubtreeIfNeeded()
+            self.positionTable.invalidateIntrinsicContentSize()
             self.positionTable.reloadData()
             self.positionTable.selectRowIndexes([selRow], byExtendingSelection: false)
         }
@@ -202,14 +205,14 @@ class PositionTableView: NSViewController {
     }
     
     @IBAction func handleIncreaseTextSize(_ sender: NSButton) {
-        self.fontSize += 1
+        self.fontSize += 3
         self.refreshTable(single: true)
         
         UserDefaults.standard.set(self.fontSize, forKey: "positionTableFontSize")
     }
     
     @IBAction func handleDecreaseTextSize(_ sender: NSButton) {
-        self.fontSize -= 1
+        self.fontSize -= 3
         self.refreshTable(single: true)
         
         UserDefaults.standard.set(self.fontSize, forKey: "positionTableFontSize")
@@ -442,11 +445,15 @@ class PositionTableView: NSViewController {
 }
 
 extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
-
+    
+    func tableViewColumnDidResize(_ notification: Notification) {
+        self.positionTable.reloadData()
+    }
+    
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
         if let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: nil) as? NSTableCellView {
             let textField = cell.textField!
+            textField.drawsBackground = false
             
             if let song = self.mainView?.playerView?.getSong() {
                 
@@ -454,22 +461,21 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
                     return nil
                 }
                 
-                textField.drawsBackground = false
                 textField.backgroundColor = NSColor.controlColor
                 textField.textColor       = NSColor.controlTextColor
-                
-                if(self.mainView?.playerView?.avPlayer?.isPlaying() ?? false){                    
+
+                if(self.mainView?.playerView?.avPlayer?.isPlaying() ?? false){
                     if(self.currentPosition == row){
                         textField.drawsBackground = true
                         textField.backgroundColor = NSColor.systemOrange
                         textField.textColor       = NSColor.black
-                        
+
                         if self.cbAutoscroll.state == NSControl.StateValue.on {
                             self.positionTable.scrollRowToVisible(row: row, animated: true)
                         }
                     }
                 }
-                
+
                 if(tableColumn!.identifier.rawValue == "number"){
                     textField.stringValue = "\(row + 1)"
                 }else{
@@ -478,14 +484,14 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
             }else{
                 textField.stringValue = ""
             }
-            
+
             if prefMonoFontPositons {
                 textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
             }
-                        
-            textField.sizeToFit()
+            
+            textField.setFrameOrigin(NSZeroPoint)
             
             return cell
         }
@@ -494,11 +500,36 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        if prefMonoFontPositons {
-            return CGFloat(round(Double(self.fontSize) * 1.7))
-        } else {
-            return CGFloat(self.fontSize + 8)
+        var heightOfRow: CGFloat = 100.0
+        
+        if let song = self.mainView?.playerView?.getSong() {
+            
+            if song.positions.count <= row {
+                return heightOfRow
+            }
+            
+            let string = song.positions[row].getValueAsString("comment")
+            if let tableColumn = tableView.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "comment")){
+                let rect = NSMakeRect(0, 0, tableColumn.width, CGFLOAT_MAX)
+                let textField = NSTextField()
+                let cell = textField.cell!
+                cell.wraps = true
+                
+                if prefMonoFontPositons {
+                    cell.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
+                } else {
+                    cell.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
+                }
+                
+                cell.stringValue = string
+                let size = cell.cellSize(forBounds: rect)
+                heightOfRow = size.height
+            }
+            
         }
+        
+        return heightOfRow
+        
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
