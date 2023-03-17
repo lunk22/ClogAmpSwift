@@ -99,17 +99,18 @@ class FileSystemUtils {
         logger.clear()
         
         for url in aUrls {
+            
+            print("\(dateFormatter.string(from: Date())): Complete: \((count*100)/aUrls.count)%", to: &logger)
+//            print("\(dateFormatter.string(from: Date())): Currently processed File: \(url.path)", to: &logger)
+            print("\(dateFormatter.string(from: Date())): File processed: \(url.path)", to: &logger)
+            print("----------------------------------------------------", to: &logger)
+            
             let song = Song.retrieveSong(path: url)
             aSongs.append(song)
             count = count + 1
             
-            print("\(dateFormatter.string(from: Date())): Complete: \((count*100)/aUrls.count)%", to: &logger)
-            print("\(dateFormatter.string(from: Date())): Currently processed File: \(url.path)", to: &logger)
-            
             block(song, (count*100)/aUrls.count)
             
-            print("\(dateFormatter.string(from: Date())): File processed: \(url.path)", to: &logger)
-            print("----------------------------------------------------", to: &logger)
         }
     }
 }
