@@ -1872,8 +1872,8 @@
         <scene sceneID="0p8-ZZ-9fE">
             <objects>
                 <viewController title="Song Table" id="uTS-cM-QNI" customClass="SongTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="b06-Er-8KR">
-                        <rect key="frame" x="0.0" y="0.0" width="973" height="195"/>
+                    <view key="view" wantsLayer="YES" misplaced="YES" id="b06-Er-8KR">
+                        <rect key="frame" x="0.0" y="0.0" width="974" height="195"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLm-3c-4qH">
@@ -1943,7 +1943,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="uuu-vf-1JK">
-                                                            <rect key="frame" x="198" y="1" width="187" height="17"/>
+                                                            <rect key="frame" x="197.5" y="1" width="187" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bfw-kC-Wa7">
@@ -2023,7 +2023,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="jeQ-xj-zHR">
-                                                            <rect key="frame" x="529" y="1" width="51" height="17"/>
+                                                            <rect key="frame" x="528.5" y="1" width="51" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Fk4-bz-AXf">
@@ -2483,7 +2483,7 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="FeW-Dx-HPI">
-                                                            <rect key="frame" x="313" y="0.0" width="175" height="16"/>
+                                                            <rect key="frame" x="312.5" y="0.0" width="175" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xrt-7x-rp3">
@@ -2780,7 +2780,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="1uF-AV-PWg">
-                                                            <rect key="frame" x="246" y="1" width="236" height="17"/>
+                                                            <rect key="frame" x="245.5" y="1" width="236" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a4q-hi-rxX">
@@ -2844,7 +2844,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="EcW-z8-8tB">
-                                                            <rect key="frame" x="725" y="1" width="242" height="17"/>
+                                                            <rect key="frame" x="724.5" y="1" width="242" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vYf-JK-v2s">

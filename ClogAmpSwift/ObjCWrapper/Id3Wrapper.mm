@@ -149,7 +149,7 @@
     NSMutableString *returnString = [NSMutableString new];
     
     size_t dataSize = 0;
-    const uchar *positionsUChar;
+    const uchar *positionsUChar = nullptr;
     
     ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
     
@@ -192,7 +192,7 @@
             positionsChar = (char *)positionsUChar;
             length = strlen(positionsChar) + 1; //Because of the '\0'
             
-            NSString *posiLine = [NSString stringWithCString:positionsChar encoding:NSISOLatin1StringEncoding];
+            NSString *posiLine = [NSString stringWithCString:positionsChar encoding:NSUTF8StringEncoding];
             
             positionsUChar += length;
             count += length;
@@ -319,7 +319,8 @@
     frame = new ID3_Frame(ID3FID_BPM);
 
     if (frame){
-        frame->Field(ID3FN_TEXT).SetEncoding(ID3TE_ISO8859_1);
+        //frame->Field(ID3FN_TEXT).SetEncoding(ID3TE_ISO8859_1);
+        frame->Field(ID3FN_TEXT).SetEncoding(ID3TE_UTF8);
         frame->Field(ID3FN_TEXT) = charBPM;
         id3Tag->AttachFrame(frame);
     }
@@ -357,8 +358,11 @@
             temp = [temp stringByAppendingString:@"\t"];
             temp = [temp stringByAppendingString:comment];
             
-            strcpy((char *)ptr, [temp cStringUsingEncoding:NSISOLatin1StringEncoding]);
-            NSUInteger length = [temp length] +1;
+            const char *tempCString = [temp cStringUsingEncoding:NSUTF8StringEncoding];
+            
+            strcpy((char *)ptr, tempCString);
+            NSUInteger tempLength = strlen(tempCString);
+            NSUInteger length = tempLength +1 ;
             
             len += length;
             ptr += length;
@@ -382,11 +386,10 @@
     }
     
     //Save info
-    unsigned char charRep[len];
+    //unsigned char charRep[len];
+    //memcpy((char *)charRep, (char *)buf, len);
     
-    memcpy((char *)charRep, (char *)buf, len);
-    
-    ID3_AddSyncLyrics(id3Tag, charRep, len, ID3TSF_MS, "ClogChoreoParts", "eng", ID3CT_MOVEMENT, true);
+    ID3_AddSyncLyrics(id3Tag, buf, len, ID3TSF_MS, "ClogChoreoParts", "eng", ID3CT_MOVEMENT, true);
     
     id3Tag->Update();
 }
