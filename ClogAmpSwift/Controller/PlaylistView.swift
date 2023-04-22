@@ -206,7 +206,7 @@ class PlaylistView: ViewController {
             if self.iSongIndex == -1{
                 self.loadSong(0)
             }
-            self.playerView?.play()
+            self.playerView?.doPlay()
             
             NotificationCenter.default.addObserver(self,
                selector: #selector(songFinished),
@@ -217,7 +217,7 @@ class PlaylistView: ViewController {
     }
     
     @IBAction func handleStopPlaylist(_ sender: Any?) {
-        self.playerView?.stop()
+        self.playerView?.doStop()
         self.iSongIndex = -1
         
         self.songTable.reloadData()
@@ -246,7 +246,7 @@ class PlaylistView: ViewController {
                 if self.cbContPlayback.state == NSControl.StateValue.on {
 //
                     delayWithSeconds(Double(self.txtPause.integerValue)){
-                        self.playerView?.play()
+                        self.playerView?.doPlay()
                     }
                 }
             } else {

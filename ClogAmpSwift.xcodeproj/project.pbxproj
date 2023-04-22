@@ -63,7 +63,6 @@
 		B7C8358422250E5700CF3360 /* AppIconBlue.icns in Resources */ = {isa = PBXBuildFile; fileRef = B7C8358322250E5700CF3360 /* AppIconBlue.icns */; };
 		B7D141502382B0FF0056B042 /* PasteboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D1414F2382B0FF0056B042 /* PasteboardType.swift */; };
 		B7D141522382B1F30056B042 /* PasteboardWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D141512382B1F30056B042 /* PasteboardWriter.swift */; };
-		B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */; };
 		B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C0632214513B00A70F4A /* SongHistoryItem.m */; };
 		B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C06722145A3200A70F4A /* HistoryTableView.swift */; };
 		B7DDFCB122141B3600637831 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDFCB022141B3600637831 /* Tools.swift */; };
@@ -185,7 +184,6 @@
 		B7C8358922281CB200CF3360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B7D1414F2382B0FF0056B042 /* PasteboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardType.swift; sourceTree = "<group>"; };
 		B7D141512382B1F30056B042 /* PasteboardWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWriter.swift; sourceTree = "<group>"; };
-		B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player-AVAudioPlayer.swift"; sourceTree = "<group>"; };
 		B7D9C0622214513B00A70F4A /* SongHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongHistoryItem.h; sourceTree = "<group>"; };
 		B7D9C0632214513B00A70F4A /* SongHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongHistoryItem.m; sourceTree = "<group>"; };
 		B7D9C06722145A3200A70F4A /* HistoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableView.swift; sourceTree = "<group>"; };
@@ -283,7 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				50DC6D852081D22F00B7C347 /* Model.swift */,
-				B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */,
 				B7364FD6221537AA00FB9C64 /* Player.swift */,
 				B7BD8F1A21F9A87E00532C1A /* Position.swift */,
 				504E5FA32080F4E0003DBA66 /* Song.swift */,
@@ -496,7 +493,6 @@
 				B7A3A9C0221AFCBD00CA5FE8 /* CountdownView.swift in Sources */,
 				50A09BAC22104B0A00365544 /* TableView.swift in Sources */,
 				50DC6D862081D22F00B7C347 /* Model.swift in Sources */,
-				B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */,
 				B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */,
 				B7A887B92382DA1B00C82399 /* CocoaPDFCreator.swift in Sources */,
 				50113FFB27324F0A00EEB9A1 /* Log.swift in Sources */,

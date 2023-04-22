@@ -17,7 +17,7 @@ class Player {
     var songHistoryWritten: Bool
     
 //    var callbackClosure: @escaping (CMTime) -> Void
-    var theClosure: ((CMTime) -> Void)?
+    var timeObserverCallback: ((CMTime) -> Void)?
     
     init(song: Song) {
         self.song = song
@@ -28,8 +28,22 @@ class Player {
         self.songHistoryWritten = false
     }
     
+    func setRate(_ newRate: Float) {
+        let oldRate = self.avPlayer.rate
+        
+        if(oldRate == 0.0 && newRate > 0.0) {
+            // was stopped, will play
+            self.addTimeObserver()
+        } else if(oldRate > 0.0 && newRate == 0.0){
+            // was playing, will stop
+            self.removeTimeObserver()
+        }
+        
+        self.avPlayer.rate = newRate
+    }
+    
     func play() {
-        self.avPlayer.rate = 1.0
+        self.setRate(1.0)
         self.updateRate()
         
         if(!self.songHistoryWritten){
@@ -44,14 +58,14 @@ class Player {
     
     func pause() {
         if(self.isPlaying()){
-            self.avPlayer.rate = 0.0
+            self.setRate(0.0)
         }else{
             self.play()
         }
     }
     
     func stop(_ block: @escaping (Bool) -> Void) {
-        self.avPlayer.rate = 0.0
+        self.setRate(0.0)
         self.seek(seconds: 0.0, using: block)
     }
     
@@ -61,10 +75,10 @@ class Player {
     
     func seek(seconds: Float64, using block: @escaping (Bool) -> Void) {
         let timescale = self.avPlayer.currentItem?.asset.duration.timescale ?? 1000
-        self.seek(seconds: (seconds * Double(timescale)), timescale: timescale, using: block)
+        self.doSeek(seconds: (seconds * Double(timescale)), timescale: timescale, using: block)
     }
     
-    private func seek(seconds: Float64, timescale: CMTimeScale, using block: @escaping (Bool) -> Void) {
+    private func doSeek(seconds: Float64, timescale: CMTimeScale, using block: @escaping (Bool) -> Void) {
         self.avPlayer.seek(
             to: CMTimeMake(value: Int64(lround(seconds)), timescale: timescale),
             toleranceBefore: CMTime.zero,
@@ -77,12 +91,12 @@ class Player {
         let currentTime = self.getCurrentTime()
         let jumpPos = currentTime + Double(seconds)
         
-        self.seek(seconds: jumpPos * 1000, timescale: 1000){_ in }
+        self.doSeek(seconds: jumpPos * 1000, timescale: 1000){_ in }
     }
     
     func updateRate(){
         if(self.isPlaying()){
-            self.avPlayer.rate = 1.0 + Float(Float(self.song.speed) / 100)
+            self.setRate(1.0 + Float(Float(self.song.speed) / 100))
         }
     }
     
@@ -110,21 +124,26 @@ class Player {
     
     @objc func songFinished() {
         self.stop({_ in})
-        let x = self.theClosure!
-        x(CMTimeMake(value: 0, timescale: 1000))
-        NotificationCenter.default.removeObserver(self)
+        delayWithSeconds(0.25) {
+            self.timeObserverCallback!(CMTimeMake(value: 0, timescale: 1000))
+            self.removeTimeObserver()
+        }
     }
     
-    func addPeriodicTimeObserver(using block: @escaping (CMTime) -> Void) {
-        self.theClosure = block
-        self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: nil, using: self.theClosure!)
+    func addTimeObserverCallback(using block: @escaping (CMTime) -> Void) {
+        self.timeObserverCallback = block
+    }
+    
+    func addTimeObserver() {
+        self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: nil, using: self.timeObserverCallback!)
         
         NotificationCenter.default.addObserver(self,
            selector: #selector(songFinished),
            name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
            object: nil
-        ) // Add observer
-
+        ) // Add song finished observer
+        
+        print("Time Observer added")
     }
     
     func removeTimeObserver() {
@@ -133,5 +152,10 @@ class Player {
             self.avPlayer.removeTimeObserver(observer)
         }
         self.observer = nil
+        
+        NotificationCenter.default.removeObserver(self)
+        
+        print("Time Observer removed")
+        
     }
 }
