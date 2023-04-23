@@ -274,7 +274,6 @@ class SongTableView: ViewController {
         if(self.songTable.selectedRow >= 0) {
             let song = self.aSongsForTable[self.songTable.selectedRow]
             self.mainView?.playerView?.loadSong(song: song)
-//            self.mainView?.pdfView?.findPdfForSong(songName: song.getValueAsString("title"), fileName: song.filePathAsUrl.lastPathComponent)
             DispatchQueue.main.async {
                 self.mainView?.positionTableView?.refreshTable(single: true)
             }
@@ -284,12 +283,6 @@ class SongTableView: ViewController {
     func filterTable() {
         if(self.filterValue != ""){
             let titleFactor = UserDefaults.standard.double(forKey: "prefFilterTitleFactor")
-            
-//            for x in 1...100{
-//                print(" ")
-//            }
-            
-//            print("Title Factor: \(titleFactor)")
             
             self.aSongsForTable = self.aSongs.filter{
                 var titleScore  = $0.getValueAsString("title").lowercased().score(word: self.filterValue)

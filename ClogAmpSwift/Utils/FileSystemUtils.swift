@@ -19,48 +19,37 @@ class FileSystemUtils {
             //paths of all files and directories
             var aPaths: [String] = []
             do {
-                aPaths = try FileManager.default.subpathsOfDirectory(atPath: path)
+                var aPathsToBeChecked = try FileManager.default.subpathsOfDirectory(atPath: path)
                 
-                aPaths.indices.forEach {
-                    let fileName = aPaths[$0]
+                aPathsToBeChecked.indices.forEach {
+                    let fileName = aPathsToBeChecked[$0]
                     let filePath = "\(path)/\(fileName)"
-                    let filePathEncoded = filePath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
-                    
-                    aPaths[$0] = filePathEncoded
-                    
-                    var isDir: ObjCBool = ObjCBool(false)
+                    if let filePathEncoded = filePath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed) {
+                        var isDir: ObjCBool = ObjCBool(false)
 
-                    if FileManager.default.fileExists(atPath: filePath, isDirectory: &isDir) && isDir.boolValue {
-                        let symlinkTestUrl = URL(fileURLWithPath: filePath)
-                        do {
-                           if try symlinkTestUrl.checkResourceIsReachable() {
-                            let resourceValues = try symlinkTestUrl.resourceValues(forKeys: [.isSymbolicLinkKey])
-                            if resourceValues.isSymbolicLink ?? false {
-                                let symLinkDestination = symlinkTestUrl.resolvingSymlinksInPath()
-                                let aRecPaths = readPathFiles(symLinkDestination.path)
-                                aPaths.append(contentsOf: aRecPaths)
+                        if FileManager.default.fileExists(atPath: filePath, isDirectory: &isDir) && FileManager.default.isReadableFile(atPath: filePath) {
+                            if !isDir.boolValue {
+                                aPaths.append(filePathEncoded)
+                            } else {
+                                let symlinkTestUrl = URL(fileURLWithPath: filePath)
+                                do {
+                                   if try symlinkTestUrl.checkResourceIsReachable() {
+                                    let resourceValues = try symlinkTestUrl.resourceValues(forKeys: [.isSymbolicLinkKey])
+                                    if resourceValues.isSymbolicLink ?? false {
+                                        let symLinkDestination = symlinkTestUrl.resolvingSymlinksInPath()
+                                        let aRecPaths = readPathFiles(symLinkDestination.path)
+                                        aPathsToBeChecked.append(contentsOf: aRecPaths)
+                                    }
+                                   }
+                                } catch {}
                             }
-                           }
-                        } catch {}
+                        }
                     }
                 }
             } catch {}
             
             return aPaths
         }
-        
-//        func adjustPaths(_ inArray: [String], withPath: String) -> [String] {
-//            var resultArray = inArray
-//            resultArray.indices.forEach {
-//                let fileName = resultArray[$0]
-//                let filePath = "\(withPath)/\(fileName)"
-//                let filePathEncoded = filePath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
-//
-//                resultArray[$0] = filePathEncoded
-//            }
-//
-//            return resultArray
-//        }
         
         var aFileURLs = [URL]()
 
@@ -72,13 +61,9 @@ class FileSystemUtils {
         
         //convert strings to URLs
         for sFilePath in aPaths {
-//            if(filterExtension == "pdf"){
-//                let fileUrl = URL(fileURLWithPath: stringPath)
-//                aFileURLs.append(fileUrl)
-//            }else{
-                let url = URL(string: sFilePath)
-                aFileURLs.append(url!)
-//            }
+            if let url = URL(string: sFilePath) {
+                aFileURLs.append(url)
+            }
         }
         
         return aFileURLs
@@ -99,36 +84,21 @@ class FileSystemUtils {
         
         logger.clear()
         let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 10
+        queue.maxConcurrentOperationCount = 1 // synchronous execution
         
         for url in aUrls {
             
-            print("\(dateFormatter.string(from: Date())): Complete: \((currentIndex*100)/aUrls.count)%", to: &logger)
-            print("\(dateFormatter.string(from: Date())): File processed: \(url.path)", to: &logger)
-            print("----------------------------------------------------", to: &logger)
-
             queue.addOperation {
+                print("\(dateFormatter.string(from: Date())): Complete: \((currentIndex*100)/aUrls.count)%", to: &logger)
+                print("\(dateFormatter.string(from: Date())): File processed: \(url.path)", to: &logger)
+                print("----------------------------------------------------", to: &logger)
+                
                 let song = Song.retrieveSong(path: url)
                 aSongs.append(song)
                 currentIndex = currentIndex + 1
 
                 block(song, (currentIndex*100)/aUrls.count)
             }
-            
-//            {
-//                let song = Song.retrieveSong(path: url)
-//                aSongs.append(song)
-//                currentIndex = currentIndex + 1
-//
-//                block(song, (currentIndex*100)/aUrls.count)
-//            }
-
-//            let op = queue.schedule(after: OperationQueue.SchedulerTimeType.init(Date()+1), interval: OperationQueue.SchedulerTimeType.Stride.milliseconds(10), tolerance: OperationQueue.SchedulerTimeType.Stride.seconds(5), operation)
-            
-            
-//            op.cancel()
-            
-            
         }
 
         queue.waitUntilAllOperationsAreFinished()

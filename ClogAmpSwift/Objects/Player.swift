@@ -34,8 +34,8 @@ class Player {
         if(oldRate == 0.0 && newRate > 0.0) {
             // was stopped, will play
             self.addTimeObserver()
-        } else if(oldRate > 0.0 && newRate == 0.0){
-            // was playing, will stop
+        } else if(newRate == 0.0){
+            // will stop
             self.removeTimeObserver()
         }
         
@@ -67,6 +67,10 @@ class Player {
     func stop(_ block: @escaping (Bool) -> Void) {
         self.setRate(0.0)
         self.seek(seconds: 0.0, using: block)
+        // setRate removed the time observer, but after setting the time to 0 we need to update one final time.
+        if let callback = self.timeObserverCallback {
+            callback(CMTimeMake(value: 0, timescale: 1000))
+        }
     }
     
     func isPlaying() -> Bool {
@@ -123,11 +127,7 @@ class Player {
     }
     
     @objc func songFinished() {
-        self.stop({_ in})
-        delayWithSeconds(0.25) {
-            self.timeObserverCallback!(CMTimeMake(value: 0, timescale: 1000))
-            self.removeTimeObserver()
-        }
+        self.stop({ _ in })
     }
     
     func addTimeObserverCallback(using block: @escaping (CMTime) -> Void) {
@@ -135,7 +135,9 @@ class Player {
     }
     
     func addTimeObserver() {
-        self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: nil, using: self.timeObserverCallback!)
+        if let callback = self.timeObserverCallback {
+            self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: nil, using: callback)
+        }
         
         NotificationCenter.default.addObserver(self,
            selector: #selector(songFinished),

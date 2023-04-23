@@ -18,7 +18,7 @@ class PDFViewController: NSViewController {
     @IBOutlet weak var pdfView: PDFView!
     
     override func viewDidAppear() {
-        super.viewDidLoad()
+        super.viewDidAppear()
     }
     
     @IBAction func handleSelectPdfDirectory(_ sender: Any) {
@@ -136,10 +136,8 @@ class PDFViewController: NSViewController {
             }
         }
         
-        let pdfPath = Database.getAssignedPDF(fileName)
-        
-        if pdfPath != nil {
-            self.openPdfInUi(URL(fileURLWithPath: pdfPath!))
+        if let pdfPath = Database.getAssignedPDF(fileName) {
+            self.openPdfInUi(URL(fileURLWithPath: pdfPath))
         } else if let savedPath = UserDefaults.standard.string(forKey: "pdfFolderPath") {
             DispatchQueue.global(qos: .background).async {
                 if self.aPdfUrls.count == 0 {
