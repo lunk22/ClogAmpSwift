@@ -38,7 +38,7 @@ class FileSystemUtils {
                                     if resourceValues.isSymbolicLink ?? false {
                                         let symLinkDestination = symlinkTestUrl.resolvingSymlinksInPath()
                                         let aRecPaths = readPathFiles(symLinkDestination.path)
-                                        aPathsToBeChecked.append(contentsOf: aRecPaths)
+                                        aPaths.append(contentsOf: aRecPaths)
                                     }
                                    }
                                 } catch {}
