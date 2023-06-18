@@ -90,7 +90,7 @@ class PDFViewController: NSViewController {
     }
     
     func openPdfInUi(_ url: URL) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async(qos: .userInitiated) {
             let fileUrl = URL(fileURLWithPath: url.path)
             if let pdfDocument = PDFDocument(url: fileUrl) {
                 self.pdfView.displayMode = .singlePageContinuous
@@ -106,7 +106,7 @@ class PDFViewController: NSViewController {
         do {
             try ObjC.catchException {
                 self.pdfView.document = nil
-                DispatchQueue.main.async {
+                DispatchQueue.main.async(qos: .userInitiated) {
                     self.pdfView.updateLayer()
                 }
             }

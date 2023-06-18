@@ -19,7 +19,7 @@ class FileSystemUtils {
             //paths of all files and directories
             var aPaths: [String] = []
             do {
-                var aPathsToBeChecked = try FileManager.default.subpathsOfDirectory(atPath: path)
+                let aPathsToBeChecked = try FileManager.default.subpathsOfDirectory(atPath: path)
                 
                 aPathsToBeChecked.indices.forEach {
                     let fileName = aPathsToBeChecked[$0]
@@ -69,7 +69,7 @@ class FileSystemUtils {
         return aFileURLs
     }
     
-    static func readFolderContentsAsSong(sPath: String, using block: @escaping (Song, Int/* Percent */) -> Void) {
+    static func readFolderContentsAsSong(sPath: String, percentCallback: @escaping (Int/* Percent */) -> Void) -> Array<Song> {
         // Create Date Formatter
         let dateFormatter = DateFormatter()
 
@@ -97,10 +97,12 @@ class FileSystemUtils {
                 aSongs.append(song)
                 currentIndex = currentIndex + 1
 
-                block(song, (currentIndex*100)/aUrls.count)
+                percentCallback(currentIndex*100/aUrls.count)
             }
         }
 
         queue.waitUntilAllOperationsAreFinished()
+        
+        return aSongs
     }
 }
