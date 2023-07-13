@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct Log: TextOutputStream {
+struct SongLog: TextOutputStream {
     
     func clear() {
         let fm = FileManager.default
@@ -31,4 +31,4 @@ struct Log: TextOutputStream {
     }
 }
 
-var logger = Log()
+var songLogger = SongLog()
