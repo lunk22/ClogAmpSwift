@@ -17,7 +17,7 @@ struct PlayerLog: TextOutputStream {
         if let fileAttributes = try? FileManager.default.attributesOfItem(atPath: log.path) {
             if let bytes = fileAttributes[.size] as? Int64 {
                 // Keep log until it exceeds 1MB
-                if bytes > 1000000 {
+                if bytes > 500000 {
                     try? fm.removeItem(atPath: log.path)
                 } // if bytes > 1000000 {
             } // if let bytes = fileAttributes[.size] as? Int64 {
