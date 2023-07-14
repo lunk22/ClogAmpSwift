@@ -14,11 +14,7 @@ class PlayerView: ViewController {
     weak var mainView: MainView?
     var countTimeDown: Bool = UserDefaults.standard.bool(forKey: "countTimeDown")
     
-    var count: Int = 0
-    
-    /*
-     * Outlets
-     */
+    //MARK: Outlets
     
     @IBOutlet weak var descriptionField: NSTextField!
     @IBOutlet weak var lengthField: NSTextField!
@@ -33,12 +29,7 @@ class PlayerView: ViewController {
     @IBOutlet weak var btnPause: NSButton!
     @IBOutlet weak var btnStop: NSButton!
     
-    
-    
-    
-    /*
-     * Properties
-     */
+    //MARK: Properties
     var observer: Any?
     
     var currentSong: Song? {
@@ -46,17 +37,14 @@ class PlayerView: ViewController {
             self.currentSong?.saveChanges()
         }
         didSet {
-            self.count = 0
             self.doStop()
             self.currentSong!.loadPositions()
             self.avPlayer = Player(song: self.currentSong!)
             self.avPlayer?.addTimeObserverCallback(using: {
                 [weak self] time in
-                self?.count += 1
-                print("tick \(self!.count)")
                 //Do stuff
-                self?.tick(updateSongTab: false, updatePositionTab: false)
-                self?.updateTime()
+                self?.tick()
+                self?.updateTimeInUI()
                 self?.updatePositionTable(single: false)
             })
 
@@ -69,10 +57,12 @@ class PlayerView: ViewController {
             let duration = self.currentSong!.getValueAsString("duration")
             
             self.descriptionField.stringValue = "\t\(title) (\(duration))"
-            //Speed, Volume
-            self.tick()
-            //Time
-            self.updateTime()
+            
+            //Time, Speed, Volume, Player Buttons
+            self.updateTimeInUI()
+            self.updateRateInUI()
+            self.updateVolumeInUI()
+            self.updatePlayerStateInUI()
             
             self.mainView?.pdfView?.findPdfForSong(
                 songName: self.currentSong?.getValueAsString("title") ?? "",
@@ -98,22 +88,15 @@ class PlayerView: ViewController {
         super.viewDidLoad()
     }
     
-    /*
-     * Update related stuff
-     */
+    // MARK: Update related stuff
     
-    func tick(updateSongTab: Bool = false, updatePositionTab: Bool = true) {
-        if(updatePositionTab){
-            self.updatePositionTable(single: true)
-        }
-
-        self.updateRate()
-        self.updateVolume()
-
-        if(updateSongTab){
-            self.updateSongTable()
-        }
-
+    func tick() {        
+        self.updateTimeInUI()
+        self.updatePositionTable(single: true)
+        self.updatePlayerStateInUI()
+    }
+    
+    func updatePlayerStateInUI() {
         if UserDefaults.standard.bool(forKey: "prefColorPlayerState") {
             if self.avPlayer?.isPlaying() ?? false {
                 self.btnPlay.image  = NSImage(named: "play")
@@ -151,9 +134,7 @@ class PlayerView: ViewController {
         }
     }
     
-    func updateRate(){
-        self.avPlayer?.updateRate()
-        
+    func updateRateInUI(){        
         DispatchQueue.main.async(qos: .userInitiated) {
             self.speedSlider.integerValue = self.currentSong?.speed ?? 0
             self.speedText.stringValue    = "\(self.currentSong?.speed ?? 0)%"
@@ -169,18 +150,16 @@ class PlayerView: ViewController {
             }else{
                 self.bpmText.stringValue = ""
             }
+            
+            self.updateSongTable()
         }
     }
-    func updateTime(_ seconds: Double = -1) {
+
+    func updateTimeInUI() {
         DispatchQueue.main.async(qos: .userInitiated) {
             var percent: Int = 0;
             if(self.currentSong != nil) {
-                //Time Field: e.g. 3:24
-                var currentTime = seconds
-
-                if(currentTime == -1){
-                    currentTime = self.avPlayer?.getCurrentTime() ?? 0
-                }
+                var currentTime = self.avPlayer?.getCurrentTime() ?? 0
 
                 if(currentTime.isNaN){
                     currentTime = 0
@@ -188,10 +167,7 @@ class PlayerView: ViewController {
                 
                 //Position Slider
                 let duration = self.currentSong?.duration ?? 0
-/*                if(duration.isNaN) {
-                    duration = 0
-                }
-*/
+
                 if(duration > 0){
                     percent = lround(Double(currentTime / Double(duration) * 10000))
                 }
@@ -200,6 +176,7 @@ class PlayerView: ViewController {
                     currentTime = Double(duration) - currentTime
                 }
                 
+                //Time Field: e.g. 3:24
                 let durMinutes = Int(Float(currentTime / 60).rounded(.down))
                 let durSeconds = Int(Double(currentTime).truncatingRemainder(dividingBy: 60))
                 
@@ -217,9 +194,7 @@ class PlayerView: ViewController {
         }
     }
     
-    func updateVolume(){
-        self.avPlayer?.updateVolume()
-        
+    func updateVolumeInUI(){
         DispatchQueue.main.async(qos: .userInitiated) {
             self.volumeSlider.integerValue = Int(self.currentSong?.volume ?? 100)
             self.volumeText.stringValue    = "\(self.currentSong?.volume ?? 100)%"
@@ -234,9 +209,8 @@ class PlayerView: ViewController {
         self.mainView?.songTableView?.refreshTable()
     }
     
-    /*
-     * Actions
-     */
+    //MARK: Actions
+
     @IBAction func play(_ sender: Any) {
         self.doPlay()
     }
@@ -250,14 +224,12 @@ class PlayerView: ViewController {
     }
     
     @IBAction func speedChanged(_ sender: NSSlider) {
-        let int = sender.integerValue
-        self.currentSong?.speed = int
-        self.updateRate()
+        let newSpeed = sender.integerValue
+        self.setSpeed(newSpeed)
     }
     
     @IBAction func volumeChanged(_ sender: NSSlider) {
-        self.currentSong?.volume = Int(sender.integerValue)
-        self.updateVolume()
+        self.setVolume(Int(sender.integerValue))
     }
     
     @IBAction func timeChanged(_ sender: NSSlider) {
@@ -269,7 +241,7 @@ class PlayerView: ViewController {
     
     @IBAction func changeTimeDisplay(_ sender: NSButton) {
         self.countTimeDown = !self.countTimeDown
-        self.updateTime()
+        self.updateTimeInUI()
         UserDefaults.standard.set(self.countTimeDown, forKey: "countTimeDown")
     }
     
@@ -286,7 +258,7 @@ class PlayerView: ViewController {
         if(currentVolume >= 0 && currentVolume < 100){
             self.currentSong?.volume = Int(currentVolume + 1)
         }
-        self.updateVolume()
+        self.updateVolumeInUI()
     }
     
     @IBAction func decreaseVolumeButtonClicked(_ sender: AnyObject) {
@@ -294,15 +266,17 @@ class PlayerView: ViewController {
         if(currentVolume > 0){
             self.currentSong?.volume = Int(currentVolume - 1)
         }
-        self.updateVolume()
+        self.updateVolumeInUI()
     }
+    
+    // MARK: Custom Functions
     
     func determineBpmFCS() {
         self.currentSong?.determineBassBPM(){
             _ in
             self.currentSong?.saveChanges()
             self.mainView?.songTableView?.refreshTable()
-            self.updateRate()
+            self.updateRateInUI()
         }
     }
 
@@ -339,18 +313,15 @@ class PlayerView: ViewController {
             //If play is called while the song is playing, it should start over
             self.avPlayer?.seek(seconds: 0.0)
             self.mainView?.positionTableView?.positionTable.scrollToBeginningOfDocument(nil)
-            //Update UI
-//            self.tick()
         }else{
             if(self.avPlayer?.getCurrentTime() == 0.0){
                 self.mainView?.positionTableView?.positionTable.scrollToBeginningOfDocument(nil)
             }
             self.avPlayer?.play()
-            //Update UI
-            self.tick()
         }
         
     }
+    
     func doPause() {
         if(self.avPlayer?.isPlaying() ?? false){
             self.avPlayer?.pause()
@@ -359,25 +330,48 @@ class PlayerView: ViewController {
             self.doPlay()
         }
     }
+    
     func doStop() {
         self.avPlayer?.stop()
     }
+    
     func jump(_ seconds: Int) {
         self.avPlayer?.jump(seconds)
     }
+    
+    func setSpeed(_ newSpeed: Int) {
+        self.currentSong?.speed = newSpeed
+        self.avPlayer?.updateRate()
+        self.updateRateInUI()
+    }
+    
     func increaseSpeed() {
         if(self.currentSong?.speed == 40){
             return
         }
-        self.currentSong?.speed += 1
+        
+        if(self.currentSong?.speed != nil) {
+            self.setSpeed(self.currentSong!.speed + 1)
+        }
     }
+    
     func decreaseSpeed() {
         if(self.currentSong?.speed == -40){
             return
         }
-        self.currentSong?.speed -= 1
+        
+        if(self.currentSong?.speed != nil) {
+            self.setSpeed(self.currentSong!.speed - 1)
+        }
     }
+    
     func resetSpeed() {
-        self.currentSong?.speed = 0
+        self.setSpeed(0)
+    }
+    
+    func setVolume(_ newVolume: Int) {
+        self.currentSong?.volume = newVolume
+        self.avPlayer?.updateVolume()
+        self.updateVolumeInUI()
     }
 }
