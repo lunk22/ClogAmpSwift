@@ -63,6 +63,7 @@ class PlayerView: ViewController {
             self.updateRateInUI()
             self.updateVolumeInUI()
             self.updatePlayerStateInUI()
+            self.updatePositionTable(single: true)
             
             self.mainView?.pdfView?.findPdfForSong(
                 songName: self.currentSong?.getValueAsString("title") ?? "",
