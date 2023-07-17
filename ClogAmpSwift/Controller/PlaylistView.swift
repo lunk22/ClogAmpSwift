@@ -26,6 +26,7 @@ class PlaylistView: ViewController {
     var iSongIndex: Int = -1
     
     var playerView: PlayerView?
+    weak var mainView: MainView?
     
     let prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
     
@@ -44,6 +45,7 @@ class PlaylistView: ViewController {
         self.songTable.registerForDraggedTypes([.string, .tableRowIndex])
         
         let viewController = NSApplication.shared.windows[0].contentViewController as! MainView
+        self.mainView = viewController
         self.playerView = viewController.playerView
         
         self.btnPlay.isEnabled = false
@@ -88,6 +90,16 @@ class PlaylistView: ViewController {
         if(self.iSongIndex >= 0 && self.aSongs.count > self.iSongIndex){
             self.playerView?.loadSong(song: self.aSongs[self.iSongIndex])
             self.songTable.reloadData()
+            
+            let prefViewAfterSongLoad = UserDefaults.standard.integer(forKey: "prefViewAfterSongLoad")
+            switch prefViewAfterSongLoad {
+            case 1:
+                self.mainView?.tabView.selectTabViewItem(at: 1)
+            case 2:
+                self.mainView?.tabView.selectTabViewItem(at: 2)
+            default:
+                return
+            }
         }
     }
     

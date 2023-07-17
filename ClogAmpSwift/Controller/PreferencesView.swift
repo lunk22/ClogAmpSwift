@@ -19,6 +19,7 @@ class PreferenceView: ViewController {
     @IBOutlet weak var txtLoopDelay: NSTextField!
     @IBOutlet weak var boxAppearance: NSBox!
     @IBOutlet weak var ddlbAppearance: NSComboBox!
+    @IBOutlet weak var cbViewAfterSongLoad: NSComboBox!
     
     //Overrides
     override func viewDidLoad() {
@@ -47,6 +48,7 @@ class PreferenceView: ViewController {
         let prefLoopDelay        = UserDefaults.standard.double(forKey: "prefLoopDelay")
                 
         var prefAppearance = UserDefaults.standard.integer(forKey: "prefAppearance")
+        var prefViewAfterSongLoad = UserDefaults.standard.integer(forKey: "prefViewAfterSongLoad")
         
         self.txtSkipForward.integerValue   = prefSkipForwardSeconds
         self.txtSkipBack.integerValue      = prefSkipBackSeconds
@@ -58,6 +60,11 @@ class PreferenceView: ViewController {
            prefAppearance = 0
         }
         self.ddlbAppearance.selectItem(at: prefAppearance)
+        
+        if(prefViewAfterSongLoad < 0 || prefViewAfterSongLoad > 2){
+            prefViewAfterSongLoad = 0
+        }
+        self.cbViewAfterSongLoad.selectItem(at: prefViewAfterSongLoad)
         
         if #available(OSX 10.14, *) {
             self.boxAppearance.isHidden = false
@@ -117,19 +124,41 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
     }
     
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
-        switch index {
-            case 0:
-                return NSLocalizedString("systemAppearance", bundle: Bundle.main, comment: "") as NSString
-            case 1:
-                return NSLocalizedString("darkAppearance", bundle: Bundle.main, comment: "") as NSString
-            case 2:
-                return NSLocalizedString("lightAppearance", bundle: Bundle.main, comment: "") as NSString
-            default:
-                return NSString(string: "")
+        if comboBox.identifier?.rawValue == "cbApperance" {
+            switch index {
+                case 0:
+                    return NSLocalizedString("systemAppearance", bundle: Bundle.main, comment: "") as NSString
+                case 1:
+                    return NSLocalizedString("darkAppearance", bundle: Bundle.main, comment: "") as NSString
+                case 2:
+                    return NSLocalizedString("lightAppearance", bundle: Bundle.main, comment: "") as NSString
+                default:
+                    return NSString(string: "")
+            }
+        } else if comboBox.identifier?.rawValue == "cbViewAfterSongLoad" {
+            switch index {
+                case 0:
+                    return NSLocalizedString("viewAfterSongLoadFileList", bundle: Bundle.main, comment: "") as NSString
+                case 1:
+                    return NSLocalizedString("viewAfterSongLoadPositions", bundle: Bundle.main, comment: "") as NSString
+                case 2:
+                    return NSLocalizedString("viewAfterSongLoadPDF", bundle: Bundle.main, comment: "") as NSString
+                default:
+                    return NSString(string: "")
+            }
         }
+        
+        return NSString(string: "")
+        
     }
     
     func comboBoxSelectionDidChange(_ notification: Notification) {
-        UserDefaults.standard.set(self.ddlbAppearance.indexOfSelectedItem, forKey: "prefAppearance")
+        let uiElement: NSControl = notification.object as! NSControl
+        if uiElement.identifier?.rawValue == "cbApperance" {
+            UserDefaults.standard.set(self.ddlbAppearance.indexOfSelectedItem, forKey: "prefAppearance")
+        } else if uiElement.identifier?.rawValue == "cbViewAfterSongLoad" {
+            UserDefaults.standard.set(self.cbViewAfterSongLoad.indexOfSelectedItem, forKey: "prefViewAfterSongLoad")
+        }
+        
     }
 }

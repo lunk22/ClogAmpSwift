@@ -8,3 +8,6 @@
 "songArtist" = "Interpret";
 "songDate" = "Abgespielt am";
 "waitBeats" = "%d Beats warten";
+"viewAfterSongLoadFileList" = "";
+"viewAfterSongLoadPositions" = "Positionen";
+"viewAfterSongLoadPDF" = "PDF";
