@@ -74,7 +74,7 @@ class TableView: NSTableView, NSTableViewDataSource, NSTableViewDelegate, NSText
         //  row, col 0 and go into edit. If it's a backtab in the first column, need
         //  to wrap back to the last row, last col and edit
         if whichSelector == tabSelector {
-            let row = self.row(for: textView)
+            // let row = self.row(for: textView)
             let col = self.column(for: textView)
             let lastCol = self.tableColumns.count - 1
 
@@ -98,7 +98,7 @@ class TableView: NSTableView, NSTableViewDataSource, NSTableViewDelegate, NSText
             }
 
         } else if whichSelector == backtabSelector {
-            let row = self.row(for: textView)
+            // let row = self.row(for: textView)
             let col = self.column(for: textView)
 
             if col == 0 { //we tabbed backward in the first column

@@ -41,9 +41,8 @@ class HistoryTableView: ViewController {
         sPdfHtml = sPdfHtml + " th, td { border-bottom: 1px solid #ddd; font-family:'Arial'; padding: 5px }"
         sPdfHtml = sPdfHtml + " th { text-align: left; }"
         sPdfHtml = sPdfHtml + " td { font-size: 12px; }"
+        sPdfHtml = sPdfHtml + " tr td:last-child { width: 1%; white-space: nowrap; text-align: left; }"
         sPdfHtml = sPdfHtml + "</style>"
-        sPdfHtml = sPdfHtml + "<br/>"
-        sPdfHtml = sPdfHtml + "<br/>"
         sPdfHtml = sPdfHtml + "<br/>"
         sPdfHtml = sPdfHtml + "<br/>"
         sPdfHtml = sPdfHtml + "<br/>"
@@ -65,7 +64,7 @@ class HistoryTableView: ViewController {
         }
         sPdfHtml = sPdfHtml + "</table>"
         
-        CreatePDF(htmlString: sPdfHtml)
+        CreatePDF(htmlString: sPdfHtml, fileName: "History")
     }
     
     //Overrides
