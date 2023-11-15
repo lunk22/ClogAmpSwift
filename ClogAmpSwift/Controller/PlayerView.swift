@@ -283,11 +283,11 @@ class PlayerView: ViewController {
 
     func handlePositionSelected(_ index: Int) {
         //Check the index is in range
-        if(index == -1 || self.currentSong?.positions.count ?? -1 <= index){
+        if(index == -1 || self.currentSong?.getPositions().count ?? -1 <= index){
             return
         }
         
-        if let oPosition = self.currentSong?.positions[index] {
+        if let oPosition = self.currentSong?.getPositions()[index] {
             self.avPlayer?.seek(seconds: Float64(oPosition.time / 1000))
             
             let prefPlayPositionOnSelection = UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")

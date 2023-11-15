@@ -132,7 +132,7 @@
 "DVo-aG-piG.title" = "Close";
 
 /* Class = "NSButtonCell"; title = "Focus Filter Field"; ObjectID = "dwD-8M-CBO"; */
-"dwD-8M-CBO.title" = "Focus Filter Field";
+"dwD-8M-CBO.title" = "Focus Filter";
 
 /* Class = "NSButtonCell"; title = "60"; ObjectID = "ekw-7H-qj1"; */
 "ekw-7H-qj1.title" = "60";
@@ -478,3 +478,7 @@
 "Ti8-Dd-Hf7.title" = "Window";
 
 "Kzg-md-BnG.title" = "Song Selection";
+
+"RVl-Gl-i5T.title" = "Show Beats";
+
+"z0e-vD-qbE.title" = "Open view after loading a song";

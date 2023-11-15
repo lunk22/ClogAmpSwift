@@ -37,6 +37,8 @@ class PositionTableView: NSViewController {
         self.positionTable.delegate          = self
         self.positionTable.dataSource        = self
         
+        self.updateBeatsColumnVisibility()
+        
         self.fontSize = UserDefaults.standard.integer(forKey: "positionTableFontSize")
         if(self.fontSize == 0){
             self.fontSize = 12
@@ -46,6 +48,12 @@ class PositionTableView: NSViewController {
             DispatchQueue.main.async(qos: .userInitiated) {
                 self.prefMonoFontPositons = UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
                 self.positionTable.reloadData()
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("showBeats"), object: nil, queue: nil){ _ in
+            DispatchQueue.main.async(qos: .userInitiated) {
+                self.updateBeatsColumnVisibility()
             }
         }
         
@@ -89,7 +97,7 @@ class PositionTableView: NSViewController {
             positionIndex += 10
         }
         
-        if(positionIndex < self.mainView?.playerView?.currentSong?.positions.count ?? 0){
+        if(positionIndex < self.mainView?.playerView?.currentSong?.getPositions().count ?? 0){
             let indexSet = IndexSet(integer: positionIndex)
             self.positionTable.selectRowIndexes(indexSet, byExtendingSelection: false)
         }
@@ -99,6 +107,12 @@ class PositionTableView: NSViewController {
     }
     
     //MARK: Custom Methods
+    func updateBeatsColumnVisibility() {
+        let beatsColumnIndex = self.positionTable.column(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "beats"))
+        let beatsColumn = self.positionTable.tableColumns[beatsColumnIndex]
+        beatsColumn.isHidden = !UserDefaults.standard.bool(forKey: "prefShowBeatsInPositionTable")
+    }
+    
     func refreshTable(single: Bool = false) {
         func performRefresh() {
             let selRow = self.positionTable.selectedRow
@@ -120,16 +134,16 @@ class PositionTableView: NSViewController {
             
             //No positions => no refresh
             if let song = self.mainView?.playerView?.getSong() {
-                if(song.positions.count < 1){
+                if(song.getPositions().count < 1){
                     return
                 }
             
                 var currentPosition = -1
                 let currentTime = self.mainView?.playerView?.avPlayer?.getCurrentTime() ?? -1
-                
-                for position in song.positions {
+                let positions = song.getPositions()
+                for position in positions {
                     if(Double(position.time / 1000) <= currentTime){
-                        currentPosition = song.positions.firstIndex(where: {
+                        currentPosition = positions.firstIndex(where: {
                             return $0 === position
                         }) ?? -1
                     }
@@ -185,9 +199,7 @@ class PositionTableView: NSViewController {
         if let song = self.mainView?.playerView?.currentSong {
             var currentTime = self.mainView?.playerView?.avPlayer?.getCurrentTime() ?? 0 //Seconds
             currentTime *= 1000 //Milliseconds
-            song.positions.append( Position( name: "Name", comment: "", time: UInt(lround(currentTime)) ) )
-            song.positionsChanged = true
-            song.hasPositions = true
+            song.addPosition( Position( name: "Name", comment: "", time: UInt(lround(currentTime)) ) )
             self.refreshTable(single: true)
             self.mainView?.songTableView?.refreshTable()
         }
@@ -199,8 +211,7 @@ class PositionTableView: NSViewController {
         }
 
         if let song = self.mainView?.playerView?.currentSong {
-            song.positions.remove(at: self.positionTable.selectedRow)
-            song.positionsChanged = true
+            song.removePosition(at: self.positionTable.selectedRow)
             self.refreshTable(single: true)
             self.mainView?.songTableView?.refreshTable()
         }
@@ -227,7 +238,7 @@ class PositionTableView: NSViewController {
         }
         
         if let song = self.mainView?.playerView?.currentSong {
-            song.positions[posIndex].time = UInt(lround((self.mainView?.playerView?.avPlayer?.getCurrentTime() ?? 0) * 1000))
+            song.getPositions()[posIndex].time = UInt(lround((self.mainView?.playerView?.avPlayer?.getCurrentTime() ?? 0) * 1000))
             song.positionsChanged = true
             self.refreshTable(single: true)
         }
@@ -280,7 +291,7 @@ class PositionTableView: NSViewController {
                 
                 xmlRoot.addChild(xmlPositionList)
                 
-                for position in song.positions {
+                for position in song.getPositions() {
                     let xmlPosition = XMLElement(name: "position")
                     xmlPositionList.addChild(xmlPosition)
 
@@ -317,11 +328,11 @@ class PositionTableView: NSViewController {
         let identifier = oCol.identifier.rawValue
         
         if let song = self.mainView?.playerView?.currentSong {
-            if !song.hasPositions || song.positions.count <= iRow {
+            if !song.hasPositions || song.getPositions().count <= iRow {
                 return
             }
             
-            let position = song.positions[iRow]
+            let position = song.getPositions()[iRow]
             
             switch identifier {
             case "name":
@@ -425,7 +436,7 @@ class PositionTableView: NSViewController {
             sPdfHtml = sPdfHtml + " <table>"
             
             
-            for position in song.positions {
+            for position in song.getPositions() {
                 var comment = position.comment
                 comment = comment.replacingOccurrences(of: "- ", with: "- <wbr/>")
                 comment = comment.replacingOccurrences(of: "– ", with: "– <wbr/>")
@@ -461,7 +472,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
             textField.drawsBackground = false
             
             if let song = self.mainView?.playerView?.getSong() {
-                if song.positions.count <= row {
+                if song.getPositions().count <= row {
                     return nil
                 }
                 
@@ -483,7 +494,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 if(tableColumn!.identifier.rawValue == "number"){
                     textField.stringValue = "\(row + 1)"
                 }else{
-                    textField.stringValue = song.positions[row].getValueAsString(tableColumn!.identifier.rawValue)
+                    textField.stringValue = song.getPositions()[row].getValueAsString(tableColumn!.identifier.rawValue)
                 }
             }else{
                 textField.stringValue = ""
@@ -494,7 +505,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
             }
-            
+
             return cell
         }
         
@@ -506,11 +517,11 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
         
         if let song = self.mainView?.playerView?.getSong() {
             
-            if song.positions.count <= row {
+            if song.getPositions().count <= row {
                 return heightOfRow
             }
             
-            let string = song.positions[row].getValueAsString("comment")
+            let string = song.getPositions()[row].getValueAsString("comment")
             if let tableColumn = tableView.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "comment")){
                 let rect = NSMakeRect(0, 0, tableColumn.width, CGFLOAT_MAX)
                 let textField = NSTextField()
@@ -536,7 +547,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         if let song = self.mainView?.playerView?.getSong() {
-            return song.positions.count
+            return song.getPositions().count
         }else{
             return 0
         }

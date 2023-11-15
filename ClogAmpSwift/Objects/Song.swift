@@ -21,7 +21,7 @@ class Song {
     var bpm: Int { didSet { self.bpmChanged = true } }
     var volume: Int { didSet { self.volumeChanged = true } }
     var hasPositions: Bool
-    var positions: Array<Position> { didSet {
+    private var positions: Array<Position> { didSet {
         if self.positions.count > 0 {
             self.hasPositions = true
         }else{
@@ -87,6 +87,7 @@ class Song {
         self.readBasicInfo()
     } //init
     
+    //MARK: Instance Stuff
     func readBasicInfo() {
         let stringPath = self.getValueAsString("path")
         
@@ -129,6 +130,37 @@ class Song {
             //Read Wait Beats
             self.waitBeats = Int(map?.value(forKey: "waitBeats") as? Int ?? 0)
         }
+        
+        self.resetChangeFlags()
+    }
+    
+    func setPositions(_ positions: Array<Position>) {
+        self.positions = positions
+        self.positionsChanged = true
+        if(self.positions.count > 0) {
+            self.hasPositions = true
+        }
+        self.calculatePositionBeats()
+    }
+    
+    func addPosition(_ position: Position) {
+        self.positions.append(position)
+        self.hasPositions = true
+        self.positionsChanged = true
+        self.calculatePositionBeats()
+    }
+    
+    func removePosition(at: Int) {
+        self.positions.remove(at: at)
+        self.positionsChanged = true
+        if(self.positions.count == 0) {
+            self.hasPositions = false
+        }
+        self.calculatePositionBeats()
+    }
+    
+    func getPositions() -> Array<Position> {
+        return self.positions
     }
     
     func getValueAsString(_ property: String) -> String {
@@ -237,20 +269,46 @@ class Song {
                 if(sPositions != ""){
                     //Split string into single lines ($LS = Line Separator)
                     let aLines = sPositions.components(separatedBy: "$LS")
-                    
-                    for line in aLines{
+                    // Create temporary array to prevent calculating beats every time a new position gets read. Do it once at the end.
+                    var newPositions: Array<Position> = []
+                    for line in aLines {
                         //Split string into single cells ($CS = Cell Separator)
                         let aCells = line.components(separatedBy: "$CS")
-                        self.positions.append(Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0)))
+                        let position = Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0))
+                        
+                        newPositions.append(position)
                         self.hasPositions = true
                     }
                     
+                    self.positions = newPositions
                     self.positionsChanged = false
                 }
             }
         }
 
     } //func loadPositions
+    
+    func calculatePositionBeats () {
+        print("calculate position beats")
+        let beatsPerMS = Double(self.bpm) / 60 / 1000; // 60 seconds in a minute, 1000 ms in a sec.
+        var totalBeats: Int = 0
+        
+        for (index, currentPosition) in self.positions.enumerated() {
+            if beatsPerMS > 0 {
+                var nextTime = Double(self.duration * 1000)
+                if (index+1) < self.positions.count {
+                    let nextPosition = self.positions[(index+1)]
+                    nextTime = Double(nextPosition.time)
+                }
+                
+                currentPosition.beats = Int(round((nextTime - Double(currentPosition.time)) * Double(beatsPerMS)));
+                totalBeats += currentPosition.beats
+//                print("BPMs in Position '\(currentPosition.name)': \(currentPosition.beats)")
+            }
+        }
+        
+//        print("Total Beats in Song: \(totalBeats)")
+    }
     
     func saveChanges() {
         if(!self.songChanged){ return; }
@@ -326,15 +384,19 @@ class Song {
             }
             
             //Reset change flags
-            self.titleChanged     = false
-            self.artistChanged    = false
-            self.levelChanged     = false
-            self.speedChanged     = false
-            self.bpmChanged       = false
-            self.volumeChanged    = false
-            self.positionsChanged = false
-            self.waitBeatsChanged = false
+            self.resetChangeFlags()
         }
+    }
+    
+    func resetChangeFlags() {
+        self.titleChanged     = false
+        self.artistChanged    = false
+        self.levelChanged     = false
+        self.speedChanged     = false
+        self.bpmChanged       = false
+        self.volumeChanged    = false
+        self.positionsChanged = false
+        self.waitBeatsChanged = false
     }
     
     func songFileExists() -> Bool {

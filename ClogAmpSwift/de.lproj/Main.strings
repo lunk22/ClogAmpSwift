@@ -105,7 +105,7 @@
 "DVo-aG-piG.title" = "Schließen";
 
 /* Class = "NSButtonCell"; title = "Focus Filter Field"; ObjectID = "dwD-8M-CBO"; */
-"dwD-8M-CBO.title" = "Fokusiere Filter Feld";
+"dwD-8M-CBO.title" = "Fokusiere Filter";
 
 /* Class = "NSButtonCell"; title = "60"; ObjectID = "ekw-7H-qj1"; */
 "ekw-7H-qj1.title" = "60";
@@ -438,10 +438,10 @@
 "B6L-DL-PqA.title" = "Schriftart";
 
 /* Class = "NSButtonCell"; title = "Use Mono Font for Songs"; ObjectID = "OUP-oz-FBE"; */
-"OUP-oz-FBE.title" = "Mono Schrift für Lieder verwenden";
+"OUP-oz-FBE.title" = "Mono Schrift für Lieder";
 
 /* Class = "NSButtonCell"; title = "Use Mono Font for Positions"; ObjectID = "D27-I2-QtF"; */
-"D27-I2-QtF.title" = "Mono Schrift für Positionen verwenden";
+"D27-I2-QtF.title" = "Mono Schrift für Positionen";
 
 /* Class = "NSMenuItem"; title = "Reload List"; ObjectID = "rJe-5J-acX"; */
 "rJe-5J-acX.title" = "Liste neu laden";
@@ -479,3 +479,7 @@
 "Ti8-Dd-Hf7.title" = "Fenster";
 
 "Kzg-md-BnG.title" = "Liedauswahl";
+
+"RVl-Gl-i5T.title" = "Beats anzeigen";
+
+"z0e-vD-qbE.title" = "Anzeige nach Liedauswahl";

@@ -80,6 +80,10 @@ class PreferenceView: ViewController {
         NotificationCenter.default.post(name: NSNotification.Name("monoChanged"), object: nil)
     }
     
+    @IBAction func handleShowBeatsChanged(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name("showBeats"), object: nil)
+    }
+    
     @IBAction func setValue(_ sender: AnyObject) {
         if sender === self.txtSkipForward! {
             UserDefaults.standard.set(self.txtSkipForward.integerValue, forKey: "prefSkipForwardSeconds")
