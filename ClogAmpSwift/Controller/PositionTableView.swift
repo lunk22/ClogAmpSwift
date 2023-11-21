@@ -22,8 +22,6 @@ class PositionTableView: NSViewController {
     
     weak var mainView: MainView?
     
-    var prefMonoFontPositons = UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
-    
     //MARK: Outlets
     @IBOutlet weak var positionTable: TableView!
     @IBOutlet weak var cbLoop: NSButton!
@@ -39,14 +37,10 @@ class PositionTableView: NSViewController {
         
         self.updateBeatsColumnVisibility()
         
-        self.fontSize = UserDefaults.standard.integer(forKey: "positionTableFontSize")
-        if(self.fontSize == 0){
-            self.fontSize = 12
-        }
+        self.fontSize = Defaults.positionTableFontSize
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("monoChanged"), object: nil, queue: nil){ _ in
             DispatchQueue.main.async(qos: .userInitiated) {
-                self.prefMonoFontPositons = UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
                 self.positionTable.reloadData()
             }
         }
@@ -110,7 +104,7 @@ class PositionTableView: NSViewController {
     func updateBeatsColumnVisibility() {
         let beatsColumnIndex = self.positionTable.column(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "beats"))
         let beatsColumn = self.positionTable.tableColumns[beatsColumnIndex]
-        beatsColumn.isHidden = !UserDefaults.standard.bool(forKey: "prefShowBeatsInPositionTable")
+        beatsColumn.isHidden = !Defaults.positionTableShowBeats
     }
     
     func refreshTable(single: Bool = false) {
@@ -152,9 +146,8 @@ class PositionTableView: NSViewController {
                 if((self.mainView?.playerView?.avPlayer?.isPlaying() ?? false ) && self.currentPosition != currentPosition){
                     if self.cbLoop.state == NSControl.StateValue.on {
                         if !(self.loopTimer?.isValid ?? false) {
-                            let prefLoopDelay = UserDefaults.standard.double(forKey: "prefLoopDelay")
                             let loopPos = self.currentPosition
-                            self.loopTimer = Timer.scheduledTimer(withTimeInterval: prefLoopDelay, repeats: false, block: {
+                            self.loopTimer = Timer.scheduledTimer(withTimeInterval: Defaults.loopDelay, repeats: false, block: {
                                 _ in
                                 self.loopCount += 1
                                 
@@ -500,7 +493,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 textField.stringValue = ""
             }
 
-            if prefMonoFontPositons {
+            if Defaults.positionTableMonoFont {
                 textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
@@ -528,7 +521,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 let cell = textField.cell!
                 cell.wraps = true
                 
-                if prefMonoFontPositons {
+                if Defaults.positionTableMonoFont {
                     cell.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
                 } else {
                     cell.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))

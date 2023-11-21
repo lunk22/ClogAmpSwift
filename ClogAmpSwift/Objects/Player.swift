@@ -137,12 +137,6 @@ class Player {
                 count += 1
                 self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: .main, using: callback)
             }
-            
-            if self.observer != nil {
-                print("SUCCESS: Time Observer added - \(self.song.title)", to: &playerLogger)
-            } else {
-                print("ERROR: Failed to add time observer in time - \(self.song.title)", to: &playerLogger)
-            }
         }
         
         NotificationCenter.default.addObserver(self,
@@ -161,7 +155,5 @@ class Player {
         self.observer = nil
         
         NotificationCenter.default.removeObserver(self)
-        
-        print("SUCCESS: Time Observer removed - \(self.song.title)", to: &playerLogger)
     }
 }

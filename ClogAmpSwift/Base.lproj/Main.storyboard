@@ -431,7 +431,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8q-2v-WEP">
-                                                    <rect key="frame" x="3" y="3" width="1060" height="427"/>
+                                                    <rect key="frame" x="3" y="3" width="1059" height="427"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                                     <connections>
                                                         <segue destination="uTS-cM-QNI" kind="embed" id="Oul-NZ-EIj"/>
@@ -476,7 +476,7 @@
                                 </connections>
                             </tabView>
                             <containerView id="9sI-nV-Tep">
-                                <rect key="frame" x="279" y="19" width="554" height="168"/>
+                                <rect key="frame" x="275" y="19" width="562" height="168"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="jBr-hw-2XV" kind="embed" id="I7x-vZ-qrR"/>
@@ -1560,7 +1560,7 @@
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ajf-m0-qta">
                                 <rect key="frame" x="66" y="4" width="413" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="10000" tickMarkPosition="below" numberOfTickMarks="1" sliderType="linear" id="aSD-zS-3WP"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100000" tickMarkPosition="below" numberOfTickMarks="1" sliderType="linear" id="aSD-zS-3WP"/>
                                 <connections>
                                     <action selector="timeChanged:" target="jBr-hw-2XV" id="7tM-dq-Iqr"/>
                                 </connections>
@@ -1666,7 +1666,7 @@
                                     <action selector="changeTimeDisplay:" target="jBr-hw-2XV" id="Wef-sR-hjr"/>
                                 </connections>
                             </button>
-                            <button identifier="decreaseSpeedBtn" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zyh-8M-nFE">
+                            <button identifier="decreaseSpeedBtn" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zyh-8M-nFE" userLabel="Spped-">
                                 <rect key="frame" x="0.0" y="22" width="60" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="Qgj-Ac-6ma">
@@ -1677,7 +1677,7 @@
                                     <action selector="decreaseSpeedButtonClicked:" target="jBr-hw-2XV" id="o39-IZ-Jvv"/>
                                 </connections>
                             </button>
-                            <button identifier="increaseVolumeBtn" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vlG-Mn-JLI">
+                            <button identifier="increaseVolumeBtn" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vlG-Mn-JLI" userLabel="Volume+">
                                 <rect key="frame" x="486" y="150" width="75" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="67y-jD-QND">
@@ -1688,7 +1688,7 @@
                                     <action selector="increaseVolumeButtonClicked:" target="jBr-hw-2XV" id="9Kl-an-TEB"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RqC-9E-RDk">
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RqC-9E-RDk" userLabel="Volume-">
                                 <rect key="frame" x="486" y="0.0" width="75" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="cr3-x2-BdO">
@@ -1699,7 +1699,7 @@
                                     <action selector="decreaseVolumeButtonClicked:" target="jBr-hw-2XV" id="wej-fo-Q1c"/>
                                 </connections>
                             </button>
-                            <button identifier="increaseSpeedBtn" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KCz-fN-x3F">
+                            <button identifier="increaseSpeedBtn" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KCz-fN-x3F" userLabel="Speed+">
                                 <rect key="frame" x="0.0" y="148" width="61" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="RFs-Qm-hpd">
@@ -2297,7 +2297,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9TZ-NU-mJx">
-                                <rect key="frame" x="800" y="173" width="172" height="22"/>
+                                <rect key="frame" x="800" y="50" width="172" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="172" id="aJN-nC-lnM"/>
                                 </constraints>
@@ -2312,13 +2312,13 @@
                                 </connections>
                             </textField>
                             <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-DU-iVq">
-                                <rect key="frame" x="0.0" y="176" width="792" height="20"/>
+                                <rect key="frame" x="0.0" y="53" width="792" height="20"/>
                                 <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" refusesFirstResponder="YES" focusRingType="none" alignment="left" id="GjP-SJ-036">
                                     <font key="font" metaFont="message" size="11"/>
                                 </pathCell>
                             </pathControl>
                             <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RBY-hW-7Nn" userLabel="Directory Text">
-                                <rect key="frame" x="-2" y="65" width="977" height="65"/>
+                                <rect key="frame" x="-2" y="-58" width="977" height="65"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" alignment="center" title="99%" id="RIz-5V-WIF">
                                     <font key="font" metaFont="system" size="55"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2326,7 +2326,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dHP-WF-Zm9">
-                                <rect key="frame" x="927" y="-1" width="23" height="23"/>
+                                <rect key="frame" x="927" y="-124" width="23" height="23"/>
                                 <buttonCell key="cell" type="smallSquare" title="+" bezelStyle="smallSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sg8-Uf-sex">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -2340,7 +2340,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vWq-tV-ayT">
-                                <rect key="frame" x="950" y="-1" width="23" height="23"/>
+                                <rect key="frame" x="950" y="-124" width="23" height="23"/>
                                 <buttonCell key="cell" type="smallSquare" title="-" bezelStyle="smallSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yBc-if-q5C">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
