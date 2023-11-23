@@ -28,7 +28,7 @@ class MainView: ViewController {
     }
     
     override func viewWillDisappear() {
-        self.playerView?.getSong()?.saveChanges()
+        PlayerAudioEngine.shared.song?.saveChanges()
         NSApplication.shared.terminate(self)
     }
     
@@ -71,11 +71,11 @@ class MainView: ViewController {
     }
     
     @IBAction func playerForward(_ sender: AnyObject) {
-        self.playerView?.jump(5)
+        self.playerView?.jump(Defaults.skipForward)
     }
     
     @IBAction func playerBack(_ sender: AnyObject) {
-        self.playerView?.jump(-5)
+        self.playerView?.jump(Defaults.skipBack)
     }
     
     @IBAction func focusFilterField(_ sender: Any) {

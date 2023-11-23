@@ -38,13 +38,13 @@ class SongTableView: ViewController {
     override func viewDidLoad() {
         let delay = 1.25
         if Defaults.focusFilterOnAppStart {
-            delayWithSeconds(delay, closure: {
+            delayWithSeconds(delay) {
                 self.searchField.becomeFirstResponder()
-            })
+            }
         } else {
-            delayWithSeconds(delay, closure: {
+            delayWithSeconds(delay) {
                 self.songTable.enclosingScrollView?.becomeFirstResponder()
-            })
+            }
         }
         
         self.songTable.selectionDelegate = self
@@ -83,7 +83,7 @@ class SongTableView: ViewController {
         self.songTable.sortDescriptors = [NSSortDescriptor(key: self.sSortBy, ascending: self.bSortAsc)]
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("monoChanged"), object: nil, queue: nil){ _ in
-            DispatchQueue.main.async(qos: .userInitiated) {
+            DispatchQueue.main.async(qos: .default) {
                 self.refreshTable()
             }
         }
@@ -113,7 +113,7 @@ class SongTableView: ViewController {
                 if songTable.selectedRow >= 0 {
                     self.loadSong(self.aSongsForTable[songTable.selectedRow])
                     
-                    DispatchQueue.main.async(qos: .userInitiated) {
+                    DispatchQueue.main.async(qos: .default) {
                         self.mainView?.positionTableView?.refreshTable()
                     }
                 }
@@ -190,12 +190,12 @@ class SongTableView: ViewController {
         
         self.pathControl.url = URL(fileURLWithPath: dir)
         
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInteractive).async {
 
             self.aSongs = FileSystemUtils.readFolderContentsAsSong(sPath: dir, percentCallback: {
                 let percent = $0
                 if percent < 100 {
-                    DispatchQueue.main.async(qos: .userInitiated) {
+                    DispatchQueue.main.async(qos: .default) {
                         self.percentLabel.stringValue = "\(percent)%"
                         self.percentLabel.isHidden = false
                     }
@@ -206,12 +206,12 @@ class SongTableView: ViewController {
             if(self.aSongs.count > 0){
                 self.aSongsForTable = self.aSongs
                 
-                DispatchQueue.main.async(qos: .userInitiated) {
+                DispatchQueue.main.async(qos: .default) {
                     self.performSortSongs()
                 }
             }
             
-            DispatchQueue.main.async(qos: .userInitiated) {
+            DispatchQueue.main.async(qos: .default) {
                 self.percentLabel.stringValue = ""
                 self.percentLabel.isHidden = true
                 self.filterTable()
@@ -256,7 +256,7 @@ class SongTableView: ViewController {
     }
     
     func refreshTable(_ rememberSelection: Bool = true) {
-        DispatchQueue.main.async(qos: .userInitiated) {
+        DispatchQueue.main.async(qos: .default) {
             let selRow = self.songTable.selectedRow
             self.songTable.reloadData()
 //            self.filterTable()
