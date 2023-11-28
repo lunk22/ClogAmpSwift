@@ -13,7 +13,7 @@
 
 @interface BassWrapper : NSObject
 
-+(float)determineBPM:(NSString *)path length:(int)seconds;
++(float)determineBPM:(NSString *)path length:(int)seconds sampleRate:(int)sampleRate;
 
 @end
 

@@ -34,7 +34,7 @@ class PlayerView: ViewController {
     
     var currentSong: Song? {
         willSet {
-            self.currentSong?.saveChanges()
+            PlayerAudioEngine.shared.song?.saveChanges()
         }
         didSet {
             self.doStop()
@@ -121,6 +121,10 @@ class PlayerView: ViewController {
             self.updateRateInUI()
         }
         
+        NotificationCenter.default.addObserver(forName: Song.NotificationNames.bpmChanged, object: nil, queue: .current) { _ in
+            self.updateRateInUI()
+        }
+        
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.volumeChanged, object: nil, queue: .current) { _ in
             self.updateVolumeInUI()
         }
@@ -166,7 +170,7 @@ class PlayerView: ViewController {
 
     func updateTimeInUI() {
         DispatchQueue.main.async(qos: .default) {
-            var currentTime = PlayerAudioEngine.shared.getCurrentTime()
+            var currentTime = PlayerAudioEngine.shared.getCurrentTime(rounded: true)
             let duration = PlayerAudioEngine.shared.getDuration()
             let percent: Double = currentTime / Double(duration) * 100
             
@@ -273,7 +277,7 @@ class PlayerView: ViewController {
     func determineBpmFCS() {
         self.currentSong?.determineBassBPM(){
             _ in
-            self.currentSong?.saveChanges()
+            PlayerAudioEngine.shared.song?.saveChanges()
             self.mainView?.songTableView?.refreshTable()
             self.updateRateInUI()
         }

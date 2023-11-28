@@ -311,10 +311,11 @@ class PlayerAudioEngine {
     }
     
     // MARK: Time Info
-    func getCurrentTime() -> Double { // time in seconds
+    func getCurrentTime(rounded: Bool = false) -> Double { // time in seconds
         var sampleTime = min(currentFrame, audioFile?.length ?? 0)
         sampleTime = max(sampleTime, 0)
-        return (Double(sampleTime) / sampleRate).rounded()
+        let calculatedCurrentTime = (Double(sampleTime) / sampleRate)
+        return rounded ? calculatedCurrentTime.rounded() : calculatedCurrentTime
     }
     
     func getDuration() -> Double { // time in seconds
@@ -394,13 +395,12 @@ class PlayerAudioEngine {
 
     private func setMPNowPlayingInfoCenter() {
         if let song = self.song {
-            print("nowPlayingInfo currentTime: \(getCurrentTime())")
             MPNowPlayingInfoCenter.default().nowPlayingInfo = [
                 MPMediaItemPropertyTitle: song.getValueAsString("title"),
                 MPMediaItemPropertyArtist: song.getValueAsString("artist"),
                 MPMediaItemPropertyPlaybackDuration: Double(song.duration),
                 MPNowPlayingInfoPropertyPlaybackRate: pitchControl.rate,
-                MPNowPlayingInfoPropertyElapsedPlaybackTime: getCurrentTime()
+                MPNowPlayingInfoPropertyElapsedPlaybackTime: getCurrentTime(rounded: true)
             ]
         }
     }

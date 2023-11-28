@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import AVFoundation
 
 class Song {
+    
+    struct NotificationNames {
+        static let bpmChanged = Notification.Name("Song_BpmChanged")
+    }
     
     //  Properties
     var path: URL
@@ -17,9 +22,22 @@ class Song {
     var artist: String { didSet { self.artistChanged = true } }
     var level: String { didSet { self.levelChanged = true } }
     var duration: Int
-    var speed: Int { didSet { self.speedChanged = true } }
-    var bpm: Int { didSet { self.bpmChanged = true } }
-    var volume: Int { didSet { self.volumeChanged = true } }
+    var speed: Int { didSet {
+        if oldValue != self.speed {
+            self.speedChanged = true
+        }
+    } }
+    var bpm: Int { didSet {
+        self.bpmChanged = true
+        self.calculatePositionBeats()
+        
+        NotificationCenter.default.post(name: NotificationNames.bpmChanged, object: nil)
+    } }
+    var volume: Int { didSet {
+        if oldValue != self.volume {
+            self.volumeChanged = true
+        }
+    } }
     var hasPositions: Bool
     private var positions: Array<Position> { didSet {
         if self.positions.count > 0 {
@@ -38,18 +56,34 @@ class Song {
     var speedChanged: Bool = false
     var bpmChanged: Bool = false
     var volumeChanged: Bool = false
-    var positionsChanged: Bool = false
+    var positionsChanged: Bool {
+        return self.positions.first { position in
+            return position.hasChanges
+        } != nil
+    }
+    var positionRemoved: Bool
     var waitBeatsChanged: Bool = false
     
     var songChanged: Bool {
-        return self.titleChanged     ||
-               self.artistChanged    ||
-               self.levelChanged     ||
-               self.speedChanged     ||
-               self.bpmChanged       ||
-               self.volumeChanged    ||
-               self.positionsChanged ||
-               self.waitBeatsChanged
+        let changes = self.titleChanged     ||
+                      self.artistChanged    ||
+                      self.levelChanged     ||
+                      self.speedChanged     ||
+                      self.bpmChanged       ||
+                      self.volumeChanged    ||
+                      self.positionsChanged ||
+                      self.positionRemoved  ||
+                      self.waitBeatsChanged
+        // for debugging purposes
+        return changes
+    }
+    
+    public var beatsPerMS: Double {
+        if self.bpm > 0{
+            return Double(self.bpm) / 60 / 1000; // 60 seconds in a minute, 1000 ms in a sec.
+        }
+        
+        return 0.0
     }
     
     //MARK: Static Stuff
@@ -83,6 +117,7 @@ class Song {
         self.bpm             = 0
         self.volume          = 100
         self.hasPositions    = false
+        self.positionRemoved = false
         self.positions       = []
         self.waitBeats       = 0
 
@@ -141,7 +176,6 @@ class Song {
         if(force){
             //Force read? => Free previously read positions
             self.positions = []
-            self.positionsChanged = false
             self.hasPositions = false
         }
 
@@ -159,37 +193,27 @@ class Song {
                     for line in aLines {
                         //Split string into single cells ($CS = Cell Separator)
                         let aCells = line.components(separatedBy: "$CS")
-                        let position = Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0))
+                        let position = Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0), new: false)
                         
                         newPositions.append(position)
                         self.hasPositions = true
                     }
                     
                     self.positions = newPositions
-                    self.positionsChanged = false
                 }
             }
         }
         
     } //func loadPositions
     
-    func setPositions(_ positions: Array<Position>) {
-        self.positions = positions
-        self.positionsChanged = true
-        if(self.positions.count > 0) {
-            self.hasPositions = true
-        }
-    }
-    
     func addPosition(_ position: Position) {
         self.positions.append(position)
         self.hasPositions = true
-        self.positionsChanged = true
     }
     
     func removePosition(at: Int) {
         self.positions.remove(at: at)
-        self.positionsChanged = true
+        self.positionRemoved = true
         if(self.positions.count == 0) {
             self.hasPositions = false
         }
@@ -267,7 +291,14 @@ class Song {
     // MARK: Beats & BPM
     func determineBassBPM( callback: @escaping (Float) -> Void ) {
         DispatchQueue.global(qos: .background).async {
-            var bpm = BassWrapper.determineBPM(self.getValueAsString("path"), length: Int32(self.duration))
+            var sampleRate: Int
+            do {
+                let audioFile = try AVAudioFile(forReading: self.filePathAsUrl)
+                sampleRate = lround(audioFile.fileFormat.sampleRate)
+            } catch {
+                sampleRate = 44100
+            }
+            var bpm = BassWrapper.determineBPM(self.getValueAsString("path"), length: Int32(self.duration), sampleRate: Int32(sampleRate))
             
             if bpm > Float(Defaults.bpmUpperBound) {
                 bpm /= 2
@@ -285,7 +316,8 @@ class Song {
     }
     
     func calculatePositionBeats () {
-        let beatsPerMS = Double(self.bpm) / 60 / 1000; // 60 seconds in a minute, 1000 ms in a sec.
+        if self.bpm == 0 { return }
+        
         var totalBeats: Int = 0
         
         for (index, currentPosition) in self.positions.enumerated() {
@@ -388,8 +420,12 @@ class Song {
         self.speedChanged     = false
         self.bpmChanged       = false
         self.volumeChanged    = false
-        self.positionsChanged = false
         self.waitBeatsChanged = false
+        self.positionRemoved  = false
+        
+        self.positions.forEach { position in
+            position.resetChangeFlag()
+        }
     }
     
     func songFileExists() -> Bool {
@@ -400,6 +436,5 @@ class Song {
         } catch {}
         
         return false
-//        FileManager.default.fileExists(atPath: filePath, isDirectory: &isDir)
     }
 }

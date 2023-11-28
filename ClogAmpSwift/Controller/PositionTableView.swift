@@ -51,6 +51,12 @@ class PositionTableView: NSViewController {
             }
         }
         
+        NotificationCenter.default.addObserver(forName: Song.NotificationNames.bpmChanged, object: nil, queue: nil) { _ in
+            DispatchQueue.main.async(qos: .default) {
+                self.refreshTable(single: true)
+            }
+        }
+        
         self.positionTable.enclosingScrollView?.becomeFirstResponder()
         
         super.viewDidLoad()
@@ -192,7 +198,7 @@ class PositionTableView: NSViewController {
         if let song = PlayerAudioEngine.shared.song {
             var currentTime = PlayerAudioEngine.shared.getCurrentTime() //Seconds
             currentTime *= 1000 //Milliseconds
-            song.addPosition( Position( name: "Name", comment: "", time: UInt(lround(currentTime)) ) )
+            song.addPosition( Position( name: "Name", comment: "", time: UInt(lround(currentTime)), new: true) )
             self.refreshTable(single: true)
             self.mainView?.songTableView?.refreshTable()
         }
@@ -232,7 +238,6 @@ class PositionTableView: NSViewController {
         
         if let song = PlayerAudioEngine.shared.song {
             song.getPositions()[posIndex].time = UInt(lround(PlayerAudioEngine.shared.getCurrentTime() * 1000))
-            song.positionsChanged = true
             self.refreshTable(single: true)
         }
     }
@@ -317,7 +322,7 @@ class PositionTableView: NSViewController {
             return
         }
         
-        let text = sender.stringValue
+        var text = sender.stringValue
         let identifier = oCol.identifier.rawValue
         
         if let song = self.mainView?.playerView?.currentSong {
@@ -325,49 +330,75 @@ class PositionTableView: NSViewController {
                 return
             }
             
-            let position = song.getPositions()[iRow]
+            let positions = song.getPositions()
+            
+            let position = positions[iRow]
             
             switch identifier {
-            case "name":
-                if position.name != text {
-                    position.name = text
-                    song.positionsChanged = true
-                }
-            case "time":
-                if text.range(of: "[0-9]+:[0-9][0-9]:[0-9][0-9][0-9]", options: .regularExpression, range: nil, locale: nil) != nil {
-                    let parts    = text.components(separatedBy: ":")
-                    
-                    let iPart0   = Int(parts[0]) ?? 0
-                    let min      = Int(iPart0 * 60 * 1000)
-                    
-                    let iPart1   = Int(parts[1]) ?? 0
-                    let sec      = Int(iPart1 * 1000)
-                    
-                    let msec     = Int(parts[2]) ?? 0
-                    
-                    let time     = UInt(Int(min+sec+msec))
-                    
-                    if position.time != time {
-                        position.time = time
-                        song.positionsChanged = true
+                case "name":
+                    if position.name != text {
+                        position.name = text
+                    }
+                case "time":
+                    if text == "" { text = "0:00:000" } // text empty? reset to 0:00:000
+                    if text.range(of: "^[0-9]*:[0-9]{0,2}:[0-9]{0,3}$", options: .regularExpression, range: nil, locale: nil) != nil {
+                        let parts    = text.components(separatedBy: ":")
+                        
+                        let iPart0   = Int(parts[0]) ?? 0
+                        let min      = Int(iPart0 * 60 * 1000)
+                        
+                        let iPart1   = Int(parts[1]) ?? 0
+                        let sec      = Int(iPart1 * 1000)
+                        
+                        let msec     = Int(parts[2]) ?? 0
+                        
+                        let time     = UInt(Int(min+sec+msec))
+                        
+                        if position.time != time {
+                            position.time = time
+                            self.refreshTable(single: true)
+                        }
+                    }else{
                         self.refreshTable(single: true)
                     }
-                }else{
+                case "comment":
+                    if position.comment != text {
+                        position.comment = text
+                        self.refreshTable(single: true)
+                    }
+                case "jumpTo":
+                    if position.jumpTo != text {
+                        position.jumpTo = text
+                    }
+                case "beats":
+                    // Guard Clauses
+                    if !text.isInteger || Int(text)! < 0 { return } // not an int or negative int?
+                    if Int(text)! == position.beats { return } // no change?
+                    if positions.count < iRow+1 { return } // no following position?
+
+                    // beats manually changed => alter next position so the current one has the requested beats
+                    let nextPosition = positions[iRow+1]
+                    let durationForBeats = Double(text)! / song.beatsPerMS
+                    var newCalculatedTime = position.time + UInt(lround(durationForBeats))
+                    nextPosition.time = newCalculatedTime
+                    
+                    // adjust all later positions as well, if no time is left for them and positions would trade places
+                    for (index, adjustPosition) in positions.enumerated() {
+                        if index < iRow + 1 { continue }
+                        
+                        if adjustPosition.time <= newCalculatedTime {
+                            newCalculatedTime += 1
+                            adjustPosition.time = newCalculatedTime
+                        }
+                    }
+                    
+                    song.calculatePositionBeats()
+                    
                     self.refreshTable(single: true)
-                }
-            case "comment":
-                if position.comment != text {
-                    position.comment = text
-                    song.positionsChanged = true
-                    self.refreshTable(single: true)
-                }
-            case "jumpTo":
-                if position.jumpTo != text {
-                    position.jumpTo = text
-                    song.positionsChanged = true
-                }
-            default:
-                return
+                    
+                    return
+                default:
+                    return
             }
         }
     }
