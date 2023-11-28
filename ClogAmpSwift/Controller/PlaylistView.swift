@@ -215,7 +215,7 @@ class PlaylistView: ViewController {
             
             NotificationCenter.default.addObserver(self,
                selector: #selector(songFinished),
-               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+               name: PlayerAudioEngine.NotificationNames.songFinished,
                object: nil
             ) // Add observer
         }
@@ -228,7 +228,7 @@ class PlaylistView: ViewController {
         self.songTable.reloadData()
         
         NotificationCenter.default.removeObserver(self,
-           name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+           name: PlayerAudioEngine.NotificationNames.songFinished,
            object: nil
         )
     }

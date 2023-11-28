@@ -14,12 +14,15 @@ import MediaPlayer
 class PlayerAudioEngine {
     
     struct NotificationNames {
-        static let playing = Notification.Name("PlayerAudioEnging_Playing")
-        static let paused = Notification.Name("PlayerAudioEnging_Paused")
-        static let stopped = Notification.Name("PlayerAudioEnging_Stopped")
-        static let rateChanged = Notification.Name("PlayerAudioEnging_RateChanged")
-        static let volumeChanged = Notification.Name("PlayerAudioEnging_VolumeChanged")
-        static let positionChanged = Notification.Name("PlayerAudioEnging_PositionChanged")
+        static let playing = Notification.Name("PlayerAudioEngine_Playing")
+        static let paused = Notification.Name("PlayerAudioEngine_Paused")
+        static let stopped = Notification.Name("PlayerAudioEngine_Stopped")
+        static let rateChanged = Notification.Name("PlayerAudioEngine_RateChanged")
+        static let volumeChanged = Notification.Name("PlayerAudioEngine_VolumeChanged")
+        static let positionChanged = Notification.Name("PlayerAudioEngine_PositionChanged")
+        static let songFinished = Notification.Name("PlayerAudioEngine_SongFinished")
+
+        static let shutdown = Notification.Name("PlayerAudioEngine_Shutdown")
     }
     
     static let shared = PlayerAudioEngine()
@@ -43,34 +46,28 @@ class PlayerAudioEngine {
             
             playerLogger.clear()
             
-            MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-                MPMediaItemPropertyTitle: song!.getValueAsString("title"),
-                MPMediaItemPropertyArtist: song!.getValueAsString("artist"),
-//                MPMediaItemProperty
-            ]
+            setMPNowPlayingInfoCenter()
         }
     }
     
-    var audioFile: AVAudioFile? = nil
-    var audioEngine: AVAudioEngine
-    var audioPlayer: AVAudioPlayerNode
-    var speedControl: AVAudioUnitVarispeed
-    var pitchControl: AVAudioUnitTimePitch
-    
-    var offset: AVAudioFramePosition = AVAudioFramePosition(0) {
+    private var audioFile: AVAudioFile? = nil
+    private var audioEngine: AVAudioEngine
+    private var audioPlayer: AVAudioPlayerNode
+    private var speedControl: AVAudioUnitVarispeed
+    private var pitchControl: AVAudioUnitTimePitch
+    private var offset: AVAudioFramePosition = AVAudioFramePosition(0) {
         didSet {
             pausedFrame = 0
         }
     }
-
-    var songHistoryWritten: Bool = false
-    var timeObserverCallback: ((Any) -> Void)? = nil
-    var cancelTimeObserver: Bool = false
-    
-    var playing: Bool = false {
+    private var songHistoryWritten: Bool = false
+    private var timeObserverCallback: ((Any) -> Void)? = nil
+    private var cancelTimeObserver: Bool = false
+    private var playing: Bool = false {
         didSet {
             if playing {
                 paused = false
+                cancelTimeObserver = false
                 NotificationCenter.default.post(name: NotificationNames.playing, object: nil)
             } else {
                 if !paused {
@@ -79,8 +76,7 @@ class PlayerAudioEngine {
             }
         }
     }
-    
-    var paused: Bool = false {
+    private var paused: Bool = false {
         willSet {
             if newValue {
                 pausedFrame = sampleTime
@@ -99,11 +95,9 @@ class PlayerAudioEngine {
             }
         }
     }
-    
-    var pausedFrame: AVAudioFramePosition = AVAudioFramePosition(0)
-    
+    private var pausedFrame: AVAudioFramePosition = AVAudioFramePosition(0)
+
     // MARK: Calculated Vars
-    
     private var sampleRate: Double {
         if let avAudioFile = audioFile {
             return avAudioFile.processingFormat.sampleRate
@@ -111,7 +105,6 @@ class PlayerAudioEngine {
         
         return 0.0
     }
-    
     private var sampleTime: AVAudioFramePosition {
         guard
             let lastRenderTime = audioPlayer.lastRenderTime,
@@ -122,7 +115,6 @@ class PlayerAudioEngine {
         
         return playerTime.sampleTime
     }
-    
     private var currentFrame: AVAudioFramePosition {
         if isPaused() {
             return pausedFrame + offset
@@ -130,17 +122,14 @@ class PlayerAudioEngine {
         
         return sampleTime + offset
     }
-    
     private var currentFrameAsDouble: Double {
         return Double(currentFrame)
     }
-    
     private var remainingFrames: Int64 {
         return (audioFile?.length ?? 0) - currentFrame
     }
     
     // MARK: Functions
-    
     private init() {
         // 1: create the AVAudio stuff
         audioEngine = AVAudioEngine()
@@ -160,7 +149,7 @@ class PlayerAudioEngine {
 
         NotificationCenter.default.addObserver(self,
            selector: #selector(shutdown),
-           name: Notification.Name("CAM_Shutdown"),
+           name: NotificationNames.shutdown,
            object: nil
         ) // Add shutdown observer
         
@@ -193,13 +182,20 @@ class PlayerAudioEngine {
             self.jump((Defaults.skipBack * -1))
             return .success
         }
-        
+
+        MPRemoteCommandCenter.shared().changePlaybackPositionCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            if let castEvent = event as? MPChangePlaybackPositionCommandEvent {
+                self.seek(seconds: castEvent.positionTime)
+            }
+            return .success
+        }
+
         // .playing enables the media keys initially. Set it to .stopped immediately after to reflect it properly in the command center UI
         MPNowPlayingInfoCenter.default().playbackState = .playing
         MPNowPlayingInfoCenter.default().playbackState = .stopped
     }
     
-    func prepareAudioPlayer() {
+    private func prepareAudioPlayer() {
         audioEngine.disconnectNodeInput(audioPlayer)
         audioEngine.detach(audioPlayer)
         
@@ -210,6 +206,7 @@ class PlayerAudioEngine {
         audioPlayer.scheduleFile(audioFile!, at: nil)
     }
         
+    // MARK: Player Settings
     func setRate(_ offset: Int) {
         song?.speed = offset
         let newRate = 1.0 + Float(offset) / 100
@@ -224,8 +221,9 @@ class PlayerAudioEngine {
         NotificationCenter.default.post(name: NotificationNames.rateChanged, object: nil)
     }
     
-    func setVolume(_ volume: Int) {
+    func setVolume(_ volume: Int) { // in %
         song?.volume = volume
+        self.audioEngine.mainMixerNode.outputVolume = Float(volume) / 100
         NotificationCenter.default.post(name: NotificationNames.volumeChanged, object: nil)
     }
     
@@ -240,7 +238,7 @@ class PlayerAudioEngine {
                     
                     try self.audioEngine.start()
                     self.audioPlayer.play()
-                    
+
                     self.playing = true
                     MPNowPlayingInfoCenter.default().playbackState = .playing
                     
@@ -277,6 +275,7 @@ class PlayerAudioEngine {
     func stop() {
         playing = false
         paused = false
+        endTimeObserver()
         MPNowPlayingInfoCenter.default().playbackState = .stopped
         audioPlayer.stop()
         audioEngine.stop()
@@ -315,7 +314,7 @@ class PlayerAudioEngine {
     func getCurrentTime() -> Double { // time in seconds
         var sampleTime = min(currentFrame, audioFile?.length ?? 0)
         sampleTime = max(sampleTime, 0)
-        return Double(sampleTime) / sampleRate
+        return (Double(sampleTime) / sampleRate).rounded()
     }
     
     func getDuration() -> Double { // time in seconds
@@ -325,53 +324,52 @@ class PlayerAudioEngine {
     }
     
     // MARK: Event Handler
-    @objc func songFinished() {
+    @objc private func songFinished() {
         stop()
     }
     
-    @objc func shutdown() {
+    @objc private func shutdown() {
         stop()
     }
     
     // MARK: Time Observer
-    func addTimeObserverCallback(using block: @escaping (Any) -> Void) {
+    func setTimeObserverCallback(using block: @escaping (Any) -> Void) {
         timeObserverCallback = block
     }
     
-    func executeTimeObserverCallback() {
+    private func executeTimeObserverCallback() {
         printTimes()
         timeObserverCallback!(0)
+        setMPNowPlayingInfoCenter()
     }
     
-    func startTimeObserver() {
+    private func startTimeObserver() {
         func execute() {
+            executeTimeObserverCallback()
+
             if cancelTimeObserver {
                 cancelTimeObserver = false
                 return
             }
             if isPlaying() && remainingFrames > 0 {
-                delayWithSeconds(0.1) {
+                delayWithSeconds(0.05) {
                     execute()
                 }
             } else if !isPaused() {
                 stop()
-                
-                NotificationCenter.default.post(name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+                NotificationCenter.default.post(name: NotificationNames.songFinished, object: nil)
             }
-            
-            executeTimeObserverCallback()
-            
         }
         
         execute()
     }
     
-    func removeTimeObserver() {
+    private func endTimeObserver() {
         cancelTimeObserver = true
     }
     
     // MARK: Helper Function
-    func doSeek(_ newFrame: AVAudioFramePosition) {
+    private func doSeek(_ newFrame: AVAudioFramePosition) {
         let wasPlaying = isPlaying()
         
         var newFramePosition = max(newFrame, 0)
@@ -390,19 +388,20 @@ class PlayerAudioEngine {
         }
     }
     
-//    func updateRate(){
-//        if let song = song {
-//            setRate(song.speed)
-//        }
-//    }
-//    
-//    func updateVolume() {
-//        //        avPlayer.volume = Float(song.volume) / 100
-//        
-//        self.setVolume(song.volume)
-//    }
-    
-    func printTimes() {
-        print("Sample Frame: \(sampleTime) | Paused Frame: \(pausedFrame) | Offset: \(offset) |  => Current Frame: \(currentFrame)")
+    private func printTimes() {
+//        print("Sample Frame: \(sampleTime) | Paused Frame: \(pausedFrame) | Offset: \(offset) |  => Current Frame: \(currentFrame)")
+    }
+
+    private func setMPNowPlayingInfoCenter() {
+        if let song = self.song {
+            print("nowPlayingInfo currentTime: \(getCurrentTime())")
+            MPNowPlayingInfoCenter.default().nowPlayingInfo = [
+                MPMediaItemPropertyTitle: song.getValueAsString("title"),
+                MPMediaItemPropertyArtist: song.getValueAsString("artist"),
+                MPMediaItemPropertyPlaybackDuration: Double(song.duration),
+                MPNowPlayingInfoPropertyPlaybackRate: pitchControl.rate,
+                MPNowPlayingInfoPropertyElapsedPlaybackTime: getCurrentTime()
+            ]
+        }
     }
 }
