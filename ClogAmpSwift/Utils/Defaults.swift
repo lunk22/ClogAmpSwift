@@ -133,4 +133,12 @@ class Defaults {
         }
         return prefViewAfterSongLoad
     }
+    
+    static var beatsChangeBehaviour: Int {
+        var prefBeatsChangeBehaviour = UserDefaults.standard.integer(forKey: "prefBeatsChangeBehaviour")
+        if(prefBeatsChangeBehaviour < 0 || prefBeatsChangeBehaviour > 1){
+            prefBeatsChangeBehaviour = 0
+        }
+        return prefBeatsChangeBehaviour
+    }
 }

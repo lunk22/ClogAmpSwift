@@ -29,7 +29,7 @@
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
-                                                <segue destination="t7N-F6-IPf" kind="show" id="sGe-IO-5m4"/>
+                                                <segue destination="t7N-F6-IPf" kind="show" identifier="" id="sGe-IO-5m4"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -150,6 +150,12 @@
                                         <menuItem title="Determine BPM" keyEquivalent="b" id="Zhg-Sn-7pH">
                                             <connections>
                                                 <action selector="determineBpm:" target="Ady-hI-5gd" id="ksC-du-SGg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Determine BPM (click)" id="0iU-M9-9sS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="3VX-T9-o44" kind="show" id="Q7x-zk-OGI"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Reload List" keyEquivalent="r" id="rJe-5J-acX">
@@ -292,7 +298,7 @@
                 <customObject id="XSk-eZ-J7n" customClass="SUUpdater"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6316" y="1769"/>
+            <point key="canvasLocation" x="-7616" y="669"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -562,6 +568,77 @@
             </objects>
             <point key="canvasLocation" x="-3529" y="2137"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="W4I-qb-TTS">
+            <objects>
+                <windowController id="3VX-T9-o44" sceneMemberID="viewController">
+                    <window key="window" title="BPM" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ueb-gU-gmS">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="2056" y="589" width="480" height="270"/>
+                        <rect key="screenRect" x="2056" y="523" width="2560" height="1415"/>
+                        <value key="minSize" type="size" width="480" height="270"/>
+                        <value key="maxSize" type="size" width="480" height="270"/>
+                        <view key="contentView" id="R3l-RX-NgY">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="3VX-T9-o44" id="blV-dV-eal"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="NvZ-jz-MCU" kind="relationship" relationship="window.shadowedContentViewController" id="uso-hD-w9u"/>
+                    </connections>
+                </windowController>
+                <customObject id="taa-c1-uOg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2944" y="2137"/>
+        </scene>
+        <!--Bpm Click View-->
+        <scene sceneID="au5-Vk-qvL">
+            <objects>
+                <viewController id="NvZ-jz-MCU" customClass="BpmClickView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Fsq-FY-Kd9">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField identifier="bpmLabel" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="faf-1G-S6u">
+                                <rect key="frame" x="222" y="96" width="37" height="78"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="-" id="8E7-yU-nyY">
+                                    <font key="font" metaFont="system" size="66"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZO-qJ-vAL">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="fks-FP-DuL">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+IA
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleBpmButtonClicked:" target="NvZ-jz-MCU" id="eZP-EO-LEp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="faf-1G-S6u" firstAttribute="centerY" secondItem="Fsq-FY-Kd9" secondAttribute="centerY" id="jdq-Pg-jou"/>
+                            <constraint firstItem="faf-1G-S6u" firstAttribute="centerX" secondItem="Fsq-FY-Kd9" secondAttribute="centerX" id="s16-E6-bHT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="calculatedBpmText" destination="faf-1G-S6u" id="8Y8-0g-wnm"/>
+                    </connections>
+                </viewController>
+                <customObject id="4W5-gq-RRO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2944" y="2546"/>
+        </scene>
         <!--Beat Player View-->
         <scene sceneID="wDL-R7-5o3">
             <objects>
@@ -664,30 +741,30 @@
         <scene sceneID="aJh-2P-vUi">
             <objects>
                 <customObject id="AcR-4G-Jdu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController title="Preferences" id="TPq-mw-tuz" customClass="PreferenceView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Preferences" showSeguePresentationStyle="single" id="TPq-mw-tuz" customClass="PreferenceView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rgJ-nY-pu0">
-                        <rect key="frame" x="0.0" y="0.0" width="654" height="651"/>
+                        <rect key="frame" x="0.0" y="0.0" width="654" height="700"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tabView fixedFrame="YES" initialItem="K8K-xe-QFe" translatesAutoresizingMaskIntoConstraints="NO" id="tLC-5S-UR2">
-                                <rect key="frame" x="0.0" y="2" width="654" height="649"/>
+                                <rect key="frame" x="0.0" y="2" width="654" height="698"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Application" identifier="" id="K8K-xe-QFe">
                                         <view key="view" id="jkI-4W-dPL">
-                                            <rect key="frame" x="10" y="33" width="634" height="603"/>
+                                            <rect key="frame" x="10" y="33" width="634" height="652"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box fixedFrame="YES" title="Music / Player" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-uo-oq7">
-                                                    <rect key="frame" x="6" y="320" width="296" height="196"/>
+                                                    <rect key="frame" x="6" y="369" width="296" height="196"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="XfW-YU-KBd">
                                                         <rect key="frame" x="4" y="5" width="288" height="176"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2lz-Zf-FLI">
-                                                                <rect key="frame" x="183" y="144" width="50" height="22"/>
+                                                                <rect key="frame" x="183" y="134" width="50" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="dYP-Ag-kgN">
                                                                     <font key="font" usesAppearanceFont="YES"/>
@@ -699,7 +776,7 @@
                                                                 </connections>
                                                             </textField>
                                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J9R-Sy-FQP">
-                                                                <rect key="frame" x="18" y="146" width="155" height="17"/>
+                                                                <rect key="frame" x="18" y="136" width="155" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Skip Forward (s)" id="5UA-Z5-rDQ">
                                                                     <font key="font" metaFont="system"/>
@@ -708,7 +785,7 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ga1-rg-Dh5">
-                                                                <rect key="frame" x="183" y="114" width="50" height="22"/>
+                                                                <rect key="frame" x="183" y="104" width="50" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="laF-P8-8vi">
                                                                     <font key="font" usesAppearanceFont="YES"/>
@@ -720,7 +797,7 @@
                                                                 </connections>
                                                             </textField>
                                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ath-X2-Zqc">
-                                                                <rect key="frame" x="18" y="117" width="155" height="17"/>
+                                                                <rect key="frame" x="18" y="107" width="155" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Skip Back (s)" id="hcc-KD-bgS">
                                                                     <font key="font" metaFont="system"/>
@@ -729,7 +806,7 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6H1-T3-dE6">
-                                                                <rect key="frame" x="18" y="81" width="217" height="18"/>
+                                                                <rect key="frame" x="18" y="71" width="217" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="Colorize Player State" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VVc-b7-FTX">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -740,7 +817,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycN-Xw-GmU">
-                                                                <rect key="frame" x="18" y="53" width="217" height="20"/>
+                                                                <rect key="frame" x="18" y="43" width="217" height="20"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="Auto-Determine BPM" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AsS-Yl-bgq">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -754,7 +831,7 @@
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="App Start" translatesAutoresizingMaskIntoConstraints="NO" id="KI2-HL-1bJ">
-                                                    <rect key="frame" x="6" y="525" width="296" height="76"/>
+                                                    <rect key="frame" x="6" y="574" width="296" height="76"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="WzN-ka-ELu">
                                                         <rect key="frame" x="4" y="5" width="288" height="56"/>
@@ -775,7 +852,7 @@
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Font" translatesAutoresizingMaskIntoConstraints="NO" id="B6L-DL-PqA">
-                                                    <rect key="frame" x="6" y="204" width="296" height="112"/>
+                                                    <rect key="frame" x="6" y="253" width="296" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="mAF-Iu-Ncu">
                                                         <rect key="frame" x="4" y="5" width="288" height="92"/>
@@ -808,75 +885,8 @@
                                                         </subviews>
                                                     </view>
                                                 </box>
-                                                <box fixedFrame="YES" title="Positions" translatesAutoresizingMaskIntoConstraints="NO" id="sAK-Pk-Jg2">
-                                                    <rect key="frame" x="304" y="320" width="324" height="196"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <view key="contentView" id="D6i-Oj-sZV">
-                                                        <rect key="frame" x="4" y="5" width="316" height="176"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <subviews>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eXy-ro-sXi">
-                                                                <rect key="frame" x="18" y="139" width="278" height="18"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <buttonCell key="cell" type="check" title="Show Beats" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="RVl-Gl-i5T">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="handleShowBeatsChanged:" target="TPq-mw-tuz" id="GmB-I0-7hY"/>
-                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefShowBeatsInPositionTable" id="0BH-3x-9xp"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GND-cm-b48">
-                                                                <rect key="frame" x="18" y="115" width="278" height="18"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <buttonCell key="cell" type="check" title="Play on Selection" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ttV-OR-48e">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefPlayPositionOnSelection" id="a0q-f4-4ka"/>
-                                                                </connections>
-                                                            </button>
-                                                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="IUS-qU-cRj">
-                                                                <rect key="frame" x="20" y="106" width="286" height="5"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            </box>
-                                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugc-9v-5ZM">
-                                                                <rect key="frame" x="18" y="45" width="238" height="55"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <textFieldCell key="cell" selectable="YES" title="Wait a number of seconds before looping after the position finished (for example to avoid looping too early)" id="MQb-sL-sbJ">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mtv-zb-6Ip">
-                                                                <rect key="frame" x="20" y="15" width="35" height="22"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="wex-T8-xsn">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                                <connections>
-                                                                    <action selector="setValue:" target="TPq-mw-tuz" id="h0o-bf-2HT"/>
-                                                                </connections>
-                                                            </textField>
-                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRd-et-P7A">
-                                                                <rect key="frame" x="63" y="17" width="193" height="17"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="seconds" id="UUK-R8-ct4">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                        </subviews>
-                                                    </view>
-                                                </box>
                                                 <box fixedFrame="YES" title="BPM Correction" translatesAutoresizingMaskIntoConstraints="NO" id="8dq-r9-d9O">
-                                                    <rect key="frame" x="304" y="204" width="324" height="112"/>
+                                                    <rect key="frame" x="304" y="137" width="324" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="rA3-4o-7L5">
                                                         <rect key="frame" x="4" y="5" width="316" height="92"/>
@@ -928,7 +938,7 @@
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Appearance" translatesAutoresizingMaskIntoConstraints="NO" id="SJi-NZ-Dod">
-                                                    <rect key="frame" x="304" y="525" width="324" height="76"/>
+                                                    <rect key="frame" x="304" y="574" width="324" height="76"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="FMd-Sy-9Um">
                                                         <rect key="frame" x="4" y="5" width="316" height="56"/>
@@ -951,7 +961,7 @@
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Song Selection" translatesAutoresizingMaskIntoConstraints="NO" id="Kzg-md-BnG">
-                                                    <rect key="frame" x="6" y="86" width="296" height="114"/>
+                                                    <rect key="frame" x="6" y="135" width="296" height="114"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="peL-Kk-3p9">
                                                         <rect key="frame" x="4" y="5" width="288" height="94"/>
@@ -983,7 +993,7 @@
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Automatic Updates" translatesAutoresizingMaskIntoConstraints="NO" id="Vhr-lk-94f">
-                                                    <rect key="frame" x="6" y="16" width="296" height="66"/>
+                                                    <rect key="frame" x="6" y="65" width="296" height="66"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="jBz-AC-Kd2">
                                                         <rect key="frame" x="4" y="5" width="288" height="46"/>
@@ -1008,7 +1018,7 @@
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Filter" translatesAutoresizingMaskIntoConstraints="NO" id="W67-B7-aws">
-                                                    <rect key="frame" x="304" y="86" width="324" height="114"/>
+                                                    <rect key="frame" x="304" y="17" width="324" height="114"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="zNg-Zu-61E">
                                                         <rect key="frame" x="4" y="5" width="316" height="94"/>
@@ -1042,16 +1052,115 @@
                                                         </subviews>
                                                     </view>
                                                 </box>
+                                                <box fixedFrame="YES" title="Positions" translatesAutoresizingMaskIntoConstraints="NO" id="sAK-Pk-Jg2">
+                                                    <rect key="frame" x="304" y="253" width="324" height="312"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <view key="contentView" id="D6i-Oj-sZV">
+                                                        <rect key="frame" x="4" y="5" width="316" height="292"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GND-cm-b48">
+                                                                <rect key="frame" x="18" y="255" width="278" height="18"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <buttonCell key="cell" type="check" title="Play on Selection" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ttV-OR-48e">
+                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefPlayPositionOnSelection" id="a0q-f4-4ka"/>
+                                                                </connections>
+                                                            </button>
+                                                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="IUS-qU-cRj">
+                                                                <rect key="frame" x="20" y="246" width="286" height="5"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            </box>
+                                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugc-9v-5ZM">
+                                                                <rect key="frame" x="18" y="208" width="238" height="32"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" selectable="YES" title="Wait a number of seconds before looping after the position finished" id="MQb-sL-sbJ">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mtv-zb-6Ip">
+                                                                <rect key="frame" x="20" y="178" width="35" height="22"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="wex-T8-xsn">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <connections>
+                                                                    <action selector="setValue:" target="TPq-mw-tuz" id="h0o-bf-2HT"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRd-et-P7A">
+                                                                <rect key="frame" x="63" y="180" width="193" height="17"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="seconds" id="UUK-R8-ct4">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <box fixedFrame="YES" title="Beats" translatesAutoresizingMaskIntoConstraints="NO" id="Dii-Bq-nRe">
+                                                                <rect key="frame" x="17" y="27" width="282" height="132"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <view key="contentView" id="0AV-3d-aP0">
+                                                                    <rect key="frame" x="4" y="5" width="274" height="112"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eXy-ro-sXi">
+                                                                            <rect key="frame" x="18" y="75" width="236" height="18"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <buttonCell key="cell" type="check" title="Show Beats" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="RVl-Gl-i5T">
+                                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
+                                                                            <connections>
+                                                                                <action selector="handleShowBeatsChanged:" target="TPq-mw-tuz" id="GmB-I0-7hY"/>
+                                                                                <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefShowBeatsInPositionTable" id="0BH-3x-9xp"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWn-bH-tDV">
+                                                                            <rect key="frame" x="18" y="52" width="238" height="16"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Beat Change Behaviour" id="bdD-VI-P7y">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                        <comboBox identifier="cbBeatsChangeBehaviour" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pMD-Il-56O">
+                                                                            <rect key="frame" x="19" y="22" width="238" height="23"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="5" id="YXT-8k-CrA">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </comboBoxCell>
+                                                                            <connections>
+                                                                                <outlet property="dataSource" destination="TPq-mw-tuz" id="3dj-bn-KZu"/>
+                                                                                <outlet property="delegate" destination="TPq-mw-tuz" id="srI-c1-ufP"/>
+                                                                            </connections>
+                                                                        </comboBox>
+                                                                    </subviews>
+                                                                </view>
+                                                            </box>
+                                                        </subviews>
+                                                    </view>
+                                                </box>
                                             </subviews>
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Icon" identifier="" id="xQu-NP-vS3">
                                         <view key="view" id="7wO-cn-abr">
-                                            <rect key="frame" x="10" y="33" width="634" height="603"/>
+                                            <rect key="frame" x="10" y="33" width="634" height="652"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box fixedFrame="YES" title="Select Icon when App is running" translatesAutoresizingMaskIntoConstraints="NO" id="PTi-iI-tup">
-                                                    <rect key="frame" x="6" y="497" width="435" height="104"/>
+                                                    <rect key="frame" x="6" y="546" width="435" height="104"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="VA6-IH-pSH">
                                                         <rect key="frame" x="4" y="5" width="427" height="84"/>
@@ -1146,6 +1255,7 @@
                     </view>
                     <connections>
                         <outlet property="boxAppearance" destination="SJi-NZ-Dod" id="nIX-R7-FOF"/>
+                        <outlet property="cbBeatsChangeBehaviour" destination="pMD-Il-56O" id="jb9-i7-UpT"/>
                         <outlet property="cbViewAfterSongLoad" destination="M4h-Fo-yXl" id="P34-hj-8AN"/>
                         <outlet property="ddlbAppearance" destination="BvG-6b-ivr" id="E2d-hU-3nr"/>
                         <outlet property="txtBpmLowerBound" destination="OE0-k3-QN3" id="Boy-Qy-HMp"/>
@@ -1158,7 +1268,7 @@
                 <customObject id="Lkx-RH-zEQ" customClass="SUUpdater"/>
                 <userDefaultsController id="gXa-Cn-Nwj"/>
             </objects>
-            <point key="canvasLocation" x="-6192" y="2746.5"/>
+            <point key="canvasLocation" x="-6192" y="2771"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="mFd-az-OET">

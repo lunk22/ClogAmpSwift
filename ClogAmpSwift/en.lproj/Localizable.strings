@@ -11,3 +11,5 @@
 "viewAfterSongLoadFileList" = "";
 "viewAfterSongLoadPositions" = "Positions";
 "viewAfterSongLoadPDF" = "PDF";
+"beatsChangeBehaviourAdjustFollowing" = "Adjust following position";
+"beatsChangeBehaviourMoveAllFollowing" = "Move all following positions";

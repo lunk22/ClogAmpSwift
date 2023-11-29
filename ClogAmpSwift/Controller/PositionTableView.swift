@@ -325,7 +325,7 @@ class PositionTableView: NSViewController {
         var text = sender.stringValue
         let identifier = oCol.identifier.rawValue
         
-        if let song = self.mainView?.playerView?.currentSong {
+        if let song = PlayerAudioEngine.shared.song {
             if !song.hasPositions || song.getPositions().count <= iRow {
                 return
             }
@@ -371,44 +371,18 @@ class PositionTableView: NSViewController {
                         position.jumpTo = text
                     }
                 case "beats":
-                    var nextPosition: Position
-                    
                     // Guard Clauses
                     if !text.isInteger() || text.asInteger() < 0 { self.refreshTable(single: true); return } // not an int or negative int? just refresh to get the old value
                     if text.asInteger() == position.beats { return } // no change?
                     
-                    let durationForBeats = Double(text)! / song.beatsPerMS
-                    var newCalculatedTime = position.time + UInt(lround(durationForBeats))
-                    
-                    if newCalculatedTime > (song.duration * 1000) { self.refreshTable(single: true); return }
-                    
-                    // beats manually changed => alter next position so the current one has the requested beats
-                    if song.getPositions().count > iRow+1 {
-                        nextPosition = song.getPositions()[iRow+1]
-                        
-                    } else {
-                        // no following position
-                        nextPosition = Position(name: "", comment: "", time: 0, new: true)
-                        song.addPosition(nextPosition)
+                    switch Defaults.beatsChangeBehaviour {
+                        case 0: // Adjust Following
+                            return updateBeatsByAdjusting(rowIndex: iRow, beats: Int(text)!)
+                        case 1: // Move all following
+                            return updateBeatsByMoving(rowIndex: iRow, beats: Int(text)!, refresh: true)
+                        default:
+                            return
                     }
-
-                    nextPosition.time = newCalculatedTime
-                    
-                    // adjust all later positions as well, if no time is left for them and positions would trade places
-                    for (index, adjustPosition) in song.getPositions().enumerated() {
-                        if index < iRow + 1 { continue }
-                        
-                        if adjustPosition.time <= newCalculatedTime {
-                            newCalculatedTime += 1
-                            adjustPosition.time = newCalculatedTime
-                        }
-                    }
-                    
-                    song.calculatePositionBeats()
-                    
-                    self.refreshTable(single: true)
-                    
-                    return
                 default:
                     return
             }
@@ -492,6 +466,85 @@ class PositionTableView: NSViewController {
             sPdfHtml = sPdfHtml + " </table>"
             
             CreatePDF(htmlString: sPdfHtml, fileName: song.title)
+        }
+    }
+    
+    func updateBeatsByAdjusting(rowIndex: Int, beats: Int) {
+        if let song = PlayerAudioEngine.shared.song {
+            let position = song.getPositions()[rowIndex]
+            var nextPosition: Position
+            
+            let durationForBeats = Double(beats) / song.beatsPerMS
+            var newCalculatedTime = position.time + UInt(lround(durationForBeats))
+            
+            if newCalculatedTime > (song.duration * 1000) { self.refreshTable(single: true); return }
+            
+            // beats manually changed => alter next position(s) so the current one has the requested beats
+            if song.getPositions().count > rowIndex+1 {
+                nextPosition = song.getPositions()[rowIndex+1]
+                
+            } else {
+                // no following position
+                nextPosition = Position(name: "", comment: "", time: 0, new: true)
+                song.addPosition(nextPosition)
+            }
+            
+            nextPosition.time = newCalculatedTime
+            
+            // adjust all later positions as well, if no time is left for them and positions would trade places
+            for (index, adjustPosition) in song.getPositions().enumerated() {
+                if index < rowIndex + 1 { continue }
+                
+                if adjustPosition.time <= newCalculatedTime {
+                    newCalculatedTime += 1
+                    adjustPosition.time = newCalculatedTime
+                }
+            }
+            
+            song.calculatePositionBeats()
+            
+            self.refreshTable(single: true)
+        }
+    }
+    
+    func updateBeatsByMoving(rowIndex: Int, beats: Int, refresh: Bool) {
+        if let song = PlayerAudioEngine.shared.song {
+            let position = song.getPositions()[rowIndex]
+            var nextPosition: Position?
+            var nextIsNew: Bool = false
+            
+            let durationForBeats = Double(beats) / song.beatsPerMS
+            if durationForBeats < 0 { return }
+            var newCalculatedTime = position.time + UInt(lround(durationForBeats))
+            
+            if newCalculatedTime > (song.duration * 1000) {
+                newCalculatedTime = UInt(song.duration) * 1000
+            } else {
+                
+            }
+            
+            // beats manually changed => alter next position(s) so the current one has the requested beats
+            if song.getPositions().count > rowIndex+1 {
+                nextPosition = song.getPositions()[rowIndex+1]
+            } else if newCalculatedTime < (song.duration * 1000) {
+                // no following position
+                nextPosition = Position(name: "", comment: "", time: 0, new: true)
+                song.addPosition(nextPosition!)
+                nextIsNew = true
+            }
+            
+            if nextPosition != nil {
+                nextPosition!.time = newCalculatedTime
+            }
+            
+            if nextPosition != nil && !nextIsNew {
+                updateBeatsByMoving(rowIndex: rowIndex+1, beats: nextPosition!.beats, refresh: false)
+            }
+
+            if refresh {
+                song.calculatePositionBeats()
+                self.refreshTable(single: true)
+            }
         }
     }
 }
