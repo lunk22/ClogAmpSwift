@@ -13,7 +13,7 @@ class BpmClickView: ViewController {
     @IBOutlet weak var calculatedBpmText: NSTextField!
     
     let eventArrayMinSize = 4
-    let eventArrayMaxSize = 20
+    let eventArrayMaxSize = 50
     let roundingFactor: Double = 10000
     
     var eventArray: Array<Date> = []

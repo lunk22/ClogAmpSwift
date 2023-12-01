@@ -604,9 +604,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField identifier="bpmLabel" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="faf-1G-S6u">
-                                <rect key="frame" x="222" y="96" width="37" height="78"/>
+                                <rect key="frame" x="204" y="47" width="72" height="177"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="-" id="8E7-yU-nyY">
-                                    <font key="font" metaFont="system" size="66"/>
+                                    <font key="font" metaFont="systemThin" size="150"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -627,6 +627,8 @@ IA
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="faf-1G-S6u" firstAttribute="centerY" secondItem="Fsq-FY-Kd9" secondAttribute="centerY" id="0Uf-n1-1YA"/>
+                            <constraint firstItem="faf-1G-S6u" firstAttribute="centerX" secondItem="Fsq-FY-Kd9" secondAttribute="centerX" id="e6m-cP-m9n"/>
                             <constraint firstItem="faf-1G-S6u" firstAttribute="centerY" secondItem="Fsq-FY-Kd9" secondAttribute="centerY" id="jdq-Pg-jou"/>
                             <constraint firstItem="faf-1G-S6u" firstAttribute="centerX" secondItem="Fsq-FY-Kd9" secondAttribute="centerX" id="s16-E6-bHT"/>
                         </constraints>
