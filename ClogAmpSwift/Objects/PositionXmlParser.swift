@@ -35,7 +35,7 @@ extension PositionXmlParser: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         
-        if string.contains("\n"){
+        if string.range(of: "^(\\n) +$", options: .regularExpression) != nil {
             return
         }
         
