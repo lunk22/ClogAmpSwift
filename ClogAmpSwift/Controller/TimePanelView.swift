@@ -19,7 +19,9 @@ class TimePanelView: ViewController {
     
     // MARK: Functions
     override func viewWillAppear() {
-
+        
+//        self.textFieldTime.font = NSFont.init(name: "B612-Regular", size: CGFloat(70))
+        
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {
             timer in
             
@@ -51,7 +53,7 @@ class TimePanelView: ViewController {
             
             DispatchQueue.main.async(qos: .default) {
                 self.textFieldTime.stringValue = time
-                self.textFieldTime.sizeToFit()
+//                self.textFieldTime.sizeToFit()
             }
             
         })

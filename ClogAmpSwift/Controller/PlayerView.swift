@@ -37,7 +37,7 @@ class PlayerView: ViewController {
             PlayerAudioEngine.shared.song?.saveChanges()
         }
         didSet {
-            self.doStop()
+            PlayerAudioEngine.shared.stop()
             self.currentSong!.loadPositions()
             
             PlayerAudioEngine.shared.song = self.currentSong!
@@ -213,20 +213,7 @@ class PlayerView: ViewController {
         self.mainView?.songTableView?.refreshTable()
     }
     
-    //MARK: Actions
-
-    @IBAction func play(_ sender: Any) {
-        self.doPlay()
-    }
-    
-    @IBAction func pause(_ sender: Any) {
-        self.doPause()
-    }
-    
-    @IBAction func stop(_ sender: Any) {
-        self.doStop()
-    }
-    
+    //MARK: Actions    
     @IBAction func speedChanged(_ sender: NSSlider) {
         let newSpeed = sender.integerValue
         self.setSpeed(newSpeed)
@@ -293,7 +280,7 @@ class PlayerView: ViewController {
             PlayerAudioEngine.shared.seek(seconds: Float64(oPosition.time / 1000))
             
             if Defaults.playPositionOnSelection && !(PlayerAudioEngine.shared.isPlaying()){
-                self.doPlay()
+                PlayerAudioEngine.shared.play()
             }
             
         }
@@ -307,33 +294,6 @@ class PlayerView: ViewController {
     
     func getSong() -> Song? {
         return self.currentSong
-    }
-    
-    func doPlay() {
-        if(PlayerAudioEngine.shared.isPlaying()){
-            //If play is called while the song is playing, it should start over
-            PlayerAudioEngine.shared.seek(seconds: 0.0)
-            self.mainView?.positionTableView?.positionTable.scrollToBeginningOfDocument(nil)
-        }else{
-            if(PlayerAudioEngine.shared.getCurrentTime() == 0.0){
-                self.mainView?.positionTableView?.positionTable.scrollToBeginningOfDocument(nil)
-            }
-            PlayerAudioEngine.shared.play()
-        }
-        
-    }
-    
-    @objc func doPause() {
-        if(PlayerAudioEngine.shared.isPlaying()){
-            PlayerAudioEngine.shared.pause()
-            self.tick()
-        }else{
-            self.doPlay()
-        }
-    }
-    
-    func doStop() {
-        PlayerAudioEngine.shared.stop()
     }
     
     func jump(_ seconds: Int) {

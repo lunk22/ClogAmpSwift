@@ -159,7 +159,7 @@
 "l7c-qL-Ath.title" = "Obere Grenze";
 
 /* Class = "NSTextFieldCell"; title = "Wait a number of seconds before looping after the position finished (for example to avoid looping too early)"; ObjectID = "MQb-sL-sbJ"; */
-"MQb-sL-sbJ.title" = "Wartezeit in Sekunden bevor die Position wiederholt wird (zum Beispiel um zu frühes Springen zu vermeiden)";
+"MQb-sL-sbJ.title" = "Wartezeit in Sekunden bevor die Position wiederholt wird";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "n27-Ni-WE3"; */
 "n27-Ni-WE3.title" = "x";
@@ -483,3 +483,9 @@
 "RVl-Gl-i5T.title" = "Beats anzeigen";
 
 "z0e-vD-qbE.title" = "Anzeige nach Liedauswahl";
+
+"bdD-VI-P7y.title" = "Verhalten bei Beatänderung";
+
+"u5w-Sf-Vic.title" = "Konformitätsfaktor:";
+
+"0iU-M9-9sS.title" = "BPM ermitteln (click)";

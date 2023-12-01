@@ -524,14 +524,14 @@
         <scene sceneID="ieG-rq-9wv">
             <objects>
                 <viewController id="4AT-Fd-CjS" customClass="TimePanelView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="KBA-WW-jAg" customClass="View" customModule="ClogAmpMac" customModuleProvider="target">
+                    <view key="view" id="KBA-WW-jAg">
                         <rect key="frame" x="0.0" y="0.0" width="332" height="82"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUN-p4-e6G">
-                                <rect key="frame" x="11" y="-4" width="310" height="89"/>
+                                <rect key="frame" x="8" y="0.0" width="316" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="justified" title="00:00:00" usesSingleLineMode="YES" id="XXI-xF-OOh">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="00:00:00" id="XXI-xF-OOh">
                                     <font key="font" metaFont="system" size="75"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1020,24 +1020,24 @@ IA
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Filter" translatesAutoresizingMaskIntoConstraints="NO" id="W67-B7-aws">
-                                                    <rect key="frame" x="304" y="17" width="324" height="114"/>
+                                                    <rect key="frame" x="304" y="35" width="324" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="zNg-Zu-61E">
-                                                        <rect key="frame" x="4" y="5" width="316" height="94"/>
+                                                        <rect key="frame" x="4" y="5" width="316" height="76"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Yn-1S-0iC">
-                                                                <rect key="frame" x="18" y="18" width="234" height="56"/>
+                                                                <rect key="frame" x="18" y="40" width="280" height="16"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <textFieldCell key="cell" selectable="YES" title="Define the conformity factor of titles as you type into the filter field:" id="u5w-Sf-Vic">
+                                                                <textFieldCell key="cell" selectable="YES" title="Conformity factor:" id="u5w-Sf-Vic">
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f5F-uO-VTt">
-                                                                <rect key="frame" x="20" y="15" width="42" height="21"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <rect key="frame" x="20" y="11" width="42" height="21"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" placeholderString="1.0" drawsBackground="YES" id="mtE-1I-Lgl">
                                                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="P9t-ok-Ojf">
                                                                         <real key="minimum" value="0.10000000000000001"/>
@@ -1636,7 +1636,7 @@ IA
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="play:" target="jBr-hw-2XV" id="RAM-8j-CVh"/>
+                                    <action selector="play:" target="XUw-5S-rFu" id="FpZ-Kp-WGS"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pP7-rG-B6d">
@@ -1647,7 +1647,7 @@ IA
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="pause:" target="jBr-hw-2XV" id="a3e-Zw-6Z8"/>
+                                    <action selector="pause:" target="XUw-5S-rFu" id="nUd-jH-yuH"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rFj-aw-8XO">
@@ -1658,7 +1658,7 @@ IA
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="stop:" target="jBr-hw-2XV" id="RS3-6u-V32"/>
+                                    <action selector="stop:" target="XUw-5S-rFu" id="ZHx-Zw-Kbt"/>
                                 </connections>
                             </button>
                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeO-Ek-rC9">
@@ -1993,7 +1993,7 @@ IA
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="pause:" target="UdJ-VP-3PA" id="jge-DD-ppI"/>
+                                                <action selector="pauseCountdown:" target="UdJ-VP-3PA" id="JHb-EB-RfK"/>
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hZP-hw-gp5">
@@ -2004,7 +2004,7 @@ IA
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="stop:" target="UdJ-VP-3PA" id="HGV-Jw-Gdd"/>
+                                                <action selector="stopCountdown:" target="UdJ-VP-3PA" id="6qI-T4-uco"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -2518,6 +2518,7 @@ IA
                                             <rect key="frame" x="0.0" y="0.0" width="989" height="185"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="jumpTo" width="139" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="qmK-aC-wnB">
@@ -2670,11 +2671,11 @@ IA
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="7Ox-dT-6YQ">
-                                                            <rect key="frame" x="489" y="0.0" width="64" height="17"/>
+                                                            <rect key="frame" x="489" y="0.0" width="64" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kVb-Eb-ehJ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="16"/>
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kVb-Eb-ehJ">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="68" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="Qge-gZ-2dS">
                                                                         <font key="font" usesAppearanceFont="YES"/>

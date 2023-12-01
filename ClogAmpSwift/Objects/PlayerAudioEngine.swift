@@ -229,7 +229,7 @@ class PlayerAudioEngine {
     
     // MARK: Controlling the Player
     func play() {
-        if isPlaying() { return }
+        if isPlaying() { self.seek(seconds: 0.0); return }
         if let song = song {
             
             // Highest Prio for song playback
