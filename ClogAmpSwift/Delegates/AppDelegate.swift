@@ -14,6 +14,11 @@ import MediaPlayer
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+//        if let appDomain = Bundle.main.bundleIdentifier {
+//            UserDefaults.standard.removePersistentDomain(forName: appDomain)
+//        }
+//        NSApplication.shared.terminate(self)
+        
         // Insert code here to initialize your application
         Database.buildTablesIfNeeded()
         

@@ -51,6 +51,7 @@ class Defaults {
     }
     
     static var colorizedPlayerState: Bool {
+//        return true
         return UserDefaults.standard.bool(forKey: "prefColorPlayerState")
     }
     

@@ -1,5 +1,6 @@
 import Cocoa
 import WebKit
+import PDFKit
 
 public func CreatePDF(htmlString: String, fileName: String = "Export") {
     let webView = WebView()
@@ -18,4 +19,27 @@ public func CreatePDF(htmlString: String, fileName: String = "Export") {
         printOp.jobTitle = fileName
         printOp.run()
     }
+    
+//    let webView = WKWebView()
+//    webView.loadHTMLString(htmlString, baseURL: nil)
+//    
+//    delayWithSeconds(0.5) {
+//        let config = WKPDFConfiguration()
+//        config.rect = .init(origin: .zero, size: .init(width: 210.0, height: 297.0))
+//        webView.createPDF() { result in
+//            switch result {
+//                case .success(let data):
+//                    let pdf = PDFDocument(data: data)
+//                    let printOperation = pdf?.printOperation(for: nil, scalingMode: .pageScaleToFit, autoRotate: false)
+//                    printOperation?.showsPrintPanel = true
+//                    printOperation?.showsProgressPanel = true
+//                    printOperation?.jobTitle = fileName
+//                    printOperation?.run()
+//                    break
+//                case .failure(_):
+//                    break
+//            }
+//        }
+//    }
+    
 }
