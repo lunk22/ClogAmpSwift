@@ -65,16 +65,7 @@ class MainView: ViewController {
     
     @IBAction func determineBpm(_ sender: Any) {
         self.playerView?.determineBpmFCS()
-    }
-    
-    /*
-     --- Remove all Keys ---
-
-     if let appDomain = Bundle.main.bundleIdentifier {
-        UserDefaults.standard.removePersistentDomain(forName: appDomain)
-     }
-
-    */    
+    }  
 }
 
 extension MainView: NSTabViewDelegate {

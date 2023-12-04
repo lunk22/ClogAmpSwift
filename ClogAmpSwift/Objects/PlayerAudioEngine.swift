@@ -42,7 +42,8 @@ class PlayerAudioEngine {
             offset = AVAudioFramePosition(0)
             
             setRate(song!.speed)
-            setVolume(song!.volume)
+            let volume = UserDefaults.standard.integer(forKey: "playerVolume")
+            setVolume( volume > 0 ? volume : 100)
             
             playerLogger.clear()
             
@@ -62,13 +63,11 @@ class PlayerAudioEngine {
     }
     private var songHistoryWritten: Bool = false
     private var timeObserverCallback: ((Any) -> Void)? = nil
-    private var cancelTimeObserver: Bool = false
     private var playing: Bool = false {
         didSet {
             if playing {
                 stopped = false
                 paused = false
-                cancelTimeObserver = false
                 NotificationCenter.default.post(name: NotificationNames.playing, object: nil)
             } else {
                 if !paused {
@@ -105,6 +104,7 @@ class PlayerAudioEngine {
             }
         }
     }
+    private var timeObserverTimer: Timer? = nil
 
     // MARK: Calculated Vars
     private var sampleRate: Double {
@@ -131,11 +131,8 @@ class PlayerAudioEngine {
         
         return sampleTime + offset
     }
-    private var currentFrameAsDouble: Double {
-        return Double(currentFrame)
-    }
     private var remainingFrames: Int64 {
-        return (audioFile?.length ?? 0) - currentFrame
+        return (audioFile?.length ?? 0) - (sampleTime + offset)
     }
     
     // MARK: Functions
@@ -155,7 +152,7 @@ class PlayerAudioEngine {
         audioEngine.connect(audioPlayer, to: speedControl, format: nil)
         audioEngine.connect(speedControl, to: pitchControl, format: nil)
         audioEngine.connect(pitchControl, to: audioEngine.mainMixerNode, format: nil)
-
+        
         NotificationCenter.default.addObserver(self,
            selector: #selector(shutdown),
            name: NotificationNames.shutdown,
@@ -231,9 +228,13 @@ class PlayerAudioEngine {
     }
     
     func setVolume(_ volume: Int) { // in %
-        song?.volume = volume
+        UserDefaults.standard.set(volume, forKey: "playerVolume")
         self.audioEngine.mainMixerNode.outputVolume = Float(volume) / 100
         NotificationCenter.default.post(name: NotificationNames.volumeChanged, object: nil)
+    }
+    
+    func getVolume() -> Int {
+        return lroundf(self.audioEngine.mainMixerNode.outputVolume * 100)
     }
     
     // MARK: Controlling the Player
@@ -282,14 +283,15 @@ class PlayerAudioEngine {
     }
     
     func stop() {
-        playing = false
-        paused = false
-        endTimeObserver()
-        MPNowPlayingInfoCenter.default().playbackState = .stopped
         audioPlayer.stop()
         audioEngine.stop()
+        playing = false
+        paused = false
         offset = AVAudioFramePosition(0)
-        doSeek(currentFrame)
+        doSeek(offset)
+        MPNowPlayingInfoCenter.default().playbackState = .stopped
+        endTimeObserver()
+        executeTimeObserverCallback()
     }
     
     // seek = absolute time
@@ -321,7 +323,8 @@ class PlayerAudioEngine {
     
     // MARK: Time Info
     func getCurrentTime(rounded: Bool = false) -> Double { // time in seconds
-        var sampleTime = min(currentFrame, audioFile?.length ?? 0)
+        var sampleTime = max(currentFrame, offset)
+        sampleTime = min(sampleTime, audioFile?.length ?? 0)
         sampleTime = max(sampleTime, 0)
         let calculatedCurrentTime = (Double(sampleTime) / sampleRate)
         return rounded ? calculatedCurrentTime.rounded() : calculatedCurrentTime
@@ -354,31 +357,27 @@ class PlayerAudioEngine {
     }
     
     private func startTimeObserver() {
-        func execute() {
-            executeTimeObserverCallback()
+        endTimeObserver() // cancel old one, if available
 
-            if cancelTimeObserver {
-                cancelTimeObserver = false
-                return
-            }
-            if isPlaying() && remainingFrames > 0 {
-                let delay = 0.05
-                delayWithSeconds(delay) {
-                    execute()
-                }
-            } else if !isPaused() {
-                stop()
+        self.timeObserverTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){ _ in
+            self.executeTimeObserverCallback()
+            
+            if (self.remainingFrames <= 0) && !self.isStopped() {
+                print("Timer: song finished - \(self.remainingFrames)")
+                self.stop()
                 NotificationCenter.default.post(name: NotificationNames.songFinished, object: nil)
             }
         }
-        
-        delayWithSeconds(0.25){
-            execute()
-        }
+
     }
     
     private func endTimeObserver() {
-        cancelTimeObserver = true
+        if let timeObserverTimer = self.timeObserverTimer {
+            DispatchQueue.main.async {
+                timeObserverTimer.invalidate()
+            }
+            self.timeObserverTimer = nil
+        }
     }
     
     // MARK: Helper Function
@@ -393,11 +392,16 @@ class PlayerAudioEngine {
         if(newFramePosition < audioFile?.length ?? 0) {
             let remainingFrames = AVAudioFrameCount(audioFile!.length - newFramePosition)
             audioPlayer.scheduleSegment(audioFile!, startingFrame: newFramePosition, frameCount: remainingFrames, at: nil)
-            executeTimeObserverCallback()
+            
             
             if(wasPlaying){
                 audioPlayer.play()
+                startTimeObserver()
+            } else if newFramePosition > 0 {
+                self.paused = true
+                executeTimeObserverCallback()
             }
+
         }
     }
     
