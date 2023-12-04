@@ -66,12 +66,13 @@ class PlayerAudioEngine {
     private var playing: Bool = false {
         didSet {
             if playing {
+                stopped = false
                 paused = false
                 cancelTimeObserver = false
                 NotificationCenter.default.post(name: NotificationNames.playing, object: nil)
             } else {
                 if !paused {
-                    NotificationCenter.default.post(name: NotificationNames.stopped, object: nil)
+                    stopped = true
                 }
             }
         }
@@ -86,16 +87,24 @@ class PlayerAudioEngine {
         }
         didSet {
             if paused {
+                stopped = false
                 playing = false
                 NotificationCenter.default.post(name: NotificationNames.paused, object: nil)
             } else {
                 if !playing {
-                    NotificationCenter.default.post(name: NotificationNames.stopped, object: nil)
+                    stopped = true
                 }
             }
         }
     }
     private var pausedFrame: AVAudioFramePosition = AVAudioFramePosition(0)
+    private var stopped: Bool = false {
+        didSet {
+            if stopped && oldValue != stopped {
+                NotificationCenter.default.post(name: NotificationNames.stopped, object: nil)
+            }
+        }
+    }
 
     // MARK: Calculated Vars
     private var sampleRate: Double {
@@ -170,16 +179,16 @@ class PlayerAudioEngine {
         }
         
         MPRemoteCommandCenter.shared().skipForwardCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [Defaults.skipForward as NSNumber]
+        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [AppPreferences.skipForward as NSNumber]
         MPRemoteCommandCenter.shared().skipForwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-            self.jump(Defaults.skipForward)
+            self.jump(AppPreferences.skipForward)
             return .success
         }
         
         MPRemoteCommandCenter.shared().skipBackwardCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [Defaults.skipBack as NSNumber]
+        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [AppPreferences.skipBack as NSNumber]
         MPRemoteCommandCenter.shared().skipBackwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-            self.jump((Defaults.skipBack * -1))
+            self.jump((AppPreferences.skipBack * -1))
             return .success
         }
 
@@ -353,7 +362,8 @@ class PlayerAudioEngine {
                 return
             }
             if isPlaying() && remainingFrames > 0 {
-                delayWithSeconds(0.05) {
+                let delay = 0.05
+                delayWithSeconds(delay) {
                     execute()
                 }
             } else if !isPaused() {
@@ -362,7 +372,9 @@ class PlayerAudioEngine {
             }
         }
         
-        execute()
+        delayWithSeconds(0.25){
+            execute()
+        }
     }
     
     private func endTimeObserver() {

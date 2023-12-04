@@ -300,9 +300,9 @@ class Song {
             }
             var bpm = BassWrapper.determineBPM(self.getValueAsString("path"), length: Int32(self.duration), sampleRate: Int32(sampleRate))
             
-            if bpm > Float(Defaults.bpmUpperBound) {
+            if bpm > Float(AppPreferences.bpmUpperBound) {
                 bpm /= 2
-            }else if bpm < Float(Defaults.bpmLowerBound) {
+            }else if bpm < Float(AppPreferences.bpmLowerBound) {
                 bpm *= 2
             }
             

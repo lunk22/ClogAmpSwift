@@ -14,7 +14,7 @@ class Panel : NSPanel {
         super.update()
 
         if #available(OSX 10.14, *) {
-            switch Defaults.appearance {
+            switch AppPreferences.appearance {
                 case 1:
                     self.appearance = NSAppearance(named: .darkAqua) // Dark
                     break
