@@ -7,8 +7,9 @@
 //
 
 import AppKit
+import WebKit
 
-class PositionTableView: NSViewController {
+class PositionTableView: NSViewController, WKNavigationDelegate {
     
     //MARK: Properties
     var fontSize            = 0
@@ -435,25 +436,25 @@ class PositionTableView: NSViewController {
             sPdfHtml = sPdfHtml + "<style>"
             //sPdfHtml = sPdfHtml + "  table { font-size: 125%; }"
             sPdfHtml = sPdfHtml + "  div { display:inline; font-family: Arial; }"
-            sPdfHtml = sPdfHtml + "  table, td { font-family: Arial; border: 0px solid black; border-collapse: collapse; }"
+            sPdfHtml = sPdfHtml + "  table, td { font-family: Arial; border: 2px solid black; border-collapse: collapse; }"
             sPdfHtml = sPdfHtml + "  td { padding: 0.75rem; vertical-align: top; }"
             sPdfHtml = sPdfHtml + "  .center {  display: table; margin-right: auto; margin-left: auto; }"
             sPdfHtml = sPdfHtml + "  .bold {  font-weight: bold; }"
             sPdfHtml = sPdfHtml + "  .nowrap {  white-space: nowrap; }"
             sPdfHtml = sPdfHtml + "</style>"
 
-            sPdfHtml = sPdfHtml + "<div class=\"center\">"
-            sPdfHtml = sPdfHtml + "  <div style=\"font-size: 2.5rem\">\(song.title)</div>&nbsp;<div style=\"font-size: 1.2rem\">\(song.artist)</div>"
+            sPdfHtml = sPdfHtml + "<div class='center'>"
+            sPdfHtml = sPdfHtml + "  <div style='font-size: 2.5rem'>\(song.title)</div>&nbsp;<div style='font-size: 1.2rem'>\(song.artist)</div>"
             sPdfHtml = sPdfHtml + "</div>"
-            sPdfHtml = sPdfHtml + "<div class=\"center\">"
+            sPdfHtml = sPdfHtml + "<div class='center'>"
             sPdfHtml = sPdfHtml + "  \(song.getValueAsString("duration"))"
             
             if song.getValueAsString("level") != "" {
-                sPdfHtml = sPdfHtml + " – \(song.level)"
+                sPdfHtml = sPdfHtml + " &ndash; \(song.level)"
             }
             
             if sWait != "" {
-                sPdfHtml = sPdfHtml + " – \(sWait)"
+                sPdfHtml = sPdfHtml + " &ndash; \(sWait)"
             }
             
             sPdfHtml = sPdfHtml + "</div>"
@@ -461,7 +462,7 @@ class PositionTableView: NSViewController {
             sPdfHtml = sPdfHtml + "<br/>"
             sPdfHtml = sPdfHtml + "<br/>"
 
-            sPdfHtml = sPdfHtml + " <table>"
+            sPdfHtml = sPdfHtml + " <table border='1'>"
             
             
             for position in song.getPositions() {
@@ -473,10 +474,10 @@ class PositionTableView: NSViewController {
                 comment = comment.replacingOccurrences(of: " [", with: " <wbr/>[")
                 comment = comment.replacingOccurrences(of: "] ", with: "] <wbr/>")
                 comment = comment.replacingOccurrences(of: " ", with: "&nbsp;")
-                comment = comment.replacingOccurrences(of: "\n", with: "<br/>")
+                comment = comment.replacingOccurrences(of: "", with: "<br/>")
                 
                 sPdfHtml = sPdfHtml + "    <tr>"
-                sPdfHtml = sPdfHtml + "      <td class=\"bold nowrap\">\(position.name)</td>"
+                sPdfHtml = sPdfHtml + "      <td class='bold nowrap'>\(position.name)</td>"
                 sPdfHtml = sPdfHtml + "      <td>\(comment)</td>"
                 sPdfHtml = sPdfHtml + "    </tr>"
             }

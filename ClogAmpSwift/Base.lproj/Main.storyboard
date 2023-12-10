@@ -14,7 +14,7 @@
         <scene sceneID="JPo-4y-FX3">
             <objects>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6" customClass="Menu" customModule="ClogAmpMac" customModuleProvider="target">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
                             <menuItem title="ClogAmpSwift" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -304,7 +304,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="MainWindow" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="IQv-IB-iLA" customClass="Window" customModule="ClogAmpMac" customModuleProvider="target">
+                    <window key="window" identifier="mainWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="mainWindowAutosave" animationBehavior="default" tabbingIdentifier="mainWindow" id="IQv-IB-iLA" customClass="Window" customModule="ClogAmpMac" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="1009" height="118"/>
@@ -370,8 +370,8 @@
                                     <touchBarItems>
                                         <touchBarItem id="It2-e3-EY4">
                                             <viewController key="viewController" id="onz-Vl-gDI">
-                                                <segmentedControl key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-8T-o1O">
-                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="30"/>
+                                                <segmentedControl key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-8T-o1O">
+                                                    <rect key="frame" x="0.0" y="0.0" width="190" height="30"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="kFO-Ya-k29">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -503,10 +503,10 @@
         <scene sceneID="Khv-Js-u67">
             <objects>
                 <windowController storyboardIdentifier="Time Window" showSeguePresentationStyle="single" id="kFC-bL-dcm" customClass="TimePanelWindow" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Time" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="0rm-mN-eUt" customClass="Panel" customModule="ClogAmpMac" customModuleProvider="target">
+                    <window key="window" identifier="timeWindow" title="Time" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="timeWindowAutosave" animationBehavior="default" tabbingIdentifier="timeWindow" id="0rm-mN-eUt" customClass="Panel" customModule="ClogAmpMac" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="245" y="301" width="332" height="89"/>
+                        <rect key="contentRect" x="245" y="301" width="419" height="92"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
                         <connections>
                             <outlet property="delegate" destination="kFC-bL-dcm" id="iaY-br-HXB"/>
@@ -523,16 +523,16 @@
         <!--Time Panel View-->
         <scene sceneID="ieG-rq-9wv">
             <objects>
-                <viewController id="4AT-Fd-CjS" customClass="TimePanelView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="4AT-Fd-CjS" customClass="TimePanelView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="KBA-WW-jAg">
-                        <rect key="frame" x="0.0" y="0.0" width="332" height="82"/>
+                        <rect key="frame" x="0.0" y="0.0" width="419" height="92"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUN-p4-e6G">
-                                <rect key="frame" x="8" y="0.0" width="316" height="82"/>
+                                <rect key="frame" x="-2" y="0.0" width="423" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="00:00:00" id="XXI-xF-OOh">
-                                    <font key="font" metaFont="system" size="75"/>
+                                <textFieldCell key="cell" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="OO:OO:OO" id="XXI-xF-OOh">
+                                    <font key="font" size="78" name="Monaco"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -545,17 +545,19 @@
                 </viewController>
                 <customObject id="a6b-4c-sGW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4069" y="2272"/>
+            <point key="canvasLocation" x="-4069" y="2332"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="S5O-bg-bP8">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="xtD-2e-74L" sceneMemberID="viewController">
-                    <window key="window" title="Beats Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="cxp-gb-glH">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" identifier="beatsPlayerWindow" title="Beats Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="beatsPlayerWindowAutosave" animationBehavior="default" tabbingIdentifier="beatsPlayerWindow" id="cxp-gb-glH">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="313" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2056" height="1285"/>
+                        <value key="minSize" type="size" width="480" height="270"/>
+                        <value key="maxSize" type="size" width="480" height="270"/>
                         <connections>
                             <outlet property="delegate" destination="xtD-2e-74L" id="M4f-26-Usv"/>
                         </connections>
@@ -571,8 +573,8 @@
         <!--Window Controller-->
         <scene sceneID="W4I-qb-TTS">
             <objects>
-                <windowController id="3VX-T9-o44" sceneMemberID="viewController">
-                    <window key="window" title="BPM" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ueb-gU-gmS">
+                <windowController showSeguePresentationStyle="single" id="3VX-T9-o44" sceneMemberID="viewController">
+                    <window key="window" identifier="bpmClickWindow" title="BPM" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="bpmClickWindowAutosave" animationBehavior="default" tabbingIdentifier="bpmClickWindow" id="ueb-gU-gmS">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="2056" y="589" width="480" height="270"/>
@@ -598,7 +600,7 @@
         <!--Bpm Click View-->
         <scene sceneID="au5-Vk-qvL">
             <objects>
-                <viewController id="NvZ-jz-MCU" customClass="BpmClickView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="NvZ-jz-MCU" customClass="BpmClickView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Fsq-FY-Kd9">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -644,21 +646,23 @@ IA
         <!--Beat Player View-->
         <scene sceneID="wDL-R7-5o3">
             <objects>
-                <viewController id="q1X-5U-AxO" customClass="BeatPlayerView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="q1X-5U-AxO" customClass="BeatPlayerView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jqs-J3-Qx5">
                         <rect key="frame" x="0.0" y="0.0" width="445" height="132"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpr-Pa-Lpf">
+                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpr-Pa-Lpf">
                                 <rect key="frame" x="20" y="60" width="405" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="&amp;a1 &amp;a2 &amp;a3 &amp;4" drawsBackground="YES" id="F5t-fK-HI4">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuE-QR-BfM">
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuE-QR-BfM">
                                 <rect key="frame" x="15" y="24" width="48" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="playGray" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yIQ-Ej-QMb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -667,8 +671,9 @@ IA
                                     <action selector="handlePlayBeats:" target="q1X-5U-AxO" id="Ofr-zm-qTc"/>
                                 </connections>
                             </button>
-                            <textField focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tb1-nQ-jyd">
+                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tb1-nQ-jyd">
                                 <rect key="frame" x="62" y="91" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="9ou-c6-g2e">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="uc6-GU-w46">
                                         <real key="minimum" value="40"/>
@@ -679,16 +684,18 @@ IA
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kIC-T9-7of">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kIC-T9-7of">
                                 <rect key="frame" x="20" y="94" width="36" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="BPM:" id="iYq-bM-ATB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CDA-fn-cfC">
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CDA-fn-cfC">
                                 <rect key="frame" x="61" y="24" width="48" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="stopGray" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AzA-4Z-sf7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -698,15 +705,6 @@ IA
                                 </connections>
                             </button>
                         </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="jpr-Pa-Lpf" secondAttribute="trailing" constant="20" id="7YS-Ln-FzM"/>
-                            <constraint firstItem="kIC-T9-7of" firstAttribute="leading" secondItem="jqs-J3-Qx5" secondAttribute="leading" constant="22" id="Fz5-2v-YTf"/>
-                            <constraint firstItem="tb1-nQ-jyd" firstAttribute="leading" secondItem="kIC-T9-7of" secondAttribute="trailing" constant="8" id="NA7-o6-Y6d"/>
-                            <constraint firstItem="jpr-Pa-Lpf" firstAttribute="leading" secondItem="jqs-J3-Qx5" secondAttribute="leading" constant="20" id="Te6-rC-afR"/>
-                            <constraint firstItem="KuE-QR-BfM" firstAttribute="leading" secondItem="jqs-J3-Qx5" secondAttribute="leading" constant="22" id="Wav-Nd-uHk"/>
-                            <constraint firstItem="jpr-Pa-Lpf" firstAttribute="centerX" secondItem="jqs-J3-Qx5" secondAttribute="centerX" id="gJx-ge-ybL"/>
-                            <constraint firstItem="CDA-fn-cfC" firstAttribute="leading" secondItem="KuE-QR-BfM" secondAttribute="trailing" constant="12" id="qCe-YD-qRg"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="txtBPM" destination="tb1-nQ-jyd" id="EgP-Eb-PcB"/>
@@ -723,7 +721,7 @@ IA
             <objects>
                 <customObject id="tre-Q5-drZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <windowController showSeguePresentationStyle="single" id="t7N-F6-IPf" sceneMemberID="viewController">
-                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qmF-AN-kTn" customClass="Window" customModule="ClogAmpMac" customModuleProvider="target">
+                    <window key="window" identifier="preferenceWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="preferenceWindowAutosave" animationBehavior="default" tabbingIdentifier="preferenceWindow" id="qmF-AN-kTn" customClass="Window" customModule="ClogAmpMac" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="313" width="480" height="270"/>
@@ -1276,7 +1274,7 @@ IA
         <scene sceneID="mFd-az-OET">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="0fg-Ju-sI0" sceneMemberID="viewController">
-                    <window key="window" title="Playlists" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="tZH-HI-Hyz" customClass="Window" customModule="ClogAmpMac" customModuleProvider="target">
+                    <window key="window" identifier="playlistWindow" title="Playlists" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="playlistWindowAutosave" animationBehavior="default" tabbingIdentifier="playlistWindow" id="tZH-HI-Hyz" customClass="Window" customModule="ClogAmpMac" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="313" width="960" height="540"/>
@@ -1623,7 +1621,7 @@ IA
         <!--Player View-->
         <scene sceneID="Pvh-Bu-1XD">
             <objects>
-                <viewController id="jBr-hw-2XV" customClass="PlayerView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="jBr-hw-2XV" customClass="PlayerView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="dG1-2M-Ern">
                         <rect key="frame" x="0.0" y="0.0" width="562" height="168"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1763,7 +1761,7 @@ IA
                                 <rect key="frame" x="66" y="60" width="140" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="right" placeholderString="00:00" id="2Ro-6R-ZgD">
-                                    <font key="font" metaFont="system" size="50"/>
+                                    <font key="font" size="43" name="Monaco"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1846,7 +1844,7 @@ IA
         <!--PDF View-->
         <scene sceneID="R0u-LD-O8w">
             <objects>
-                <viewController title="PDF View" id="Xpb-W6-vjd" customClass="PDFViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="PDF View" showSeguePresentationStyle="single" id="Xpb-W6-vjd" customClass="PDFViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" identifier="pdfViewerView" translatesAutoresizingMaskIntoConstraints="NO" id="1f7-rJ-Gf1">
                         <rect key="frame" x="0.0" y="0.0" width="989" height="230"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1868,8 +1866,8 @@ IA
         <!--Window Controller-->
         <scene sceneID="QZ5-wx-4U1">
             <objects>
-                <windowController id="ELJ-6V-x4J" customClass="CountdownWindow" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Countdown" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="x0l-k3-DSE" customClass="Panel" customModule="ClogAmpMac" customModuleProvider="target">
+                <windowController showSeguePresentationStyle="single" id="ELJ-6V-x4J" customClass="CountdownWindow" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="countdownWindow" title="Countdown" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="countdownWindowAutosave" animationBehavior="default" tabbingIdentifier="countdownWindow" id="x0l-k3-DSE" customClass="Panel" customModule="ClogAmpMac" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" nonactivatingPanel="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="313" width="317" height="206"/>
@@ -1889,16 +1887,16 @@ IA
         <!--Countdown-->
         <scene sceneID="EgP-0i-ri9">
             <objects>
-                <viewController title="Countdown" id="UdJ-VP-3PA" customClass="CountdownView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="NTd-qc-Xaj" customClass="View" customModule="ClogAmpMac" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="304" height="299"/>
+                <viewController title="Countdown" showSeguePresentationStyle="single" id="UdJ-VP-3PA" customClass="CountdownView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="NTd-qc-Xaj">
+                        <rect key="frame" x="0.0" y="0.0" width="304" height="283"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PTc-Ko-mac">
-                                <rect key="frame" x="0.0" y="209" width="304" height="90"/>
+                                <rect key="frame" x="2" y="209" width="300" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" alignment="left" title=" 0:00:00" drawsBackground="YES" id="uwe-P1-jN1">
-                                    <font key="font" metaFont="system" size="75"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" state="on" alignment="center" title="OO:OO:OO" drawsBackground="YES" id="uwe-P1-jN1">
+                                    <font key="font" size="59" name="Monaco"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -2018,24 +2016,25 @@ IA
                 </viewController>
                 <customObject id="WMi-Yl-aEK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4535" y="2571"/>
+            <point key="canvasLocation" x="-4535" y="2562.5"/>
         </scene>
         <!--Song Table-->
         <scene sceneID="0p8-ZZ-9fE">
             <objects>
                 <viewController title="Song Table" showSeguePresentationStyle="single" id="uTS-cM-QNI" customClass="SongTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" misplaced="YES" id="b06-Er-8KR">
-                        <rect key="frame" x="0.0" y="0.0" width="989" height="230"/>
+                        <rect key="frame" x="0.0" y="0.0" width="989" height="148"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLm-3c-4qH">
-                                <rect key="frame" x="0.0" y="29" width="973" height="171"/>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="wLm-3c-4qH">
+                                <rect key="frame" x="0.0" y="25" width="989" height="93"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="RnN-Wh-hRQ">
-                                    <rect key="frame" x="1" y="1" width="971" height="169"/>
+                                    <rect key="frame" x="1" y="1" width="987" height="91"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" typeSelect="NO" autosaveName="songTable" rowHeight="16" headerView="pnK-Hc-SKf" viewBased="YES" id="5qV-u3-dBg" customClass="TableView" customModule="ClogAmpMac" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="971" height="144"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="987" height="66"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2405,15 +2404,13 @@ IA
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="pnK-Hc-SKf">
-                                    <rect key="frame" x="0.0" y="0.0" width="971" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="987" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9TZ-NU-mJx">
-                                <rect key="frame" x="800" y="173" width="172" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="aJN-nC-lnM"/>
-                                </constraints>
+                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9TZ-NU-mJx">
+                                <rect key="frame" x="817" y="126" width="172" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" drawsBackground="YES" id="nsD-QE-R90">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -2424,80 +2421,54 @@ IA
                                     <outlet property="delegate" destination="uTS-cM-QNI" id="JnL-e4-JI0"/>
                                 </connections>
                             </textField>
-                            <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-DU-iVq">
-                                <rect key="frame" x="0.0" y="176" width="792" height="20"/>
+                            <pathControl focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-DU-iVq">
+                                <rect key="frame" x="0.0" y="127" width="792" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <pathCell key="cell" controlSize="small" selectable="YES" enabled="NO" refusesFirstResponder="YES" focusRingType="none" alignment="left" id="GjP-SJ-036">
                                     <font key="font" metaFont="message" size="11"/>
                                 </pathCell>
                             </pathControl>
-                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RBY-hW-7Nn" userLabel="Directory Text">
-                                <rect key="frame" x="-2" y="65" width="977" height="65"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" alignment="center" title="99%" id="RIz-5V-WIF">
-                                    <font key="font" metaFont="system" size="55"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dHP-WF-Zm9">
-                                <rect key="frame" x="927" y="-1" width="23" height="23"/>
+                            <progressIndicator hidden="YES" maxValue="100" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="kvU-es-0G5">
+                                <rect key="frame" x="479" y="57" width="32" height="34"/>
+                            </progressIndicator>
+                            <button verticalHuggingPriority="750" id="dHP-WF-Zm9">
+                                <rect key="frame" x="943" y="5" width="23" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" title="+" bezelStyle="smallSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sg8-Uf-sex">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="23" id="TeY-o8-7zN"/>
-                                    <constraint firstAttribute="height" constant="21" id="z0w-2c-EDF"/>
-                                </constraints>
                                 <connections>
                                     <action selector="handleIncreaseTextSize:" target="uTS-cM-QNI" id="8SQ-sl-g8X"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vWq-tV-ayT">
-                                <rect key="frame" x="950" y="-1" width="23" height="23"/>
+                            <button verticalHuggingPriority="750" id="vWq-tV-ayT">
+                                <rect key="frame" x="966" y="5" width="23" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" title="-" bezelStyle="smallSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yBc-if-q5C">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="23" id="EZL-Gv-18a"/>
-                                </constraints>
                                 <connections>
                                     <action selector="handleDecreaseTextSize:" target="uTS-cM-QNI" id="IgH-TQ-gVw"/>
                                 </connections>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="RBY-hW-7Nn" firstAttribute="centerX" secondItem="wLm-3c-4qH" secondAttribute="centerX" id="0Ub-cT-zyQ"/>
-                            <constraint firstItem="RYs-DU-iVq" firstAttribute="top" secondItem="b06-Er-8KR" secondAttribute="top" constant="-1" id="36Z-lL-CMv"/>
-                            <constraint firstAttribute="trailing" secondItem="9TZ-NU-mJx" secondAttribute="trailing" constant="1" id="3YI-4v-OGj"/>
-                            <constraint firstAttribute="bottom" secondItem="dHP-WF-Zm9" secondAttribute="bottom" id="DNz-fv-7EL"/>
-                            <constraint firstItem="9TZ-NU-mJx" firstAttribute="top" secondItem="b06-Er-8KR" secondAttribute="top" id="Gst-zc-Yge"/>
-                            <constraint firstItem="dHP-WF-Zm9" firstAttribute="firstBaseline" secondItem="vWq-tV-ayT" secondAttribute="firstBaseline" id="QDV-kL-iqU"/>
-                            <constraint firstItem="dHP-WF-Zm9" firstAttribute="baseline" secondItem="vWq-tV-ayT" secondAttribute="baseline" id="QIj-gd-MLj"/>
-                            <constraint firstItem="RYs-DU-iVq" firstAttribute="baseline" secondItem="9TZ-NU-mJx" secondAttribute="firstBaseline" id="RuA-Hr-DI3"/>
-                            <constraint firstItem="9TZ-NU-mJx" firstAttribute="leading" secondItem="RYs-DU-iVq" secondAttribute="trailing" constant="8" symbolic="YES" id="StO-Ll-BuF"/>
-                            <constraint firstItem="RBY-hW-7Nn" firstAttribute="leading" secondItem="wLm-3c-4qH" secondAttribute="leading" id="Xax-MF-sqm"/>
-                            <constraint firstAttribute="trailing" secondItem="wLm-3c-4qH" secondAttribute="trailing" id="YQQ-wx-jrJ"/>
-                            <constraint firstItem="RYs-DU-iVq" firstAttribute="leading" secondItem="RBY-hW-7Nn" secondAttribute="leading" id="bZB-Xw-LkC"/>
-                            <constraint firstAttribute="bottom" secondItem="wLm-3c-4qH" secondAttribute="bottom" constant="20" symbolic="YES" id="cqA-Qp-Fab"/>
-                            <constraint firstItem="wLm-3c-4qH" firstAttribute="trailing" secondItem="vWq-tV-ayT" secondAttribute="trailing" id="go8-mE-p6k"/>
-                            <constraint firstItem="RBY-hW-7Nn" firstAttribute="leading" secondItem="b06-Er-8KR" secondAttribute="leading" id="kPh-Vb-bms"/>
-                            <constraint firstItem="wLm-3c-4qH" firstAttribute="top" secondItem="RYs-DU-iVq" secondAttribute="bottom" constant="11" id="oU0-V6-CPj"/>
-                            <constraint firstItem="vWq-tV-ayT" firstAttribute="leading" secondItem="dHP-WF-Zm9" secondAttribute="trailing" id="rrE-eI-iTJ"/>
-                            <constraint firstItem="RBY-hW-7Nn" firstAttribute="centerY" secondItem="b06-Er-8KR" secondAttribute="centerY" id="vVM-Rc-zI7"/>
-                            <constraint firstItem="wLm-3c-4qH" firstAttribute="top" secondItem="9TZ-NU-mJx" secondAttribute="bottom" constant="8" symbolic="YES" id="vaQ-Tl-F0I"/>
+                            <constraint firstItem="kvU-es-0G5" firstAttribute="centerY" secondItem="b06-Er-8KR" secondAttribute="centerY" id="Uz0-Gp-qBl"/>
+                            <constraint firstItem="kvU-es-0G5" firstAttribute="centerX" secondItem="b06-Er-8KR" secondAttribute="centerX" id="eTw-JX-D2z"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="pathControl" destination="RYs-DU-iVq" id="uzu-1I-SQ9"/>
-                        <outlet property="percentLabel" destination="RBY-hW-7Nn" id="yJs-94-HbL"/>
+                        <outlet property="progressIndicator" destination="kvU-es-0G5" id="Gjm-oP-bMN"/>
                         <outlet property="searchField" destination="9TZ-NU-mJx" id="I2x-7l-8sk"/>
                         <outlet property="songTable" destination="5qV-u3-dBg" id="UQ1-AR-lPf"/>
                     </connections>
                 </viewController>
                 <customObject id="Egk-O0-ygv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5172" y="1040"/>
+            <point key="canvasLocation" x="-5172.5" y="1040"/>
         </scene>
         <!--Position Table View-->
         <scene sceneID="JJ0-sb-7aP">
@@ -2884,7 +2855,7 @@ IA
             <objects>
                 <customObject id="EsP-IW-XYn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <windowController showSeguePresentationStyle="single" id="Rx2-bm-TSd" sceneMemberID="viewController">
-                    <window key="window" title="History" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Qrn-6m-x7Z" customClass="Window" customModule="ClogAmpMac" customModuleProvider="target">
+                    <window key="window" identifier="historyWindow" title="History" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="historyWindowAutosave" animationBehavior="default" tabbingIdentifier="historyWindow" id="Qrn-6m-x7Z" customClass="Window" customModule="ClogAmpMac" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="313" width="480" height="270"/>
@@ -2904,7 +2875,7 @@ IA
         <scene sceneID="g1X-Mk-Y0R">
             <objects>
                 <customObject id="at9-e5-zna" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController title="History" id="0uZ-kX-vHB" customClass="HistoryTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="History" showSeguePresentationStyle="single" id="0uZ-kX-vHB" customClass="HistoryTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="3Sc-ym-HRy">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="556"/>
                         <autoresizingMask key="autoresizingMask"/>

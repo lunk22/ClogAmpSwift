@@ -15,6 +15,10 @@ class CountdownView: ViewController {
     var calcTimerSeconds: UInt = 0
     var timer: Timer?
     
+    override func viewDidLoad() {
+        timeField.stringValue = "0:00:00".asTime()
+    }
+    
     //MARK: Outlets
     @IBOutlet weak var timeField: NSTextField!
     
@@ -39,9 +43,7 @@ class CountdownView: ViewController {
         if (self.timer?.isValid ?? false) {
             return
         }
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: {
-            timer in
-            
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             if self.calcTimerSeconds > 0 {
                 self.calcTimerSeconds -= 1
                 self.updateUiTimeField()
@@ -50,8 +52,7 @@ class CountdownView: ViewController {
                 self.timer?.invalidate()
                 self.timer = nil
             }
-            
-        })
+        }
     }
     @IBAction func pauseCountdown(_ sender: NSButton) {
         if(self.timer?.isValid ?? false){
@@ -91,14 +92,14 @@ class CountdownView: ViewController {
         
         var sMin = "\(min)"
         if(min < 10){
-            sMin = "0"+sMin
+            sMin = "0\(sMin)"
         }
         
         var sSec = "\(sec)"
         if(sec < 10){
-            sSec = "0"+sSec
+            sSec = "0\(sSec)"
         }
         
-        self.timeField.stringValue = " \(hours):\(sMin):\(sSec)"
+        self.timeField.stringValue = "\(hours):\(sMin):\(sSec)".asTime()
     }
 }

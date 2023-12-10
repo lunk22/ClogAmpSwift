@@ -182,9 +182,9 @@ class PlayerView: ViewController {
             let sMinutes = durMinutes >= 10 ? "\(durMinutes)" : "\(durMinutes)"
             
             if AppPreferences.countdownTime {
-                self.lengthField.stringValue = "- \(sMinutes):\(sSeconds)"
+                self.lengthField.stringValue = "- \(sMinutes):\(sSeconds)".asTime()
             }else{
-                self.lengthField.stringValue = "\(sMinutes):\(sSeconds)"
+                self.lengthField.stringValue = "\(sMinutes):\(sSeconds)".asTime()
             }
             
             // timeSlider has a range of 0 - 100k, so multiply percent by 1000
