@@ -48,5 +48,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
+    @IBAction func openUpdateHistory(_ sender: Any) {
+        NSWorkspace.shared.open(URL(string: "https://htmlpreview.github.io/?https://github.com/lunk22/ClogAmpSwift/blob/master/UpdateHistory.html")!)
+    }
+    
 }
 

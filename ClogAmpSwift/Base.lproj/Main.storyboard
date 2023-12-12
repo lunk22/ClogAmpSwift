@@ -37,7 +37,6 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
                                         <menuItem title="Quit ClogAmpSwift" keyEquivalent="q" allowsKeyEquivalentWhenHidden="YES" id="4sb-4s-VLi">
                                             <connections>
@@ -278,7 +277,13 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="2x0-m1-Ols">
                                     <items>
-                                        <menuItem title="Check for Updates..." id="5YP-qf-1zO">
+                                        <menuItem title="Open update history" id="azb-Av-CiL">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openUpdateHistory:" target="Voe-Tx-rLC" id="srv-Uh-Lpg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Check for Updates" id="5YP-qf-1zO">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="checkForUpdates:" target="XSk-eZ-J7n" id="Ft3-Kf-saF"/>
@@ -323,6 +328,7 @@
                                             <viewController key="viewController" id="tkD-XG-KIf">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dQU-hL-Gs6">
                                                     <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="playGray" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g87-Vn-fYM">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -337,6 +343,7 @@
                                             <viewController key="viewController" id="WU4-Pb-mEN">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3md-Iz-Y3v">
                                                     <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="pauseGray" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jRX-m8-Ugj">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -351,6 +358,7 @@
                                             <viewController key="viewController" id="WLW-xw-HBx">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GXm-yK-Ude">
                                                     <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="stopGray" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XOv-M0-HnM">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -372,6 +380,7 @@
                                             <viewController key="viewController" id="onz-Vl-gDI">
                                                 <segmentedControl key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-8T-o1O">
                                                     <rect key="frame" x="0.0" y="0.0" width="190" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="kFO-Ya-k29">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -394,6 +403,7 @@
                                 <viewController key="viewController" id="n4V-GO-uv3">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T6g-2h-msG">
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GbW-ks-VPp">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -2429,7 +2439,7 @@ IA
                                 </pathCell>
                             </pathControl>
                             <progressIndicator hidden="YES" maxValue="100" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="kvU-es-0G5">
-                                <rect key="frame" x="479" y="57" width="32" height="34"/>
+                                <rect key="frame" x="479" y="45" width="32" height="32"/>
                             </progressIndicator>
                             <button verticalHuggingPriority="750" id="dHP-WF-Zm9">
                                 <rect key="frame" x="943" y="5" width="23" height="23"/>
