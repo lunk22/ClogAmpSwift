@@ -9,34 +9,56 @@
 import Foundation
 
 class Position {
-    var name: String
-    var comment: String
-    var jumpTo:  String
-    var time: UInt
+    var name: String {
+        didSet {
+            self.hasChanges = true
+        }
+    }
+    var comment: String {
+        didSet {
+            self.hasChanges = true
+        }
+    }
+    var jumpTo:  String {
+        didSet {
+            self.hasChanges = true
+        }
+    }
+    var time: UInt { // in ms
+        didSet {
+            self.hasChanges = true
+        }
+    }
+    var beats: Int
+    private(set) var hasChanges: Bool
     
     //  Initializer
     init() {
-        self.name    = ""
-        self.comment = ""
-        self.jumpTo  = ""
-        self.time    = 0
+        self.name       = ""
+        self.comment    = ""
+        self.jumpTo     = ""
+        self.time       = 0
+        self.beats      = 0 // Calculated
+        self.hasChanges = false
     }
     
-    convenience init(name: String, comment: String, time: UInt) {
+    convenience init(name: String, comment: String, time: UInt, new: Bool) {
         self.init()
         
         self.name    = name
         self.comment = comment
         self.time    = time
+        self.hasChanges = new
     }
     
-    convenience init(name: String, comment: String, jumpTo: String, time: UInt) {
+    convenience init(name: String, comment: String, jumpTo: String, time: UInt, new: Bool) {
         self.init()
         
         self.name    = name
         self.comment = comment
         self.jumpTo  = jumpTo
         self.time    = time
+        self.hasChanges = new
     }
     
     func getValueAsString(_ property: String) -> String {
@@ -47,6 +69,8 @@ class Position {
                 return self.comment
             case "jumpTo":
                 return self.jumpTo
+            case "beats":
+                return "\(self.beats)"
             case "time":
                 //time = milliseconds
                 var calcTime = self.time
@@ -74,4 +98,8 @@ class Position {
                 return ""
         }
     } //func getValueAsString
+    
+    func resetChangeFlag() {
+        self.hasChanges = false
+    }
 }

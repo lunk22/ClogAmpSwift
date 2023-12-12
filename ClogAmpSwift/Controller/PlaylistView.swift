@@ -28,8 +28,6 @@ class PlaylistView: ViewController {
     var playerView: PlayerView?
     weak var mainView: MainView?
     
-    let prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
-    
     @IBOutlet weak var playlistTable: NSTableView!
     @IBOutlet weak var songTable: TableView!
     @IBOutlet weak var btnPlay: NSButton!
@@ -44,9 +42,13 @@ class PlaylistView: ViewController {
 //        // https://www.natethompson.io/2019/03/23/nstableview-drag-and-drop.html
         self.songTable.registerForDraggedTypes([.string, .tableRowIndex])
         
-        let viewController = NSApplication.shared.windows[0].contentViewController as! MainView
-        self.mainView = viewController
-        self.playerView = viewController.playerView
+        if let window = NSApplication.shared.windows.first(where: { window in
+            return window.identifier?.rawValue ?? "" == "mainWindow"
+        }) {
+            let viewController = window.contentViewController as! MainView
+            self.mainView = viewController
+            self.playerView = viewController.playerView
+        }        
         
         self.btnPlay.isEnabled = false
         self.btnStop.isEnabled = false
@@ -91,8 +93,7 @@ class PlaylistView: ViewController {
             self.playerView?.loadSong(song: self.aSongs[self.iSongIndex])
             self.songTable.reloadData()
             
-            let prefViewAfterSongLoad = UserDefaults.standard.integer(forKey: "prefViewAfterSongLoad")
-            switch prefViewAfterSongLoad {
+            switch AppPreferences.viewAfterSongLoad {
             case 1:
                 self.mainView?.tabView.selectTabViewItem(at: 1)
             case 2:
@@ -214,24 +215,24 @@ class PlaylistView: ViewController {
             if self.iSongIndex == -1{
                 self.loadSong(0)
             }
-            self.playerView?.doPlay()
+            PlayerAudioEngine.shared.play()
             
             NotificationCenter.default.addObserver(self,
                selector: #selector(songFinished),
-               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+               name: PlayerAudioEngine.NotificationNames.songFinished,
                object: nil
             ) // Add observer
         }
     }
     
     @IBAction func handleStopPlaylist(_ sender: Any?) {
-        self.playerView?.doStop()
+        PlayerAudioEngine.shared.stop()
         self.iSongIndex = -1
         
         self.songTable.reloadData()
         
         NotificationCenter.default.removeObserver(self,
-           name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+           name: PlayerAudioEngine.NotificationNames.songFinished,
            object: nil
         )
     }
@@ -252,9 +253,8 @@ class PlaylistView: ViewController {
                 self.loadSong(self.iSongIndex + 1)
                 
                 if self.cbContPlayback.state == NSControl.StateValue.on {
-//
-                    delayWithSeconds(Double(self.txtPause.integerValue)){
-                        self.playerView?.doPlay()
+                    delayWithSeconds(Double(self.txtPause.integerValue)) {
+                        PlayerAudioEngine.shared.play()
                     }
                 }
             } else {
@@ -283,7 +283,7 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
             }
             
             
-            if prefMonoFontSongs {
+            if AppPreferences.songTableMonoFont {
                 textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(fontSize))
@@ -310,7 +310,7 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         if tableView == self.playlistTable{
             return CGFloat(24)
-        }else if prefMonoFontSongs {
+        }else if AppPreferences.songTableMonoFont {
             return CGFloat(round(Double(12) * 1.7))
         } else {
             return CGFloat(20)

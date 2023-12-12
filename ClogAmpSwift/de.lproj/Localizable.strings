@@ -11,3 +11,5 @@
 "viewAfterSongLoadFileList" = "";
 "viewAfterSongLoadPositions" = "Positionen";
 "viewAfterSongLoadPDF" = "PDF";
+"beatsChangeBehaviourAdjustFollowing" = "Folgeposition anpassen";
+"beatsChangeBehaviourMoveAllFollowing" = "Alle folgenden Pos. schieben";

@@ -9,7 +9,7 @@
 import Foundation
 
 public func delayWithSeconds(_ seconds: Double, closure: @escaping () -> ()) {
-    DispatchQueue.main.asyncAfter(deadline: .now() + seconds, qos: .userInitiated) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + seconds, qos: .default) {
         closure()
     }
 }

@@ -105,7 +105,7 @@
 "DVo-aG-piG.title" = "Schließen";
 
 /* Class = "NSButtonCell"; title = "Focus Filter Field"; ObjectID = "dwD-8M-CBO"; */
-"dwD-8M-CBO.title" = "Fokusiere Filter Feld";
+"dwD-8M-CBO.title" = "Fokusiere Filter";
 
 /* Class = "NSButtonCell"; title = "60"; ObjectID = "ekw-7H-qj1"; */
 "ekw-7H-qj1.title" = "60";
@@ -159,7 +159,7 @@
 "l7c-qL-Ath.title" = "Obere Grenze";
 
 /* Class = "NSTextFieldCell"; title = "Wait a number of seconds before looping after the position finished (for example to avoid looping too early)"; ObjectID = "MQb-sL-sbJ"; */
-"MQb-sL-sbJ.title" = "Wartezeit in Sekunden bevor die Position wiederholt wird (zum Beispiel um zu frühes Springen zu vermeiden)";
+"MQb-sL-sbJ.title" = "Wartezeit in Sekunden bevor die Position wiederholt wird";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "n27-Ni-WE3"; */
 "n27-Ni-WE3.title" = "x";
@@ -438,10 +438,10 @@
 "B6L-DL-PqA.title" = "Schriftart";
 
 /* Class = "NSButtonCell"; title = "Use Mono Font for Songs"; ObjectID = "OUP-oz-FBE"; */
-"OUP-oz-FBE.title" = "Mono Schrift für Lieder verwenden";
+"OUP-oz-FBE.title" = "Mono Schrift für Lieder";
 
 /* Class = "NSButtonCell"; title = "Use Mono Font for Positions"; ObjectID = "D27-I2-QtF"; */
-"D27-I2-QtF.title" = "Mono Schrift für Positionen verwenden";
+"D27-I2-QtF.title" = "Mono Schrift für Positionen";
 
 /* Class = "NSMenuItem"; title = "Reload List"; ObjectID = "rJe-5J-acX"; */
 "rJe-5J-acX.title" = "Liste neu laden";
@@ -479,3 +479,15 @@
 "Ti8-Dd-Hf7.title" = "Fenster";
 
 "Kzg-md-BnG.title" = "Liedauswahl";
+
+"RVl-Gl-i5T.title" = "Beats anzeigen";
+
+"z0e-vD-qbE.title" = "Anzeige nach Liedauswahl";
+
+"bdD-VI-P7y.title" = "Verhalten bei Beatänderung";
+
+"u5w-Sf-Vic.title" = "Konformitätsfaktor:";
+
+"0iU-M9-9sS.title" = "BPM ermitteln (click)";
+
+"azb-Av-CiL.title" = "Update Historie öffnen";

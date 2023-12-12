@@ -35,7 +35,7 @@ extension PositionXmlParser: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         
-        if string.contains("\n"){
+        if string.range(of: "^(\\n) +$", options: .regularExpression) != nil {
             return
         }
         
@@ -59,8 +59,7 @@ extension PositionXmlParser: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "position" {
-            self.song?.positions.append(self.position!)
-            self.song?.positionsChanged = true
+            self.song?.addPosition(self.position!)
         }
     }
     
