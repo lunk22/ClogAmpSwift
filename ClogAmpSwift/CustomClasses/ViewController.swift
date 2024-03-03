@@ -10,39 +10,10 @@ import AppKit
 
 class ViewController : NSViewController {
     
-//    private weak var _playerView: PlayerView?
-    
-//    override func viewDidAppear() {
-////        if let window = NSApplication.shared.windows.first(where: { window in
-////            return window.identifier?.rawValue ?? "" == "mainWindow"
-////        }) {
-////            let viewController = window.contentViewController as! MainView
-////            self._playerView = viewController.playerView
-////        }
-//
-//        super.viewDidAppear()
-//    }
-    
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
-//            case 30: // +
-//                self._playerView?.increaseSpeed()
-//            case 44: // -
-//                self._playerView?.decreaseSpeed()
-//            case 45: // N
-//                self._playerView?.resetSpeed()
-//            case 35: // P
-//                PlayerAudioEngine.shared.play()
-//            case 1: // S
-//                PlayerAudioEngine.shared.stop()
-                
             case 49: // Space
                 PlayerAudioEngine.shared.pause() // Menu doesn't react to space bar as key equivalent
-
-//            case 3: // F
-//                PlayerAudioEngine.shared.jump(Defaults.skipForward)
-//            case 11: // B
-//                PlayerAudioEngine.shared.jump((Defaults.skipBack * -1))
             default:
                 super.keyDown(with: event)
         }

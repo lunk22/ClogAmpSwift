@@ -117,47 +117,7 @@ class SongTableView: ViewController {
                     }
                 }
             default:
-                let currentSearchTime = mach_absolute_time() //nanoseconds
-                
-                //1ms = 1 000 000 ns
-                //500ms = 500 000 000 ns
-                if (currentSearchTime - self.lastSearchTime) < 500000000 || event.modifierFlags.contains(.shift) {
-                    //within search time or shift pressed?
-                    if event.modifierFlags.contains(.shift) {
-                        //shift pressed => even within 500ms = new search
-                        self.searchSting  = event.charactersIgnoringModifiers ?? ""
-                    }else{
-                        self.searchSting += event.charactersIgnoringModifiers ?? ""
-                    }
-                    
-                    self.lastSearchTime  = currentSearchTime
-                    
-                    self.searchTimer?.invalidate()
-                    
-                    self.searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: {
-                        timer in
-                        //do stuff
-                        for song in self.aSongsForTable {
-                            if song.getValueAsString("title").starts(with: self.searchSting) {
-                                do {
-                                    let index = self.aSongsForTable.firstIndex(where: {
-                                        songElement in
-                                        return song === songElement
-                                    }) ?? -1
-                                
-                                    if index >= 0 {
-                                        self.songTable.selectRowIndexes([index], byExtendingSelection: false)
-                                        self.songTable.scrollRowToVisible(index)
-                                        break //stop the for loop, we found the line
-                                    }
-                                }
-                            }
-                        }
-                    })
-                    
-                }else{
-                    self.mainView?.keyDown(with: event)
-                }
+                self.mainView?.keyDown(with: event)
         }
     }
     
@@ -382,11 +342,16 @@ class SongTableView: ViewController {
     @IBAction func onEndEditing(_ sender: NSTextField) {
         let iRow = self.songTable.row(for: sender)
         let iCol = self.songTable.column(for: sender)
+
+        if(iRow < 0 || iCol < 0){
+            return;
+        }
+
         let oCol = self.songTable.tableColumns[iCol]
         
         let text = sender.stringValue
         let identifier = oCol.identifier.rawValue
-        
+
         let song = self.aSongsForTable[iRow]
         
         switch identifier {

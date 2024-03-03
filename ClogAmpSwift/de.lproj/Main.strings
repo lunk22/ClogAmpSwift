@@ -14,9 +14,6 @@
 /* Class = "NSMenuItem"; title = "Tools"; ObjectID = "1z7-FS-h8l"; */
 "1z7-FS-h8l.title" = "Werkzeuge";
 
-/* Class = "NSMenuItem"; title = "Increase Speed"; ObjectID = "29Q-si-zFB"; */
-"29Q-si-zFB.title" = "Tempo erhöhen";
-
 /* Class = "NSTextFieldCell"; placeholderString = "0%"; ObjectID = "2Bw-uw-4pO"; */
 "2Bw-uw-4pO.placeholderString" = "0%";
 
@@ -44,9 +41,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "BPM"; ObjectID = "7I5-S5-XyB"; */
 "7I5-S5-XyB.headerCell.title" = "BPM";
 
-/* Class = "NSMenuItem"; title = "Reset Speed"; ObjectID = "7pX-sO-eAU"; */
-"7pX-sO-eAU.title" = "Tempo zurücksetzen";
-
 /* Class = "NSTabViewItem"; label = "Songs"; ObjectID = "84A-Vs-Rhv"; */
 "84A-Vs-Rhv.label" = "Lieder";
 
@@ -58,9 +52,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "8MF-KG-Jq5"; */
 "8MF-KG-Jq5.headerCell.title" = "Name";
-
-/* Class = "NSTableColumn"; headerCell.title = "Speed"; ObjectID = "9ft-gW-ecw"; */
-"9ft-gW-ecw.headerCell.title" = "Tempo";
 
 /* Class = "NSTableColumn"; headerCell.title = "File"; ObjectID = "A7y-NU-Fnc"; */
 "A7y-NU-Fnc.headerCell.title" = "Datei";
@@ -98,9 +89,6 @@
 /* Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ"; */
 "dMs-cI-mzQ.title" = "Datei";
 
-/* Class = "NSTextFieldCell"; title = "Speed"; ObjectID = "dOs-ll-4nC"; */
-"dOs-ll-4nC.title" = "Tempo";
-
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
 "DVo-aG-piG.title" = "Schließen";
 
@@ -118,9 +106,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "EZL-nN-5Iw"; */
 "EZL-nN-5Iw.title" = "Table View Cell";
-
-/* Class = "NSMenuItem"; title = "Decrease Speed"; ObjectID = "f7m-rQ-0TS"; */
-"f7m-rQ-0TS.title" = "Tempo verringern";
 
 /* Class = "NSBox"; title = "Controls"; ObjectID = "fC8-zM-O70"; */
 "fC8-zM-O70.title" = "Steuerelemente";
@@ -491,3 +476,22 @@
 "0iU-M9-9sS.title" = "BPM ermitteln (click)";
 
 "azb-Av-CiL.title" = "Update Historie öffnen";
+
+"Z0V-8Y-vtk.title" = "Alles markieren";
+
+"iSe-Lz-p3s.title" = "Lied speichern";
+
+/* Tempo */
+"9ft-gW-ecw.headerCell.title" = "Tempo";
+"dOs-ll-4nC.title" = "Tempo";
+"x61-5M-0zu.title" = "Tempo";
+"29Q-si-zFB.title" = "Tempo erhöhen (1%)";
+"dXQ-TJ-el7.title" = "Tempo erhöhen (5%)";
+"f7m-rQ-0TS.title" = "Tempo verringern (1%)";
+"cHg-fz-2CY.title" = "Tempo verringern (5%)";
+"7pX-sO-eAU.title" = "Tempo zurücksetzen";
+
+/* Positionen */
+
+"Wgk-gG-Efk.title" = "Position einfügen";
+"GZP-5g-uFi.title" = "Position entfernen";
