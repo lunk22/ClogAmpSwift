@@ -216,6 +216,26 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
     @IBAction func handleAddPosition(_ sender: NSButton) {
         if let song = PlayerAudioEngine.shared.song {
             var currentTime = PlayerAudioEngine.shared.getCurrentTime() //Seconds
+
+            switch AppPreferences.addPositionBehaviour {
+                case 1: // Adjust by beats
+                    if song.bpm > 0 {
+                        let secPerBeat = Double(60)/Double(song.bpm)
+                        let offset = secPerBeat * Double(AppPreferences.addPositionOffset)
+                        currentTime += offset
+                    }
+                    break
+                case 2: // Adjust by seconds
+                    currentTime += Double(AppPreferences.addPositionOffset)
+                    break
+                default: // No adjustments
+                    currentTime = currentTime * 1
+            }
+            
+            if currentTime < 0 {
+                currentTime = 0
+            }
+
             currentTime *= 1000 //Milliseconds
             song.addPosition( Position( name: "Name", comment: "", time: UInt(lround(currentTime)), new: true) )
             self.refreshTable(single: true)

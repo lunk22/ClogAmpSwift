@@ -330,7 +330,7 @@ class PlayerAudioEngine {
         sampleTime = min(sampleTime, audioFile?.length ?? 0)
         sampleTime = max(sampleTime, 0)
         let calculatedCurrentTime = (Double(sampleTime) / sampleRate)
-        return rounded ? calculatedCurrentTime.rounded() : calculatedCurrentTime
+        return rounded ? calculatedCurrentTime.rounded(.down) : calculatedCurrentTime
     }
     
     func getDuration() -> Double { // time in seconds

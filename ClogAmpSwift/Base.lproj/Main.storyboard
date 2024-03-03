@@ -788,21 +788,21 @@ IA
                 <customObject id="AcR-4G-Jdu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Preferences" showSeguePresentationStyle="single" id="TPq-mw-tuz" customClass="PreferenceView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rgJ-nY-pu0">
-                        <rect key="frame" x="0.0" y="0.0" width="654" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="654" height="745"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tabView fixedFrame="YES" initialItem="K8K-xe-QFe" translatesAutoresizingMaskIntoConstraints="NO" id="tLC-5S-UR2">
-                                <rect key="frame" x="0.0" y="2" width="654" height="698"/>
+                                <rect key="frame" x="0.0" y="2" width="654" height="743"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Application" identifier="" id="K8K-xe-QFe">
                                         <view key="view" id="jkI-4W-dPL">
-                                            <rect key="frame" x="10" y="33" width="634" height="652"/>
+                                            <rect key="frame" x="10" y="33" width="634" height="697"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box fixedFrame="YES" title="Music / Player" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-uo-oq7">
-                                                    <rect key="frame" x="6" y="369" width="296" height="196"/>
+                                                    <rect key="frame" x="6" y="414" width="296" height="196"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="XfW-YU-KBd">
                                                         <rect key="frame" x="4" y="5" width="288" height="176"/>
@@ -876,7 +876,7 @@ IA
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="App Start" translatesAutoresizingMaskIntoConstraints="NO" id="KI2-HL-1bJ">
-                                                    <rect key="frame" x="6" y="574" width="296" height="76"/>
+                                                    <rect key="frame" x="6" y="619" width="296" height="76"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="WzN-ka-ELu">
                                                         <rect key="frame" x="4" y="5" width="288" height="56"/>
@@ -897,7 +897,7 @@ IA
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Font" translatesAutoresizingMaskIntoConstraints="NO" id="B6L-DL-PqA">
-                                                    <rect key="frame" x="6" y="253" width="296" height="112"/>
+                                                    <rect key="frame" x="6" y="298" width="296" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="mAF-Iu-Ncu">
                                                         <rect key="frame" x="4" y="5" width="288" height="92"/>
@@ -930,8 +930,231 @@ IA
                                                         </subviews>
                                                     </view>
                                                 </box>
+                                                <box fixedFrame="YES" title="Appearance" translatesAutoresizingMaskIntoConstraints="NO" id="SJi-NZ-Dod">
+                                                    <rect key="frame" x="304" y="619" width="324" height="76"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <view key="contentView" id="FMd-Sy-9Um">
+                                                        <rect key="frame" x="4" y="5" width="316" height="56"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <comboBox identifier="cbApperance" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BvG-6b-ivr">
+                                                                <rect key="frame" x="20" y="18" width="281" height="25"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="3" id="QW8-E5-D25">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </comboBoxCell>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="TPq-mw-tuz" id="Lg0-5h-Cy9"/>
+                                                                    <outlet property="delegate" destination="TPq-mw-tuz" id="7u0-Km-bJp"/>
+                                                                </connections>
+                                                            </comboBox>
+                                                        </subviews>
+                                                    </view>
+                                                </box>
+                                                <box fixedFrame="YES" title="Song Selection" translatesAutoresizingMaskIntoConstraints="NO" id="Kzg-md-BnG">
+                                                    <rect key="frame" x="6" y="180" width="296" height="114"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <view key="contentView" id="peL-Kk-3p9">
+                                                        <rect key="frame" x="4" y="5" width="288" height="94"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fqv-4Q-wQ0">
+                                                                <rect key="frame" x="18" y="58" width="252" height="16"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Open view after loading a song" id="z0e-vD-qbE">
+                                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <comboBox identifier="cbViewAfterSongLoad" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M4h-Fo-yXl">
+                                                                <rect key="frame" x="21" y="26" width="250" height="23"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="3" id="8ng-rC-ims">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </comboBoxCell>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="TPq-mw-tuz" id="ofI-SN-e42"/>
+                                                                    <outlet property="delegate" destination="TPq-mw-tuz" id="Nfq-LW-jOa"/>
+                                                                </connections>
+                                                            </comboBox>
+                                                        </subviews>
+                                                    </view>
+                                                </box>
+                                                <box fixedFrame="YES" title="Automatic Updates" translatesAutoresizingMaskIntoConstraints="NO" id="Vhr-lk-94f">
+                                                    <rect key="frame" x="6" y="110" width="296" height="66"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <view key="contentView" id="jBz-AC-Kd2">
+                                                        <rect key="frame" x="4" y="5" width="288" height="46"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Zq-cv-ECK">
+                                                                <rect key="frame" x="18" y="13" width="274" height="18"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ESL-n6-OYF">
+                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <connections>
+                                                                        <binding destination="Lkx-RH-zEQ" name="value" keyPath="automaticallyChecksForUpdates" id="PyB-hJ-Fds"/>
+                                                                    </connections>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="handleAutomaticUpdatesChange:" target="TPq-mw-tuz" id="zzz-W2-cDD"/>
+                                                                    <binding destination="Lkx-RH-zEQ" name="value" keyPath="automaticallyChecksForUpdates" id="CeI-tw-lzn"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </view>
+                                                </box>
+                                                <box fixedFrame="YES" title="Positions" translatesAutoresizingMaskIntoConstraints="NO" id="sAK-Pk-Jg2">
+                                                    <rect key="frame" x="304" y="180" width="324" height="430"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <view key="contentView" id="D6i-Oj-sZV">
+                                                        <rect key="frame" x="4" y="5" width="316" height="410"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GND-cm-b48">
+                                                                <rect key="frame" x="18" y="373" width="278" height="18"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <buttonCell key="cell" type="check" title="Play on Selection" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ttV-OR-48e">
+                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefPlayPositionOnSelection" id="a0q-f4-4ka"/>
+                                                                </connections>
+                                                            </button>
+                                                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="IUS-qU-cRj">
+                                                                <rect key="frame" x="20" y="364" width="286" height="5"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            </box>
+                                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugc-9v-5ZM">
+                                                                <rect key="frame" x="18" y="326" width="238" height="32"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" selectable="YES" title="Wait a number of seconds before looping after the position finished" id="MQb-sL-sbJ">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mtv-zb-6Ip">
+                                                                <rect key="frame" x="20" y="296" width="35" height="22"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="wex-T8-xsn">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <connections>
+                                                                    <action selector="setValue:" target="TPq-mw-tuz" id="h0o-bf-2HT"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRd-et-P7A">
+                                                                <rect key="frame" x="63" y="298" width="193" height="17"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="seconds" id="UUK-R8-ct4">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <box fixedFrame="YES" title="Beats" translatesAutoresizingMaskIntoConstraints="NO" id="Dii-Bq-nRe">
+                                                                <rect key="frame" x="17" y="145" width="282" height="132"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <view key="contentView" id="0AV-3d-aP0">
+                                                                    <rect key="frame" x="4" y="5" width="274" height="112"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eXy-ro-sXi">
+                                                                            <rect key="frame" x="18" y="75" width="236" height="18"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <buttonCell key="cell" type="check" title="Show Beats" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="RVl-Gl-i5T">
+                                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
+                                                                            <connections>
+                                                                                <action selector="handleShowBeatsChanged:" target="TPq-mw-tuz" id="GmB-I0-7hY"/>
+                                                                                <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefShowBeatsInPositionTable" id="0BH-3x-9xp"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWn-bH-tDV">
+                                                                            <rect key="frame" x="18" y="52" width="238" height="16"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Beat Change Behaviour" id="bdD-VI-P7y">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                        <comboBox identifier="cbBeatsChangeBehaviour" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pMD-Il-56O">
+                                                                            <rect key="frame" x="19" y="22" width="238" height="23"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="5" id="YXT-8k-CrA">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </comboBoxCell>
+                                                                            <connections>
+                                                                                <outlet property="dataSource" destination="TPq-mw-tuz" id="3dj-bn-KZu"/>
+                                                                                <outlet property="delegate" destination="TPq-mw-tuz" id="srI-c1-ufP"/>
+                                                                            </connections>
+                                                                        </comboBox>
+                                                                    </subviews>
+                                                                </view>
+                                                            </box>
+                                                            <box fixedFrame="YES" title="Behaviour when adding positions" translatesAutoresizingMaskIntoConstraints="NO" id="OSk-yu-1wF">
+                                                                <rect key="frame" x="17" y="31" width="282" height="110"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <view key="contentView" id="eg8-nA-DOj">
+                                                                    <rect key="frame" x="4" y="5" width="274" height="90"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <comboBox identifier="cbPositionAddBehaviour" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRY-2B-Xt6">
+                                                                            <rect key="frame" x="19" y="48" width="238" height="23"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="3" id="Lj5-J0-rUq">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </comboBoxCell>
+                                                                            <connections>
+                                                                                <outlet property="dataSource" destination="TPq-mw-tuz" id="Fgp-N1-WvW"/>
+                                                                                <outlet property="delegate" destination="TPq-mw-tuz" id="8Dr-Wy-hbe"/>
+                                                                            </connections>
+                                                                        </comboBox>
+                                                                        <textField identifier="txtAddPositionOffset" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YFD-gf-lF7">
+                                                                            <rect key="frame" x="120" y="20" width="35" height="22"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Qob-WP-So7">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                            <connections>
+                                                                                <action selector="setValue:" target="TPq-mw-tuz" id="U3f-b9-j1L"/>
+                                                                            </connections>
+                                                                        </textField>
+                                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="21f-dm-hxh">
+                                                                            <rect key="frame" x="18" y="23" width="96" height="16"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Offset" id="8V2-7Q-jVU">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                    </subviews>
+                                                                </view>
+                                                            </box>
+                                                        </subviews>
+                                                    </view>
+                                                </box>
                                                 <box fixedFrame="YES" title="BPM Correction" translatesAutoresizingMaskIntoConstraints="NO" id="8dq-r9-d9O">
-                                                    <rect key="frame" x="304" y="137" width="324" height="112"/>
+                                                    <rect key="frame" x="304" y="64" width="324" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="rA3-4o-7L5">
                                                         <rect key="frame" x="4" y="5" width="316" height="92"/>
@@ -982,91 +1205,11 @@ IA
                                                         </subviews>
                                                     </view>
                                                 </box>
-                                                <box fixedFrame="YES" title="Appearance" translatesAutoresizingMaskIntoConstraints="NO" id="SJi-NZ-Dod">
-                                                    <rect key="frame" x="304" y="574" width="324" height="76"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <view key="contentView" id="FMd-Sy-9Um">
-                                                        <rect key="frame" x="4" y="5" width="316" height="56"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <subviews>
-                                                            <comboBox identifier="cbApperance" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BvG-6b-ivr">
-                                                                <rect key="frame" x="20" y="18" width="281" height="25"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="3" id="QW8-E5-D25">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </comboBoxCell>
-                                                                <connections>
-                                                                    <outlet property="dataSource" destination="TPq-mw-tuz" id="Lg0-5h-Cy9"/>
-                                                                    <outlet property="delegate" destination="TPq-mw-tuz" id="7u0-Km-bJp"/>
-                                                                </connections>
-                                                            </comboBox>
-                                                        </subviews>
-                                                    </view>
-                                                </box>
-                                                <box fixedFrame="YES" title="Song Selection" translatesAutoresizingMaskIntoConstraints="NO" id="Kzg-md-BnG">
-                                                    <rect key="frame" x="6" y="135" width="296" height="114"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <view key="contentView" id="peL-Kk-3p9">
-                                                        <rect key="frame" x="4" y="5" width="288" height="94"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <subviews>
-                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fqv-4Q-wQ0">
-                                                                <rect key="frame" x="18" y="58" width="252" height="16"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Open view after loading a song" id="z0e-vD-qbE">
-                                                                    <font key="font" usesAppearanceFont="YES"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                            <comboBox identifier="cbViewAfterSongLoad" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M4h-Fo-yXl">
-                                                                <rect key="frame" x="21" y="26" width="250" height="23"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="3" id="8ng-rC-ims">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </comboBoxCell>
-                                                                <connections>
-                                                                    <outlet property="dataSource" destination="TPq-mw-tuz" id="ofI-SN-e42"/>
-                                                                    <outlet property="delegate" destination="TPq-mw-tuz" id="Nfq-LW-jOa"/>
-                                                                </connections>
-                                                            </comboBox>
-                                                        </subviews>
-                                                    </view>
-                                                </box>
-                                                <box fixedFrame="YES" title="Automatic Updates" translatesAutoresizingMaskIntoConstraints="NO" id="Vhr-lk-94f">
-                                                    <rect key="frame" x="6" y="65" width="296" height="66"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <view key="contentView" id="jBz-AC-Kd2">
-                                                        <rect key="frame" x="4" y="5" width="288" height="46"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <subviews>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Zq-cv-ECK">
-                                                                <rect key="frame" x="18" y="13" width="274" height="18"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ESL-n6-OYF">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <connections>
-                                                                        <binding destination="Lkx-RH-zEQ" name="value" keyPath="automaticallyChecksForUpdates" id="PyB-hJ-Fds"/>
-                                                                    </connections>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="handleAutomaticUpdatesChange:" target="TPq-mw-tuz" id="zzz-W2-cDD"/>
-                                                                    <binding destination="Lkx-RH-zEQ" name="value" keyPath="automaticallyChecksForUpdates" id="CeI-tw-lzn"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                    </view>
-                                                </box>
                                                 <box fixedFrame="YES" title="Filter" translatesAutoresizingMaskIntoConstraints="NO" id="W67-B7-aws">
-                                                    <rect key="frame" x="304" y="35" width="324" height="96"/>
+                                                    <rect key="frame" x="6" y="10" width="296" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="zNg-Zu-61E">
-                                                        <rect key="frame" x="4" y="5" width="316" height="76"/>
+                                                        <rect key="frame" x="4" y="5" width="288" height="76"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Yn-1S-0iC">
@@ -1097,115 +1240,16 @@ IA
                                                         </subviews>
                                                     </view>
                                                 </box>
-                                                <box fixedFrame="YES" title="Positions" translatesAutoresizingMaskIntoConstraints="NO" id="sAK-Pk-Jg2">
-                                                    <rect key="frame" x="304" y="253" width="324" height="312"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <view key="contentView" id="D6i-Oj-sZV">
-                                                        <rect key="frame" x="4" y="5" width="316" height="292"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <subviews>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GND-cm-b48">
-                                                                <rect key="frame" x="18" y="255" width="278" height="18"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <buttonCell key="cell" type="check" title="Play on Selection" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ttV-OR-48e">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefPlayPositionOnSelection" id="a0q-f4-4ka"/>
-                                                                </connections>
-                                                            </button>
-                                                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="IUS-qU-cRj">
-                                                                <rect key="frame" x="20" y="246" width="286" height="5"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            </box>
-                                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugc-9v-5ZM">
-                                                                <rect key="frame" x="18" y="208" width="238" height="32"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <textFieldCell key="cell" selectable="YES" title="Wait a number of seconds before looping after the position finished" id="MQb-sL-sbJ">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mtv-zb-6Ip">
-                                                                <rect key="frame" x="20" y="178" width="35" height="22"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="wex-T8-xsn">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                                <connections>
-                                                                    <action selector="setValue:" target="TPq-mw-tuz" id="h0o-bf-2HT"/>
-                                                                </connections>
-                                                            </textField>
-                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRd-et-P7A">
-                                                                <rect key="frame" x="63" y="180" width="193" height="17"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="seconds" id="UUK-R8-ct4">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                            <box fixedFrame="YES" title="Beats" translatesAutoresizingMaskIntoConstraints="NO" id="Dii-Bq-nRe">
-                                                                <rect key="frame" x="17" y="27" width="282" height="132"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <view key="contentView" id="0AV-3d-aP0">
-                                                                    <rect key="frame" x="4" y="5" width="274" height="112"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <subviews>
-                                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eXy-ro-sXi">
-                                                                            <rect key="frame" x="18" y="75" width="236" height="18"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                            <buttonCell key="cell" type="check" title="Show Beats" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="RVl-Gl-i5T">
-                                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                                <font key="font" metaFont="system"/>
-                                                                            </buttonCell>
-                                                                            <connections>
-                                                                                <action selector="handleShowBeatsChanged:" target="TPq-mw-tuz" id="GmB-I0-7hY"/>
-                                                                                <binding destination="gXa-Cn-Nwj" name="value" keyPath="values.prefShowBeatsInPositionTable" id="0BH-3x-9xp"/>
-                                                                            </connections>
-                                                                        </button>
-                                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWn-bH-tDV">
-                                                                            <rect key="frame" x="18" y="52" width="238" height="16"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Beat Change Behaviour" id="bdD-VI-P7y">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                        <comboBox identifier="cbBeatsChangeBehaviour" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pMD-Il-56O">
-                                                                            <rect key="frame" x="19" y="22" width="238" height="23"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="5" id="YXT-8k-CrA">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                            </comboBoxCell>
-                                                                            <connections>
-                                                                                <outlet property="dataSource" destination="TPq-mw-tuz" id="3dj-bn-KZu"/>
-                                                                                <outlet property="delegate" destination="TPq-mw-tuz" id="srI-c1-ufP"/>
-                                                                            </connections>
-                                                                        </comboBox>
-                                                                    </subviews>
-                                                                </view>
-                                                            </box>
-                                                        </subviews>
-                                                    </view>
-                                                </box>
                                             </subviews>
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Icon" identifier="" id="xQu-NP-vS3">
                                         <view key="view" id="7wO-cn-abr">
-                                            <rect key="frame" x="10" y="33" width="634" height="652"/>
+                                            <rect key="frame" x="10" y="33" width="634" height="697"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box fixedFrame="YES" title="Select Icon when App is running" translatesAutoresizingMaskIntoConstraints="NO" id="PTi-iI-tup">
-                                                    <rect key="frame" x="6" y="546" width="435" height="104"/>
+                                                    <rect key="frame" x="6" y="591" width="435" height="104"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="VA6-IH-pSH">
                                                         <rect key="frame" x="4" y="5" width="427" height="84"/>
@@ -1300,9 +1344,11 @@ IA
                     </view>
                     <connections>
                         <outlet property="boxAppearance" destination="SJi-NZ-Dod" id="nIX-R7-FOF"/>
+                        <outlet property="cbAddPositionBehaviour" destination="iRY-2B-Xt6" id="mnC-Xj-B0F"/>
                         <outlet property="cbBeatsChangeBehaviour" destination="pMD-Il-56O" id="jb9-i7-UpT"/>
                         <outlet property="cbViewAfterSongLoad" destination="M4h-Fo-yXl" id="P34-hj-8AN"/>
                         <outlet property="ddlbAppearance" destination="BvG-6b-ivr" id="E2d-hU-3nr"/>
+                        <outlet property="txtAddPositionOffset" destination="YFD-gf-lF7" id="Kdr-Jc-e01"/>
                         <outlet property="txtBpmLowerBound" destination="OE0-k3-QN3" id="Boy-Qy-HMp"/>
                         <outlet property="txtBpmUpperBound" destination="vO2-KA-pvo" id="C43-b2-D18"/>
                         <outlet property="txtLoopDelay" destination="mtv-zb-6Ip" id="see-ko-RA6"/>
@@ -1313,7 +1359,7 @@ IA
                 <customObject id="Lkx-RH-zEQ" customClass="SUUpdater"/>
                 <userDefaultsController id="gXa-Cn-Nwj"/>
             </objects>
-            <point key="canvasLocation" x="-6192" y="2771"/>
+            <point key="canvasLocation" x="-6192" y="2793.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="mFd-az-OET">

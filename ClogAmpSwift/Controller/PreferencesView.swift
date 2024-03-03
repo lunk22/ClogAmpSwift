@@ -21,7 +21,9 @@ class PreferenceView: ViewController {
     @IBOutlet weak var ddlbAppearance: NSComboBox!
     @IBOutlet weak var cbViewAfterSongLoad: NSComboBox!
     @IBOutlet weak var cbBeatsChangeBehaviour: NSComboBox!
-    
+    @IBOutlet weak var cbAddPositionBehaviour: NSComboBox!
+    @IBOutlet weak var txtAddPositionOffset: NSTextField!
+
     //Overrides
     override func viewDidLoad() {
         self.txtSkipForward.integerValue   = AppPreferences.skipForward
@@ -29,11 +31,13 @@ class PreferenceView: ViewController {
         self.txtBpmUpperBound.integerValue = AppPreferences.bpmUpperBound
         self.txtBpmLowerBound.integerValue = AppPreferences.bpmLowerBound
         self.txtLoopDelay.doubleValue      = AppPreferences.loopDelay
-                
+        self.txtAddPositionOffset.integerValue = AppPreferences.addPositionOffset
+
         self.ddlbAppearance.selectItem(at: AppPreferences.appearance)
         self.cbViewAfterSongLoad.selectItem(at: AppPreferences.viewAfterSongLoad)
         self.cbBeatsChangeBehaviour.selectItem(at: AppPreferences.beatsChangeBehaviour)
-        
+        self.cbAddPositionBehaviour.selectItem(at: AppPreferences.addPositionBehaviour)
+
         if #available(OSX 10.14, *) {
             self.boxAppearance.isHidden = false
         }else{
@@ -63,6 +67,8 @@ class PreferenceView: ViewController {
             UserDefaults.standard.set(self.txtBpmLowerBound.integerValue, forKey: "prefBpmLowerBound")
         }else if sender === self.txtLoopDelay! {
             UserDefaults.standard.set(self.txtLoopDelay.doubleValue, forKey: "prefLoopDelay")
+        }else if sender === self.txtAddPositionOffset! {
+            UserDefaults.standard.set(self.txtAddPositionOffset.integerValue, forKey: "prefAddPositionOffset")
         }
     }
     
@@ -98,8 +104,10 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
             return 3 //Empty, Positions, PDF
         } else if comboBox.identifier?.rawValue == "cbBeatsChangeBehaviour" {
             return 2 //Adjust next position, move all following positions
+        } else if comboBox.identifier?.rawValue == "cbPositionAddBehaviour" {
+            return 3 // Adjust by beats, by seconds, no adjustments
         }
-        
+
         return 0
     }
     
@@ -135,8 +143,19 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
                 default:
                     return NSString(string: "")
             }
+        } else if comboBox.identifier?.rawValue == "cbPositionAddBehaviour" {
+            switch index {
+                case 0:
+                    return NSLocalizedString("addPositionBehaviourNoChange", bundle: Bundle.main, comment: "") as NSString
+                case 1:
+                    return NSLocalizedString("addPositionBehaviourAdjustBeats", bundle: Bundle.main, comment: "") as NSString
+                case 2:
+                    return NSLocalizedString("addPositionBehaviourAdjustSeconds", bundle: Bundle.main, comment: "") as NSString
+                default:
+                    return NSString(string: "")
+            }
         }
-        
+
         return NSString(string: "")
         
     }
@@ -149,7 +168,9 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
             UserDefaults.standard.set(self.cbViewAfterSongLoad.indexOfSelectedItem, forKey: "prefViewAfterSongLoad")
         } else if uiElement.identifier?.rawValue == "cbBeatsChangeBehaviour" {
             UserDefaults.standard.set(self.cbBeatsChangeBehaviour.indexOfSelectedItem, forKey: "prefBeatsChangeBehaviour")
+        } else if uiElement.identifier?.rawValue == "cbPositionAddBehaviour" {
+            UserDefaults.standard.set(self.cbAddPositionBehaviour.indexOfSelectedItem, forKey: "prefAddPositionBehaviour")
         }
-        
+
     }
 }

@@ -10,6 +10,19 @@ import Foundation
 
 class AppPreferences {
     
+    static var addPositionBehaviour: Int {
+        var prefAddPositionBehaviour = UserDefaults.standard.integer(forKey: "prefAddPositionBehaviour")
+        if(prefAddPositionBehaviour < 0 || prefAddPositionBehaviour > 2){
+            prefAddPositionBehaviour = 0
+        }
+        return prefAddPositionBehaviour
+    }
+
+    static var addPositionOffset: Int {
+        var prefAddPositionOffset = UserDefaults.standard.integer(forKey: "prefAddPositionOffset")
+        return prefAddPositionOffset
+    }
+
     static var appearance: Int {
         var prefAppearance = UserDefaults.standard.integer(forKey: "prefAppearance")
         if(prefAppearance < 0 || prefAppearance > 2){
