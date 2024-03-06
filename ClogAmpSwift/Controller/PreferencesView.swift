@@ -23,6 +23,9 @@ class PreferenceView: ViewController {
     @IBOutlet weak var cbBeatsChangeBehaviour: NSComboBox!
     @IBOutlet weak var cbAddPositionBehaviour: NSComboBox!
     @IBOutlet weak var txtAddPositionOffset: NSTextField!
+    @IBOutlet weak var cwHighlightColor: NSColorWell!
+    @IBOutlet weak var cwTextColor: NSColorWell!
+    
 
     //Overrides
     override func viewDidLoad() {
@@ -37,6 +40,9 @@ class PreferenceView: ViewController {
         self.cbViewAfterSongLoad.selectItem(at: AppPreferences.viewAfterSongLoad)
         self.cbBeatsChangeBehaviour.selectItem(at: AppPreferences.beatsChangeBehaviour)
         self.cbAddPositionBehaviour.selectItem(at: AppPreferences.addPositionBehaviour)
+        
+        self.cwHighlightColor.color = AppPreferences.positionHighlightColor
+        self.cwTextColor.color = AppPreferences.positionTextColor
 
         if #available(OSX 10.14, *) {
             self.boxAppearance.isHidden = false
@@ -83,6 +89,21 @@ class PreferenceView: ViewController {
                     }
                 }
             }
+        }
+    }
+    
+    @IBAction func handleColorSelected(_ sender: Any) {
+        switch sender as! NSColorWell {
+            case self.cwHighlightColor:
+                if let data = try? NSKeyedArchiver.archivedData(withRootObject: self.cwHighlightColor.color, requiringSecureCoding: false) {
+                    UserDefaults.standard.set(data, forKey: "prefPositionHighlightColor")
+                }
+            case self.cwTextColor:
+                if let data = try? NSKeyedArchiver.archivedData(withRootObject: self.cwTextColor.color, requiringSecureCoding: false) {
+                    UserDefaults.standard.set(data, forKey: "prefPositionTextColor")
+                }
+            default:
+                return
         }
     }
     

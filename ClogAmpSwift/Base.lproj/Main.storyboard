@@ -788,21 +788,21 @@ IA
                 <customObject id="AcR-4G-Jdu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Preferences" showSeguePresentationStyle="single" id="TPq-mw-tuz" customClass="PreferenceView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rgJ-nY-pu0">
-                        <rect key="frame" x="0.0" y="0.0" width="654" height="745"/>
+                        <rect key="frame" x="0.0" y="0.0" width="654" height="856"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tabView fixedFrame="YES" initialItem="K8K-xe-QFe" translatesAutoresizingMaskIntoConstraints="NO" id="tLC-5S-UR2">
-                                <rect key="frame" x="0.0" y="2" width="654" height="743"/>
+                                <rect key="frame" x="0.0" y="2" width="654" height="854"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Application" identifier="" id="K8K-xe-QFe">
                                         <view key="view" id="jkI-4W-dPL">
-                                            <rect key="frame" x="10" y="33" width="634" height="697"/>
+                                            <rect key="frame" x="10" y="33" width="634" height="808"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box fixedFrame="YES" title="Music / Player" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-uo-oq7">
-                                                    <rect key="frame" x="6" y="414" width="296" height="196"/>
+                                                    <rect key="frame" x="6" y="525" width="296" height="196"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="XfW-YU-KBd">
                                                         <rect key="frame" x="4" y="5" width="288" height="176"/>
@@ -876,7 +876,7 @@ IA
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="App Start" translatesAutoresizingMaskIntoConstraints="NO" id="KI2-HL-1bJ">
-                                                    <rect key="frame" x="6" y="619" width="296" height="76"/>
+                                                    <rect key="frame" x="6" y="730" width="296" height="76"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="WzN-ka-ELu">
                                                         <rect key="frame" x="4" y="5" width="288" height="56"/>
@@ -897,7 +897,7 @@ IA
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Font" translatesAutoresizingMaskIntoConstraints="NO" id="B6L-DL-PqA">
-                                                    <rect key="frame" x="6" y="298" width="296" height="112"/>
+                                                    <rect key="frame" x="6" y="409" width="296" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="mAF-Iu-Ncu">
                                                         <rect key="frame" x="4" y="5" width="288" height="92"/>
@@ -931,7 +931,7 @@ IA
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Appearance" translatesAutoresizingMaskIntoConstraints="NO" id="SJi-NZ-Dod">
-                                                    <rect key="frame" x="304" y="619" width="324" height="76"/>
+                                                    <rect key="frame" x="304" y="730" width="324" height="76"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="FMd-Sy-9Um">
                                                         <rect key="frame" x="4" y="5" width="316" height="56"/>
@@ -954,7 +954,7 @@ IA
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Song Selection" translatesAutoresizingMaskIntoConstraints="NO" id="Kzg-md-BnG">
-                                                    <rect key="frame" x="6" y="180" width="296" height="114"/>
+                                                    <rect key="frame" x="6" y="291" width="296" height="114"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="peL-Kk-3p9">
                                                         <rect key="frame" x="4" y="5" width="288" height="94"/>
@@ -986,7 +986,7 @@ IA
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Automatic Updates" translatesAutoresizingMaskIntoConstraints="NO" id="Vhr-lk-94f">
-                                                    <rect key="frame" x="6" y="110" width="296" height="66"/>
+                                                    <rect key="frame" x="6" y="221" width="296" height="66"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="jBz-AC-Kd2">
                                                         <rect key="frame" x="4" y="5" width="288" height="46"/>
@@ -1011,14 +1011,14 @@ IA
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Positions" translatesAutoresizingMaskIntoConstraints="NO" id="sAK-Pk-Jg2">
-                                                    <rect key="frame" x="304" y="180" width="324" height="430"/>
+                                                    <rect key="frame" x="304" y="121" width="324" height="600"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="D6i-Oj-sZV">
-                                                        <rect key="frame" x="4" y="5" width="316" height="410"/>
+                                                        <rect key="frame" x="4" y="5" width="316" height="580"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GND-cm-b48">
-                                                                <rect key="frame" x="18" y="373" width="278" height="18"/>
+                                                                <rect key="frame" x="18" y="543" width="278" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="Play on Selection" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ttV-OR-48e">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1029,11 +1029,11 @@ IA
                                                                 </connections>
                                                             </button>
                                                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="IUS-qU-cRj">
-                                                                <rect key="frame" x="20" y="364" width="286" height="5"/>
+                                                                <rect key="frame" x="20" y="534" width="286" height="5"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             </box>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugc-9v-5ZM">
-                                                                <rect key="frame" x="18" y="326" width="238" height="32"/>
+                                                                <rect key="frame" x="18" y="496" width="238" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" selectable="YES" title="Wait a number of seconds before looping after the position finished" id="MQb-sL-sbJ">
                                                                     <font key="font" metaFont="system"/>
@@ -1042,7 +1042,7 @@ IA
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mtv-zb-6Ip">
-                                                                <rect key="frame" x="20" y="296" width="35" height="22"/>
+                                                                <rect key="frame" x="20" y="466" width="35" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="wex-T8-xsn">
                                                                     <font key="font" metaFont="system"/>
@@ -1054,7 +1054,7 @@ IA
                                                                 </connections>
                                                             </textField>
                                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRd-et-P7A">
-                                                                <rect key="frame" x="63" y="298" width="193" height="17"/>
+                                                                <rect key="frame" x="63" y="468" width="193" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="seconds" id="UUK-R8-ct4">
                                                                     <font key="font" metaFont="system"/>
@@ -1063,7 +1063,7 @@ IA
                                                                 </textFieldCell>
                                                             </textField>
                                                             <box fixedFrame="YES" title="Beats" translatesAutoresizingMaskIntoConstraints="NO" id="Dii-Bq-nRe">
-                                                                <rect key="frame" x="17" y="145" width="282" height="132"/>
+                                                                <rect key="frame" x="17" y="315" width="282" height="132"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <view key="contentView" id="0AV-3d-aP0">
                                                                     <rect key="frame" x="4" y="5" width="274" height="112"/>
@@ -1107,7 +1107,7 @@ IA
                                                                 </view>
                                                             </box>
                                                             <box fixedFrame="YES" title="Behaviour when adding positions" translatesAutoresizingMaskIntoConstraints="NO" id="OSk-yu-1wF">
-                                                                <rect key="frame" x="17" y="31" width="282" height="110"/>
+                                                                <rect key="frame" x="17" y="201" width="282" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <view key="contentView" id="eg8-nA-DOj">
                                                                     <rect key="frame" x="4" y="5" width="274" height="90"/>
@@ -1150,14 +1150,69 @@ IA
                                                                     </subviews>
                                                                 </view>
                                                             </box>
+                                                            <box fixedFrame="YES" title="Highlighting" translatesAutoresizingMaskIntoConstraints="NO" id="IDp-W1-eVd">
+                                                                <rect key="frame" x="17" y="55" width="282" height="142"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <view key="contentView" id="LHR-jd-LfA">
+                                                                    <rect key="frame" x="4" y="5" width="274" height="122"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wJd-f1-w1H">
+                                                                            <rect key="frame" x="18" y="85" width="256" height="18"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <buttonCell key="cell" type="check" title="Highlight active position" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MaQ-rF-ZdF">
+                                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
+                                                                            <connections>
+                                                                                <binding destination="ghU-D8-vdx" name="value" keyPath="values.prefHighlightPosition" id="V0g-cq-PGa"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lYD-mt-Myn">
+                                                                            <rect key="frame" x="18" y="50" width="129" height="16"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Highlight Color" id="lVT-nd-Rg8">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zd9-aA-4dP">
+                                                                            <rect key="frame" x="18" y="18" width="129" height="16"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Text Color" id="VUH-Z5-vne">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                        <colorWell identifier="highlightColor" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qnD-ed-5lQ">
+                                                                            <rect key="frame" x="150" y="44" width="44" height="28"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <color key="color" red="1" green="0.5411865381808082" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                            <connections>
+                                                                                <action selector="handleColorSelected:" target="TPq-mw-tuz" id="MJn-vU-REl"/>
+                                                                            </connections>
+                                                                        </colorWell>
+                                                                        <colorWell identifier="textColor" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IAi-9d-9Ql">
+                                                                            <rect key="frame" x="150" y="12" width="44" height="28"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                            <connections>
+                                                                                <action selector="handleColorSelected:" target="TPq-mw-tuz" id="qlA-DB-xGR"/>
+                                                                            </connections>
+                                                                        </colorWell>
+                                                                    </subviews>
+                                                                </view>
+                                                            </box>
                                                         </subviews>
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="BPM Correction" translatesAutoresizingMaskIntoConstraints="NO" id="8dq-r9-d9O">
-                                                    <rect key="frame" x="304" y="64" width="324" height="112"/>
+                                                    <rect key="frame" x="6" y="5" width="296" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="rA3-4o-7L5">
-                                                        <rect key="frame" x="4" y="5" width="316" height="92"/>
+                                                        <rect key="frame" x="4" y="5" width="288" height="92"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vO2-KA-pvo">
@@ -1206,7 +1261,7 @@ IA
                                                     </view>
                                                 </box>
                                                 <box fixedFrame="YES" title="Filter" translatesAutoresizingMaskIntoConstraints="NO" id="W67-B7-aws">
-                                                    <rect key="frame" x="6" y="10" width="296" height="96"/>
+                                                    <rect key="frame" x="6" y="121" width="296" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="zNg-Zu-61E">
                                                         <rect key="frame" x="4" y="5" width="288" height="76"/>
@@ -1245,11 +1300,11 @@ IA
                                     </tabViewItem>
                                     <tabViewItem label="Icon" identifier="" id="xQu-NP-vS3">
                                         <view key="view" id="7wO-cn-abr">
-                                            <rect key="frame" x="10" y="33" width="634" height="697"/>
+                                            <rect key="frame" x="10" y="33" width="634" height="808"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box fixedFrame="YES" title="Select Icon when App is running" translatesAutoresizingMaskIntoConstraints="NO" id="PTi-iI-tup">
-                                                    <rect key="frame" x="6" y="591" width="435" height="104"/>
+                                                    <rect key="frame" x="6" y="702" width="435" height="104"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="VA6-IH-pSH">
                                                         <rect key="frame" x="4" y="5" width="427" height="84"/>
@@ -1347,6 +1402,8 @@ IA
                         <outlet property="cbAddPositionBehaviour" destination="iRY-2B-Xt6" id="mnC-Xj-B0F"/>
                         <outlet property="cbBeatsChangeBehaviour" destination="pMD-Il-56O" id="jb9-i7-UpT"/>
                         <outlet property="cbViewAfterSongLoad" destination="M4h-Fo-yXl" id="P34-hj-8AN"/>
+                        <outlet property="cwHighlightColor" destination="qnD-ed-5lQ" id="VZU-0d-xnm"/>
+                        <outlet property="cwTextColor" destination="IAi-9d-9Ql" id="AGJ-mg-eUr"/>
                         <outlet property="ddlbAppearance" destination="BvG-6b-ivr" id="E2d-hU-3nr"/>
                         <outlet property="txtAddPositionOffset" destination="YFD-gf-lF7" id="Kdr-Jc-e01"/>
                         <outlet property="txtBpmLowerBound" destination="OE0-k3-QN3" id="Boy-Qy-HMp"/>
@@ -1358,8 +1415,9 @@ IA
                 </viewController>
                 <customObject id="Lkx-RH-zEQ" customClass="SUUpdater"/>
                 <userDefaultsController id="gXa-Cn-Nwj"/>
+                <userDefaultsController id="ghU-D8-vdx"/>
             </objects>
-            <point key="canvasLocation" x="-6192" y="2793.5"/>
+            <point key="canvasLocation" x="-6192" y="2849"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="mFd-az-OET">
