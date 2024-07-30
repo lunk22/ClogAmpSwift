@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AppPreferences {
+class AppPreferences: NSObject {
     
     static var addPositionBehaviour: Int {
         var prefAddPositionBehaviour = UserDefaults.standard.integer(forKey: "prefAddPositionBehaviour")
@@ -32,6 +32,11 @@ class AppPreferences {
     
     static var appIconName: String? {
         return UserDefaults.standard.string(forKey: "AppIconName")
+    }
+    
+    static var audioMetering: Bool {
+        return true
+//        return UserDefaults.standard.bool(forKey: "prefAudioMetering")
     }
     
     static var autoDetermineBpm: Bool {
@@ -69,6 +74,45 @@ class AppPreferences {
     
     static var countdownTime: Bool {
         return UserDefaults.standard.bool(forKey: "countTimeDown")
+    }
+    
+    static var eqFrequencyLow: Float {
+        return UserDefaults.standard.float(forKey: "eqFrequencyLow")
+    }
+    
+    static var eqFrequencyLowHz: Int {
+        var hzValue = UserDefaults.standard.integer(forKey: "eqFrequencyLowHz")
+        if hzValue == 0 {
+            hzValue = 80
+            UserDefaults.standard.set(hzValue, forKey: "eqFrequencyLowHz")
+        }
+        return hzValue
+    }
+    
+    static var eqFrequencyMid: Float {
+        return UserDefaults.standard.float(forKey: "eqFrequencyMid")
+    }
+    
+    static var eqFrequencyMidHz: Int {
+        var hzValue = UserDefaults.standard.integer(forKey: "eqFrequencyMidHz")
+        if hzValue == 0 {
+            hzValue = 2500
+            UserDefaults.standard.set(hzValue, forKey: "eqFrequencyMidHz")
+        }
+        return hzValue
+    }
+    
+    static var eqFrequencyHigh: Float {
+        return UserDefaults.standard.float(forKey: "eqFrequencyHigh")
+    }
+    
+    static var eqFrequencyHighHz: Int {
+        var hzValue = UserDefaults.standard.integer(forKey: "eqFrequencyHighHz")
+        if hzValue == 0 {
+            hzValue = 12000
+            UserDefaults.standard.set(hzValue, forKey: "eqFrequencyHighHz")
+        }
+        return hzValue
     }
     
     static var filterTitleFactor: Double {
@@ -144,6 +188,11 @@ class AppPreferences {
     
     static var positionTableShowBeats: Bool {
         return UserDefaults.standard.bool(forKey: "prefShowBeatsInPositionTable")
+    }
+    
+    static var showEqualizer: Bool {
+        return true;
+//        return UserDefaults.standard.bool(forKey: "prefShowEqualizer")
     }
     
     static var skipForward: Int {

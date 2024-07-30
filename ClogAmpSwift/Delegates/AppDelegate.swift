@@ -13,6 +13,13 @@ import MediaPlayer
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
+    override init() {
+        super.init()
+        
+        ValueTransformer.setValueTransformer( DecibelTransformer(), forName: .decibelTransformer )
+        ValueTransformer.setValueTransformer( HertzTransformer(), forName: .hertzTransformer )
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 //        if let appDomain = Bundle.main.bundleIdentifier {
 //            UserDefaults.standard.removePersistentDomain(forName: appDomain)
