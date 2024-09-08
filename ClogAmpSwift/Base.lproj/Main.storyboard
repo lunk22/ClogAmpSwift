@@ -733,7 +733,7 @@ CA
                                 </connections>
                             </tabView>
                             <containerView id="9sI-nV-Tep">
-                                <rect key="frame" x="262" y="0.0" width="588" height="189"/>
+                                <rect key="frame" x="262" y="4" width="588" height="189"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="jBr-hw-2XV" kind="embed" id="I7x-vZ-qrR"/>
