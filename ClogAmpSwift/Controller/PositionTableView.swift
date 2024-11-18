@@ -411,6 +411,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
                     }
                 case "beats":
                     // Guard Clauses
+                    if PlayerAudioEngine.shared.song?.bpm == 0 { self.refreshTable(single: true); return } // Song has no BPM. Reset
                     if !text.isInteger() || text.asInteger() < 0 { self.refreshTable(single: true); return } // not an int or negative int? just refresh to get the old value
                     if text.asInteger() == position.beats { return } // no change?
                     
