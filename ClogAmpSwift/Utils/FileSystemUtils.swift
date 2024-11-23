@@ -66,6 +66,8 @@ class FileSystemUtils {
             }
         }
         
+        print("\(aFileURLs.count) files found")
+        
         return aFileURLs
     }
     
@@ -89,7 +91,7 @@ class FileSystemUtils {
         for url in aUrls {
             
             queue.addOperation {
-                print("\(dateFormatter.string(from: Date())): Complete: \((currentIndex*100)/aUrls.count)%", to: &songLogger)
+                print("\(dateFormatter.string(from: Date())): Complete: \((currentIndex*100)/aUrls.count)% (\(currentIndex+1) / \(aUrls.count))", to: &songLogger)
                 print("\(dateFormatter.string(from: Date())): File processed: \(url.path)", to: &songLogger)
                 print("----------------------------------------------------", to: &songLogger)
                 

@@ -1,0 +1,15 @@
+{
+  "originHash" : "f4ed5b745a68a41b483477e4ce94967421dc538b86ecd19c11789825c735ca61",
+  "pins" : [
+    {
+      "identity" : "swift-html-to-pdf",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/coenttb/swift-html-to-pdf.git",
+      "state" : {
+        "revision" : "d4bcfc68f4874b6a561a9199b412187b87e7289d",
+        "version" : "0.3.0"
+      }
+    }
+  ],
+  "version" : 3
+}

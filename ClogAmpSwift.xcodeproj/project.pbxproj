@@ -18,8 +18,10 @@
 		50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAA207FF03D0020E218 /* AppDelegate.swift */; };
 		50A37BAD207FF03D0020E218 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAC207FF03D0020E218 /* MainView.swift */; };
 		50A37BB2207FF03E0020E218 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A37BB0207FF03E0020E218 /* Main.storyboard */; };
+		50A571BA2CEF85A600DB755B /* HtmlToPdf in Frameworks */ = {isa = PBXBuildFile; productRef = 50A571B92CEF85A600DB755B /* HtmlToPdf */; };
+		50A571BD2CEFA33E00DB755B /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A571BC2CEFA33E00DB755B /* NotificationDelegate.swift */; };
+		50A571BF2CF10EA600DB755B /* UpdateHistory.html in Resources */ = {isa = PBXBuildFile; fileRef = 50A571BE2CF10EA600DB755B /* UpdateHistory.html */; };
 		50AF239A2A5F2FAA0019A846 /* PlayerLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF23992A5F2FAA0019A846 /* PlayerLog.swift */; };
-		50DC6D862081D22F00B7C347 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D852081D22F00B7C347 /* Model.swift */; };
 		50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D872081D68100B7C347 /* PlayerView.swift */; };
 		B70A70EF2B06547E00059599 /* PlayerAudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70A70EE2B06547E00059599 /* PlayerAudioEngine.swift */; };
 		B70F180F221D781800FE1149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B70F180E221D781800FE1149 /* Assets.xcassets */; };
@@ -53,7 +55,6 @@
 		B7A3A9C0221AFCBD00CA5FE8 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */; };
 		B7A3A9C2221BE44400CA5FE8 /* CountdownWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */; };
 		B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */; };
-		B7A887B92382DA1B00C82399 /* CocoaPDFCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A887B82382DA1B00C82399 /* CocoaPDFCreator.swift */; };
 		B7B3A177237ACFC7009667CF /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3A176237ACFC7009667CF /* PlaylistView.swift */; };
 		B7B3A179237BDC70009667CF /* SwiftPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3A178237BDC70009667CF /* SwiftPlaylist.swift */; };
 		B7B3A17C237C09BC009667CF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7B3A17E237C09BC009667CF /* Localizable.strings */; };
@@ -126,8 +127,9 @@
 		50A37BB1207FF03E0020E218 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		50A37BB3207FF03E0020E218 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClogAmpSwift.entitlements; sourceTree = "<group>"; };
+		50A571BC2CEFA33E00DB755B /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		50A571BE2CF10EA600DB755B /* UpdateHistory.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = UpdateHistory.html; sourceTree = "<group>"; };
 		50AF23992A5F2FAA0019A846 /* PlayerLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLog.swift; sourceTree = "<group>"; };
-		50DC6D852081D22F00B7C347 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		50DC6D872081D68100B7C347 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		B70A70EE2B06547E00059599 /* PlayerAudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAudioEngine.swift; sourceTree = "<group>"; };
 		B70F180E221D781800FE1149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,7 +165,6 @@
 		B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownWindow.swift; sourceTree = "<group>"; };
 		B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionXmlParser.swift; sourceTree = "<group>"; };
-		B7A887B82382DA1B00C82399 /* CocoaPDFCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoaPDFCreator.swift; sourceTree = "<group>"; };
 		B7B3A176237ACFC7009667CF /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 		B7B3A178237BDC70009667CF /* SwiftPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPlaylist.swift; sourceTree = "<group>"; };
 		B7B3A17D237C09BC009667CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -221,6 +222,7 @@
 			files = (
 				B71364912B164A23009B800F /* CoreAudio.framework in Frameworks */,
 				B79853332217073500BDE678 /* libbass.dylib in Frameworks */,
+				50A571BA2CEF85A600DB755B /* HtmlToPdf in Frameworks */,
 				B72660532384070100111C8B /* Sparkle.framework in Frameworks */,
 				B7B46608237046D800AA9419 /* PDFKit.framework in Frameworks */,
 				50113FF8272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib in Frameworks */,
@@ -270,6 +272,7 @@
 				B7D7C4362B1A1E11007DCA96 /* PrimeAV.mp3 */,
 				B7F48C9C238FE9EF00C3DB01 /* Click.mp3 */,
 				50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */,
+				50A571BE2CF10EA600DB755B /* UpdateHistory.html */,
 				B7B3A17E237C09BC009667CF /* Localizable.strings */,
 			);
 			path = ClogAmpSwift;
@@ -302,7 +305,6 @@
 		50DC6D8A2081DA4B00B7C347 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				50DC6D852081D22F00B7C347 /* Model.swift */,
 				B7BD8F1A21F9A87E00532C1A /* Position.swift */,
 				504E5FA32080F4E0003DBA66 /* Song.swift */,
 				B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */,
@@ -319,7 +321,6 @@
 				B7DDFCB022141B3600637831 /* Tools.swift */,
 				B7B4660B23754EE600AA9419 /* StringScore.swift */,
 				B7D141512382B1F30056B042 /* PasteboardWriter.swift */,
-				B7A887B82382DA1B00C82399 /* CocoaPDFCreator.swift */,
 				50113FFA27324F0A00EEB9A1 /* SongLog.swift */,
 				50AF23992A5F2FAA0019A846 /* PlayerLog.swift */,
 				B7B765362B0F3D6E0019BF7C /* AppPreferences.swift */,
@@ -332,6 +333,7 @@
 		50DC6D8D2081F03E00B7C347 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				50A571BC2CEFA33E00DB755B /* NotificationDelegate.swift */,
 				50A37BAA207FF03D0020E218 /* AppDelegate.swift */,
 				50A09BAD22104BA800365544 /* TableViewDelegate.swift */,
 			);
@@ -491,6 +493,9 @@
 				de,
 			);
 			mainGroup = 50A37B9E207FF03D0020E218;
+			packageReferences = (
+				50A571B82CEF85A600DB755B /* XCRemoteSwiftPackageReference "swift-html-to-pdf" */,
+			);
 			productRefGroup = 50A37BA8207FF03D0020E218 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -510,6 +515,7 @@
 				B7C8358422250E5700CF3360 /* AppIconBlue.icns in Resources */,
 				B70F181A221D957700FE1149 /* AppIconYellow.icns in Resources */,
 				B70F1817221D957700FE1149 /* AppIconGreen.icns in Resources */,
+				50A571BF2CF10EA600DB755B /* UpdateHistory.html in Resources */,
 				B7F48C9D238FE9F000C3DB01 /* Click.mp3 in Resources */,
 				B70F181B221D957700FE1149 /* AppIconNeonGreen.icns in Resources */,
 				B7B3A17C237C09BC009667CF /* Localizable.strings in Resources */,
@@ -532,10 +538,8 @@
 				B7B3A18B237EC209009667CF /* Panel.swift in Sources */,
 				B7A3A9C0221AFCBD00CA5FE8 /* CountdownView.swift in Sources */,
 				50A09BAC22104B0A00365544 /* TableView.swift in Sources */,
-				50DC6D862081D22F00B7C347 /* Model.swift in Sources */,
 				50AF239A2A5F2FAA0019A846 /* PlayerLog.swift in Sources */,
 				B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */,
-				B7A887B92382DA1B00C82399 /* CocoaPDFCreator.swift in Sources */,
 				B7D7C4352B17382D007DCA96 /* BpmClickView.swift in Sources */,
 				50113FFB27324F0A00EEB9A1 /* SongLog.swift in Sources */,
 				B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */,
@@ -551,6 +555,7 @@
 				B7B3A189237EBCC0009667CF /* Window.swift in Sources */,
 				50043ED52080C76C0025DC2D /* FileSystemUtils.swift in Sources */,
 				B7DDFCB122141B3600637831 /* Tools.swift in Sources */,
+				50A571BD2CEFA33E00DB755B /* NotificationDelegate.swift in Sources */,
 				B70A70EF2B06547E00059599 /* PlayerAudioEngine.swift in Sources */,
 				50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */,
 				B72299232202D0EA00AEFA90 /* PositionTableView.swift in Sources */,
@@ -730,6 +735,10 @@
 		50A37BB8207FF03E0020E218 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					arm64,
+					x86_64,
+				);
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -761,7 +770,7 @@
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = "1.6.5 beta";
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-fprofile-instr-generate";
 				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
@@ -779,6 +788,10 @@
 		50A37BB9207FF03E0020E218 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					arm64,
+					x86_64,
+				);
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -846,6 +859,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		50A571B82CEF85A600DB755B /* XCRemoteSwiftPackageReference "swift-html-to-pdf" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/coenttb/swift-html-to-pdf.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		50A571B92CEF85A600DB755B /* HtmlToPdf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50A571B82CEF85A600DB755B /* XCRemoteSwiftPackageReference "swift-html-to-pdf" */;
+			productName = HtmlToPdf;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 50A37B9F207FF03D0020E218 /* Project object */;
 }

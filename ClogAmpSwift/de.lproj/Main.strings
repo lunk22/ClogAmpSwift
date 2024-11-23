@@ -446,7 +446,7 @@
 "wMT-zO-iZk.title" = "Kontinuierliche Wiedergabe";
 
 /* Class = "NSMenuItem"; title = "Print..."; ObjectID = "hm1-1f-8uH"; */
-"hm1-1f-8uH.title" = "Drucken...";
+"hm1-1f-8uH.title" = "PDF generieren...";
 
 /* Class = "NSBox"; title = "Automatic Updates"; ObjectID = "Vhr-lk-94f"; */
 "Vhr-lk-94f.title" = "Automatische Updates";
