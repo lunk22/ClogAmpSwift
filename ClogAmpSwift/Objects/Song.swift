@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 
-class Song {
+class Song: PositionDelegate {
     
     struct NotificationNames {
         static let bpmChanged = Notification.Name("Song_BpmChanged")
@@ -185,7 +185,7 @@ class Song {
                     for line in aLines {
                         //Split string into single cells ($CS = Cell Separator)
                         let aCells = line.components(separatedBy: "$CS")
-                        let position = Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0), new: false)
+                        let position = Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0), new: false, delegate: self)
                         
                         newPositions.append(position)
                         self.hasPositions = true
@@ -199,6 +199,7 @@ class Song {
     } //func loadPositions
     
     func addPosition(_ position: Position) {
+        position.delegate = self
         self.positions.append(position)
         self.hasPositions = true
     }
@@ -288,9 +289,9 @@ class Song {
             }
             var bpm = BassWrapper.determineBPM(self.getValueAsString("path"), length: Int32(self.duration), sampleRate: Int32(sampleRate))
             
-            if bpm > Float(AppPreferences.bpmUpperBound) {
+            if bpm > Float(Settings.bpmUpperBound) {
                 bpm /= 2
-            }else if bpm < Float(AppPreferences.bpmLowerBound) {
+            }else if bpm < Float(Settings.bpmLowerBound) {
                 bpm *= 2
             }
             
@@ -423,5 +424,18 @@ class Song {
         } catch {}
         
         return false
+    }
+    
+    // MARK: Delegate
+    func descriptionDidChange(name: String, description: String) {
+        if !Settings.updateNameMatchingPositions { return }
+        
+        self.positions.forEach { position in
+            if position.name == name {
+                position.dontDelegalate = true
+                position.comment = description
+                position.dontDelegalate = false
+            }
+        }
     }
 }

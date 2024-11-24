@@ -14,7 +14,7 @@ class Window : NSWindow {
         super.update()
         
         if #available(OSX 10.14, *) {
-            switch AppPreferences.appearance {
+            switch Settings.appearance {
                 case 1:
                     self.appearance = NSAppearance(named: .darkAqua) // Dark
                     break

@@ -113,8 +113,8 @@
 /* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
 "bib-Uj-vzu.title" = "File";
 
-/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
-"BOF-NM-1cW.title" = "Preferences…";
+/* Class = "NSMenuItem"; title = "Settings…"; ObjectID = "BOF-NM-1cW"; */
+"BOF-NM-1cW.title" = "Settings…";
 
 /* Class = "NSButtonCell"; title = "-"; ObjectID = "CcZ-zn-W5m"; */
 "CcZ-zn-W5m.title" = "-";
@@ -209,8 +209,8 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "MNV-ol-uqW"; */
 "MNV-ol-uqW.title" = "Text Cell";
 
-/* Class = "NSTextFieldCell"; title = "Wait a number of seconds before looping after the position finished (for example to avoid looping too early)"; ObjectID = "MQb-sL-sbJ"; */
-"MQb-sL-sbJ.title" = "Wait a number of seconds before looping after the position finished (for example to avoid looping too early)";
+/* Class = "NSTextFieldCell"; title = "Wait a number of seconds before looping after the position finished"; ObjectID = "MQb-sL-sbJ"; */
+"MQb-sL-sbJ.title" = "Wait a number of seconds before looping after the position finished";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "n27-Ni-WE3"; */
 "n27-Ni-WE3.title" = "x";
@@ -254,8 +254,8 @@
 /* Class = "NSMenuItem"; title = "Player"; ObjectID = "QLk-u7-0rp"; */
 "QLk-u7-0rp.title" = "Player";
 
-/* Class = "NSWindow"; title = "Preferences"; ObjectID = "qmF-AN-kTn"; */
-"qmF-AN-kTn.title" = "Preferences";
+/* Class = "NSWindow"; title = "Settings"; ObjectID = "qmF-AN-kTn"; */
+"qmF-AN-kTn.title" = "Settings";
 
 /* Class = "NSTableColumn"; headerCell.title = "Jump To"; ObjectID = "qmK-aC-wnB"; */
 "qmK-aC-wnB.headerCell.title" = "Jump To";
@@ -305,8 +305,8 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "TaE-7x-9V4"; */
 "TaE-7x-9V4.title" = "Text Cell";
 
-/* Class = "NSViewController"; title = "Preferences"; ObjectID = "TPq-mw-tuz"; */
-"TPq-mw-tuz.title" = "Preferences";
+/* Class = "NSViewController"; title = "Settings"; ObjectID = "TPq-mw-tuz"; */
+"TPq-mw-tuz.title" = "Settings";
 
 /* Class = "NSButtonCell"; title = "Play on Selection"; ObjectID = "ttV-OR-48e"; */
 "ttV-OR-48e.title" = "Play on Selection";
@@ -483,11 +483,16 @@
 
 "z0e-vD-qbE.title" = "Open view after loading a song";
 
-"bdD-VI-P7y.title" = "Beat Change Behaviour";
+"bdD-VI-P7y.title" = "Beat Change Behavior";
 
 "u5w-Sf-Vic.title" = "Conformity factor:";
 
 "0iU-M9-9sS.title" = "Determine BPM (click)";
 
-"OSk-yu-1wF.title" = "Behaviour when adding positions";
+"OSk-yu-1wF.title" = "Behavior when adding positions";
+
 "21f-dm-hxh.title" = "Offset";
+
+"Wwg-w1-8oT.title" = "Behavior when changing positions";
+
+"B50-03-hSt.title" = "Change all with same name";

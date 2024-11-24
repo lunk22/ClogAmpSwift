@@ -32,11 +32,11 @@ class ViewController : NSViewController {
     }
     
     @IBAction func playerForward(_ sender: AnyObject) {
-        PlayerAudioEngine.shared.jump(AppPreferences.skipForward)
+        PlayerAudioEngine.shared.jump(Settings.skipForward)
     }
     
     @IBAction func playerBack(_ sender: AnyObject) {
-        PlayerAudioEngine.shared.jump(AppPreferences.skipBack * -1)
+        PlayerAudioEngine.shared.jump(Settings.skipBack * -1)
     }
     
     @IBAction func saveSong(_ sender: Any) {
