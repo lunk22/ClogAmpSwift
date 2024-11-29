@@ -63,7 +63,7 @@ class PlayerView: ViewController {
             let title = self.currentSong!.getValueAsString("title")
             let duration = self.currentSong!.getValueAsString("duration")
             
-            self.descriptionField.stringValue = "\t\(title) (\(duration))"
+            self.descriptionField.stringValue = "\(title) (\(duration))"
             
             //Time, Speed, Volume, Player Buttons
             self.updateTimeInUI()
@@ -92,8 +92,7 @@ class PlayerView: ViewController {
 
         super.init(coder: aDecoder)
         
-        PlayerAudioEngine.shared.setTimeObserverCallback() {
-            _ in
+        PlayerAudioEngine.shared.setTimeObserverCallback() { _ in
             //Do stuff
             self.tick()
             self.updatePositionTable(single: false)
@@ -216,7 +215,9 @@ class PlayerView: ViewController {
             if Settings.countdownTime {
                 self.lengthField.stringValue = "- \(sMinutes):\(sSeconds)".asTime()
             }else{
-                self.lengthField.stringValue = "\(sMinutes):\(sSeconds)".asTime()
+                // 2 spaces equal the size of the minus
+                // => Minus plus the space = 3 spaces
+                self.lengthField.stringValue = "   \(sMinutes):\(sSeconds)".asTime()
             }
             
             // timeSlider has a range of 0 - 100k, so multiply percent by 1000
@@ -258,7 +259,7 @@ class PlayerView: ViewController {
         PlayerAudioEngine.shared.seek(seconds: time)
     }
     
-    @IBAction func changeTimeDisplay(_ sender: NSButton) {
+    @IBAction func changeTimeDisplay(_ sender: AnyObject) {
         UserDefaults.standard.set(!Settings.countdownTime, forKey: "countTimeDown")
         self.updateTimeInUI()
     }
@@ -289,8 +290,7 @@ class PlayerView: ViewController {
     // MARK: Custom Functions
     
     func determineBpmFCS() {
-        self.currentSong?.determineBassBPM(){
-            _ in
+        self.currentSong?.determineBassBPM(){ _ in
             PlayerAudioEngine.shared.song?.saveChanges()
             self.mainView?.songTableView?.refreshTable()
             self.updateRateInUI()

@@ -11,7 +11,7 @@ import Foundation
 class Settings: NSObject {
     
     static var addPositionBehavior: Int {
-        var prefAddPositionBehavior = UserDefaults.standard.integer(forKey: "prefAddPositionBehaviour")
+        var prefAddPositionBehavior = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefAddPositionBehaviour.rawValue)
         if(prefAddPositionBehavior < 0 || prefAddPositionBehavior > 2){
             prefAddPositionBehavior = 0
         }
@@ -19,11 +19,11 @@ class Settings: NSObject {
     }
 
     static var addPositionOffset: Int {
-        return UserDefaults.standard.integer(forKey: "prefAddPositionOffset")
+        return UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefAddPositionOffset.rawValue)
     }
 
     static var appearance: Int {
-        var prefAppearance = UserDefaults.standard.integer(forKey: "prefAppearance")
+        var prefAppearance = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefAppearance.rawValue)
         if(prefAppearance < 0 || prefAppearance > 2){
             prefAppearance = 0
         }
@@ -31,20 +31,20 @@ class Settings: NSObject {
     }
     
     static var appIconName: String? {
-        return UserDefaults.standard.string(forKey: "AppIconName")
+        return UserDefaults.standard.string(forKey: UserDefaults.Keys.AppIconName.rawValue)
     }
     
     static var audioMetering: Bool {
 //        return true
-        return UserDefaults.standard.bool(forKey: "prefAudioMetering")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefAudioMetering.rawValue)
     }
     
     static var autoDetermineBpm: Bool {
-        return UserDefaults.standard.bool(forKey: "prefAutoDetermineBPM")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefAutoDetermineBPM.rawValue)
     }
     
     static var beatsChangeBehavior: Int {
-        var prefBeatsChangeBehavior = UserDefaults.standard.integer(forKey: "prefBeatsChangeBehaviour")
+        var prefBeatsChangeBehavior = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefBeatsChangeBehaviour.rawValue)
         if(prefBeatsChangeBehavior < 0 || prefBeatsChangeBehavior > 1){
             prefBeatsChangeBehavior = 0
         }
@@ -52,7 +52,7 @@ class Settings: NSObject {
     }
     
     static var bpmLowerBound: Int {
-        var prefBpmLowerBound = UserDefaults.standard.integer(forKey: "prefBpmLowerBound")
+        var prefBpmLowerBound = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefBpmLowerBound.rawValue)
         if prefBpmLowerBound == 0 {
             prefBpmLowerBound = 70
         }
@@ -60,7 +60,7 @@ class Settings: NSObject {
     }
     
     static var bpmUpperBound: Int{
-        var prefBpmUpperBound = UserDefaults.standard.integer(forKey: "prefBpmUpperBound")
+        var prefBpmUpperBound = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefBpmUpperBound.rawValue)
         if prefBpmUpperBound == 0 {
             prefBpmUpperBound = 140
         }
@@ -69,54 +69,54 @@ class Settings: NSObject {
     
     static var colorizedPlayerState: Bool {
 //        return true
-        return UserDefaults.standard.bool(forKey: "prefColorPlayerState")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefColorPlayerState.rawValue)
     }
     
     static var countdownTime: Bool {
-        return UserDefaults.standard.bool(forKey: "countTimeDown")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.countTimeDown.rawValue)
     }
     
     static var eqFrequencyLow: Float {
-        return UserDefaults.standard.float(forKey: "eqFrequencyLow")
+        return UserDefaults.standard.float(forKey: UserDefaults.Keys.eqFrequencyLow.rawValue)
     }
     
     static var eqFrequencyLowHz: Int {
-        var hzValue = UserDefaults.standard.integer(forKey: "eqFrequencyLowHz")
+        var hzValue = UserDefaults.standard.integer(forKey: UserDefaults.Keys.eqFrequencyLowHz.rawValue)
         if hzValue == 0 {
             hzValue = 80
-            UserDefaults.standard.set(hzValue, forKey: "eqFrequencyLowHz")
+            UserDefaults.standard.set(hzValue, forKey: UserDefaults.Keys.eqFrequencyLowHz.rawValue)
         }
         return hzValue
     }
     
     static var eqFrequencyMid: Float {
-        return UserDefaults.standard.float(forKey: "eqFrequencyMid")
+        return UserDefaults.standard.float(forKey: UserDefaults.Keys.eqFrequencyMid.rawValue)
     }
     
     static var eqFrequencyMidHz: Int {
-        var hzValue = UserDefaults.standard.integer(forKey: "eqFrequencyMidHz")
+        var hzValue = UserDefaults.standard.integer(forKey: UserDefaults.Keys.eqFrequencyMidHz.rawValue)
         if hzValue == 0 {
             hzValue = 2500
-            UserDefaults.standard.set(hzValue, forKey: "eqFrequencyMidHz")
+            UserDefaults.standard.set(hzValue, forKey: UserDefaults.Keys.eqFrequencyMidHz.rawValue)
         }
         return hzValue
     }
     
     static var eqFrequencyHigh: Float {
-        return UserDefaults.standard.float(forKey: "eqFrequencyHigh")
+        return UserDefaults.standard.float(forKey: UserDefaults.Keys.eqFrequencyHigh.rawValue)
     }
     
     static var eqFrequencyHighHz: Int {
-        var hzValue = UserDefaults.standard.integer(forKey: "eqFrequencyHighHz")
+        var hzValue = UserDefaults.standard.integer(forKey: UserDefaults.Keys.eqFrequencyHighHz.rawValue)
         if hzValue == 0 {
             hzValue = 12000
-            UserDefaults.standard.set(hzValue, forKey: "eqFrequencyHighHz")
+            UserDefaults.standard.set(hzValue, forKey: UserDefaults.Keys.eqFrequencyHighHz.rawValue)
         }
         return hzValue
     }
     
     static var filterTitleFactor: Double {
-        var factor = UserDefaults.standard.double(forKey: "prefFilterTitleFactor")
+        var factor = UserDefaults.standard.double(forKey: UserDefaults.Keys.prefFilterTitleFactor.rawValue)
         if factor == 0 {
             factor = 1
         }
@@ -124,38 +124,38 @@ class Settings: NSObject {
     }
     
     static var focusFilterOnAppStart: Bool {
-        return UserDefaults.standard.bool(forKey: "prefStartFocusFilter")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefStartFocusFilter.rawValue)
     }
     
     static var folderPathMusic: String? {
-        return UserDefaults.standard.string(forKey: "musicFolderPath")
+        return UserDefaults.standard.string(forKey: UserDefaults.Keys.musicFolderPath.rawValue)
     }
     
     static var folderPathPDF: String? {
-        return UserDefaults.standard.string(forKey: "pdfFolderPath")
+        return UserDefaults.standard.string(forKey: UserDefaults.Keys.pdfFolderPath.rawValue)
     }
     
     static var lastLoadedSongURL: String? {
-        return UserDefaults.standard.string(forKey: "lastLoadedSongURL")
+        return UserDefaults.standard.string(forKey: UserDefaults.Keys.lastLoadedSongURL.rawValue)
     }
     
     static var loopDelay: Double {
-        return UserDefaults.standard.double(forKey: "prefLoopDelay")
+        return UserDefaults.standard.double(forKey: UserDefaults.Keys.prefLoopDelay.rawValue)
     }
     
     static var playPositionOnSelection: Bool {
-        return UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefPlayPositionOnSelection.rawValue)
     }
     
     static var positionHighlight: Bool {
-        if UserDefaults.standard.value(forKey: "prefHighlightPosition") == nil {
-            UserDefaults.standard.set(true, forKey: "prefHighlightPosition")
+        if UserDefaults.standard.value(forKey: UserDefaults.Keys.prefHighlightPosition.rawValue) == nil {
+            UserDefaults.standard.set(true, forKey: UserDefaults.Keys.prefHighlightPosition.rawValue)
         }
-        return UserDefaults.standard.bool(forKey: "prefHighlightPosition")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefHighlightPosition.rawValue)
     }
     
     static var positionHighlightColor: NSColor {
-        if let data = UserDefaults.standard.data(forKey: "prefPositionHighlightColor") {
+        if let data = UserDefaults.standard.data(forKey: UserDefaults.Keys.prefPositionHighlightColor.rawValue) {
             if let color = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSColor.self, from: data) {
                 return color as NSColor
             }
@@ -165,7 +165,7 @@ class Settings: NSObject {
     }
     
     static var positionTextColor: NSColor {
-        if let data = UserDefaults.standard.data(forKey: "prefPositionTextColor") {
+        if let data = UserDefaults.standard.data(forKey: UserDefaults.Keys.prefPositionTextColor.rawValue) {
             if let color = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSColor.self, from: data) {
                 return color as NSColor
             }
@@ -175,7 +175,7 @@ class Settings: NSObject {
     }
     
     static var positionTableFontSize: Int {
-        var fontSize = UserDefaults.standard.integer(forKey: "positionTableFontSize")
+        var fontSize = UserDefaults.standard.integer(forKey: UserDefaults.Keys.positionTableFontSize.rawValue)
         if(fontSize == 0){
             fontSize = 12
         }
@@ -183,20 +183,20 @@ class Settings: NSObject {
     }
     
     static var positionTableMonoFont: Bool {
-        return UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefMonoFontPositons.rawValue)
     }
     
     static var positionTableShowBeats: Bool {
-        return UserDefaults.standard.bool(forKey: "prefShowBeatsInPositionTable")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefShowBeatsInPositionTable.rawValue)
     }
     
     static var showEqualizer: Bool {
         return true;
-//        return UserDefaults.standard.bool(forKey: "prefShowEqualizer")
+//        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefShowEqualizer.rawValue)
     }
     
     static var skipForward: Int {
-        var prefSkipForwardSeconds = UserDefaults.standard.integer(forKey: "prefSkipForwardSeconds")
+        var prefSkipForwardSeconds = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefSkipForwardSeconds.rawValue)
         if prefSkipForwardSeconds == 0 {
             prefSkipForwardSeconds = 5
         }
@@ -204,7 +204,7 @@ class Settings: NSObject {
     }
     
     static var skipBack: Int {
-        var prefSkipBackSeconds = UserDefaults.standard.integer(forKey: "prefSkipBackSeconds")
+        var prefSkipBackSeconds = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefSkipBackSeconds.rawValue)
         if prefSkipBackSeconds == 0 {
             prefSkipBackSeconds = 5
         }
@@ -212,7 +212,7 @@ class Settings: NSObject {
     }
     
     static var songTableFontSize: Int {
-        var fontSize = UserDefaults.standard.integer(forKey: "songTableFontSize")
+        var fontSize = UserDefaults.standard.integer(forKey: UserDefaults.Keys.songTableFontSize.rawValue)
         if(fontSize == 0){
             fontSize = 12
         }
@@ -220,15 +220,15 @@ class Settings: NSObject {
     }
     
     static var songTableMonoFont: Bool {
-        return UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefMonoFontSongs.rawValue)
     }
     
     static var updateNameMatchingPositions: Bool {
-        return UserDefaults.standard.bool(forKey: "prefUpdateNameMatchingPositions")
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefUpdateNameMatchingPositions.rawValue)
     }
     
     static var viewAfterSongLoad: Int {
-        var prefViewAfterSongLoad = UserDefaults.standard.integer(forKey: "prefViewAfterSongLoad")
+        var prefViewAfterSongLoad = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefViewAfterSongLoad.rawValue)
         if(prefViewAfterSongLoad < 0 || prefViewAfterSongLoad > 2){
             prefViewAfterSongLoad = 0
         }

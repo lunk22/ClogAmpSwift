@@ -9,7 +9,7 @@
 import AppKit
 import WebKit
 
-class PositionTableView: NSViewController, WKNavigationDelegate {
+class PositionTableView: NSViewController {
     
     //MARK: Properties
     var fontSize            = 0
@@ -652,6 +652,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 let rect = NSMakeRect(0, 0, tableColumn.width, CGFLOAT_MAX)
                 let textField = NSTextField()
                 let cell = textField.cell!
+                
                 cell.wraps = true
                 
                 if Settings.positionTableMonoFont {
@@ -662,6 +663,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 
                 cell.stringValue = string
                 let size = cell.cellSize(forBounds: rect)
+                
                 heightOfRow = size.height
             }
             

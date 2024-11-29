@@ -27,6 +27,6 @@ extension String {
     }
     
     func asTime() -> String {
-        return self.replacingOccurrences(of: "0", with: "O")
+        return self//.replacingOccurrences(of: "0", with: "O")
     }
 }

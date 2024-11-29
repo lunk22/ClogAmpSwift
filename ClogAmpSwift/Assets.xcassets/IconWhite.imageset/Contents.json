@@ -1,21 +1,23 @@
 {
   "images" : [
     {
+      "filename" : "256-mac.png",
       "idiom" : "universal",
-      "filename" : "ClogAmpMac_5.png",
       "scale" : "1x"
     },
     {
+      "filename" : "512-mac.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "1024-mac.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
