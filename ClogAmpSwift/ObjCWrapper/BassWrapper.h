@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 15.02.19.
-//  Copyright © 2019 Pascal Roessel. All rights reserved.
 //
 
 #ifndef BassWrapper_h

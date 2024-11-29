@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 13.02.19.
-//  Copyright © 2019 Pascal Roessel. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

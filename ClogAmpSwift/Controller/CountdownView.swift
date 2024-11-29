@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 18.02.19.
-//  Copyright © 2019 Pascal Roessel. All rights reserved.
 //
 
 import Foundation
@@ -16,7 +15,7 @@ class CountdownView: ViewController {
     var timer: Timer?
     
     override func viewDidLoad() {
-        timeField.stringValue = "0:00:00".asTime()
+        self.updateUiTimeField()
     }
     
     //MARK: Outlets
@@ -90,6 +89,11 @@ class CountdownView: ViewController {
         
         let hours = calcTime / 3600
         
+        var sHours = "\(hours)"
+        if(hours < 10){
+            sHours = "0\(sHours)"
+        }
+        
         var sMin = "\(min)"
         if(min < 10){
             sMin = "0\(sMin)"
@@ -100,6 +104,11 @@ class CountdownView: ViewController {
             sSec = "0\(sSec)"
         }
         
-        self.timeField.stringValue = "\(hours):\(sMin):\(sSec)".asTime()
+        var timeString: String = " "
+        timeString += "\(sHours)"
+        timeString += ":\(sMin)"
+        timeString += ":\(sSec)"
+                
+        self.timeField.stringValue = timeString.asTime()
     }
 }

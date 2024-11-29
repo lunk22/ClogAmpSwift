@@ -410,7 +410,7 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
             }
             
             if Settings.songTableMonoFont {
-                textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(Settings.songTableFontSize))
+                textField.font = NSFont.init(name: "Menlo", size: CGFloat(Settings.songTableFontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(Settings.songTableFontSize))
             }

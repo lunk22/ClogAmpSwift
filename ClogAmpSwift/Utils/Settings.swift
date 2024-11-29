@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Freundlich, Pascal on 23.11.23.
-//  Copyright © 2023 Pascal Freundlich. All rights reserved.
 //
 
 import Foundation

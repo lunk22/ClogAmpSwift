@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Pascal Roessel on 28.01.19.
-//  Copyright © 2019 Pascal Roessel. All rights reserved.
 //
 
 import AppKit
@@ -21,24 +20,18 @@ class TimePanelView: ViewController {
         // Determine relevant settings
         let width  = self.view.frame.width
         let height = self.view.frame.height
-        let fontName = self.textFieldTime.font?.fontName ?? "Monaco"
-        
-        // Calculate height
-        // let height = width / 4.554
+        let fontName = self.textFieldTime.font?.fontName ?? "Menlo"
         
         // Calculate font size
-        let newFontSizeForWidth: CGFloat = width / 5.372
-        let newFontSizeForHeight: CGFloat = height / 1.179
+        let newFontSizeForWidth: CGFloat = width / 4.25 // 4.514
+        let newFontSizeForHeight: CGFloat = height / 1.15
         let newFontSize = min(newFontSizeForWidth, newFontSizeForHeight)
-        
+        print("font name: \(fontName), font size: \(newFontSize)")
         // Update UI
         self.textFieldTime.font = NSFont.init(name: fontName, size: CGFloat(newFontSize))
     }
     
     override func viewWillAppear() {
-//        self.textFieldTime.font = NSFont.init(name: "B612-Regular", size: CGFloat(70))
-        self.textFieldTime.alignment = .center
-        
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {
             timer in
             
@@ -49,7 +42,7 @@ class TimePanelView: ViewController {
             let minutes  = calendar.component(.minute, from: date)
             let seconds  = calendar.component(.second, from: date)
             
-            var time = ""
+            var time = " "
             if(hours < 10) {
                 time += "0\(hours)"
             }else{
@@ -69,8 +62,7 @@ class TimePanelView: ViewController {
             }
             
             DispatchQueue.main.async(qos: .default) {
-                self.textFieldTime.stringValue = time.replacingOccurrences(of: "0", with: "O")
-//                self.textFieldTime.sizeToFit()
+                self.textFieldTime.stringValue = time.asTime()
             }
             
         })
