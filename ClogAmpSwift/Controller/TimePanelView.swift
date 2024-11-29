@@ -26,7 +26,7 @@ class TimePanelView: ViewController {
         let newFontSizeForWidth: CGFloat = width / 4.25 // 4.514
         let newFontSizeForHeight: CGFloat = height / 1.15
         let newFontSize = min(newFontSizeForWidth, newFontSizeForHeight)
-        print("font name: \(fontName), font size: \(newFontSize)")
+
         // Update UI
         self.textFieldTime.font = NSFont.init(name: fontName, size: CGFloat(newFontSize))
     }

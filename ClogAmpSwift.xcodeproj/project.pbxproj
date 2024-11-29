@@ -197,7 +197,6 @@
 		B7BD8F1921F7611000532C1A /* Id3Wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Id3Wrapper.h; sourceTree = "<group>"; };
 		B7BD8F1A21F9A87E00532C1A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		B7C8358522280FC200CF3360 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		B7C8358922281CB200CF3360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B7D1414F2382B0FF0056B042 /* PasteboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardType.swift; sourceTree = "<group>"; };
 		B7D141512382B1F30056B042 /* PasteboardWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWriter.swift; sourceTree = "<group>"; };
 		B7D7C4342B17382D007DCA96 /* BpmClickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BpmClickView.swift; sourceTree = "<group>"; };
@@ -572,7 +571,6 @@
 			children = (
 				50A37BB1207FF03E0020E218 /* Base */,
 				B7C8358522280FC200CF3360 /* de */,
-				B7C8358922281CB200CF3360 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
