@@ -8,6 +8,8 @@
 import Foundation
 
 extension UserDefaults {
+    
+    // https://stackoverflow.com/questions/73207435/how-can-i-reset-appstorage-data-when-an-app-storage-variable-is-0
 
     enum Keys: String, CaseIterable {
 
@@ -72,7 +74,7 @@ extension UserDefaults {
         case AppIconName
         
         // NOT AVAILABLE IN SETTINGS
-        case prefAudioMetering
+        case prefAudioMetering // defaults write de.pascalroessel.ClogAmpSwift prefAudioMetering -bool true
     }
 
     func reset() {
