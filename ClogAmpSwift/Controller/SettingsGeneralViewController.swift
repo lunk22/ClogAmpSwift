@@ -19,20 +19,6 @@ class SettingsGeneralViewController: NSViewController {
     @IBOutlet weak var ddlbViewAfterSongLoad: NSComboBox!
     
     // MARK: ACTIONS
-    @IBAction func handleAutomaticUpdatesChange(_ sender: NSButton) {
-        if sender.state == NSControl.StateValue.on {
-            //Sparkle, if the automatic updates are turned on, perform an initial check on app launch
-            if let updater = SUUpdater.shared(){
-                if updater.automaticallyChecksForUpdates {
-                    delayWithSeconds(1) {
-                        updater.checkForUpdatesInBackground()
-                        updater.resetUpdateCycle()
-                    }
-                }
-            }
-        }
-    }
-    
     @IBAction func handleMonoChanged(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("monoChanged"), object: nil)
     }

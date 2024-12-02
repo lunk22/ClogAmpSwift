@@ -14,7 +14,7 @@ enum Shape: String {
 }
 
 extension NSImage {
-    convenience init(shape: Shape, color: NSColor, size: NSSize, fillHeight: Double? = nil) {
+    convenience init(shape: Shape, color: NSColor, size: NSSize = NSSize(width: 21, height: 21), fillHeight: Double? = nil) {
         func generatePlay(_ rect: NSRect) -> Bool {
             // Height diff. between image size and the requested fill height
             let heightDiff = size.height - (fillHeight ?? size.height)

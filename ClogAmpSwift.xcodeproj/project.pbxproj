@@ -15,6 +15,7 @@
 		502D65532CF9C690007C4E81 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502D65522CF9C690007C4E81 /* HyperlinkTextField.swift */; };
 		502D65552CF9CC86007C4E81 /* SettingsAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502D65542CF9CC86007C4E81 /* SettingsAboutViewController.swift */; };
 		504E5FA42080F4E0003DBA66 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E5FA32080F4E0003DBA66 /* Song.swift */; };
+		50556BFA2CFE3DD300F4C716 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 50556BF92CFE3DD300F4C716 /* Sparkle */; };
 		50A09BAC22104B0A00365544 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAB22104B0A00365544 /* TableView.swift */; };
 		50A09BAE22104BA800365544 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAD22104BA800365544 /* TableViewDelegate.swift */; };
 		50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAA207FF03D0020E218 /* AppDelegate.swift */; };
@@ -37,8 +38,6 @@
 		B722991F2200223B00AEFA90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722991E2200223B00AEFA90 /* ViewController.swift */; };
 		B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299202202C9FD00AEFA90 /* SongTableView.swift */; };
 		B72299232202D0EA00AEFA90 /* PositionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299222202D0EA00AEFA90 /* PositionTableView.swift */; };
-		B72660532384070100111C8B /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72660522384070100111C8B /* Sparkle.framework */; };
-		B72660542384070C00111C8B /* Sparkle.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B72660522384070100111C8B /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B73E0DF62C5A1D210064D4A3 /* DecibelTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E0DF52C5A1D210064D4A3 /* DecibelTransformer.swift */; };
 		B73E0DF82C5B67FD0064D4A3 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E0DF72C5B67FD0064D4A3 /* NSImage.swift */; };
 		B73E0DFA2C5CD3B40064D4A3 /* HertzTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E0DF92C5CD3B40064D4A3 /* HertzTransformer.swift */; };
@@ -51,7 +50,6 @@
 		B79853332217073500BDE678 /* libbass.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B79853312217073500BDE678 /* libbass.dylib */; };
 		B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B79853302217073500BDE678 /* libbass_fx.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B79853312217073500BDE678 /* libbass.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		B7985339221A812600BDE678 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7985338221A812600BDE678 /* PreferencesView.swift */; };
 		B7A3A9C0221AFCBD00CA5FE8 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */; };
 		B7A3A9C2221BE44400CA5FE8 /* CountdownWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */; };
 		B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */; };
@@ -104,7 +102,6 @@
 				50113FF9272AF58A00EEB9A1 /* libid3-3.8.3.0.0.dylib in Embed Libraries */,
 				B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */,
 				B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */,
-				B72660542384070C00111C8B /* Sparkle.framework in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,7 +141,6 @@
 		B722991E2200223B00AEFA90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B72299202202C9FD00AEFA90 /* SongTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableView.swift; sourceTree = "<group>"; };
 		B72299222202D0EA00AEFA90 /* PositionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableView.swift; sourceTree = "<group>"; };
-		B72660522384070100111C8B /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		B73E0DF52C5A1D210064D4A3 /* DecibelTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelTransformer.swift; sourceTree = "<group>"; };
 		B73E0DF72C5B67FD0064D4A3 /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		B73E0DF92C5CD3B40064D4A3 /* HertzTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzTransformer.swift; sourceTree = "<group>"; };
@@ -159,7 +155,6 @@
 		B79853312217073500BDE678 /* libbass.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libbass.dylib; sourceTree = "<group>"; };
 		B79853342217074400BDE678 /* bass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bass.h; sourceTree = "<group>"; };
 		B79853352217074500BDE678 /* bass_fx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bass_fx.h; sourceTree = "<group>"; };
-		B7985338221A812600BDE678 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownWindow.swift; sourceTree = "<group>"; };
 		B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionXmlParser.swift; sourceTree = "<group>"; };
@@ -216,10 +211,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50556BFA2CFE3DD300F4C716 /* Sparkle in Frameworks */,
 				B71364912B164A23009B800F /* CoreAudio.framework in Frameworks */,
 				B79853332217073500BDE678 /* libbass.dylib in Frameworks */,
 				50A571BA2CEF85A600DB755B /* HtmlToPdf in Frameworks */,
-				B72660532384070100111C8B /* Sparkle.framework in Frameworks */,
 				B7B46608237046D800AA9419 /* PDFKit.framework in Frameworks */,
 				50113FF8272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib in Frameworks */,
 				B79853322217073500BDE678 /* libbass_fx.dylib in Frameworks */,
@@ -261,7 +256,6 @@
 				B79853302217073500BDE678 /* libbass_fx.dylib */,
 				B79853312217073500BDE678 /* libbass.dylib */,
 				50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */,
-				B72660522384070100111C8B /* Sparkle.framework */,
 				50A37BB3207FF03E0020E218 /* Info.plist */,
 				B7D7C4362B1A1E11007DCA96 /* PrimeAV.mp3 */,
 				B7F48C9C238FE9EF00C3DB01 /* Click.mp3 */,
@@ -287,7 +281,6 @@
 				B7B3A176237ACFC7009667CF /* PlaylistView.swift */,
 				50DC6D872081D68100B7C347 /* PlayerView.swift */,
 				B72299222202D0EA00AEFA90 /* PositionTableView.swift */,
-				B7985338221A812600BDE678 /* PreferencesView.swift */,
 				B72299202202C9FD00AEFA90 /* SongTableView.swift */,
 				5017716821FF58C700D8A95A /* TimePanelView.swift */,
 				B75955852216D1A300D11E3F /* TimePanelWindow.swift */,
@@ -474,6 +467,7 @@
 			mainGroup = 50A37B9E207FF03D0020E218;
 			packageReferences = (
 				50A571B82CEF85A600DB755B /* XCRemoteSwiftPackageReference "swift-html-to-pdf" */,
+				50556BF82CFE3DD300F4C716 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 50A37BA8207FF03D0020E218 /* Products */;
 			projectDirPath = "";
@@ -547,7 +541,6 @@
 				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
 				B7BB5515237EC46300E153DF /* HistoryWindow.swift in Sources */,
 				B73E0DFA2C5CD3B40064D4A3 /* HertzTransformer.swift in Sources */,
-				B7985339221A812600BDE678 /* PreferencesView.swift in Sources */,
 				B713648D2B15F2CE009B800F /* String.swift in Sources */,
 				B7D141502382B0FF0056B042 /* PasteboardType.swift in Sources */,
 				B7B3A177237ACFC7009667CF /* PlaylistView.swift in Sources */,
@@ -724,7 +717,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.8;
+				CURRENT_PROJECT_VERSION = 1.6.6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
@@ -780,7 +773,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.8;
+				CURRENT_PROJECT_VERSION = 1.6.6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
@@ -845,6 +838,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		50556BF82CFE3DD300F4C716 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.4;
+			};
+		};
 		50A571B82CEF85A600DB755B /* XCRemoteSwiftPackageReference "swift-html-to-pdf" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/coenttb/swift-html-to-pdf.git";
@@ -856,6 +857,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		50556BF92CFE3DD300F4C716 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50556BF82CFE3DD300F4C716 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
 		50A571B92CEF85A600DB755B /* HtmlToPdf */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 50A571B82CEF85A600DB755B /* XCRemoteSwiftPackageReference "swift-html-to-pdf" */;

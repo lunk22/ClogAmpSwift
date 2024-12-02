@@ -12,34 +12,29 @@ import MediaPlayer
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    var statusBarItem: NSStatusItem?
+//    public let updateController: SPUStandardUpdaterController
     
     override init() {
-        super.init()
+//        updateController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+        // Access via:
+        // NSApplication.shared.delegate as! AppDelegate
         
         ValueTransformer.setValueTransformer( DecibelTransformer(), forName: .decibelTransformer )
         ValueTransformer.setValueTransformer( HertzTransformer(), forName: .hertzTransformer )
+        
+        super.init()
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {        
 //        UserDefaults.standard.reset() // Extension method - ONLY FOR TESTING
         
-        // Insert code here to initialize your application
         Database.buildTablesIfNeeded()
         
-        //Sparkle, if the automatic updates are turned on, perform an initial check on app launch
-        if let updater = SUUpdater.shared(){
-            if updater.automaticallyChecksForUpdates {
-                delayWithSeconds(5) {
-                    updater.checkForUpdatesInBackground()
-                    updater.resetUpdateCycle()
-                }
-            }
-        }
+//        showMenuBarItem()  // just to play around a little
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-        
         // Shutdown Audio API
         NotificationCenter.default.post(name: PlayerAudioEngine.NotificationNames.shutdown, object: nil)
         
@@ -50,6 +45,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
+    }
+    
+    func showMenuBarItem() {
+        // Add a status bar item in the menu bar for our app
+        do {
+            let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+            statusBarItem.button?.image = NSImage(shape: .play, color: .blue)
+            
+            let statusBarMenu = NSMenu()
+            statusBarItem.menu = statusBarMenu
+            
+            let menuItem = NSMenuItem()
+            menuItem.title = "I don't to anything"
+            
+            statusBarMenu.addItem(menuItem)
+            
+            self.statusBarItem = statusBarItem
+        }
     }
     
     @IBAction func openUpdateHistory(_ sender: Any) {
