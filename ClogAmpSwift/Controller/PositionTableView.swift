@@ -598,13 +598,27 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
     }
     
     func tableView(_ tableView: NSTableView, sizeToFitWidthOfColumn column: Int) -> CGFloat {
-        func determineMaxCharCountInPositions(for column: String) -> CGFloat {
+        func dermineMaxWidth(for column: String) -> CGFloat {
             if let song = PlayerAudioEngine.shared.song {
                 if song.getPositions().count > 0 {
                     var maxLength: CGFloat = 0.0
                     song.getPositions().forEach { position in
-                        if CGFloat(position.getValueAsString(column).count) > maxLength {
-                            maxLength = CGFloat(position.getValueAsString(column).count)
+                        let rect = NSMakeRect(0, 0, CGFLOAT_MAX, CGFLOAT_MAX)
+                        let cell = NSCell()
+                        
+                        cell.wraps = false
+                        
+                        if Settings.positionTableMonoFont {
+                            cell.font = NSFont.init(name: "Menlo", size: CGFloat(self.fontSize))
+                        } else {
+                            cell.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
+                        }
+                        
+                        cell.stringValue = position.getValueAsString(column)
+                        let size = cell.cellSize(forBounds: rect)
+                        
+                        if size.width > maxLength {
+                            maxLength = size.width
                         }
                     }
                     return maxLength
@@ -613,20 +627,17 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
             
             return 0.0
         }
-        
-        var buffer = 1.0
-        let fontFactor = 0.625
-        var charCount = 0.0
-        
+        var maxWidth = 0.0
         switch tableView.tableColumns[column].identifier.rawValue {
             case "beats":
-                charCount = determineMaxCharCountInPositions(for: tableView.tableColumns[column].identifier.rawValue)
-                buffer = 2.0
+                // Beats are center aligned, so a little more extra space is needed since it's shared before and after the value
+                maxWidth = dermineMaxWidth(for: tableView.tableColumns[column].identifier.rawValue) * 1.3
             default:
-                charCount = determineMaxCharCountInPositions(for: tableView.tableColumns[column].identifier.rawValue)
+                // Add 10% to not glue them together
+                maxWidth = dermineMaxWidth(for: tableView.tableColumns[column].identifier.rawValue) * 1.075
         }
         
-        return (CGFloat(charCount) + buffer) * fontFactor * CGFloat(self.fontSize)
+        return maxWidth
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -686,7 +697,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 let textField = NSTextField()
                 let cell = textField.cell!
                 
-                cell.wraps = true
+//                cell.wraps = true
                 
                 if Settings.positionTableMonoFont {
                     cell.font = NSFont.init(name: "Menlo", size: CGFloat(self.fontSize))
