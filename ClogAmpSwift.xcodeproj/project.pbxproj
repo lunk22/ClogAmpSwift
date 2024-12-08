@@ -36,7 +36,7 @@
 		B71364912B164A23009B800F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B71364902B164A23009B800F /* CoreAudio.framework */; };
 		B720A3032CF74ADB000C73D2 /* SettingsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B720A3022CF74AD5000C73D2 /* SettingsTabViewController.swift */; };
 		B722991F2200223B00AEFA90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722991E2200223B00AEFA90 /* ViewController.swift */; };
-		B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299202202C9FD00AEFA90 /* SongTableView.swift */; };
+		B72299212202C9FD00AEFA90 /* SongTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299202202C9FD00AEFA90 /* SongTableViewController.swift */; };
 		B72299232202D0EA00AEFA90 /* PositionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299222202D0EA00AEFA90 /* PositionTableView.swift */; };
 		B73E0DF62C5A1D210064D4A3 /* DecibelTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E0DF52C5A1D210064D4A3 /* DecibelTransformer.swift */; };
 		B73E0DF82C5B67FD0064D4A3 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E0DF72C5B67FD0064D4A3 /* NSImage.swift */; };
@@ -139,7 +139,7 @@
 		B71364902B164A23009B800F /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		B720A3022CF74AD5000C73D2 /* SettingsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabViewController.swift; sourceTree = "<group>"; };
 		B722991E2200223B00AEFA90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B72299202202C9FD00AEFA90 /* SongTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableView.swift; sourceTree = "<group>"; };
+		B72299202202C9FD00AEFA90 /* SongTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewController.swift; sourceTree = "<group>"; };
 		B72299222202D0EA00AEFA90 /* PositionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableView.swift; sourceTree = "<group>"; };
 		B73E0DF52C5A1D210064D4A3 /* DecibelTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelTransformer.swift; sourceTree = "<group>"; };
 		B73E0DF72C5B67FD0064D4A3 /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
@@ -281,7 +281,7 @@
 				B7B3A176237ACFC7009667CF /* PlaylistView.swift */,
 				50DC6D872081D68100B7C347 /* PlayerView.swift */,
 				B72299222202D0EA00AEFA90 /* PositionTableView.swift */,
-				B72299202202C9FD00AEFA90 /* SongTableView.swift */,
+				B72299202202C9FD00AEFA90 /* SongTableViewController.swift */,
 				5017716821FF58C700D8A95A /* TimePanelView.swift */,
 				B75955852216D1A300D11E3F /* TimePanelWindow.swift */,
 				B7B46604237042EB00AA9419 /* PDFView.swift */,
@@ -537,7 +537,7 @@
 				502D65552CF9CC86007C4E81 /* SettingsAboutViewController.swift in Sources */,
 				B7A3A9C2221BE44400CA5FE8 /* CountdownWindow.swift in Sources */,
 				50A37BAD207FF03D0020E218 /* MainView.swift in Sources */,
-				B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */,
+				B72299212202C9FD00AEFA90 /* SongTableViewController.swift in Sources */,
 				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
 				B7BB5515237EC46300E153DF /* HistoryWindow.swift in Sources */,
 				B73E0DFA2C5CD3B40064D4A3 /* HertzTransformer.swift in Sources */,
@@ -717,7 +717,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.6;
+				CURRENT_PROJECT_VERSION = 1.6.8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
@@ -773,7 +773,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.6;
+				CURRENT_PROJECT_VERSION = 1.6.8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;

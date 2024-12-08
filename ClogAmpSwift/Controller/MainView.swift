@@ -13,7 +13,7 @@ class MainView: ViewController {
     weak var mainWindow: MainWindow?
     
     weak var playerView: PlayerView?
-    weak var songTableView: SongTableView?
+    weak var songTableView: SongTableViewController?
     weak var positionTableView: PositionTableView?
     weak var pdfView: PDFViewController?
     
@@ -25,7 +25,7 @@ class MainView: ViewController {
     }
     
     override func viewDidAppear() {
-        self.songTableView     = self.children[0] as? SongTableView
+        self.songTableView     = self.children[0] as? SongTableViewController
         self.positionTableView = self.children[1] as? PositionTableView
         self.pdfView           = self.children[2] as? PDFViewController
         self.playerView        = self.children[3] as? PlayerView

@@ -16,3 +16,5 @@
 "addPositionBehaviorAdjustBeats" = "Position in Beats anpassen";
 "addPositionBehaviorAdjustSeconds" = "Position in Sekunden anpassen";
 "addPositionBehaviorNoChange" = "Keine Anpassung";
+"menuLoadSong" = "Lied laden";
+"menuOpenInFinder" = "Im Finder öffnen";

@@ -425,4 +425,8 @@ extension PlaylistView: TableViewDelegate {
         self.loadSong()
     }
     
+    func rightClicked() {
+        // Do nothing
+    }
+    
 }
