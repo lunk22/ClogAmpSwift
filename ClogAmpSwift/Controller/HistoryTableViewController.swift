@@ -1,14 +1,13 @@
 //
-//  HistoryTableView.swift
+//  HistoryTableViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 13.02.19.
 //
 
 import AppKit
-import PDFKit
 
-class HistoryTableView: ViewController {
+class HistoryTableViewController: ViewController {
     
     //Properties
     var historyItems: [SongHistoryItem]?
@@ -79,7 +78,7 @@ class HistoryTableView: ViewController {
     }
 }
 
-extension HistoryTableView: NSTableViewDelegate, NSTableViewDataSource {
+extension HistoryTableViewController: NSTableViewDelegate, NSTableViewDataSource {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         

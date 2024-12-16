@@ -278,8 +278,9 @@ class Song: PositionDelegate {
     } //func getValueAsString
     
     // MARK: Beats & BPM
-    func determineBassBPM( callback: @escaping (Float) -> Void ) {
+    func determineBassBPM( callback: @escaping (Int) -> Void ) {
         DispatchQueue.global(qos: .background).async {
+            print("BPM Determination - START")
             var sampleRate: Int
             do {
                 let audioFile = try AVAudioFile(forReading: self.filePathAsUrl)
@@ -289,18 +290,19 @@ class Song: PositionDelegate {
             }
             var bpm = BassWrapper.determineBPM(self.getValueAsString("path"), length: Int32(self.duration), sampleRate: Int32(sampleRate))
             
+            if bpm < 0 {
+                bpm = 0
+            }
+            
             if bpm > Float(Settings.bpmUpperBound) {
                 bpm /= 2
             }else if bpm < Float(Settings.bpmLowerBound) {
                 bpm *= 2
             }
-            
-            if bpm < 0 {
-                bpm = 0
-            }
+
             self.bpm = Int(lround(Double(bpm)))
-            
-            callback(bpm)
+            print("BPM Determination - END: \(self.bpm)")
+            callback(self.bpm)
         }
     }
     

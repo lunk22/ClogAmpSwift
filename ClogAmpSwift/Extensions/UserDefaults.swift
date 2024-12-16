@@ -54,6 +54,8 @@ extension UserDefaults {
         case prefBpmLowerBound
         case prefBpmUpperBound
         
+        case prefPreventSleepWhenActive
+        
         // Settings - Positions
         case prefPlayPositionOnSelection
         

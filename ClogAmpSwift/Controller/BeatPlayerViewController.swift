@@ -1,5 +1,5 @@
 //
-//  BeatPlayerView.swift
+//  BeatPlayerViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 26.11.19.
@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 
-class BeatPlayerView: ViewController {
+class BeatPlayerViewController: ViewController {
     
     var defaultBpm = 75
     var quaterCounter = 0

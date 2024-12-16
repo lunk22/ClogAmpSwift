@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBarItem: NSStatusItem?
     var systemSleepDisabled: Bool = false
     var noSleepAssertionID: IOPMAssertionID = 0
+
     
     override init() {
         super.init()
@@ -28,14 +29,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: NSApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: NSApplication.willResignActiveNotification, object: nil)
-        
-//        NotificationCenter.default.addObserver(forName: NSNotification.Name("caffeinateChanged"), object: nil, queue: nil){ _ in
-//            if self.caffeinateProcess == nil {
-//                self.appMovedToForeground()
-//            } else {
-//                self.appMovedToBackground()
-//            }
-//        }
+
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("preventSystemSleepChanged"), object: nil, queue: nil){ _ in
+            if self.systemSleepDisabled {
+                self.reenableSystemSleep()
+            } else {
+                self.disableSystemSleep()
+            }
+        }
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -50,7 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.post(name: PlayerAudioEngine.NotificationNames.shutdown, object: nil) // Shutdown Audio API
 
         reenableSystemSleep()
-        
+
         return .terminateNow
         
     }
@@ -76,28 +77,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.statusBarItem = statusBarItem
         }
     }
-    
+
     func disableSystemSleep() {
-//        guard !systemSleepDisabled else { return }
-//        
-//        let noSleepReturn = IOPMAssertionCreateWithName(
-//            kIOPMAssertionTypeNoDisplaySleep as CFString,
-//            IOPMAssertionLevel(kIOPMAssertionLevelOn),
-//            "ClogAmpMac active" as CFString,
-//            &noSleepAssertionID
-//        )
-//        guard noSleepReturn == kIOReturnSuccess else { return }
-//        systemSleepDisabled = true
-//        print("System Sleep disabled")
+        guard !systemSleepDisabled else { return }
+        guard Settings.preventSystemSleep else { return }
+        
+        let noSleepReturn = IOPMAssertionCreateWithName(
+            kIOPMAssertionTypeNoDisplaySleep as CFString,
+            IOPMAssertionLevel(kIOPMAssertionLevelOn),
+            "ClogAmpMac active" as CFString,
+            &noSleepAssertionID
+        )
+        guard noSleepReturn == kIOReturnSuccess else { return }
+        systemSleepDisabled = true
+        print("System Sleep disabled")
     }
     
     func reenableSystemSleep() {
-//        guard systemSleepDisabled else { return }
-//        
-//        let noSleepReturn = IOPMAssertionRelease(noSleepAssertionID)
-//        guard noSleepReturn == kIOReturnSuccess else { return }
-//        systemSleepDisabled = false
-//        print("System Sleep reenabled")
+        guard systemSleepDisabled else { return }
+        
+        let noSleepReturn = IOPMAssertionRelease(noSleepAssertionID)
+        guard noSleepReturn == kIOReturnSuccess else { return }
+        systemSleepDisabled = false
+        print("System Sleep reenabled")
     }
     
     // MARK: Eventhandler / Menu Actions

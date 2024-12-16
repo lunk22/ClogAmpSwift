@@ -1,5 +1,5 @@
 //
-//  TimePanelView.swift
+//  TimePanelViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Pascal Roessel on 28.01.19.
@@ -7,7 +7,7 @@
 
 import AppKit
 
-class TimePanelView: ViewController {
+class TimePanelViewController: ViewController {
     // MARK: Outlets
     @IBOutlet weak var textFieldTime: NSTextField!
     

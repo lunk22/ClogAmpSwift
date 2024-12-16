@@ -1,5 +1,5 @@
 //
-//  PlaylistView.swift
+//  PlaylistViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 12.11.19.
@@ -7,7 +7,7 @@
 
 import AppKit
 
-class PlaylistView: ViewController {
+class PlaylistViewController: ViewController {
     
     var aPlaylists = [Playlist]()
     var aSongs     = [Song]() {
@@ -24,8 +24,8 @@ class PlaylistView: ViewController {
     var oSelectedPlaylist: Playlist?
     var iSongIndex: Int = -1
     
-    var playerView: PlayerView?
-    weak var mainView: MainView?
+    var playerView: PlayerViewController?
+    weak var mainView: MainViewController?
     
     @IBOutlet weak var playlistTable: NSTableView!
     @IBOutlet weak var songTable: TableView!
@@ -44,7 +44,7 @@ class PlaylistView: ViewController {
         if let window = NSApplication.shared.windows.first(where: { window in
             return window.identifier?.rawValue ?? "" == "mainWindow"
         }) {
-            let viewController = window.contentViewController as! MainView
+            let viewController = window.contentViewController as! MainViewController
             self.mainView = viewController
             self.playerView = viewController.playerView
         }        
@@ -263,7 +263,7 @@ class PlaylistView: ViewController {
     }
 }
  
-extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
+extension PlaylistViewController: NSTableViewDelegate, NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var fontSize = 16
         
@@ -419,7 +419,7 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
     
 }
 
-extension PlaylistView: TableViewDelegate {
+extension PlaylistViewController: TableViewDelegate {
     
     func rowSelected() {
         self.loadSong()

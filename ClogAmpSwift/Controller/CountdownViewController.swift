@@ -1,5 +1,5 @@
 //
-//  CountdownView.swift
+//  CountdownViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 18.02.19.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CountdownView: ViewController {
+class CountdownViewController: ViewController {
     
     //MARK: Properties
     var timerSeconds: UInt = 0

@@ -1,15 +1,14 @@
 //
-//  PositionTableView.swift
+//  PositionTableViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 31.01.19.
-//  MIT License
 //
 
 import AppKit
 import WebKit
 
-class PositionTableView: NSViewController {
+class PositionTableViewController: NSViewController {
     
     //MARK: Properties
     var fontSize            = 0
@@ -21,7 +20,7 @@ class PositionTableView: NSViewController {
     
     var loopTimer: Timer?
     
-    weak var mainView: MainView?
+    weak var mainView: MainViewController?
     
     //MARK: Outlets
     @IBOutlet weak var positionTable: TableView!
@@ -590,7 +589,7 @@ class PositionTableView: NSViewController {
     }
 }
 
-extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
+extension PositionTableViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     func tableViewColumnDidResize(_ notification: Notification) {
         self.positionTable.sizeLastColumnToFit()
@@ -731,7 +730,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
     }
 }
 
-extension PositionTableView: TableViewDelegate {
+extension PositionTableViewController: TableViewDelegate {
     
     func rowSelected() {
         self.handlePositionSelected(self.positionTable.selectedRow)

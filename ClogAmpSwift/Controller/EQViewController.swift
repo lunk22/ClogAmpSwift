@@ -5,7 +5,7 @@
 //  Created by Freundlich, Pascal on 29.11.23.
 //
 
-class EQView: ViewController {
+class EQViewController: ViewController {
     
     @IBOutlet weak var freqHighSlider: NSSlider!
     @IBOutlet weak var freqMidSlider: NSSlider!
