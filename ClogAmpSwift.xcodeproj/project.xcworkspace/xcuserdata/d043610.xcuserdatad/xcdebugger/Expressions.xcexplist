@@ -11,15 +11,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MainView.viewDidAppear():MainView.swift">
+         contextName = "MainView.tableView(_:viewFor:row:):MainView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.children">
+               value = "tableColumn!.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Song.saveChanges():Song.swift">
+         contextName = "SongTableView.tableView(_:objectValueFor:row:):SongTableView.swift">
       </ContextState>
       <ContextState
          contextName = "PositionTableView.numberOfRows(in:):PositionTableView.swift">
@@ -30,7 +30,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SongTableView.tableView(_:objectValueFor:row:):SongTableView.swift">
+         contextName = "SongTableView.tableView(_:viewFor:row:):SongTableView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableColumn!.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainView.viewDidAppear():MainView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.children">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Song.saveChanges():Song.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
