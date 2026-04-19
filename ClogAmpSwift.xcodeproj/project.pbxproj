@@ -127,6 +127,7 @@
 		B7BD8F1A21F9A87E00532C1A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		B7C8358322250E5700CF3360 /* AppIconBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIconBlue.icns; sourceTree = "<group>"; };
 		B7C8358522280FC200CF3360 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		B7C8358922281CB200CF3360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player-AVAudioPlayer.swift"; sourceTree = "<group>"; };
 		B7D9C0622214513B00A70F4A /* SongHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongHistoryItem.h; sourceTree = "<group>"; };
 		B7D9C0632214513B00A70F4A /* SongHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongHistoryItem.m; sourceTree = "<group>"; };
@@ -423,6 +424,7 @@
 			children = (
 				50A37BB1207FF03E0020E218 /* Base */,
 				B7C8358522280FC200CF3360 /* de */,
+				B7C8358922281CB200CF3360 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

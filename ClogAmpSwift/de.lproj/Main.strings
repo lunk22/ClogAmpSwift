@@ -15,7 +15,7 @@
 "1z7-FS-h8l.title" = "Werkzeuge";
 
 /* Class = "NSMenuItem"; title = "Increase Speed"; ObjectID = "29Q-si-zFB"; */
-"29Q-si-zFB.title" = "Geschwindigkeit erhöhen";
+"29Q-si-zFB.title" = "Tempo erhöhen";
 
 /* Class = "NSTextFieldCell"; placeholderString = "0%"; ObjectID = "2Bw-uw-4pO"; */
 "2Bw-uw-4pO.placeholderString" = "0%";
@@ -48,7 +48,7 @@
 "7I5-S5-XyB.headerCell.title" = "BPM";
 
 /* Class = "NSMenuItem"; title = "Reset Speed"; ObjectID = "7pX-sO-eAU"; */
-"7pX-sO-eAU.title" = "Geschwindigkeit zurücksetzen";
+"7pX-sO-eAU.title" = "Tempo zurücksetzen";
 
 /* Class = "NSTabViewItem"; label = "Songs"; ObjectID = "84A-Vs-Rhv"; */
 "84A-Vs-Rhv.label" = "Lieder";
@@ -63,7 +63,7 @@
 "8dq-r9-d9O.title" = "BPM Korrektur";
 
 /* Class = "NSTableColumn"; headerCell.title = "Speed"; ObjectID = "9ft-gW-ecw"; */
-"9ft-gW-ecw.headerCell.title" = "Geschwindigkeit";
+"9ft-gW-ecw.headerCell.title" = "Tempo";
 
 /* Class = "NSTableColumn"; headerCell.title = "File"; ObjectID = "A7y-NU-Fnc"; */
 "A7y-NU-Fnc.headerCell.title" = "Datei";
@@ -210,7 +210,7 @@
 "dMs-cI-mzQ.title" = "Datei";
 
 /* Class = "NSTextFieldCell"; title = "Speed"; ObjectID = "dOs-ll-4nC"; */
-"dOs-ll-4nC.title" = "Geschwindigkeit";
+"dOs-ll-4nC.title" = "Tempo";
 
 /* Class = "NSButtonCell"; title = "Focus Filter Field"; ObjectID = "dwD-8M-CBO"; */
 "dwD-8M-CBO.title" = "Fokusiere Filter Feld";
@@ -222,7 +222,7 @@
 "eoz-Nu-Vim.headerCell.title" = "Beschreibung";
 
 /* Class = "NSMenuItem"; title = "Decrease Speed"; ObjectID = "f7m-rQ-0TS"; */
-"f7m-rQ-0TS.title" = "Geschwindigkeit verringern";
+"f7m-rQ-0TS.title" = "Tempo verringern";
 
 /* Class = "NSBox"; title = "Controls"; ObjectID = "fC8-zM-O70"; */
 "fC8-zM-O70.title" = "Steuerelemente";
@@ -262,6 +262,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Jump To"; ObjectID = "qmK-aC-wnB"; */
 "qmK-aC-wnB.headerCell.title" = "Springe zu";
+
+/* Class = "NSBox"; title = "Reset"; ObjectID = "r7f-h9-I7n"; */
+"r7f-h9-I7n.title" = "Zurücksetzen";
 
 /* Class = "NSMenuItem"; title = "Pause"; ObjectID = "rYj-zB-AYc"; */
 "rYj-zB-AYc.title" = "Pause";

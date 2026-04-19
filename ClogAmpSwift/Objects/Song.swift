@@ -169,6 +169,9 @@ class Song {
                 bpm *= 2
             }
             
+            if bpm < 0 {
+                bpm = 0
+            }
             self.bpm = UInt(lround(Double(bpm)))
             
             callback(bpm)
