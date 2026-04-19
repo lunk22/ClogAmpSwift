@@ -63,9 +63,14 @@ class MainView: NSViewController {
     func setMusicDirectory(_ dir: String){
         DispatchQueue.main.async{
             self.aSongs = FileSystemUtils.readFolderContentsAsSong(sPath: dir)
-            self.aSongsForTable = self.aSongs
             
-            self.sortSongs(by: "title") //refreshs the UI
+            if(self.aSongs.count > 0){
+                self.aSongs[0].loadPositions(true)
+                
+                self.aSongsForTable = self.aSongs
+                
+                self.sortSongs(by: "title") //refreshs the UI
+            }
             
             self.directoryLabel.stringValue = dir;
         }
