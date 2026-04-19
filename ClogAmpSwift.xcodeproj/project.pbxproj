@@ -68,6 +68,8 @@
 		B7D141502382B0FF0056B042 /* PasteboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D1414F2382B0FF0056B042 /* PasteboardType.swift */; };
 		B7D141522382B1F30056B042 /* PasteboardWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D141512382B1F30056B042 /* PasteboardWriter.swift */; };
 		B7D7C4352B17382D007DCA96 /* BpmClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D7C4342B17382D007DCA96 /* BpmClickView.swift */; };
+		B7D7C4372B1A1E11007DCA96 /* PrimeAV.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7D7C4362B1A1E11007DCA96 /* PrimeAV.mp3 */; };
+		B7D7C4382B1A1E1F007DCA96 /* PrimeAV.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B7D7C4362B1A1E11007DCA96 /* PrimeAV.mp3 */; };
 		B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C0632214513B00A70F4A /* SongHistoryItem.m */; };
 		B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C06722145A3200A70F4A /* HistoryTableView.swift */; };
 		B7DDFCB122141B3600637831 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDFCB022141B3600637831 /* Tools.swift */; };
@@ -84,6 +86,7 @@
 			dstPath = Fonts;
 			dstSubfolderSpec = 7;
 			files = (
+				B7D7C4382B1A1E1F007DCA96 /* PrimeAV.mp3 in CopyFiles */,
 				B7F48C9E238FEA0300C3DB01 /* Click.mp3 in CopyFiles */,
 				B74E7FEB23795C6C00569664 /* B612-Regular.ttf in CopyFiles */,
 			);
@@ -192,6 +195,7 @@
 		B7D1414F2382B0FF0056B042 /* PasteboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardType.swift; sourceTree = "<group>"; };
 		B7D141512382B1F30056B042 /* PasteboardWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWriter.swift; sourceTree = "<group>"; };
 		B7D7C4342B17382D007DCA96 /* BpmClickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BpmClickView.swift; sourceTree = "<group>"; };
+		B7D7C4362B1A1E11007DCA96 /* PrimeAV.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PrimeAV.mp3; sourceTree = "<group>"; };
 		B7D9C0622214513B00A70F4A /* SongHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongHistoryItem.h; sourceTree = "<group>"; };
 		B7D9C0632214513B00A70F4A /* SongHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongHistoryItem.m; sourceTree = "<group>"; };
 		B7D9C06722145A3200A70F4A /* HistoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableView.swift; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 				50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */,
 				B72660522384070100111C8B /* Sparkle.framework */,
 				50A37BB3207FF03E0020E218 /* Info.plist */,
+				B7D7C4362B1A1E11007DCA96 /* PrimeAV.mp3 */,
 				B7F48C9C238FE9EF00C3DB01 /* Click.mp3 */,
 				50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */,
 				B7B3A17E237C09BC009667CF /* Localizable.strings */,
@@ -280,7 +285,6 @@
 				B72299202202C9FD00AEFA90 /* SongTableView.swift */,
 				5017716821FF58C700D8A95A /* TimePanelView.swift */,
 				B75955852216D1A300D11E3F /* TimePanelWindow.swift */,
-				B722991E2200223B00AEFA90 /* ViewController.swift */,
 				B7B46604237042EB00AA9419 /* PDFView.swift */,
 			);
 			path = Controller;
@@ -330,6 +334,7 @@
 				B7B3A188237EBCC0009667CF /* Window.swift */,
 				B7B3A18A237EC209009667CF /* Panel.swift */,
 				B7D1414F2382B0FF0056B042 /* PasteboardType.swift */,
+				B722991E2200223B00AEFA90 /* ViewController.swift */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -488,6 +493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D7C4372B1A1E11007DCA96 /* PrimeAV.mp3 in Resources */,
 				B70F180F221D781800FE1149 /* Assets.xcassets in Resources */,
 				B7C8358422250E5700CF3360 /* AppIconBlue.icns in Resources */,
 				B70F181A221D957700FE1149 /* AppIconYellow.icns in Resources */,
