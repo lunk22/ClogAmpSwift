@@ -593,7 +593,40 @@ class PositionTableView: NSViewController {
 extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
     
     func tableViewColumnDidResize(_ notification: Notification) {
+        self.positionTable.sizeLastColumnToFit()
         self.positionTable.reloadData()
+    }
+    
+    func tableView(_ tableView: NSTableView, sizeToFitWidthOfColumn column: Int) -> CGFloat {
+        func determineMaxCharCountInPositions(for column: String) -> CGFloat {
+            if let song = PlayerAudioEngine.shared.song {
+                if song.getPositions().count > 0 {
+                    var maxLength: CGFloat = 0.0
+                    song.getPositions().forEach { position in
+                        if CGFloat(position.getValueAsString(column).count) > maxLength {
+                            maxLength = CGFloat(position.getValueAsString(column).count)
+                        }
+                    }
+                    return maxLength
+                }
+            }
+            
+            return 0.0
+        }
+        
+        var buffer = 1.0
+        let fontFactor = 0.625
+        var charCount = 0.0
+        
+        switch tableView.tableColumns[column].identifier.rawValue {
+            case "beats":
+                charCount = determineMaxCharCountInPositions(for: tableView.tableColumns[column].identifier.rawValue)
+                buffer = 2.0
+            default:
+                charCount = determineMaxCharCountInPositions(for: tableView.tableColumns[column].identifier.rawValue)
+        }
+        
+        return (CGFloat(charCount) + buffer) * fontFactor * CGFloat(self.fontSize)
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {

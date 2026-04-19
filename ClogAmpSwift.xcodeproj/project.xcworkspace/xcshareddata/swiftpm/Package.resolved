@@ -1,6 +1,15 @@
 {
-  "originHash" : "f4ed5b745a68a41b483477e4ce94967421dc538b86ecd19c11789825c735ca61",
+  "originHash" : "4fccb80c4fcb239ed5962287d85180ed485b7856e35ab80be96bbd1dcce0cf8a",
   "pins" : [
+    {
+      "identity" : "sparkle",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sparkle-project/Sparkle",
+      "state" : {
+        "revision" : "0ef1ee0220239b3776f433314515fd849025673f",
+        "version" : "2.6.4"
+      }
+    },
     {
       "identity" : "swift-html-to-pdf",
       "kind" : "remoteSourceControl",
