@@ -26,6 +26,14 @@ class Defaults {
         return UserDefaults.standard.bool(forKey: "prefAutoDetermineBPM")
     }
     
+    static var beatsChangeBehaviour: Int {
+        var prefBeatsChangeBehaviour = UserDefaults.standard.integer(forKey: "prefBeatsChangeBehaviour")
+        if(prefBeatsChangeBehaviour < 0 || prefBeatsChangeBehaviour > 1){
+            prefBeatsChangeBehaviour = 0
+        }
+        return prefBeatsChangeBehaviour
+    }
+    
     static var bpmLowerBound: Int {
         var prefBpmLowerBound = UserDefaults.standard.integer(forKey: "prefBpmLowerBound")
         if prefBpmLowerBound == 0 {
@@ -132,13 +140,5 @@ class Defaults {
             prefViewAfterSongLoad = 0
         }
         return prefViewAfterSongLoad
-    }
-    
-    static var beatsChangeBehaviour: Int {
-        var prefBeatsChangeBehaviour = UserDefaults.standard.integer(forKey: "prefBeatsChangeBehaviour")
-        if(prefBeatsChangeBehaviour < 0 || prefBeatsChangeBehaviour > 1){
-            prefBeatsChangeBehaviour = 0
-        }
-        return prefBeatsChangeBehaviour
     }
 }
