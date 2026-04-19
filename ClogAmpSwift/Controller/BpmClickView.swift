@@ -21,6 +21,18 @@ class BpmClickView: ViewController {
         super.viewDidLoad()
     }
     
+//    override func viewDidAppear() {
+//        super.viewDidAppear()
+//        
+//        let window = NSApplication.shared.windows.first() { window in
+//            return window.identifier?.rawValue ?? "" == "bpmClickWindow"
+//        }
+//        
+//        if window != nil {
+//            window?.center()
+//        }
+//    }
+    
     override func viewDidDisappear() {
         clear()
     }

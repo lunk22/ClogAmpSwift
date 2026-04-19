@@ -31,9 +31,8 @@ class SongTableView: ViewController {
     // MARK: Outlets
     @IBOutlet weak var songTable: TableView!
     @IBOutlet weak var searchField: NSTextField!
-    @IBOutlet weak var percentLabel: NSTextField!
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var pathControl: NSPathControl!
-    
     // MARK: Overrides
     override func viewDidLoad() {
         let delay = 1.25
@@ -196,8 +195,8 @@ class SongTableView: ViewController {
                 let percent = $0
                 if percent < 100 {
                     DispatchQueue.main.async(qos: .default) {
-                        self.percentLabel.stringValue = "\(percent)%"
-                        self.percentLabel.isHidden = false
+                        self.progressIndicator.doubleValue = Double(percent)
+                        self.progressIndicator.isHidden = false
                     }
                 }
                 
@@ -212,8 +211,8 @@ class SongTableView: ViewController {
             }
             
             DispatchQueue.main.async(qos: .default) {
-                self.percentLabel.stringValue = ""
-                self.percentLabel.isHidden = true
+                self.progressIndicator.doubleValue = 0.0
+                self.progressIndicator.isHidden = true
                 self.filterTable()
                 self.refreshTable()
                 self.listRefreshRunning = false

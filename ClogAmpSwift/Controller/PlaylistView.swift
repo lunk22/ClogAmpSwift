@@ -42,9 +42,13 @@ class PlaylistView: ViewController {
 //        // https://www.natethompson.io/2019/03/23/nstableview-drag-and-drop.html
         self.songTable.registerForDraggedTypes([.string, .tableRowIndex])
         
-        let viewController = NSApplication.shared.windows[0].contentViewController as! MainView
-        self.mainView = viewController
-        self.playerView = viewController.playerView
+        if let window = NSApplication.shared.windows.first(where: { window in
+            return window.identifier?.rawValue ?? "" == "mainWindow"
+        }) {
+            let viewController = window.contentViewController as! MainView
+            self.mainView = viewController
+            self.playerView = viewController.playerView
+        }        
         
         self.btnPlay.isEnabled = false
         self.btnStop.isEnabled = false
