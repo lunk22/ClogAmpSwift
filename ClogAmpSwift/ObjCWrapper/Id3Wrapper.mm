@@ -29,7 +29,9 @@
     //Duration
     frame = id3Tag->Find(ID3FID_SONGLEN);
     const Mp3_Headerinfo* mp3Info = id3Tag->GetMp3HeaderInfo();
-    [dict setValue: [NSNumber numberWithInt:mp3Info->time] forKey:@"duration"];
+    if(mp3Info != NULL) {
+        [dict setValue: [NSNumber numberWithInt:mp3Info->time] forKey:@"duration"];
+    }
     
     //CloggingLevel
     frame = nil;
