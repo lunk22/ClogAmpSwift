@@ -18,6 +18,9 @@ class MainWindow: NSWindowController {
     
     override func windowDidLoad() {
         window?.setFrameAutosaveName("mainWindowAutosave")
+//        window?.appearance = NSAppearance(named: .aqua)     // Light
+//        window?.appearance = NSAppearance(named: .darkAqua) // Dark
+//        window?.appearance = nil                            // Inherit
         
         super.windowDidLoad()
         
