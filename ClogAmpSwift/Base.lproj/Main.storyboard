@@ -171,7 +171,7 @@
                                                 <segue destination="0fg-Ju-sI0" kind="show" id="aEP-nP-8xB"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Beat Demo" id="nWh-Eb-Wa0">
+                                        <menuItem title="Beats Player" id="nWh-Eb-Wa0">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <segue destination="xtD-2e-74L" kind="show" id="Bm6-m0-pRd"/>
@@ -565,19 +565,19 @@
             <objects>
                 <viewController id="q1X-5U-AxO" customClass="BeatPlayerView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jqs-J3-Qx5">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="90"/>
+                        <rect key="frame" x="0.0" y="0.0" width="445" height="132"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpr-Pa-Lpf">
-                                <rect key="frame" x="20" y="49" width="440" height="21"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="&amp;a1 &amp;2" drawsBackground="YES" id="F5t-fK-HI4">
+                                <rect key="frame" x="20" y="60" width="405" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="&amp;a1 &amp;a2 &amp;a3 &amp;4" drawsBackground="YES" id="F5t-fK-HI4">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuE-QR-BfM">
-                                <rect key="frame" x="214" y="13" width="52" height="32"/>
+                                <rect key="frame" x="16" y="24" width="52" height="32"/>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="playGray" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yIQ-Ej-QMb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -586,21 +586,56 @@
                                     <action selector="handlePlayBeats:" target="q1X-5U-AxO" id="Ofr-zm-qTc"/>
                                 </connections>
                             </button>
+                            <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tb1-nQ-jyd">
+                                <rect key="frame" x="62" y="91" width="52" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="9ou-c6-g2e">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="uc6-GU-w46">
+                                        <real key="minimum" value="40"/>
+                                        <real key="maximum" value="135"/>
+                                    </numberFormatter>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kIC-T9-7of">
+                                <rect key="frame" x="20" y="94" width="36" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="BPM:" id="iYq-bM-ATB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CDA-fn-cfC">
+                                <rect key="frame" x="68" y="24" width="52" height="32"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="stopGray" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AzA-4Z-sf7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleStop:" target="q1X-5U-AxO" id="F5Z-FQ-fsB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="jpr-Pa-Lpf" firstAttribute="centerX" secondItem="jqs-J3-Qx5" secondAttribute="centerX" id="5Jh-Yq-LzC"/>
-                            <constraint firstAttribute="trailing" secondItem="jpr-Pa-Lpf" secondAttribute="trailing" constant="20" id="XVJ-d5-C8S"/>
-                            <constraint firstItem="KuE-QR-BfM" firstAttribute="centerX" secondItem="jqs-J3-Qx5" secondAttribute="centerX" id="rXV-BT-2h8"/>
-                            <constraint firstItem="jpr-Pa-Lpf" firstAttribute="leading" secondItem="jqs-J3-Qx5" secondAttribute="leading" constant="20" id="ySu-cJ-Jr0"/>
+                            <constraint firstAttribute="trailing" secondItem="jpr-Pa-Lpf" secondAttribute="trailing" constant="20" id="7YS-Ln-FzM"/>
+                            <constraint firstItem="kIC-T9-7of" firstAttribute="leading" secondItem="jqs-J3-Qx5" secondAttribute="leading" constant="22" id="Fz5-2v-YTf"/>
+                            <constraint firstItem="tb1-nQ-jyd" firstAttribute="leading" secondItem="kIC-T9-7of" secondAttribute="trailing" constant="8" id="NA7-o6-Y6d"/>
+                            <constraint firstItem="jpr-Pa-Lpf" firstAttribute="leading" secondItem="jqs-J3-Qx5" secondAttribute="leading" constant="20" id="Te6-rC-afR"/>
+                            <constraint firstItem="KuE-QR-BfM" firstAttribute="leading" secondItem="jqs-J3-Qx5" secondAttribute="leading" constant="22" id="Wav-Nd-uHk"/>
+                            <constraint firstItem="jpr-Pa-Lpf" firstAttribute="centerX" secondItem="jqs-J3-Qx5" secondAttribute="centerX" id="gJx-ge-ybL"/>
+                            <constraint firstItem="CDA-fn-cfC" firstAttribute="leading" secondItem="KuE-QR-BfM" secondAttribute="trailing" constant="12" id="qCe-YD-qRg"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="txtBPM" destination="tb1-nQ-jyd" id="EgP-Eb-PcB"/>
                         <outlet property="txtBeats" destination="jpr-Pa-Lpf" id="zgX-hv-XMu"/>
                     </connections>
                 </viewController>
                 <customObject id="1VL-49-6KX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="9XS-IM-P0B"/>
             </objects>
-            <point key="canvasLocation" x="1683" y="-569"/>
+            <point key="canvasLocation" x="1665.5" y="-548"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="AtZ-iD-YBR">
