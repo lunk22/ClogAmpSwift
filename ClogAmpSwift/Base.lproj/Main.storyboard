@@ -303,7 +303,8 @@
                                         <touchBarItem id="wUc-B6-Qre">
                                             <viewController key="viewController" id="tkD-XG-KIf">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dQU-hL-Gs6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="play" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g87-Vn-fYM">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -317,7 +318,8 @@
                                         <touchBarItem id="pNj-ls-1Kz">
                                             <viewController key="viewController" id="WU4-Pb-mEN">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3md-Iz-Y3v">
-                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="pause" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jRX-m8-Ugj">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -331,7 +333,8 @@
                                         <touchBarItem id="loB-7r-049">
                                             <viewController key="viewController" id="WLW-xw-HBx">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GXm-yK-Ude">
-                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="stop" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XOv-M0-HnM">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -352,7 +355,8 @@
                                         <touchBarItem id="It2-e3-EY4">
                                             <viewController key="viewController" id="onz-Vl-gDI">
                                                 <segmentedControl key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-8T-o1O">
-                                                    <rect key="frame" x="0.0" y="0.0" width="196" height="30"/>
+                                                    <rect key="frame" x="0.0" y="-3" width="207" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="kFO-Ya-k29">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -374,7 +378,8 @@
                             <touchBarItem id="jgK-qj-AZp">
                                 <viewController key="viewController" id="n4V-GO-uv3">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T6g-2h-msG">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GbW-ks-VPp">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -2102,9 +2107,8 @@
                                     <font key="font" metaFont="message" size="11"/>
                                 </pathCell>
                             </pathControl>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBY-hW-7Nn" userLabel="Directory Text">
-                                <rect key="frame" x="428" y="91" width="118" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RBY-hW-7Nn" userLabel="Directory Text">
+                                <rect key="frame" x="-2" y="91" width="977" height="65"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" alignment="center" title="99%" id="RIz-5V-WIF">
                                     <font key="font" metaFont="system" size="55"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2134,6 +2138,12 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="RBY-hW-7Nn" firstAttribute="centerY" secondItem="b06-Er-8KR" secondAttribute="centerY" id="9A4-Vl-dX1"/>
+                            <constraint firstAttribute="trailing" secondItem="RBY-hW-7Nn" secondAttribute="trailing" id="EM9-7z-80K"/>
+                            <constraint firstItem="RBY-hW-7Nn" firstAttribute="centerX" secondItem="b06-Er-8KR" secondAttribute="centerX" id="dMd-OM-rYZ"/>
+                            <constraint firstItem="RBY-hW-7Nn" firstAttribute="leading" secondItem="b06-Er-8KR" secondAttribute="leading" id="oYF-jV-A90"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="pathControl" destination="RYs-DU-iVq" id="uzu-1I-SQ9"/>

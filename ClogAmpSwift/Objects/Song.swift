@@ -50,6 +50,7 @@ class Song {
     static func retrieveSong(path: URL) -> Song{        
         let stringPath = path.absoluteString.removingPercentEncoding!
         if let song = songDict[stringPath] {
+            song.readBasicInfo()
             return song
         }else{
             let newSong = Song(path: path)
@@ -79,6 +80,10 @@ class Song {
         self.positions       = []
         self.waitBeats       = 0
         
+        self.readBasicInfo()
+    } //init
+    
+    func readBasicInfo() {
         let stringPath = self.getValueAsString("path")
         
         //Read ID3 Info
@@ -121,7 +126,7 @@ class Song {
             //Read Wait Beats
             self.waitBeats = Int(map?.value(forKey: "waitBeats") as? Int ?? 0)
         }
-    } //init
+    }
     
     func getValueAsString(_ property: String) -> String {
         switch property {
