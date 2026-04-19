@@ -356,6 +356,10 @@ class PlayerAudioEngine {
                     try self.audioEngine.start()
                     self.audioPlayer.play()
                     
+                    // Print gain
+                    print("File: \(self.song?.title ?? "") | Gain: \(self.equalizer.globalGain)")
+            //        equalizer.globalGain
+                    
                     self.playing = true
                     MPNowPlayingInfoCenter.default().playbackState = .playing
                     
@@ -417,6 +421,7 @@ class PlayerAudioEngine {
         } else {
             offset = 0
         }
+        
         doSeek(offset)
     }
     
@@ -508,6 +513,10 @@ class PlayerAudioEngine {
     private func doSeek(_ newFrame: AVAudioFramePosition) {
         let wasPlaying = isPlaying()
         
+        // Safe current volume
+        let originalVolume = self.audioPlayer.volume
+        self.audioPlayer.volume = 0.0
+        
         var newFramePosition = max(newFrame, 0)
         newFramePosition = min(newFramePosition, audioFile?.length ?? 0)
         
@@ -517,6 +526,8 @@ class PlayerAudioEngine {
             let remainingFrames = AVAudioFrameCount(audioFile!.length - newFramePosition)
             audioPlayer.scheduleSegment(audioFile!, startingFrame: newFramePosition, frameCount: remainingFrames, at: nil)
             
+            // Restore volume
+            self.audioPlayer.volume = originalVolume
             
             if(wasPlaying){
                 audioPlayer.play()
@@ -526,6 +537,9 @@ class PlayerAudioEngine {
                 executeTimeObserverCallback()
             }
             
+        } else {
+            // Nothing done, just restore volume
+            self.audioPlayer.volume = originalVolume
         }
     }
     
