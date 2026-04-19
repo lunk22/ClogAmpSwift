@@ -32,6 +32,7 @@
 		B72299232202D0EA00AEFA90 /* PositionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299222202D0EA00AEFA90 /* PositionTableView.swift */; };
 		B7364FD7221537AA00FB9C64 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7364FD6221537AA00FB9C64 /* Player.swift */; };
 		B74E7FE623794E8C00569664 /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = B74E7FE523794E8C00569664 /* ObjC.m */; };
+		B74E7FEB23795C6C00569664 /* B612-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = B74E7FE823795A0500569664 /* B612-Regular.ttf */; };
 		B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75955852216D1A300D11E3F /* TimePanelWindow.swift */; };
 		B75955882216DD5800D11E3F /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75955872216DD5800D11E3F /* MainWindow.swift */; };
 		B78780F42216A131002B74B4 /* BassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B78780F32216A131002B74B4 /* BassWrapper.m */; };
@@ -57,6 +58,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		B74E7FEA23795C5B00569664 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Fonts;
+			dstSubfolderSpec = 7;
+			files = (
+				B74E7FEB23795C6C00569664 /* B612-Regular.ttf in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7BD8EEC21F754D600532C1A /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -101,6 +112,7 @@
 		B7364FD6221537AA00FB9C64 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		B74E7FE423794E5500569664 /* ObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjC.h; sourceTree = "<group>"; };
 		B74E7FE523794E8C00569664 /* ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjC.m; sourceTree = "<group>"; };
+		B74E7FE823795A0500569664 /* B612-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "B612-Regular.ttf"; sourceTree = "<group>"; };
 		B75955852216D1A300D11E3F /* TimePanelWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePanelWindow.swift; sourceTree = "<group>"; };
 		B75955872216DD5800D11E3F /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		B78780F32216A131002B74B4 /* BassWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BassWrapper.m; sourceTree = "<group>"; };
@@ -181,6 +193,7 @@
 		50A37BA9207FF03D0020E218 /* ClogAmpSwift */ = {
 			isa = PBXGroup;
 			children = (
+				B74E7FE7237959D100569664 /* Fonts */,
 				B7BD8ED321F73E4E00532C1A /* ObjCWrapper */,
 				B70E24BC21F5E5CC00387D0A /* CustomClasses */,
 				50DC6D8D2081F03E00B7C347 /* Delegates */,
@@ -274,6 +287,14 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		B74E7FE7237959D100569664 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B74E7FE823795A0500569664 /* B612-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		B7B46606237046D800AA9419 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +356,7 @@
 				50A37BA4207FF03D0020E218 /* Frameworks */,
 				50A37BA5207FF03D0020E218 /* Resources */,
 				B7BD8EEC21F754D600532C1A /* Embed Libraries */,
+				B74E7FEA23795C5B00569664 /* CopyFiles */,
 			);
 			buildRules = (
 			);

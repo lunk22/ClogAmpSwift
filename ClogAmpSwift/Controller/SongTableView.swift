@@ -403,7 +403,7 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
             textField.stringValue = self.aSongsForTable[row].getValueAsString(tableColumn!.identifier.rawValue)
             
             if prefMonoFontSongs {
-                textField.font = NSFont.init(name: "PTMono-Regular", size: CGFloat(self.fontSize))
+                textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
             }

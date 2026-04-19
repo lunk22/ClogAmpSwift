@@ -390,15 +390,11 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
             }
             
             if prefMonoFontPositons {
-                textField.font = NSFont.init(name: "PTMono-Regular", size: CGFloat(self.fontSize))
+                textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
             }
-            
-//            textField.font = NSFont.init(descriptor: fontDescriptor.withFace("Noteworthy-Bold"), size: CGFloat(self.fontSize))// .systemFont(ofSize: CGFloat(self.fontSize))
-            
-//            textField.frame = NSRect(x: cell.frame.minX, y: cell.frame.minY, width: textField.frame.width, height: textField.frame.height)
-            
+                        
             textField.sizeToFit()
             
             return cell
