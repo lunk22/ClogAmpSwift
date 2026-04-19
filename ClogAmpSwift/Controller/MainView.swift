@@ -72,6 +72,7 @@ class MainView: NSViewController {
         self.pdfView           = self.children[2] as? PDFViewController
         self.playerView        = self.children[3] as? PlayerView
 
+        self.pdfView?.mainView           = self
         self.playerView?.mainView        = self
         self.songTableView?.mainView     = self
         self.positionTableView?.mainView = self

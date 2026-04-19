@@ -396,6 +396,9 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
             }
             
 //            textField.font = NSFont.init(descriptor: fontDescriptor.withFace("Noteworthy-Bold"), size: CGFloat(self.fontSize))// .systemFont(ofSize: CGFloat(self.fontSize))
+            
+//            textField.frame = NSRect(x: cell.frame.minX, y: cell.frame.minY, width: textField.frame.width, height: textField.frame.height)
+            
             textField.sizeToFit()
             
             return cell

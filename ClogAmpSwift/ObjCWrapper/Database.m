@@ -43,13 +43,13 @@
         return false;
     }
     
-//    //create table CuesheetAssignment
-//    result = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS CuesheetAssignment (FileName TEXT PRIMARY KEY, CuesheetPath TEXT)", NULL, NULL, NULL);
-//
-//    if(result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return false;
-//    }
+    //create table CuesheetAssignment
+    result = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS CuesheetAssignment (FileName TEXT PRIMARY KEY, CuesheetPath TEXT)", NULL, NULL, NULL);
+
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return false;
+    }
     
     //create table SongHistory
     result = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS SongHistory (Title TEXT, Artist TEXT, FileName TEXT, PlayedDate TEXT, PlayedTime TEXT, PRIMARY KEY (Title, Artist, FileName, PlayedDate, PlayedTime))", NULL, NULL, NULL);
@@ -79,72 +79,72 @@
     return true;
 }
 
-//+ (bool)insertIntoCuesheetAssignment:(NSString *)fileName assignedPDFPath:(NSString *)pdfPath{
-//    sqlite3 *database;
-//    int result;
-//
-//    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
-//    if(result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return false;
-//    }
-//
-//    NSString *exec = @"INSERT INTO CuesheetAssignment VALUES(\"";
-//    exec = [exec stringByAppendingString:fileName];
-//    exec = [exec stringByAppendingString:@"\", \""];
-//    exec = [exec stringByAppendingString:pdfPath];
-//    exec = [exec stringByAppendingString:@"\")"];
-//
-//    //Run the insert
-//    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
-//    if (result != SQLITE_OK){
-//        if (result == 19) { //Entry already exists
-//            exec = @"UPDATE CuesheetAssignment SET CuesheetPath = \"";
-//            exec = [exec stringByAppendingString:pdfPath];
-//            exec = [exec stringByAppendingString:@"\" WHERE FileName = \""];
-//            exec = [exec stringByAppendingString:fileName];
-//            exec = [exec stringByAppendingString:@"\""];
-//
-//            //Run the update!
-//            result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
-//            if (result != SQLITE_OK) {
-//                sqlite3_close(database);
-//                return false;
-//            }
-//        }else {
-//            sqlite3_close(database);
-//            return false;
-//        }
-//    }
-//
-//    sqlite3_close(database);
-//    return true;
-//}
-//
-//+ (bool)deleteFromCuesheetAssignment:(NSString *)fileName{
-//    sqlite3 *database;
-//    int result;
-//
-//    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
-//    if(result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return false;
-//    }
-//
-//    NSString *exec = @"DELETE FROM CuesheetAssignment WHERE FileName = \"";
-//    exec = [exec stringByAppendingString:fileName];
-//    exec = [exec stringByAppendingString:@"\""];
-//
-//    //Run the update!
-//    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
-//    if (result != SQLITE_OK) {
-//        sqlite3_close(database);
-//        return false;
-//    }
-//
-//    sqlite3_close(database);
-//    return true;
-//}
++ (bool)insertIntoCuesheetAssignment:(NSString *)fileName assignedPDFPath:(NSString *)pdfPath{
+    sqlite3 *database;
+    int result;
+
+    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return false;
+    }
+
+    NSString *exec = @"INSERT INTO CuesheetAssignment VALUES(\"";
+    exec = [exec stringByAppendingString:fileName];
+    exec = [exec stringByAppendingString:@"\", \""];
+    exec = [exec stringByAppendingString:pdfPath];
+    exec = [exec stringByAppendingString:@"\")"];
+
+    //Run the insert
+    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
+    if (result != SQLITE_OK){
+        if (result == 19) { //Entry already exists
+            exec = @"UPDATE CuesheetAssignment SET CuesheetPath = \"";
+            exec = [exec stringByAppendingString:pdfPath];
+            exec = [exec stringByAppendingString:@"\" WHERE FileName = \""];
+            exec = [exec stringByAppendingString:fileName];
+            exec = [exec stringByAppendingString:@"\""];
+
+            //Run the update!
+            result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
+            if (result != SQLITE_OK) {
+                sqlite3_close(database);
+                return false;
+            }
+        }else {
+            sqlite3_close(database);
+            return false;
+        }
+    }
+
+    sqlite3_close(database);
+    return true;
+}
+
++ (bool)deleteFromCuesheetAssignment:(NSString *)fileName{
+    sqlite3 *database;
+    int result;
+
+    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return false;
+    }
+
+    NSString *exec = @"DELETE FROM CuesheetAssignment WHERE FileName = \"";
+    exec = [exec stringByAppendingString:fileName];
+    exec = [exec stringByAppendingString:@"\""];
+
+    //Run the update!
+    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
+    if (result != SQLITE_OK) {
+        sqlite3_close(database);
+        return false;
+    }
+
+    sqlite3_close(database);
+    return true;
+}
 
 + (bool)insertSongIntoHistory:(NSString *)songTitle withArtist:(NSString *)songArtist withPath:(NSString *)songPath{
     sqlite3 *database;
@@ -207,47 +207,47 @@
     return true;
 }
 
-//+ (NSString *)getAssignedPDF:(NSString *)fileName{
-//    NSString *pdfPath = nil;
-//    sqlite3 *database;
-//    int result;
-//    
-//    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
-//    if(result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return nil;
-//    }
-//    
-//    NSString *selectStmt = @"SELECT CuesheetPath FROM CuesheetAssignment WHERE FileName = \"";
-//    selectStmt = [selectStmt stringByAppendingString:fileName];
-//    selectStmt = [selectStmt stringByAppendingString:@"\""];
-//    
-//    sqlite3_stmt *statement;
-//    
-//    result = sqlite3_prepare(database, [selectStmt cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, nil);
-//    if(result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return nil;
-//    }
-//    
-//    if (sqlite3_step(statement) == SQLITE_ROW){
-//        @try {
-//            pdfPath = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 0) encoding:NSUTF8StringEncoding];
-//        }
-//        @catch (NSException *e){
-//            pdfPath = nil;
-//        }
-//    }else {
-//        sqlite3_finalize(statement);
-//        sqlite3_close(database);
-//        return nil;
-//    }
-//    
-//    sqlite3_finalize(statement);
-//    sqlite3_close(database);
-//    
-//    return pdfPath;
-//}
++ (NSString *)getAssignedPDF:(NSString *)fileName{
+    NSString *pdfPath = nil;
+    sqlite3 *database;
+    int result;
+    
+    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return nil;
+    }
+    
+    NSString *selectStmt = @"SELECT CuesheetPath FROM CuesheetAssignment WHERE FileName = \"";
+    selectStmt = [selectStmt stringByAppendingString:fileName];
+    selectStmt = [selectStmt stringByAppendingString:@"\""];
+    
+    sqlite3_stmt *statement;
+    
+    result = sqlite3_prepare(database, [selectStmt cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, nil);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return nil;
+    }
+    
+    if (sqlite3_step(statement) == SQLITE_ROW){
+        @try {
+            pdfPath = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 0) encoding:NSUTF8StringEncoding];
+        }
+        @catch (NSException *e){
+            pdfPath = nil;
+        }
+    }else {
+        sqlite3_finalize(statement);
+        sqlite3_close(database);
+        return nil;
+    }
+    
+    sqlite3_finalize(statement);
+    sqlite3_close(database);
+    
+    return pdfPath;
+}
 
 //+ (NSMutableArray *)getPlaylists{
 //    sqlite3 *database;

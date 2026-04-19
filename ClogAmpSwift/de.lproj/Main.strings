@@ -421,3 +421,19 @@
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "zsi-If-4eB"; */
 "zsi-If-4eB.title" = "";
+
+// Manually Added
+//
+
+/* Class = "NSMenuItem"; title = "Open Folder…"; ObjectID = "7Dt-8U-nbt"; */
+"7Dt-8U-nbt.title" = "PDF-Ordner auswählen…";
+
+/* Class = "NSMenuItem"; title = "Assign PDF..."; ObjectID = "KGz-G6-Nt9"; */
+"KGz-G6-Nt9.title" = "PDF zuordnen…";
+
+/* Class = "NSMenuItem"; title = "Remove PDF Assignment"; ObjectID = "2yv-Bl-R2B"; */
+"2yv-Bl-R2B.title" = "PDF-Zuordnung entfernen";
+
+// Used in Sourcecode
+"choosePdf" = "PDF auswählen";
+"chooseFolder" = "Ordner auswählen";
