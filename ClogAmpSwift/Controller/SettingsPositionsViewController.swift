@@ -13,8 +13,9 @@ class SettingsPositionsViewController: NSViewController {
     @objc let defaults: UserDefaults = .standard
     
     // MARK: OUTLETS
-    @IBOutlet weak var ddlbAddPositionBehavior: NSComboBox!    
+    @IBOutlet weak var ddlbAddPositionBehavior: NSComboBox!
     @IBOutlet weak var ddlbBeatsBehaviorChange: NSComboBox!
+    @IBOutlet weak var ddlbPlayPositionOffset: NSComboBox!
     @IBOutlet weak var cwHighlightColor: NSColorWell!
     @IBOutlet weak var cwTextColor: NSColorWell!
     
@@ -40,7 +41,7 @@ class SettingsPositionsViewController: NSViewController {
     
     // MARK: View overrides
     override var preferredContentSize: NSSize {
-        get { NSSize(width: 804, height: 454) }
+        get { NSSize(width: 804, height: 510) }
         set { }
     }
 
@@ -49,6 +50,7 @@ class SettingsPositionsViewController: NSViewController {
         
         self.ddlbAddPositionBehavior.selectItem(at: Settings.addPositionBehavior)
         self.ddlbBeatsBehaviorChange.selectItem(at: Settings.beatsChangeBehavior)
+        self.ddlbPlayPositionOffset.selectItem(at: Settings.playPositionOffset)
         
         self.cwHighlightColor.color = Settings.positionHighlightColor
         self.cwTextColor.color = Settings.positionTextColor
@@ -61,11 +63,13 @@ extension SettingsPositionsViewController : NSComboBoxDelegate, NSComboBoxDataSo
             return 2 //Adjust next position, move all following positions
         } else if comboBox.identifier?.rawValue == "ddlbAddPositionBehavior" {
             return 3 // Adjust by beats, by seconds, no adjustments
+        } else if comboBox.identifier?.rawValue == "ddlbPlayPositionOffset" {
+            return 3 // No offset, beats, seconds
         }
 
         return 0
     }
-    
+
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
         if comboBox.identifier?.rawValue == "ddlbBeatsChangeBehavior" {
             switch index {
@@ -87,18 +91,31 @@ extension SettingsPositionsViewController : NSComboBoxDelegate, NSComboBoxDataSo
                 default:
                     return NSString(string: "")
             }
+        } else if comboBox.identifier?.rawValue == "ddlbPlayPositionOffset" {
+            switch index {
+                case 0:
+                    return NSLocalizedString("addPositionBehaviorNoChange", bundle: Bundle.main, comment: "") as NSString
+                case 1:
+                    return NSLocalizedString("addPositionBehaviorAdjustBeats", bundle: Bundle.main, comment: "") as NSString
+                case 2:
+                    return NSLocalizedString("addPositionBehaviorAdjustSeconds", bundle: Bundle.main, comment: "") as NSString
+                default:
+                    return NSString(string: "")
+            }
         }
 
         return NSString(string: "")
-        
+
     }
-    
+
     func comboBoxSelectionDidChange(_ notification: Notification) {
         let uiElement: NSControl = notification.object as! NSControl
         if uiElement.identifier?.rawValue == "ddlbBeatsChangeBehavior" {
             UserDefaults.standard.set(self.ddlbBeatsBehaviorChange.indexOfSelectedItem, forKey: UserDefaults.Keys.prefBeatsChangeBehaviour.rawValue)
         } else if uiElement.identifier?.rawValue == "ddlbAddPositionBehavior" {
             UserDefaults.standard.set(self.ddlbAddPositionBehavior.indexOfSelectedItem, forKey: UserDefaults.Keys.prefAddPositionBehaviour.rawValue)
+        } else if uiElement.identifier?.rawValue == "ddlbPlayPositionOffset" {
+            UserDefaults.standard.set(self.ddlbPlayPositionOffset.indexOfSelectedItem, forKey: UserDefaults.Keys.prefPlayPositionOffset.rawValue)
         }
 
     }

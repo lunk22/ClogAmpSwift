@@ -21,6 +21,24 @@ class Settings: NSObject {
         return UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefAddPositionOffset.rawValue)
     }
 
+    // 0 = no offset, 1 = beats, 2 = seconds
+    static var playPositionOffset: Int {
+        var v = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefPlayPositionOffset.rawValue)
+        if v < 0 || v > 2 { v = 0 }
+        return v
+    }
+
+    static var playPositionOffsetValue: Int {
+        return UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefPlayPositionOffsetValue.rawValue)
+    }
+
+    static var showBeatCountdown: Bool {
+        if UserDefaults.standard.value(forKey: UserDefaults.Keys.prefShowBeatCountdown.rawValue) == nil {
+            UserDefaults.standard.set(false, forKey: UserDefaults.Keys.prefShowBeatCountdown.rawValue)
+        }
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefShowBeatCountdown.rawValue)
+    }
+
     static var appearance: Int {
         var prefAppearance = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefAppearance.rawValue)
         if(prefAppearance < 0 || prefAppearance > 2){

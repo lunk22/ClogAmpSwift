@@ -866,14 +866,14 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="nQo-pP-bi7">
-                                <rect key="frame" x="20" y="324" width="362" height="110"/>
+                                <rect key="frame" x="20" y="324" width="362" height="132"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="d04-w1-YsF">
-                                    <rect key="frame" x="0.0" y="0.0" width="362" height="93"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362" height="115"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DHk-f7-xzm">
-                                            <rect key="frame" x="18" y="55" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="77" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Focus Filter" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="YQs-tI-kI4">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -889,7 +889,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tzj-al-krK">
-                                            <rect key="frame" x="18" y="33" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="55" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Wka-4n-czd">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -906,7 +906,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNv-Ja-9UA">
-                                            <rect key="frame" x="18" y="11" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="33" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Prevent sleep when active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8Lo-uH-DMG">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -915,6 +915,23 @@ CA
                                             <connections>
                                                 <action selector="handleSleepPreventionChanged:" target="qhU-Gw-geV" id="6DX-HM-DaR"/>
                                                 <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefPreventSleepWhenActive" id="mhP-Gb-qKO">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bCd-xY-k2Z">
+                                            <rect key="frame" x="18" y="11" width="300" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Show beat countdown" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bCd-xY-k3Z">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefShowBeatCountdown" id="bCd-xY-k4Z">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNullPlaceholder" value="0"/>
@@ -1040,6 +1057,7 @@ CA
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="btnShowBeatCountdown" destination="bCd-xY-k2Z" id="bCd-xY-k7Z"/>
                         <outlet property="ddlbAppearance" destination="ZGb-gR-2yS" id="E2R-pf-o3H"/>
                         <outlet property="ddlbViewAfterSongLoad" destination="UCv-us-uE5" id="M1e-yf-yn9"/>
                     </connections>
@@ -3535,11 +3553,11 @@ IA
             <objects>
                 <viewController showSeguePresentationStyle="single" id="8JY-25-ZrM" customClass="SettingsPositionsViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Jpi-Kn-TLL">
-                        <rect key="frame" x="0.0" y="0.0" width="804" height="454"/>
+                        <rect key="frame" x="0.0" y="0.0" width="804" height="510"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" borderType="none" title="Beats" translatesAutoresizingMaskIntoConstraints="NO" id="Qaj-Iz-eJT">
-                                <rect key="frame" x="20" y="212" width="362" height="125"/>
+                                <rect key="frame" x="20" y="268" width="362" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="LyG-9h-fgq">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="108"/>
@@ -3590,7 +3608,7 @@ IA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Selection" translatesAutoresizingMaskIntoConstraints="NO" id="BZo-C8-1R4">
-                                <rect key="frame" x="20" y="357" width="362" height="77"/>
+                                <rect key="frame" x="20" y="413" width="362" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="A99-GQ-oXc">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="60"/>
@@ -3618,7 +3636,7 @@ IA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Behavior when adding positions" translatesAutoresizingMaskIntoConstraints="NO" id="1D8-Xh-Bva">
-                                <rect key="frame" x="422" y="325" width="362" height="109"/>
+                                <rect key="frame" x="422" y="381" width="362" height="109"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="lPk-OB-IFB">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="92"/>
@@ -3669,7 +3687,7 @@ IA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Highlighting" translatesAutoresizingMaskIntoConstraints="NO" id="Wcu-gV-IDD">
-                                <rect key="frame" x="20" y="20" width="362" height="172"/>
+                                <rect key="frame" x="20" y="76" width="362" height="172"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="cMQ-px-g7l">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="155"/>
@@ -3766,7 +3784,7 @@ IA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Loop" translatesAutoresizingMaskIntoConstraints="NO" id="h18-cv-jg5">
-                                <rect key="frame" x="422" y="54" width="362" height="118"/>
+                                <rect key="frame" x="422" y="110" width="362" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="Fxr-UD-e6j">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="101"/>
@@ -3804,7 +3822,7 @@ IA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Behavior when changing positions" translatesAutoresizingMaskIntoConstraints="NO" id="uuy-05-1IN">
-                                <rect key="frame" x="422" y="212" width="362" height="74"/>
+                                <rect key="frame" x="422" y="268" width="362" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="BVC-4F-N1d">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="57"/>
@@ -3831,6 +3849,57 @@ IA
                                 </view>
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
+                            <box fixedFrame="YES" borderType="none" title="Playback offset" translatesAutoresizingMaskIntoConstraints="NO" id="pOf-s1-yTZ">
+                                <rect key="frame" x="422" y="20" width="362" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="pOf-s1-yTV">
+                                    <rect key="frame" x="0.0" y="0.0" width="362" height="69"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <comboBox identifier="ddlbPlayPositionOffset" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOf-s1-yTW">
+                                            <rect key="frame" x="19" y="37" width="330" height="23"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="3" id="pOf-s1-yTX">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </comboBoxCell>
+                                            <connections>
+                                                <outlet property="dataSource" destination="8JY-25-ZrM" id="pOf-s1-yTY"/>
+                                                <outlet property="delegate" destination="8JY-25-ZrM" id="pOf-s1-yTZ2"/>
+                                            </connections>
+                                        </comboBox>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOf-s1-yTA">
+                                            <rect key="frame" x="18" y="12" width="98" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Offset" id="pOf-s1-yTB">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField identifier="txtPlayPositionOffset" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOf-s1-yTC">
+                                            <rect key="frame" x="122" y="9" width="35" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="pOf-s1-yTD">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="8JY-25-ZrM" name="value" keyPath="defaults.prefPlayPositionOffsetValue" id="pOf-s1-yTE">
+                                                    <dictionary key="options">
+                                                        <string key="NSNotApplicablePlaceholder">0</string>
+                                                        <string key="NSNullPlaceholder">0</string>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
@@ -3838,6 +3907,7 @@ IA
                         <outlet property="cwTextColor" destination="UPO-pe-jzZ" id="v0X-bM-eZn"/>
                         <outlet property="ddlbAddPositionBehavior" destination="xb5-me-gN5" id="0cQ-fe-Z07"/>
                         <outlet property="ddlbBeatsBehaviorChange" destination="eHH-6i-4jr" id="gDd-la-Fnd"/>
+                        <outlet property="ddlbPlayPositionOffset" destination="pOf-s1-yTW" id="pOf-s1-yTF"/>
                     </connections>
                 </viewController>
                 <customObject id="JPD-L2-OxM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

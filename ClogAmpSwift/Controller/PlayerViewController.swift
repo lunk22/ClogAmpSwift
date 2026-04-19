@@ -30,19 +30,23 @@ class PlayerViewController: ViewController {
         
     //MARK: Properties
     var observer: Any?
-    
+
     private let imgHeight = 21
     private let imgWidth = 21
-    
+
     private let colorGray = NSColor.darkGray
-    
+
     private var imgPlayGray:  NSImage
     private var imgPauseGray: NSImage
     private var imgStopGray:  NSImage
-    
+
     private var imgPlay:  NSImage
     private var imgPause: NSImage
     private var imgStop:  NSImage
+
+    private var beatOverlayView: NSView!
+    private var beatOverlayLabel: NSTextField!
+    private var playedFromBeginning = false
     
     var currentSong: Song? {
         willSet {
@@ -105,10 +109,12 @@ class PlayerViewController: ViewController {
             self.btnPlay.image  = Settings.colorizedPlayerState ? self.imgPlay : self.imgPlayGray
             self.btnPause.image = self.imgPauseGray
             self.btnStop.image  = self.imgStopGray
-            
+
             self.mainView?.mainWindow?.tbPlay.image  = Settings.colorizedPlayerState ? self.imgPlay : self.imgPlayGray
             self.mainView?.mainWindow?.tbPause.image = self.imgPauseGray
             self.mainView?.mainWindow?.tbStop.image  = self.imgStopGray
+
+            self.playedFromBeginning = PlayerAudioEngine.shared.getCurrentTime() < 0.5
         }
         
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.paused, object: nil, queue: .current) { _ in
@@ -153,25 +159,96 @@ class PlayerViewController: ViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-//        // Initial values
-//        let volume = UserDefaults.standard.integer(forKey: "playerVolume")
-//        self.volumeSlider.integerValue = volume > 0 ? volume : 100
-//        self.volumeText.stringValue    = "\(self.volumeSlider.integerValue)%"
-        
+
         // Update slider styles
         if #available(macOS 26.0, *) {
             self.speedSlider.neutralValue = 0
             self.volumeSlider.neutralValue = 0
             self.timeSlider.neutralValue = 0
         }
-        
+
+        setupBeatOverlay()
+    }
+
+    private func setupBeatOverlay() {
+        beatOverlayView = NSView()
+        beatOverlayView.wantsLayer = true
+        beatOverlayView.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.55).cgColor
+        beatOverlayView.layer?.cornerRadius = 8
+        beatOverlayView.translatesAutoresizingMaskIntoConstraints = false
+        beatOverlayView.isHidden = true
+
+        beatOverlayLabel = NSTextField(labelWithString: "")
+        beatOverlayLabel.font = NSFont.monospacedDigitSystemFont(ofSize: 96, weight: .bold)
+        beatOverlayLabel.textColor = .white
+        beatOverlayLabel.alignment = .center
+        beatOverlayLabel.translatesAutoresizingMaskIntoConstraints = false
+        beatOverlayView.addSubview(beatOverlayLabel)
+
+        view.addSubview(beatOverlayView)
+
+        NSLayoutConstraint.activate([
+            beatOverlayView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            beatOverlayView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            beatOverlayView.topAnchor.constraint(equalTo: view.topAnchor),
+            beatOverlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            beatOverlayLabel.centerXAnchor.constraint(equalTo: beatOverlayView.centerXAnchor),
+            beatOverlayLabel.centerYAnchor.constraint(equalTo: beatOverlayView.centerYAnchor),
+        ])
     }
     
     // MARK: Update related stuff
     
-    func tick() {        
+    func tick() {
         self.updateTimeInUI()
         self.updatePositionTable(single: true)
+        self.updateBeatCountdown()
+    }
+
+    func updateBeatCountdown() {
+        guard
+            let song = self.currentSong,
+            song.bpm > 0,
+            song.waitBeats > 0,
+            Settings.showBeatCountdown,
+            PlayerAudioEngine.shared.isPlaying()
+        else {
+            // print("1")
+            DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
+            return
+        }
+
+        let currentTime = PlayerAudioEngine.shared.getCurrentTime()
+
+        // Use first named position as beat phase anchor to compensate for leading silence.
+        // If no named positions exist, nothing to count down to.
+        guard let anchorPosition = song.getPositions().first(where: { !$0.name.isEmpty }) else {
+            // print("2")
+            DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
+            return
+        }
+        let anchorTime = Double(anchorPosition.time) / 1000.0
+
+        let effectiveBPM = Double(song.bpm) * Double(100 + song.speed) / 100.0
+        let beatDuration = 60.0 / effectiveBPM
+
+        // beatOffset is negative here (we're before the anchor); floor gives e.g. -8,-7,...,-1
+        // Map to 1-8: beat 1 lands on the anchor
+        let beatOffset = (currentTime - anchorTime) / beatDuration
+
+        // Only show during the last 16 beats before the anchor
+        guard currentTime < anchorTime && beatOffset >= -8 else {
+            // print("3")
+            DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
+            return
+        }
+
+        let beatInGroup = ((Int(floor(beatOffset)) % 8) + 8) % 8 + 1
+        DispatchQueue.main.async {
+            self.beatOverlayLabel.stringValue = "\(beatInGroup)"
+            self.beatOverlayView.isHidden = false
+        }
     }
     
     func updateMeters() {

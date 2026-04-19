@@ -72,7 +72,11 @@ extension UserDefaults {
         
         case prefAddPositionBehaviour
         case prefAddPositionOffset
-        
+
+        case prefPlayPositionOffset
+        case prefPlayPositionOffsetValue
+        case prefShowBeatCountdown
+
         case prefUpdateNameMatchingPositions
         case prefLoopDelay
         

@@ -187,9 +187,26 @@ class PositionTableViewController: NSViewController {
         if(index == -1 || PlayerAudioEngine.shared.song?.getPositions().count ?? -1 <= index){
             return
         }
-        
+
         if let oPosition = PlayerAudioEngine.shared.song?.getPositions()[index] {
-            PlayerAudioEngine.shared.seek(seconds: Float64(oPosition.time / 1000))
+            var seekTime = Float64(oPosition.time) / 1000.0
+
+            if let song = PlayerAudioEngine.shared.song, Settings.playPositionOffsetValue > 0 {
+                switch Settings.playPositionOffset {
+                case 1: // beats
+                    if song.bpm > 0 {
+                        let effectiveBPM = Double(song.bpm) * Double(100 + song.speed) / 100.0
+                        seekTime -= Double(Settings.playPositionOffsetValue) * 60.0 / effectiveBPM
+                    }
+                case 2: // seconds
+                    seekTime -= Double(Settings.playPositionOffsetValue)
+                default:
+                    break
+                }
+                seekTime = max(0, seekTime)
+            }
+
+            PlayerAudioEngine.shared.seek(seconds: seekTime)
             if Settings.playPositionOnSelection && !(PlayerAudioEngine.shared.isPlaying()){
                 PlayerAudioEngine.shared.play()
             }

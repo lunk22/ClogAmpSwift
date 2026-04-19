@@ -13,20 +13,47 @@ class SettingsGeneralViewController: NSViewController {
     // MARK: VARS
     @objc let defaults: UserDefaults = .standard
     @objc let version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-    
+    private weak var beatCountdownInfoButton: NSButton?
+
     // MARK: OUTLETS
     @IBOutlet weak var ddlbAppearance: NSComboBox!
     @IBOutlet weak var ddlbViewAfterSongLoad: NSComboBox!
-    
+    @IBOutlet weak var btnShowBeatCountdown: NSButton!
+
     // MARK: ACTIONS
     @IBAction func handleMonoChanged(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("monoChanged"), object: nil)
     }
-    
+
     @IBAction func handleSleepPreventionChanged(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("preventSystemSleepChanged"), object: nil)
     }
-    
+
+    @objc func handleBeatCountdownInfo(_ sender: NSButton) {
+        let text = NSLocalizedString("beatCountdownTooltip", bundle: Bundle.main, comment: "")
+
+        let label = NSTextField(wrappingLabelWithString: text)
+        label.isEditable = false
+        label.isBordered = false
+        label.drawsBackground = false
+        label.preferredMaxLayoutWidth = 260
+
+        let popover = NSPopover()
+        let vc = NSViewController()
+        vc.view = NSView(frame: NSRect(x: 0, y: 0, width: 280, height: 1))
+        label.translatesAutoresizingMaskIntoConstraints = false
+        vc.view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: vc.view.leadingAnchor, constant: 12),
+            label.trailingAnchor.constraint(equalTo: vc.view.trailingAnchor, constant: -12),
+            label.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: 12),
+            label.bottomAnchor.constraint(equalTo: vc.view.bottomAnchor, constant: -12),
+        ])
+        popover.contentViewController = vc
+        popover.behavior = .transient
+        popover.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
+    }
+
     // MARK: View overrides
     override var preferredContentSize: NSSize {
         get { NSSize(width: 804, height: 454) }
@@ -35,9 +62,20 @@ class SettingsGeneralViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.ddlbAppearance.selectItem(at: Settings.appearance)
         self.ddlbViewAfterSongLoad.selectItem(at: Settings.viewAfterSongLoad)
+
+        let info = NSButton(frame: NSRect(x: NSMaxX(btnShowBeatCountdown.frame) + 4,
+                                         y: btnShowBeatCountdown.frame.origin.y - 2,
+                                         width: 21, height: 21))
+        info.bezelStyle = .helpButton
+        info.title = ""
+        info.toolTip = NSLocalizedString("beatCountdownTooltip", bundle: Bundle.main, comment: "")
+        info.target = self
+        info.action = #selector(handleBeatCountdownInfo(_:))
+        btnShowBeatCountdown.superview?.addSubview(info)
+        beatCountdownInfoButton = info
     }
 }
 

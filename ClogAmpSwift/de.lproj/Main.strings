@@ -777,3 +777,6 @@
 
 /* Normalize Audio (reload required) */
 "Gts-oe-EAq.title" = "Audio normalisieren (Neuladen erforderlich)";
+
+/* Class = "NSButtonCell"; title = "Show beat countdown"; ObjectID = "bCd-xY-k3Z"; */
+"bCd-xY-k3Z.title" = "Beat-Countdown anzeigen";

@@ -33,3 +33,4 @@
 "pdfCellPadding" = "Cell padding (rem)";
 "pdfHeaderSpacing" = "Header spacing";
 "pdfResetDefaults" = "Reset to Defaults";
+"beatCountdownTooltip" = "Shows a beat countdown overlay on the player when the song is playing before the first named position. The overlay displays which beat within the current group of 8 is playing, helping anticipate the start of the choreography.\n\nRequirements:\n• Song must have BPM set\n• Song must have a value in \"Wait\"\n• Song must have at least one named position. The first named position markes the start the countdown counts towards";
