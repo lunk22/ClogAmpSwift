@@ -2311,7 +2311,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwP-Hm-Nmw">
-                                <rect key="frame" x="217" y="-1" width="36" height="22"/>
+                                <rect key="frame" x="217" y="-1" width="25" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="a1v-IK-wFn">
                                     <font key="font" metaFont="system"/>
@@ -2320,7 +2320,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r7o-BK-0BK">
-                                <rect key="frame" x="253" y="2" width="11" height="17"/>
+                                <rect key="frame" x="242" y="2" width="11" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="x" id="n27-Ni-WE3">
                                     <font key="font" metaFont="system"/>

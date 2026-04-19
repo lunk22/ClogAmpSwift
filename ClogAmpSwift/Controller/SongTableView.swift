@@ -44,6 +44,30 @@ class SongTableView: ViewController {
         }
 
         if let musicPath = UserDefaults.standard.string(forKey: "musicFolderPath") {
+//            //############################################################################
+//            //Read Access Rights
+//            if let bookmarksUrl = FileManager.default.urls(for: FileManager.SearchPathDirectory.applicationSupportDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first?.appendingPathComponent("ClogAmpSwift/bookmarks"){
+//
+//                func restore(_ bookmark: (key: URL, value: Data)) {
+//                    let url: URL?
+//                    var isStale = false
+//
+//                    do {
+//                        url = try URL.init(resolvingBookmarkData: bookmark.value, options: NSURL.BookmarkResolutionOptions.withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+//
+//                        url?.startAccessingSecurityScopedResource()
+//                    } catch { }
+//
+//                }
+//
+//                if let bookmarks = NSKeyedUnarchiver.unarchiveObject(withFile: bookmarksUrl.path) as? [URL: Data] {
+//                    for bookmark in bookmarks {
+//                        restore(bookmark)
+//                    }
+//                }
+//            }
+//            //############################################################################
+            
             self.setMusicDirectory(musicPath)
         }
         
@@ -229,6 +253,30 @@ class SongTableView: ViewController {
         
         if (dialog.runModal() == NSApplication.ModalResponse.OK) {
             if let result = dialog.url { // Pathname of the file
+                
+//                //############################################################################
+//                //Save the access rights
+//                var bookmarks = [URL: Data]()
+//
+//                do {
+//                    let data: Data = try result.bookmarkData(
+//                        options: URL.BookmarkCreationOptions.withSecurityScope,
+//                        includingResourceValuesForKeys: nil,
+//                        relativeTo: nil
+//                    )
+//
+//                    bookmarks[result] = data
+//
+//                    if let bookmarksUrl = FileManager.default.urls(for: FileManager.SearchPathDirectory.applicationSupportDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first?.appendingPathComponent("ClogAmpSwift/bookmarks"){
+//
+//                        NSKeyedArchiver.archiveRootObject(bookmarks, toFile: bookmarksUrl.path)
+//
+//                    }
+//
+//                }catch{}
+//                //############################################################################
+                
+                //Open directory
                 self.setMusicDirectory(result.path)
                 UserDefaults.standard.set(result.path, forKey: "musicFolderPath")
             }
@@ -329,6 +377,11 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
             self.sortSongs(by: oDesc.key!, ascending: oDesc.ascending )
         }
         
+    }
+    
+    //Don't ask why, but this function prevents the cells from switching to edit mode on a single click in a non-selected row
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        return nil;
     }
 }
 
