@@ -370,8 +370,8 @@
                                     <touchBarItems>
                                         <touchBarItem id="It2-e3-EY4">
                                             <viewController key="viewController" id="onz-Vl-gDI">
-                                                <segmentedControl key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-8T-o1O">
-                                                    <rect key="frame" x="0.0" y="0.0" width="190" height="30"/>
+                                                <segmentedControl key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-8T-o1O">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="30"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="kFO-Ya-k29">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -1750,7 +1750,7 @@ IA
                             <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DKJ-UO-uOH">
                                 <rect key="frame" x="514" y="31" width="24" height="119"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="left" numberOfTickMarks="1" sliderType="linear" id="gfM-lT-58I"/>
+                                <sliderCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="100" tickMarkPosition="left" numberOfTickMarks="5" sliderType="linear" id="gfM-lT-58I"/>
                                 <connections>
                                     <action selector="volumeChanged:" target="jBr-hw-2XV" id="bQR-3M-GIu"/>
                                 </connections>
@@ -1762,7 +1762,7 @@ IA
                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-L5-8Y8">
                                 <rect key="frame" x="66" y="60" width="140" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="00:00" id="2Ro-6R-ZgD">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="right" placeholderString="00:00" id="2Ro-6R-ZgD">
                                     <font key="font" metaFont="system" size="50"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2426,7 +2426,7 @@ IA
                             </textField>
                             <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-DU-iVq">
                                 <rect key="frame" x="0.0" y="176" width="792" height="20"/>
-                                <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" refusesFirstResponder="YES" focusRingType="none" alignment="left" id="GjP-SJ-036">
+                                <pathCell key="cell" controlSize="small" selectable="YES" enabled="NO" refusesFirstResponder="YES" focusRingType="none" alignment="left" id="GjP-SJ-036">
                                     <font key="font" metaFont="message" size="11"/>
                                 </pathCell>
                             </pathControl>
@@ -2557,7 +2557,7 @@ IA
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                                 <tableColumn identifier="number" editable="NO" width="80" minWidth="40" maxWidth="1000" id="b0B-hh-Zom">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="#">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="#">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

@@ -76,7 +76,7 @@ class PlayerView: ViewController {
             self.tick()
             self.updatePositionTable(single: false)
         }
-
+        
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.playing, object: nil, queue: .current) { _ in
             self.btnPlay.image  = AppPreferences.colorizedPlayerState ? NSImage(named: "play") : NSImage(named: "playGray")
             self.btnPause.image = NSImage(named: "pauseGray")
@@ -118,7 +118,6 @@ class PlayerView: ViewController {
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.volumeChanged, object: nil, queue: .current) { _ in
             self.updateVolumeInUI()
         }
-        
     }
     
     /*
@@ -126,6 +125,11 @@ class PlayerView: ViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        // Initial values
+//        let volume = UserDefaults.standard.integer(forKey: "playerVolume")
+//        self.volumeSlider.integerValue = volume > 0 ? volume : 100
+//        self.volumeText.stringValue    = "\(self.volumeSlider.integerValue)%"
     }
     
     // MARK: Update related stuff
@@ -159,6 +163,8 @@ class PlayerView: ViewController {
     }
 
     func updateTimeInUI() {
+        if PlayerAudioEngine.shared.song == nil { return }
+        
         DispatchQueue.main.async(qos: .default) {
             var currentTime = PlayerAudioEngine.shared.getCurrentTime(rounded: true)
             let duration = PlayerAudioEngine.shared.getDuration()
@@ -178,7 +184,7 @@ class PlayerView: ViewController {
             if AppPreferences.countdownTime {
                 self.lengthField.stringValue = "- \(sMinutes):\(sSeconds)"
             }else{
-                self.lengthField.stringValue = "\t\(sMinutes):\(sSeconds)"
+                self.lengthField.stringValue = "\(sMinutes):\(sSeconds)"
             }
             
             // timeSlider has a range of 0 - 100k, so multiply percent by 1000
@@ -188,9 +194,9 @@ class PlayerView: ViewController {
     
     func updateVolumeInUI(){
         DispatchQueue.main.async(qos: .default) {
-            if let song = PlayerAudioEngine.shared.song {
-                self.volumeSlider.integerValue = song.volume
-                self.volumeText.stringValue    = "\(song.volume)%"
+            if PlayerAudioEngine.shared.song != nil {
+                self.volumeSlider.integerValue = PlayerAudioEngine.shared.getVolume()
+                self.volumeText.stringValue    = "\(self.volumeSlider.integerValue)%"
             }
         }
     }
@@ -234,17 +240,16 @@ class PlayerView: ViewController {
     }
     
     @IBAction func increaseVolumeButtonClicked(_ sender: AnyObject) {
-        let currentVolume = self.currentSong?.volume ?? -1
+        let currentVolume = PlayerAudioEngine.shared.getVolume()
         if(currentVolume >= 0 && currentVolume < 100){
-            self.currentSong?.volume = Int(currentVolume + 1)
+            PlayerAudioEngine.shared.setVolume(Int(currentVolume + 1))
         }
-        self.updateVolumeInUI()
     }
     
     @IBAction func decreaseVolumeButtonClicked(_ sender: AnyObject) {
-        let currentVolume = self.currentSong?.volume ?? -1
-        if(currentVolume > 0){
-            self.currentSong?.volume = Int(currentVolume - 1)
+        let currentVolume = PlayerAudioEngine.shared.getVolume()
+        if(currentVolume > 0) {
+            PlayerAudioEngine.shared.setVolume(Int(currentVolume - 1))
         }
         self.updateVolumeInUI()
     }

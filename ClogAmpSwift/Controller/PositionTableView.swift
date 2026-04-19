@@ -190,9 +190,7 @@ class PositionTableView: NSViewController {
         if let oPosition = PlayerAudioEngine.shared.song?.getPositions()[index] {
             PlayerAudioEngine.shared.seek(seconds: Float64(oPosition.time / 1000))
             if AppPreferences.playPositionOnSelection && !(PlayerAudioEngine.shared.isPlaying()){
-                delayWithSeconds(0.01){
-                    PlayerAudioEngine.shared.play()
-                }
+                PlayerAudioEngine.shared.play()
             }
         }
     }

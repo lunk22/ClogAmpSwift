@@ -33,11 +33,6 @@ class Song {
         
         NotificationCenter.default.post(name: NotificationNames.bpmChanged, object: nil)
     } }
-    var volume: Int { didSet {
-        if oldValue != self.volume {
-            self.volumeChanged = true
-        }
-    } }
     var hasPositions: Bool
     private var positions: Array<Position> { didSet {
         if self.positions.count > 0 {
@@ -55,7 +50,6 @@ class Song {
     var levelChanged: Bool = false
     var speedChanged: Bool = false
     var bpmChanged: Bool = false
-    var volumeChanged: Bool = false
     var positionsChanged: Bool {
         return self.positions.first { position in
             return position.hasChanges
@@ -70,7 +64,6 @@ class Song {
                       self.levelChanged     ||
                       self.speedChanged     ||
                       self.bpmChanged       ||
-                      self.volumeChanged    ||
                       self.positionsChanged ||
                       self.positionRemoved  ||
                       self.waitBeatsChanged
@@ -115,7 +108,6 @@ class Song {
         self.duration        = 0
         self.speed           = 0
         self.bpm             = 0
-        self.volume          = 100
         self.hasPositions    = false
         self.positionRemoved = false
         self.positions       = []
@@ -248,8 +240,6 @@ class Song {
             return "\(self.speed) %"
         case "bpm":
             return "\(self.bpm)"
-        case "volume":
-            return "\(self.volume)"
         case "hasPositions":
             return self.hasPositions ? "✓" : ""
         case "fileName":
@@ -277,8 +267,6 @@ class Song {
             return self.speed
         case "bpm":
             return self.bpm
-        case "volume":
-            return self.volume
         case "hasPositions":
             return self.hasPositions ? "a" : "b"
         case "waitBeats":
@@ -419,7 +407,6 @@ class Song {
         self.levelChanged     = false
         self.speedChanged     = false
         self.bpmChanged       = false
-        self.volumeChanged    = false
         self.waitBeatsChanged = false
         self.positionRemoved  = false
         
