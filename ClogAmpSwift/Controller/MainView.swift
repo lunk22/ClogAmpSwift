@@ -15,21 +15,11 @@ class MainView: NSViewController {
     weak var positionTableView: PositionTableView?
     
     @IBOutlet weak var tabView: NSTabView!
-    
-    func getAppIconNames() -> Array<String> {
-        var returnArray = [] as Array<String>
-        let x = Bundle.main.object(forInfoDictionaryKey: "CFBundleIconFiles") as? NSArray
-        for icon in x ?? [] {
-            let str = icon as! String
-            returnArray.append(str)
-        }
         
-        return returnArray
-    }
-    
     override func viewWillAppear() {
+        
         if let iconName = UserDefaults.standard.string(forKey: "AppIconName") {
-            NSApplication.shared.applicationIconImage = NSImage(named: iconName)
+            NSApplication.shared.applicationIconImage = NSImage(contentsOfFile: Bundle.main.path(forResource: iconName, ofType: "icns") ?? "")
         }
         
     }

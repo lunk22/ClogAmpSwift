@@ -21,6 +21,12 @@
 		50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D872081D68100B7C347 /* PlayerView.swift */; };
 		B70E24BE21F5E5E700387D0A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E24BD21F5E5E700387D0A /* View.swift */; };
 		B70F180F221D781800FE1149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B70F180E221D781800FE1149 /* Assets.xcassets */; };
+		B70F1817221D957700FE1149 /* AppIconGreen.icns in Resources */ = {isa = PBXBuildFile; fileRef = B70F1811221D957600FE1149 /* AppIconGreen.icns */; };
+		B70F1818221D957700FE1149 /* AppIconTeal.icns in Resources */ = {isa = PBXBuildFile; fileRef = B70F1812221D957600FE1149 /* AppIconTeal.icns */; };
+		B70F1819221D957700FE1149 /* AppIconWhite.icns in Resources */ = {isa = PBXBuildFile; fileRef = B70F1813221D957600FE1149 /* AppIconWhite.icns */; };
+		B70F181A221D957700FE1149 /* AppIconYellow.icns in Resources */ = {isa = PBXBuildFile; fileRef = B70F1814221D957600FE1149 /* AppIconYellow.icns */; };
+		B70F181B221D957700FE1149 /* AppIconNeonGreen.icns in Resources */ = {isa = PBXBuildFile; fileRef = B70F1815221D957600FE1149 /* AppIconNeonGreen.icns */; };
+		B70F181C221D957700FE1149 /* AppIconRed.icns in Resources */ = {isa = PBXBuildFile; fileRef = B70F1816221D957700FE1149 /* AppIconRed.icns */; };
 		B722991F2200223B00AEFA90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722991E2200223B00AEFA90 /* ViewController.swift */; };
 		B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299202202C9FD00AEFA90 /* SongTableView.swift */; };
 		B72299232202D0EA00AEFA90 /* PositionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299222202D0EA00AEFA90 /* PositionTableView.swift */; };
@@ -78,6 +84,12 @@
 		50DC6D872081D68100B7C347 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		B70E24BD21F5E5E700387D0A /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		B70F180E221D781800FE1149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B70F1811221D957600FE1149 /* AppIconGreen.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIconGreen.icns; sourceTree = "<group>"; };
+		B70F1812221D957600FE1149 /* AppIconTeal.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIconTeal.icns; sourceTree = "<group>"; };
+		B70F1813221D957600FE1149 /* AppIconWhite.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIconWhite.icns; sourceTree = "<group>"; };
+		B70F1814221D957600FE1149 /* AppIconYellow.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIconYellow.icns; sourceTree = "<group>"; };
+		B70F1815221D957600FE1149 /* AppIconNeonGreen.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIconNeonGreen.icns; sourceTree = "<group>"; };
+		B70F1816221D957700FE1149 /* AppIconRed.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIconRed.icns; sourceTree = "<group>"; };
 		B722991E2200223B00AEFA90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B72299202202C9FD00AEFA90 /* SongTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableView.swift; sourceTree = "<group>"; };
 		B72299222202D0EA00AEFA90 /* PositionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableView.swift; sourceTree = "<group>"; };
@@ -160,6 +172,7 @@
 				50DC6D8A2081DA4B00B7C347 /* Objects */,
 				50DC6D892081DA3100B7C347 /* Controller */,
 				50DC6D8B2081DA6400B7C347 /* Utils */,
+				B70F1810221D955C00FE1149 /* Icons */,
 				50A37BB0207FF03E0020E218 /* Main.storyboard */,
 				50A37BAA207FF03D0020E218 /* AppDelegate.swift */,
 				B70F180E221D781800FE1149 /* Assets.xcassets */,
@@ -228,6 +241,19 @@
 				B70E24BD21F5E5E700387D0A /* View.swift */,
 			);
 			path = CustomClasses;
+			sourceTree = "<group>";
+		};
+		B70F1810221D955C00FE1149 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				B70F1811221D957600FE1149 /* AppIconGreen.icns */,
+				B70F1815221D957600FE1149 /* AppIconNeonGreen.icns */,
+				B70F1816221D957700FE1149 /* AppIconRed.icns */,
+				B70F1812221D957600FE1149 /* AppIconTeal.icns */,
+				B70F1813221D957600FE1149 /* AppIconWhite.icns */,
+				B70F1814221D957600FE1149 /* AppIconYellow.icns */,
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		B7BD8ED321F73E4E00532C1A /* ObjCWrapper */ = {
@@ -336,7 +362,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B70F180F221D781800FE1149 /* Assets.xcassets in Resources */,
+				B70F181A221D957700FE1149 /* AppIconYellow.icns in Resources */,
+				B70F1817221D957700FE1149 /* AppIconGreen.icns in Resources */,
+				B70F181B221D957700FE1149 /* AppIconNeonGreen.icns in Resources */,
 				50A37BB2207FF03E0020E218 /* Main.storyboard in Resources */,
+				B70F1819221D957700FE1149 /* AppIconWhite.icns in Resources */,
+				B70F1818221D957700FE1149 /* AppIconTeal.icns in Resources */,
+				B70F181C221D957700FE1149 /* AppIconRed.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,7 +541,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconGreen;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -549,7 +580,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconGreen;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
