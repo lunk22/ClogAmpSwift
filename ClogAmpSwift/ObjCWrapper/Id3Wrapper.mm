@@ -6,23 +6,29 @@
 
 @synthesize path;
 
-- (NSString *) readArtist {
+- (NSString *) readTitle {
     ID3_Tag *id3Tag = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
-    char *artist = ID3_GetArtist(id3Tag);
+    char *title = ID3_GetTitle(id3Tag);
     
-    if(artist != nil){
-        return [NSString stringWithUTF8String:artist];
+    id3Tag->Clear();
+    delete id3Tag;
+    
+    if(title != nil){
+        return [NSString stringWithUTF8String:title];
     }else{
         return @"";
     }
 }
 
-- (NSString *) readTitle {
+- (NSString *) readArtist {
     ID3_Tag *id3Tag = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
-    char *title = ID3_GetTitle(id3Tag);
+    char *artist = ID3_GetArtist(id3Tag);
     
-    if(title != nil){
-        return [NSString stringWithUTF8String:title];
+    id3Tag->Clear();
+    delete id3Tag;
+    
+    if(artist != nil){
+        return [NSString stringWithUTF8String:artist];
     }else{
         return @"";
     }
@@ -45,6 +51,9 @@
         returnText = [NSString stringWithUTF8String:usertext];
     }
     
+    id3Tag->Clear();
+    delete id3Tag;
+    
     return returnText;
 }
 
@@ -54,6 +63,9 @@
     
     ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
     ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, NULL, "ClogChoreoParts", positionsUChar, dataSize);
+    
+    id3Tag->Clear();
+    delete id3Tag;
     
     if (found != nil && dataSize != 0){
         return true;
@@ -92,9 +104,6 @@
         NSString *name;
         NSString *comment;
         NSString *jumpTo;
-        
-//        positionsUChar += 4;
-//        count += 4;
         
         while (count < dataSize){
             name = @"";
@@ -139,8 +148,6 @@
                     ms += positionsUChar[i];
                 }
                 
-                //                NSLog(@"Name: %@ - Comment: %@ - JumpTo: %@ - Time: %u", name, comment, jumpTo, ms);
-                
                 if([returnString length] > 0){
                     [returnString appendString:@"$LS"]; //$LS = Line Separator
                 }
@@ -156,11 +163,50 @@
     }
     
     id3Tag->Clear();
-    
     delete id3Tag;
     
     return returnString;
     
+}
+
+- (void) saveTitle:(NSString *)sValue {
+    ID3_Tag *id3Tag = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
+    ID3_AddTitle(id3Tag, [sValue cStringUsingEncoding:NSUTF8StringEncoding], true);
+    
+    id3Tag->Clear();
+    delete id3Tag;
+}
+
+- (void) saveArtist:(NSString *)sValue {
+    ID3_Tag *id3Tag = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
+    ID3_AddArtist(id3Tag, [sValue cStringUsingEncoding:NSUTF8StringEncoding], true);
+    
+    id3Tag->Clear();
+    delete id3Tag;
+}
+
+- (void) saveUserText:(NSString *)text sValue:(NSString *)sValue {
+    ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
+    ID3_Frame *frame = nil;
+    
+    // See if there is already a comment with this description
+    frame = id3Tag->Find(ID3FID_USERTEXT, ID3FN_DESCRIPTION, [text cStringUsingEncoding:NSUTF8StringEncoding]);
+    
+    if(frame == nil){
+        frame = new ID3_Frame(ID3FID_USERTEXT);
+    }
+    
+    // IMPORTANT:
+    // Always specify the text encoding, for every field
+    frame->Field(ID3FN_TEXTENC).Set(ID3TE_UTF8); //ID3TE_ISO8859_1
+    frame->Field(ID3FN_DESCRIPTION).SetEncoding(ID3TE_UTF8); //ID3TE_ISO8859_1
+    frame->Field(ID3FN_DESCRIPTION).Set([sValue cStringUsingEncoding:NSUTF8StringEncoding]);
+    frame->Field(ID3FN_TEXT).SetEncoding(ID3TE_UTF8); //ID3TE_ISO8859_1
+    frame->Field(ID3FN_TEXT).Set([text cStringUsingEncoding:NSUTF8StringEncoding]);
+    id3Tag->AttachFrame(frame);
+    
+    id3Tag->Clear();
+    delete id3Tag;
 }
 
 - (id)init:(NSString*)path {

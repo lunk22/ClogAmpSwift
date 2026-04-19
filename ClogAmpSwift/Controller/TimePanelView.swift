@@ -8,7 +8,7 @@
 
 import AppKit
 
-class TimePanelView: NSViewController {
+class TimePanelView: ViewController {
     /*
      * Outlets
      */
@@ -24,20 +24,20 @@ class TimePanelView: NSViewController {
     /*
      * Functions
      */
-    override func viewDidAppear() {
+    override func viewWillAppear() {
         self.bViewVisible = true
         self.tick()
     }
+    
+//    override func viewDidAppear() {
+//        self.bViewVisible = true
+//        self.tick()
+//    }
     
     override func viewDidDisappear() {
         self.bViewVisible = false
     }
     
-    func delayWithSeconds(_ seconds: Double, closure: @escaping () -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            closure()
-        }
-    }
     func tick(single: Bool = false) {
         //Do Some Stuff while the track is playing to update the UI...
         let date     = Date()

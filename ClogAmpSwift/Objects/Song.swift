@@ -12,15 +12,33 @@ class Song {
     
     //  Properties
     var path: URL
-    var title: String
-    var artist: String
-    var level: String
+    var title: String { didSet { self.titleChanged = true } }
+    var artist: String { didSet { self.artistChanged = true } }
+    var level: String { didSet { self.levelChanged = true } }
     var duration: String
-    var speed: Int
-    var bpm: UInt
-    var volume: UInt
+    var speed: Int { didSet { self.speedChanged = true } }
+    var bpm: UInt { didSet { self.bpmChanged = true } }
+    var volume: UInt { didSet { self.volumeChanged = true } }
     var hasPositions: Bool
-    var positions: Array<Position>
+    var positions: Array<Position> { didSet { self.positionsChanged = true } }
+    
+    var titleChanged: Bool = false
+    var artistChanged: Bool = false
+    var levelChanged: Bool = false
+    var speedChanged: Bool = false
+    var bpmChanged: Bool = false
+    var volumeChanged: Bool = false
+    var positionsChanged: Bool = false
+    
+    var songChanged: Bool {
+        return self.titleChanged  ||
+               self.artistChanged ||
+               self.levelChanged  ||
+               self.speedChanged  ||
+               self.bpmChanged    ||
+               self.volumeChanged ||
+               self.positionsChanged
+    }
     
     //  Initializer
     init(path: URL) {
@@ -128,8 +146,47 @@ class Song {
                     let aCells = line.components(separatedBy: "$CS")
                     self.positions.append(Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0)))
                 }
+                
+                self.positionsChanged = false
             }
         }
     } //func loadPositions
     
+    func saveChanges() {
+        if(!self.songChanged){ return; }
+        
+        //Read ID3 Info
+        if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){
+            if(self.titleChanged){
+                oId3Wrapper.saveTitle(self.title)
+            }
+            if(self.artistChanged){
+                oId3Wrapper.saveArtist(self.artist)
+            }
+            if(self.levelChanged){
+                oId3Wrapper.saveUserText("CloggingLevel", sValue: self.level)
+            }
+            if(self.speedChanged){
+                oId3Wrapper.saveUserText("LastTempo", sValue: "\(self.speed)")
+            }
+//            if(self.bpmChanged){
+//
+//            }
+//            if(self.volumeChanged){
+//
+//            }
+            if(self.positionsChanged){
+                
+            }
+            
+            //Reset change flags
+            self.titleChanged     = false
+            self.artistChanged    = false
+            self.levelChanged     = false
+            self.speedChanged     = false
+            self.bpmChanged       = false
+            self.volumeChanged    = false
+            self.positionsChanged = false
+        }
+    }
 }

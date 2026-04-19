@@ -9,7 +9,7 @@
 import AppKit
 import AVFoundation
 
-class PlayerView: NSViewController {
+class PlayerView: ViewController {
     /*
      * Outlets
      */
@@ -27,6 +27,9 @@ class PlayerView: NSViewController {
      * Properties
      */
     var currentSong: Song? {
+        willSet(oNewSong) {
+            self.currentSong?.saveChanges()
+        }
         didSet {
             do {
                 self.stop()
@@ -70,11 +73,6 @@ class PlayerView: NSViewController {
     /*
      * Update related stuff
      */
-    func delayWithSeconds(_ seconds: Double, closure: @escaping () -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            closure()
-        }
-    }
     func tick(single: Bool = false) {
         //Do Some Stuff while the track is playing to update the UI...
         self.updateRate()

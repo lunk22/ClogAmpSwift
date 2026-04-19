@@ -24,10 +24,14 @@ class MainView: NSViewController {
     @IBOutlet weak var positionTable: NSTableView!
     
     // Overrides
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        // Do any additional setup after loading the view.
+//    }
+    
+    override func viewWillDisappear() {
+        self.playerDelegate?.getSong()?.saveChanges()
     }
     
     override func keyDown(with event: NSEvent) {
@@ -109,7 +113,7 @@ class MainView: NSViewController {
         if sender.selectedRow >= 0 {
             self.playerDelegate?.loadSong(song: self.aSongsForTable[sender.selectedRow])
             
-            DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async {
                 self.positionTable.reloadData()
             }
         }
