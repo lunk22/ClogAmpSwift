@@ -66,8 +66,11 @@ class Settings: NSObject {
         return prefBpmUpperBound
     }
     
+    static var preventSystemSleep: Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefPreventSleepWhenActive.rawValue)
+    }
+    
     static var colorizedPlayerState: Bool {
-//        return true
         return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefColorPlayerState.rawValue)
     }
     

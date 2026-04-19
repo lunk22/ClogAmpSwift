@@ -23,6 +23,10 @@ class SettingsGeneralViewController: NSViewController {
         NotificationCenter.default.post(name: NSNotification.Name("monoChanged"), object: nil)
     }
     
+    @IBAction func handleSleepPreventionChanged(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name("preventSystemSleepChanged"), object: nil)
+    }
+    
     // MARK: View overrides
     override func viewDidLoad() {
         super.viewDidLoad()

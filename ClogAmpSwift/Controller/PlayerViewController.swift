@@ -1,17 +1,16 @@
 //
-//  PlayerView.swift
+//  PlayerViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Pascal Roessel on 14.04.18.
-//  MIT License
 //
 
 import AppKit
 import AVFoundation
 
-class PlayerView: ViewController {
+class PlayerViewController: ViewController {
     
-    weak var mainView: MainView?
+    weak var mainView: MainViewController?
     
     //MARK: Outlets
     
@@ -290,8 +289,7 @@ class PlayerView: ViewController {
     // MARK: Custom Functions
     
     func determineBpmFCS() {
-        self.currentSong?.determineBassBPM(){ _ in
-            PlayerAudioEngine.shared.song?.saveChanges()
+        self.currentSong?.determineBassBPM(){ bpm in
             self.mainView?.songTableView?.refreshTable()
             self.updateRateInUI()
         }

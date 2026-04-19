@@ -403,8 +403,8 @@
 /* Class = "NSTextFieldCell"; title = ""; ObjectID = "YQJ-Nq-R2q"; */
 "YQJ-Nq-R2q.title" = "";
 
-/* Class = "NSButtonCell"; title = "Focus Filter"; ObjectID = "YQs-tI-kI4"; */
-"YQs-tI-kI4.title" = "Filter fokusieren";
+/* Class = "NSButtonCell"; title = "Focus Filter on startup"; ObjectID = "YQs-tI-kI4"; */
+"YQs-tI-kI4.title" = "Filter fokusieren bei Programmstart";
 
 /* Class = "NSTextFieldCell"; title = ""; ObjectID = "YXQ-hq-0I8"; */
 "YXQ-hq-0I8.title" = "";
@@ -604,8 +604,8 @@
 /* Class = "NSTextFieldCell"; title = ""; ObjectID = "n9N-o0-bBE"; */
 "n9N-o0-bBE.title" = "";
 
-/* Class = "NSBox"; title = "Start"; ObjectID = "nQo-pP-bi7"; */
-"nQo-pP-bi7.title" = "Start";
+/* Class = "NSBox"; title = "General"; ObjectID = "nQo-pP-bi7"; */
+"nQo-pP-bi7.title" = "Allgemein";
 
 /* Class = "NSTextFieldCell"; title = ""; ObjectID = "nRU-uH-jZA"; */
 "nRU-uH-jZA.title" = "";
@@ -771,3 +771,6 @@
 
 /* Class = "NSTextFieldCell"; title = ""; ObjectID = "zsi-If-4eB"; */
 "zsi-If-4eB.title" = "";
+
+/* Class = "NSButtonCell"; title = "Prevent system sleep when active"; ObjectID = "8Lo-uH-DMG"; */
+"8Lo-uH-DMG.title" = "Ruhezustand verhindern wenn aktiv";

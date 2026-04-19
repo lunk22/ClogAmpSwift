@@ -36,10 +36,10 @@
             </objects>
             <point key="canvasLocation" x="-2357" y="2137"/>
         </scene>
-        <!--View-->
+        <!--View Controller-->
         <scene sceneID="bGe-7M-cxd">
             <objects>
-                <viewController id="JLK-Ys-q9d" customClass="EQView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JLK-Ys-q9d" customClass="EQViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="zt9-ID-rk7">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="187"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -736,53 +736,8 @@ CA
                                 </view>
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
-                            <box fixedFrame="YES" borderType="none" title="Font" translatesAutoresizingMaskIntoConstraints="NO" id="oXz-ew-IrA">
-                                <rect key="frame" x="20" y="20" width="362" height="108"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="tIX-l3-OYx">
-                                    <rect key="frame" x="0.0" y="0.0" width="362" height="91"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gMG-xL-B7H">
-                                            <rect key="frame" x="18" y="55" width="322" height="16"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Use Mono Font for Songs" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="aYl-i0-9wf">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="handleMonoChanged:" target="qhU-Gw-geV" id="2fd-yg-dn0"/>
-                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefMonoFontSongs" id="sE5-ng-Z0I">
-                                                    <dictionary key="options">
-                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                                    </dictionary>
-                                                </binding>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDk-1l-Ie3">
-                                            <rect key="frame" x="18" y="28" width="322" height="14"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Use Mono Font for Positions" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Auf-SD-W1q">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="handleMonoChanged:" target="qhU-Gw-geV" id="v6y-pq-faW"/>
-                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefMonoFontPositons" id="vMc-gs-Fch">
-                                                    <dictionary key="options">
-                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                                    </dictionary>
-                                                </binding>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                </view>
-                                <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
-                            </box>
                             <box fixedFrame="YES" borderType="none" title="Appearance" translatesAutoresizingMaskIntoConstraints="NO" id="8ec-RZ-uKL">
-                                <rect key="frame" x="20" y="148" width="362" height="72"/>
+                                <rect key="frame" x="20" y="140" width="362" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="f1l-Ud-8w9">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="55"/>
@@ -839,7 +794,7 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Filter" translatesAutoresizingMaskIntoConstraints="NO" id="KmJ-78-dCf">
-                                <rect key="frame" x="20" y="246" width="362" height="69"/>
+                                <rect key="frame" x="20" y="235" width="362" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="kUU-zj-vbR">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="52"/>
@@ -880,15 +835,15 @@ CA
                                 </view>
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
-                            <box fixedFrame="YES" borderType="none" title="Start" translatesAutoresizingMaskIntoConstraints="NO" id="nQo-pP-bi7">
-                                <rect key="frame" x="20" y="335" width="362" height="99"/>
+                            <box fixedFrame="YES" borderType="none" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="nQo-pP-bi7">
+                                <rect key="frame" x="20" y="324" width="362" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="d04-w1-YsF">
-                                    <rect key="frame" x="0.0" y="0.0" width="362" height="82"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362" height="93"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DHk-f7-xzm">
-                                            <rect key="frame" x="18" y="44" width="226" height="18"/>
+                                            <rect key="frame" x="18" y="55" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Focus Filter" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="YQs-tI-kI4">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -904,7 +859,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tzj-al-krK">
-                                            <rect key="frame" x="18" y="22" width="274" height="18"/>
+                                            <rect key="frame" x="18" y="33" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Wka-4n-czd">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -912,6 +867,24 @@ CA
                                             </buttonCell>
                                             <connections>
                                                 <binding destination="fGK-JZ-b84" name="value" keyPath="updater.automaticallyChecksForUpdates" id="fAh-Lo-eUt">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNv-Ja-9UA">
+                                            <rect key="frame" x="18" y="11" width="324" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Prevent sleep when active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8Lo-uH-DMG">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="handleSleepPreventionChanged:" target="qhU-Gw-geV" id="6DX-HM-DaR"/>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefPreventSleepWhenActive" id="mhP-Gb-qKO">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNullPlaceholder" value="0"/>
@@ -985,6 +958,51 @@ CA
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
+                            </box>
+                            <box fixedFrame="YES" borderType="none" title="Font" translatesAutoresizingMaskIntoConstraints="NO" id="oXz-ew-IrA">
+                                <rect key="frame" x="20" y="10" width="362" height="102"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="tIX-l3-OYx">
+                                    <rect key="frame" x="0.0" y="0.0" width="362" height="85"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gMG-xL-B7H">
+                                            <rect key="frame" x="18" y="49" width="322" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Use Mono Font for Songs" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="aYl-i0-9wf">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="handleMonoChanged:" target="qhU-Gw-geV" id="2fd-yg-dn0"/>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefMonoFontSongs" id="sE5-ng-Z0I">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDk-1l-Ie3">
+                                            <rect key="frame" x="18" y="22" width="322" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Use Mono Font for Positions" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Auf-SD-W1q">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="handleMonoChanged:" target="qhU-Gw-geV" id="v6y-pq-faW"/>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefMonoFontPositons" id="vMc-gs-Fch">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
@@ -1286,7 +1304,7 @@ CA
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="MainWindow" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="MainWindowController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="mainWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="mainWindowAutosave" animationBehavior="default" tabbingIdentifier="mainWindow" id="IQv-IB-iLA" customClass="Window" customModule="ClogAmpMac" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -1407,10 +1425,10 @@ CA
             </objects>
             <point key="canvasLocation" x="-7591" y="717"/>
         </scene>
-        <!--Main View-->
+        <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="MainView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="MainViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="678"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1490,7 +1508,7 @@ CA
         <!--Window Controller-->
         <scene sceneID="Khv-Js-u67">
             <objects>
-                <windowController storyboardIdentifier="Time Window" showSeguePresentationStyle="single" id="kFC-bL-dcm" customClass="TimePanelWindow" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Time Window" showSeguePresentationStyle="single" id="kFC-bL-dcm" customClass="TimePanelWindowController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="timeWindow" title="Time" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="timeWindowAutosave" animationBehavior="default" tabbingIdentifier="timeWindow" titlebarAppearsTransparent="YES" id="0rm-mN-eUt" customClass="Panel" customModule="ClogAmpMac" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -1508,10 +1526,10 @@ CA
             </objects>
             <point key="canvasLocation" x="-4069.5" y="2052"/>
         </scene>
-        <!--Time Panel View-->
+        <!--Time Panel View Controller-->
         <scene sceneID="ieG-rq-9wv">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="4AT-Fd-CjS" customClass="TimePanelView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="4AT-Fd-CjS" customClass="TimePanelViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="KBA-WW-jAg">
                         <rect key="frame" x="0.0" y="0.0" width="318" height="78"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1585,10 +1603,10 @@ CA
             </objects>
             <point key="canvasLocation" x="-2944" y="2137"/>
         </scene>
-        <!--Bpm Click View-->
+        <!--Bpm Click View Controller-->
         <scene sceneID="au5-Vk-qvL">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="NvZ-jz-MCU" customClass="BpmClickView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="NvZ-jz-MCU" customClass="BpmClickViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Fsq-FY-Kd9">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1631,10 +1649,10 @@ IA
             </objects>
             <point key="canvasLocation" x="-2944" y="2546"/>
         </scene>
-        <!--Beat Player View-->
+        <!--Beat Player View Controller-->
         <scene sceneID="wDL-R7-5o3">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="q1X-5U-AxO" customClass="BeatPlayerView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="q1X-5U-AxO" customClass="BeatPlayerViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jqs-J3-Qx5">
                         <rect key="frame" x="0.0" y="0.0" width="445" height="132"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1729,7 +1747,7 @@ IA
         <!--Playlist-->
         <scene sceneID="SSQ-fQ-4yy">
             <objects>
-                <viewController title="Playlist" showSeguePresentationStyle="single" id="Ol8-gc-8gz" customClass="PlaylistView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Playlist" showSeguePresentationStyle="single" id="Ol8-gc-8gz" customClass="PlaylistViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <splitView key="view" focusRingType="none" misplaced="YES" autosaveName="ClogAmpMacPlaylist" vertical="YES" id="1YV-pI-Prd">
                         <rect key="frame" x="0.0" y="0.0" width="924" height="659"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2052,10 +2070,10 @@ IA
             </objects>
             <point key="canvasLocation" x="-6402" y="2912.5"/>
         </scene>
-        <!--Player View-->
+        <!--Player View Controller-->
         <scene sceneID="Pvh-Bu-1XD">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="jBr-hw-2XV" customClass="PlayerView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="jBr-hw-2XV" customClass="PlayerViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="dG1-2M-Ern">
                         <rect key="frame" x="0.0" y="0.0" width="588" height="189"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2295,7 +2313,7 @@ IA
         <!--Window Controller-->
         <scene sceneID="QZ5-wx-4U1">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="ELJ-6V-x4J" customClass="CountdownWindow" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="ELJ-6V-x4J" customClass="CountdownWindowController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="countdownWindow" title="Countdown" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="countdownWindowAutosave" animationBehavior="default" tabbingIdentifier="countdownWindow" id="x0l-k3-DSE" customClass="Panel" customModule="ClogAmpMac" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" nonactivatingPanel="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -2316,7 +2334,7 @@ IA
         <!--Countdown-->
         <scene sceneID="EgP-0i-ri9">
             <objects>
-                <viewController title="Countdown" showSeguePresentationStyle="single" id="UdJ-VP-3PA" customClass="CountdownView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Countdown" showSeguePresentationStyle="single" id="UdJ-VP-3PA" customClass="CountdownViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="NTd-qc-Xaj">
                         <rect key="frame" x="0.0" y="0.0" width="276" height="283"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2915,10 +2933,10 @@ IA
             </objects>
             <point key="canvasLocation" x="-5172.5" y="1040"/>
         </scene>
-        <!--Position Table View-->
+        <!--Position Table View Controller-->
         <scene sceneID="JJ0-sb-7aP">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="ogj-Ej-2Vt" customClass="PositionTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="ogj-Ej-2Vt" customClass="PositionTableViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="59b-ww-WIv">
                         <rect key="frame" x="0.0" y="0.0" width="989" height="230"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3309,7 +3327,7 @@ IA
         <scene sceneID="g1X-Mk-Y0R">
             <objects>
                 <customObject id="at9-e5-zna" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController title="History" showSeguePresentationStyle="single" id="0uZ-kX-vHB" customClass="HistoryTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="History" showSeguePresentationStyle="single" id="0uZ-kX-vHB" customClass="HistoryTableViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="3Sc-ym-HRy">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="556"/>
                         <autoresizingMask key="autoresizingMask"/>

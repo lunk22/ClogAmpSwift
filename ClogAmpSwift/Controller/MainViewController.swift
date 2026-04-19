@@ -1,23 +1,27 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Pascal Roessel on 12.04.18.
-//  MIT License
 //
 
 import AppKit
 
-class MainView: ViewController {
+class MainViewController: ViewController {
     
-    weak var mainWindow: MainWindow?
+    weak var mainWindow: MainWindowController?
     
-    weak var playerView: PlayerView?
+    weak var playerView: PlayerViewController?
     weak var songTableView: SongTableViewController?
-    weak var positionTableView: PositionTableView?
+    weak var positionTableView: PositionTableViewController?
     weak var pdfView: PDFViewController?
     
     @IBOutlet weak var tabView: NSTabView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
     
     override func viewWillDisappear() {
         PlayerAudioEngine.shared.song?.saveChanges()
@@ -26,16 +30,20 @@ class MainView: ViewController {
     
     override func viewDidAppear() {
         self.songTableView     = self.children[0] as? SongTableViewController
-        self.positionTableView = self.children[1] as? PositionTableView
+        self.positionTableView = self.children[1] as? PositionTableViewController
         self.pdfView           = self.children[2] as? PDFViewController
-        self.playerView        = self.children[3] as? PlayerView
+        self.playerView        = self.children[3] as? PlayerViewController
 
         self.pdfView?.mainView           = self
         self.playerView?.mainView        = self
         self.songTableView?.mainView     = self
         self.positionTableView?.mainView = self
-        
+
         super.viewDidAppear()
+    }
+    
+    override func viewDidDisappear() {
+
     }
     
     @IBAction func increaseSpeed(_ sender: AnyObject) {
@@ -68,7 +76,7 @@ class MainView: ViewController {
     }  
 }
 
-extension MainView: NSTabViewDelegate {
+extension MainViewController: NSTabViewDelegate {
     func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
         self.positionTableView?.visible = false
         

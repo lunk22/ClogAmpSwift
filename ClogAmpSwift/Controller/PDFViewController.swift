@@ -1,5 +1,5 @@
 //
-//  PDFView.swift
+//  PDFViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 04.11.19.
@@ -12,7 +12,7 @@ class PDFViewController: NSViewController {
     
     var aPdfUrls: [URL] = []
     
-    weak var mainView: MainView?
+    weak var mainView: MainViewController?
     
     @IBOutlet weak var pdfView: PDFView!
     

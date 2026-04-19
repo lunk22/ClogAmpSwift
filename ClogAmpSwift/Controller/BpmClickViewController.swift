@@ -1,11 +1,11 @@
 //
-//  BpmClickView.swift
+//  BpmClickViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Freundlich, Pascal on 29.11.23.
 //
 
-class BpmClickView: ViewController {
+class BpmClickViewController: ViewController {
     
     @IBOutlet weak var calculatedBpmText: NSTextField!
     

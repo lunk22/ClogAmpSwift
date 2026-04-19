@@ -17,4 +17,5 @@
 "addPositionBehaviorAdjustSeconds" = "Position in Sekunden anpassen";
 "addPositionBehaviorNoChange" = "Keine Anpassung";
 "menuLoadSong" = "Lied laden";
-"menuOpenInFinder" = "Im Finder öffnen";
+"menuOpenInFinder" = "Im Finder zeigen";
+"menuDetermineBPM" = "BPM ermitteln";

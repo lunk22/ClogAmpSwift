@@ -25,13 +25,14 @@ class SongTableViewController: ViewController {
     
     var filterValue: String = ""
     
-    weak var mainView: MainView?
+    weak var mainView: MainViewController?
     
     // MARK: Outlets
     @IBOutlet weak var songTable: TableView!
     @IBOutlet weak var searchField: NSTextField!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var pathControl: NSPathControl!
+
     // MARK: Overrides
     override func viewDidLoad() {
         let delay = 1.25
@@ -457,15 +458,21 @@ extension SongTableViewController: TableViewDelegate {
         
         let menuItemLoad = NSMenuItem(title: NSLocalizedString("menuLoadSong", comment: ""), action: #selector(menuLoadSong(_:)), keyEquivalent: "")
         let menuItemFinder = NSMenuItem(title: NSLocalizedString("menuOpenInFinder", comment: ""), action: #selector(menuOpenInFinder(_:)), keyEquivalent: "")
+        let menuItemBPM = NSMenuItem(title: NSLocalizedString("menuDetermineBPM", comment: ""), action: #selector(menuDetermineBPM(_:)), keyEquivalent: "")
         
-        menuItemLoad.isEnabled = self.songTable.clickedRow >= 0
-        menuItemFinder.isEnabled = self.songTable.clickedRow >= 0
+        let songExists = self.songTable.clickedRow >= 0 ? self.aSongsForTable[self.songTable.clickedRow].songFileExists() : false
         
-        menuItemLoad.image = NSImage(named: NSImage.touchBarPlayTemplateName)
-        menuItemFinder.image = NSImage(named: NSImage.pathTemplateName)
+        menuItemLoad.isEnabled = songExists
+        menuItemFinder.isEnabled = songExists
+        menuItemBPM.isEnabled = songExists
+        
+//        menuItemLoad.image = NSImage(named: NSImage.touchBarPlayTemplateName)
+//        menuItemFinder.image = NSImage(named: NSImage.pathTemplateName)
         
         menu.addItem(menuItemLoad)
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(menuItemFinder)
+        menu.addItem(menuItemBPM)
         menu.delegate = self
         
         self.songTable.menu = menu
@@ -482,12 +489,24 @@ extension SongTableViewController: TableViewDelegate {
         }
     }
     
+    @objc func menuDetermineBPM(_ sender: AnyObject) {
+        if self.songTable.selectedRow >= 0 {
+            let song = self.aSongsForTable[self.songTable.selectedRow]
+            song.determineBassBPM() { _ in // determined BPM
+                if PlayerAudioEngine.shared.song?.filePathAsUrl != song.filePathAsUrl {
+                    song.saveChanges()
+                }
+                self.refreshTable(true)
+            }
+        }
+    }
+    
 }
 
 extension SongTableViewController: NSMenuDelegate {
     func menuWillOpen(_ menu: NSMenu) {
-        let clickedRow: Int = self.songTable.clickedRow
-        self.songTable.selectRowIndexes(IndexSet(integer: clickedRow), byExtendingSelection: false)
+        // Update table selection to the right clicked row
+        self.songTable.selectRowIndexes(IndexSet(integer: self.songTable.clickedRow), byExtendingSelection: false)
     }
 }
 
