@@ -48,7 +48,7 @@ class PlayerView: ViewController {
             let title = self.currentSong!.getValueAsString("title")
             let duration = self.currentSong!.getValueAsString("duration")
             
-            self.descriptionField.stringValue = "\(title) (\(duration))"
+            self.descriptionField.stringValue = " \(title) (\(duration))"
             //Speed, Volume
             self.tick(single: true)
             //Time
