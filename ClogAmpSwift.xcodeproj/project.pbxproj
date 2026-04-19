@@ -10,6 +10,7 @@
 		50043ED52080C76C0025DC2D /* FileSystemUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50043ED42080C76C0025DC2D /* FileSystemUtils.swift */; };
 		5017716621FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5017716521FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib */; };
 		5017716721FB2CE500D8A95A /* libid3-3.8.3.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5017716521FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017716821FF58C700D8A95A /* TimePanelView.swift */; };
 		504E5FA42080F4E0003DBA66 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E5FA32080F4E0003DBA66 /* Song.swift */; };
 		50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAA207FF03D0020E218 /* AppDelegate.swift */; };
 		50A37BAD207FF03D0020E218 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAC207FF03D0020E218 /* MainView.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		50043ED42080C76C0025DC2D /* FileSystemUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemUtils.swift; sourceTree = "<group>"; };
 		5017716521FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libid3-3.8.3.0.0.dylib"; sourceTree = "<group>"; };
+		5017716821FF58C700D8A95A /* TimePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePanelView.swift; sourceTree = "<group>"; };
 		504E5FA32080F4E0003DBA66 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		50A37BA7207FF03D0020E218 /* ClogAmpSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClogAmpSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A37BAA207FF03D0020E218 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +109,7 @@
 				B70E24BC21F5E5CC00387D0A /* CustomClasses */,
 				50DC6D8D2081F03E00B7C347 /* Delegates */,
 				50DC6D8A2081DA4B00B7C347 /* Objects */,
-				50DC6D892081DA3100B7C347 /* ViewController */,
+				50DC6D892081DA3100B7C347 /* Controller */,
 				50DC6D8B2081DA6400B7C347 /* Utils */,
 				50A37BB0207FF03E0020E218 /* Main.storyboard */,
 				50A37BAA207FF03D0020E218 /* AppDelegate.swift */,
@@ -119,13 +121,14 @@
 			path = ClogAmpSwift;
 			sourceTree = "<group>";
 		};
-		50DC6D892081DA3100B7C347 /* ViewController */ = {
+		50DC6D892081DA3100B7C347 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				50A37BAC207FF03D0020E218 /* MainView.swift */,
 				50DC6D872081D68100B7C347 /* PlayerView.swift */,
+				5017716821FF58C700D8A95A /* TimePanelView.swift */,
 			);
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		50DC6D8A2081DA4B00B7C347 /* Objects */ = {
@@ -274,6 +277,7 @@
 				B70E24BE21F5E5E700387D0A /* View.swift in Sources */,
 				50DC6D862081D22F00B7C347 /* Model.swift in Sources */,
 				504E5FA42080F4E0003DBA66 /* Song.swift in Sources */,
+				5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */,
 				50043ED52080C76C0025DC2D /* FileSystemUtils.swift in Sources */,
 				50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */,
 				50A37BAD207FF03D0020E218 /* MainView.swift in Sources */,

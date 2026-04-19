@@ -10,7 +10,7 @@
         <scene sceneID="JPo-4y-FX3">
             <objects>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6" customClass="Menu" customModule="ClogAmpSwift" customModuleProvider="target">
                         <items>
                             <menuItem title="ClogAmpSwift" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -51,6 +51,19 @@
                                         <menuItem title="Quit ClogAmpSwift" keyEquivalent="q" allowsKeyEquivalentWhenHidden="YES" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="PO7-Wn-ovW"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Tools" id="1z7-FS-h8l">
+                                <attributedString key="attributedTitle"/>
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Tools" id="fIc-J5-6a6">
+                                    <items>
+                                        <menuItem title="Time" keyEquivalent="t" id="Scw-3x-0hP">
+                                            <connections>
+                                                <segue destination="kFC-bL-dcm" kind="show" id="xku-6Z-S4A"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -883,11 +896,11 @@
                                                         <nil key="backgroundColor"/>
                                                     </clipView>
                                                     <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
-                                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="XQd-H5-L7a">
+                                                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="XQd-H5-L7a">
                                                         <rect key="frame" x="1" y="330" width="923" height="15"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
-                                                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="ma7-Du-zSb">
+                                                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ma7-Du-zSb">
                                                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
@@ -1054,6 +1067,54 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="410" y="573"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="Khv-Js-u67">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="kFC-bL-dcm" sceneMemberID="viewController">
+                    <window key="window" title="Time" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="0rm-mN-eUt" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" nonactivatingPanel="YES" HUD="YES" fullSizeContentView="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="245" y="301" width="250" height="91"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="kFC-bL-dcm" id="iaY-br-HXB"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="4AT-Fd-CjS" kind="relationship" relationship="window.shadowedContentViewController" id="OzY-aS-ekt"/>
+                    </connections>
+                </windowController>
+                <customObject id="7mB-Bn-WOi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1154" y="337.5"/>
+        </scene>
+        <!--Time Panel View-->
+        <scene sceneID="ieG-rq-9wv">
+            <objects>
+                <viewController id="4AT-Fd-CjS" customClass="TimePanelView" customModule="ClogAmpSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="KBA-WW-jAg">
+                        <rect key="frame" x="0.0" y="0.0" width="376" height="123"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUN-p4-e6G">
+                                <rect key="frame" x="1" y="0.0" width="375" height="113"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="12:34:56" id="XXI-xF-OOh">
+                                    <font key="font" metaFont="system" size="95"/>
+                                    <color key="textColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="textFieldTime" destination="oUN-p4-e6G" id="XLs-d4-hTq"/>
+                    </connections>
+                </viewController>
+                <customObject id="a6b-4c-sGW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1538" y="338"/>
         </scene>
         <!--Player View-->
         <scene sceneID="Pvh-Bu-1XD">
