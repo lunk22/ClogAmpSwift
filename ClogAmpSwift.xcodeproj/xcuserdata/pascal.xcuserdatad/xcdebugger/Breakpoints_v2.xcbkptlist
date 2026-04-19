@@ -3,4 +3,22 @@
    uuid = "B3579563-7B5D-4C62-B484-25F9760245A3"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CC5D6E70-30D3-4719-84B0-23B4D750EBD6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ClogAmpSwift/ObjCWrapper/Database.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
+            landmarkName = "+getSongHistory:toDate:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
