@@ -76,45 +76,35 @@ class PlayerView: ViewController {
             self.tick()
             self.updatePositionTable(single: false)
         }
-        
-        if Defaults.colorizedPlayerState {
-            NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.playing, object: nil, queue: .current) { _ in
-                self.btnPlay.image  = NSImage(named: "play")
-                self.btnPause.image = NSImage(named: "pauseGray")
-                self.btnStop.image  = NSImage(named: "stopGray")
-                
-                self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "play")
-                self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pauseGray")
-                self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stopGray")
-            }
-            
-            NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.paused, object: nil, queue: .current) { _ in
-                self.btnPlay.image  = NSImage(named: "playGray")
-                self.btnPause.image = NSImage(named: "pause")
-                self.btnStop.image  = NSImage(named: "stopGray")
-                
-                self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "playGray")
-                self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pause")
-                self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stopGray")
-            }
-            
-            NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopped, object: nil, queue: .current) { _ in
-                self.btnPlay.image  = NSImage(named: "playGray")
-                self.btnPause.image = NSImage(named: "pauseGray")
-                self.btnStop.image  = NSImage(named: "stop")
-                
-                self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "playGray")
-                self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pauseGray")
-                self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stop")
-            }
-        } else {
-            self.btnPlay.image  = NSImage(named: "playGray")
+
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.playing, object: nil, queue: .current) { _ in
+            self.btnPlay.image  = Defaults.colorizedPlayerState ? NSImage(named: "play") : NSImage(named: "playGray")
             self.btnPause.image = NSImage(named: "pauseGray")
             self.btnStop.image  = NSImage(named: "stopGray")
             
-            self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "playGray")
+            self.mainView?.mainWindow?.tbPlay.image  = Defaults.colorizedPlayerState ? NSImage(named: "play") : NSImage(named: "playGray")
             self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pauseGray")
             self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stopGray")
+        }
+        
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.paused, object: nil, queue: .current) { _ in
+            self.btnPlay.image  = NSImage(named: "playGray")
+            self.btnPause.image = Defaults.colorizedPlayerState ? NSImage(named: "pause") : NSImage(named: "pauseGray")
+            self.btnStop.image  = NSImage(named: "stopGray")
+            
+            self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "playGray")
+            self.mainView?.mainWindow?.tbPause.image = Defaults.colorizedPlayerState ? NSImage(named: "pause") : NSImage(named: "pauseGray")
+            self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stopGray")
+        }
+        
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopped, object: nil, queue: .current) { _ in
+            self.btnPlay.image  = NSImage(named: "playGray")
+            self.btnPause.image = NSImage(named: "pauseGray")
+            self.btnStop.image  = Defaults.colorizedPlayerState ? NSImage(named: "stop") : NSImage(named: "stopGray")
+            
+            self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "playGray")
+            self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pauseGray")
+            self.mainView?.mainWindow?.tbStop.image  = Defaults.colorizedPlayerState ? NSImage(named: "stop") : NSImage(named: "stopGray")
         }
         
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.rateChanged, object: nil, queue: .current) { _ in
