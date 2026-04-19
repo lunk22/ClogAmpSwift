@@ -491,8 +491,6 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
             }
             
-            textField.setFrameOrigin(NSZeroPoint)
-            
             return cell
         }
         
