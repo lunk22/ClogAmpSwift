@@ -436,7 +436,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
             sPdfHtml = sPdfHtml + "<style>"
             //sPdfHtml = sPdfHtml + "  table { font-size: 125%; }"
             sPdfHtml = sPdfHtml + "  div { display:inline; font-family: Arial; }"
-            sPdfHtml = sPdfHtml + "  table, td { font-family: Arial; border: 2px solid black; border-collapse: collapse; }"
+            sPdfHtml = sPdfHtml + "  table, td { font-family: Arial; border: 0px solid black; border-collapse: collapse; }"
             sPdfHtml = sPdfHtml + "  td { padding: 0.75rem; vertical-align: top; }"
             sPdfHtml = sPdfHtml + "  .center {  display: table; margin-right: auto; margin-left: auto; }"
             sPdfHtml = sPdfHtml + "  .bold {  font-weight: bold; }"
@@ -462,7 +462,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
             sPdfHtml = sPdfHtml + "<br/>"
             sPdfHtml = sPdfHtml + "<br/>"
 
-            sPdfHtml = sPdfHtml + " <table border='1'>"
+            sPdfHtml = sPdfHtml + " <table>"
             
             
             for position in song.getPositions() {
