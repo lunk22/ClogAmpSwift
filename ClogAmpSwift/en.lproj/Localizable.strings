@@ -7,3 +7,4 @@
 "songTitle" = "Title";
 "songArtist" = "Artist";
 "songDate" = "Date played";
+"waitBeats" = "Wait %d Beats";

@@ -22,6 +22,7 @@ class Song {
     var volume: Int { didSet { self.volumeChanged = true } }
     var hasPositions: Bool
     var positions: Array<Position>
+    var waitBeats: Int { didSet { self.waitBeatsChanged = true } }
     
     var titleChanged: Bool = false
     var artistChanged: Bool = false
@@ -30,15 +31,17 @@ class Song {
     var bpmChanged: Bool = false
     var volumeChanged: Bool = false
     var positionsChanged: Bool = false
+    var waitBeatsChanged: Bool = false
     
     var songChanged: Bool {
-        return self.titleChanged  ||
-               self.artistChanged ||
-               self.levelChanged  ||
-               self.speedChanged  ||
-               self.bpmChanged    ||
-               self.volumeChanged ||
-               self.positionsChanged
+        return self.titleChanged     ||
+               self.artistChanged    ||
+               self.levelChanged     ||
+               self.speedChanged     ||
+               self.bpmChanged       ||
+               self.volumeChanged    ||
+               self.positionsChanged ||
+               self.waitBeatsChanged
     }
     
     //MARK: Static Stuff
@@ -68,6 +71,7 @@ class Song {
         self.volume        = 100
         self.hasPositions  = false
         self.positions     = []
+        self.waitBeats     = 0
         
         let stringPath = self.getValueAsString("path")
         
@@ -107,6 +111,8 @@ class Song {
             //Has Positions
             self.hasPositions = map?.value(forKey: "hasPositions") as? Bool ?? false
             
+            //Read Wait Beats
+            self.waitBeats = Int(map?.value(forKey: "waitBeats") as? Int ?? 0)
         }
     } //init
     
@@ -136,6 +142,8 @@ class Song {
             return self.hasPositions ? "✓" : ""
         case "fileName":
             return self.path.lastPathComponent
+        case "waitBeats":
+            return "\(self.waitBeats)"
         default:
             return ""
         }
@@ -161,6 +169,8 @@ class Song {
             return self.volume
         case "hasPositions":
             return self.hasPositions ? "a" : "b"
+        case "waitBeats":
+            return self.waitBeats
         default:
             return ""
         }
@@ -292,6 +302,12 @@ class Song {
                 
                 oId3Wrapper.savePositions(posString)
             }
+            //-----------------------
+            //----- Wait Beats ------
+            //-----------------------
+            if(self.waitBeatsChanged){
+                oId3Wrapper.saveUserText("CloggingBeatsWait", sValue: "\(self.waitBeats)")
+            }
             
             //Reset change flags
             self.titleChanged     = false
@@ -301,6 +317,7 @@ class Song {
             self.bpmChanged       = false
             self.volumeChanged    = false
             self.positionsChanged = false
+            self.waitBeatsChanged = false
         }
     }
     

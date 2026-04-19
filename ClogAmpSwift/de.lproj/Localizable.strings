@@ -7,3 +7,4 @@
 "songTitle" = "Titel";
 "songArtist" = "Interpret";
 "songDate" = "Abgespielt am";
+"waitBeats" = "%d Beats warten";
