@@ -2,9 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14550"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <plugIn identifier="com.apple.pdfkit.ibplugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -231,12 +233,110 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="1009" height="118"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
                     </window>
+                    <touchBar key="touchBar" id="FDc-eN-jcb">
+                        <touchBarItems>
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="cx7-9W-YfY"/>
+                            <touchBarGroupItem id="rW3-eh-Zqk">
+                                <touchBar key="groupTouchBar" id="1zX-qL-hbn">
+                                    <touchBarItems>
+                                        <touchBarItem id="wUc-B6-Qre">
+                                            <viewController key="viewController" id="tkD-XG-KIf">
+                                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dQU-hL-Gs6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="play" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g87-Vn-fYM">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="tbPlay:" target="B8D-0N-5wS" id="r8y-Ip-Hir"/>
+                                                    </connections>
+                                                </button>
+                                            </viewController>
+                                        </touchBarItem>
+                                        <touchBarItem id="pNj-ls-1Kz">
+                                            <viewController key="viewController" id="WU4-Pb-mEN">
+                                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3md-Iz-Y3v">
+                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="pause" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jRX-m8-Ugj">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="tbPause:" target="B8D-0N-5wS" id="wHy-Ar-XRh"/>
+                                                    </connections>
+                                                </button>
+                                            </viewController>
+                                        </touchBarItem>
+                                        <touchBarItem id="loB-7r-049">
+                                            <viewController key="viewController" id="WLW-xw-HBx">
+                                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GXm-yK-Ude">
+                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="stop" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XOv-M0-HnM">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="tbStop:" target="B8D-0N-5wS" id="xxm-LF-vha"/>
+                                                    </connections>
+                                                </button>
+                                            </viewController>
+                                        </touchBarItem>
+                                    </touchBarItems>
+                                </touchBar>
+                            </touchBarGroupItem>
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceLarge" id="gX8-xJ-yN0"/>
+                            <touchBarGroupItem id="4no-ec-L80">
+                                <touchBar key="groupTouchBar" id="U58-jG-Ccn">
+                                    <touchBarItems>
+                                        <touchBarItem id="It2-e3-EY4">
+                                            <viewController key="viewController" id="onz-Vl-gDI">
+                                                <segmentedControl key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-8T-o1O">
+                                                    <rect key="frame" x="0.0" y="0.0" width="196" height="30"/>
+                                                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="kFO-Ya-k29">
+                                                        <font key="font" metaFont="system"/>
+                                                        <segments>
+                                                            <segment label="Songs"/>
+                                                            <segment label="Positions" selected="YES" tag="1"/>
+                                                            <segment label="PDF"/>
+                                                        </segments>
+                                                    </segmentedCell>
+                                                    <connections>
+                                                        <action selector="handleSwitchSegment:" target="B8D-0N-5wS" id="QmP-hb-T7k"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </viewController>
+                                        </touchBarItem>
+                                    </touchBarItems>
+                                </touchBar>
+                            </touchBarGroupItem>
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceLarge" id="2Aj-KK-IGY"/>
+                            <touchBarItem id="jgK-qj-AZp">
+                                <viewController key="viewController" id="n4V-GO-uv3">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T6g-2h-msG">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GbW-ks-VPp">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="handleFocusFilter:" target="B8D-0N-5wS" id="aQ2-Ur-pl8"/>
+                                        </connections>
+                                    </button>
+                                </viewController>
+                            </touchBarItem>
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="mM6-SI-Dj9"/>
+                        </touchBarItems>
+                    </touchBar>
                     <connections>
+                        <outlet property="segTabs" destination="aTI-8T-o1O" id="6DV-g9-yZw"/>
+                        <outlet property="tbPause" destination="3md-Iz-Y3v" id="aED-oR-pk8"/>
+                        <outlet property="tbPlay" destination="dQU-hL-Gs6" id="ELo-dd-udN"/>
+                        <outlet property="tbStop" destination="GXm-yK-Ude" id="RMD-c6-PAY"/>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
                 </windowController>
@@ -258,7 +358,7 @@
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Songs" identifier="songs" id="84A-Vs-Rhv">
-                                        <view key="view" ambiguous="YES" id="nyG-NY-YAM">
+                                        <view key="view" id="nyG-NY-YAM">
                                             <rect key="frame" x="10" y="33" width="1066" height="433"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -288,7 +388,7 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="PDF" identifier="pdf" id="yda-ES-Prf">
-                                        <view key="view" id="YUc-fT-s4j">
+                                        <view key="view" ambiguous="YES" id="YUc-fT-s4j">
                                             <rect key="frame" x="10" y="33" width="1066" height="433"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -2105,11 +2205,15 @@
         <image name="IconTeal" width="512" height="512"/>
         <image name="IconWhite" width="512" height="512"/>
         <image name="IconYellow" width="512" height="512"/>
+        <image name="NSRevealFreestandingTemplate" width="14" height="14"/>
         <image name="NSTouchBarPauseTemplate" width="11" height="30"/>
         <image name="NSTouchBarPlayTemplate" width="14" height="30"/>
         <image name="NSTouchBarRefreshTemplate" width="19" height="30"/>
+        <image name="pause" width="32" height="32"/>
         <image name="pauseGray" width="32" height="32"/>
+        <image name="play" width="32" height="32"/>
         <image name="playGray" width="32" height="32"/>
+        <image name="stop" width="32" height="32"/>
         <image name="stopGray" width="32" height="32"/>
     </resources>
 </document>
