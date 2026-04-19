@@ -274,6 +274,7 @@ class PlayerView: ViewController {
     func determineBpmFCS() {
         self.currentSong?.determineBassBPM(){
             _ in
+            self.currentSong?.saveChanges()
             self.mainView?.songTableView?.refreshTable()
             self.updateRate()
         }
