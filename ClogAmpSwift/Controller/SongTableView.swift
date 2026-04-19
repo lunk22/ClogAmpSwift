@@ -18,6 +18,11 @@ class SongTableView: ViewController {
     
     var fontSize       = 0
     
+    //Search stuff
+    var lastSearchTime: UInt64 = 0
+    var searchSting    = ""
+    var searchTimer: Timer?
+    
     weak var mainView: MainView?
     
     //Outlets
@@ -48,7 +53,9 @@ class SongTableView: ViewController {
     }
     
     override func keyDown(with event: NSEvent) {
-
+        
+        
+        
         switch event.keyCode {
             case 36: // Enter
                 if songTable.selectedRow >= 0 {
@@ -58,15 +65,55 @@ class SongTableView: ViewController {
                         self.mainView?.positionTableView?.refreshTable()
                     }
                 }
-//            case 48: // Tab
             default:
-                self.mainView?.keyDown(with: event)
+//            if !event.modifierFlags.contains(.shift) {
+//                self.mainView?.keyDown(with: event)
+//            }else{
+                let currentSearchTime = mach_absolute_time() //nanoseconds
+                
+                //1ms = 1 000 000 ns
+                //500ms = 500 000 000 ns
+                if (currentSearchTime - self.lastSearchTime) < 500000000 || event.modifierFlags.contains(.shift) {
+                    //within search time or shift pressed?
+                    if event.modifierFlags.contains(.shift) {
+                        //shift pressed => even within 500ms = new search
+                        self.searchSting  = event.charactersIgnoringModifiers ?? ""
+                    }else{
+                        self.searchSting += event.charactersIgnoringModifiers ?? ""
+                    }
+                    
+                    self.lastSearchTime  = currentSearchTime
+                    
+                    self.searchTimer?.invalidate()
+                    
+                    self.searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: {
+                        timer in
+                        //do stuff
+                        for song in self.aSongsForTable {
+                            if song.getValueAsString("title").starts(with: self.searchSting) {
+                                do {
+                                    let index = self.aSongsForTable.firstIndex(where: {
+                                        songElement in
+                                        return song === songElement
+                                    }) ?? -1
+                                
+                                    if index >= 0 {
+                                        self.songTable.selectRowIndexes([index], byExtendingSelection: false)
+                                        self.songTable.scrollRowToVisible(index)
+                                        break //stop the for loop, we found the line
+                                    }
+                                }
+                            }
+                        }
+                    })
+                    
+                }else{
+                    self.mainView?.keyDown(with: event)
+                }
+//            }
+            
         }
-        
-//        if(keyPressed == "enter"){
-//        }else{
-//
-//        }
+
     }
     
     func setMusicDirectory(_ dir: String){

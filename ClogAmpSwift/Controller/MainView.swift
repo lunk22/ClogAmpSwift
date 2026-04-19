@@ -10,12 +10,6 @@ import AppKit
 
 class MainView: NSViewController {
     
-    var aSongs         = [Song]()
-    var aSongsForTable = [Song]()
-    
-    var sSortBy        = "title"
-    var bSortAsc       = true
-    
     weak var playerView: PlayerView?
     weak var songTableView: SongTableView?
     weak var positionTableView: PositionTableView?
@@ -50,8 +44,6 @@ class MainView: NSViewController {
                     prefSkipForwardSeconds = 5
                 }
                 self.playerView!.jump(prefSkipForwardSeconds)
-//            case 48: // Tab
-//                
             case 11: // B
                 var prefSkipBackSeconds = UserDefaults.standard.integer(forKey: "prefSkipBackSeconds")
                 if prefSkipBackSeconds == 0 {
