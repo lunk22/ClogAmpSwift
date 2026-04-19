@@ -37,7 +37,7 @@ class PositionTableView: NSViewController {
         
         self.updateBeatsColumnVisibility()
         
-        self.fontSize = Defaults.positionTableFontSize
+        self.fontSize = AppPreferences.positionTableFontSize
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("monoChanged"), object: nil, queue: nil){ _ in
             DispatchQueue.main.async(qos: .default) {
@@ -110,7 +110,7 @@ class PositionTableView: NSViewController {
     func updateBeatsColumnVisibility() {
         let beatsColumnIndex = self.positionTable.column(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "beats"))
         let beatsColumn = self.positionTable.tableColumns[beatsColumnIndex]
-        beatsColumn.isHidden = !Defaults.positionTableShowBeats
+        beatsColumn.isHidden = !AppPreferences.positionTableShowBeats
     }
     
     func refreshTable(single: Bool = false) {
@@ -157,7 +157,7 @@ class PositionTableView: NSViewController {
                     if self.cbLoop.state == NSControl.StateValue.on {
                         if !(self.loopTimer?.isValid ?? false) {
                             let loopPos = self.currentPosition
-                            self.loopTimer = Timer.scheduledTimer(withTimeInterval: Defaults.loopDelay, repeats: false, block: {
+                            self.loopTimer = Timer.scheduledTimer(withTimeInterval: AppPreferences.loopDelay, repeats: false, block: {
                                 _ in
                                 self.loopCount += 1
                                 
@@ -165,7 +165,7 @@ class PositionTableView: NSViewController {
                                     self.cbLoop.state = NSControl.StateValue.off
                                 }
                                 
-                                self.mainView?.playerView?.handlePositionSelected(loopPos)
+                                self.handlePositionSelected(loopPos)
                             })
                         }
                     }else{
@@ -178,6 +178,22 @@ class PositionTableView: NSViewController {
         }else{
             //Single Update
             performRefresh()
+        }
+    }
+    
+    func handlePositionSelected(_ index: Int) {
+        //Check the index is in range
+        if(index == -1 || PlayerAudioEngine.shared.song?.getPositions().count ?? -1 <= index){
+            return
+        }
+        
+        if let oPosition = PlayerAudioEngine.shared.song?.getPositions()[index] {
+            PlayerAudioEngine.shared.seek(seconds: Float64(oPosition.time / 1000))
+            if AppPreferences.playPositionOnSelection && !(PlayerAudioEngine.shared.isPlaying()){
+                delayWithSeconds(0.01){
+                    PlayerAudioEngine.shared.play()
+                }
+            }
         }
     }
     
@@ -195,7 +211,7 @@ class PositionTableView: NSViewController {
         self.loopTimer = nil
         self.currentPosition = self.positionTable.selectedRow
         self.refreshTable(single: true)
-        self.mainView?.playerView?.handlePositionSelected(self.positionTable.selectedRow)
+        self.handlePositionSelected(self.positionTable.selectedRow)
     }
     
     @IBAction func handleAddPosition(_ sender: NSButton) {
@@ -379,7 +395,7 @@ class PositionTableView: NSViewController {
                     if !text.isInteger() || text.asInteger() < 0 { self.refreshTable(single: true); return } // not an int or negative int? just refresh to get the old value
                     if text.asInteger() == position.beats { return } // no change?
                     
-                    switch Defaults.beatsChangeBehaviour {
+                    switch AppPreferences.beatsChangeBehaviour {
                         case 0: // Adjust Following
                             return updateBeatsByAdjusting(rowIndex: iRow, beats: Int(text)!)
                         case 1: // Move all following
@@ -589,7 +605,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 textField.stringValue = ""
             }
 
-            if Defaults.positionTableMonoFont {
+            if AppPreferences.positionTableMonoFont {
                 textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
@@ -617,7 +633,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 let cell = textField.cell!
                 cell.wraps = true
                 
-                if Defaults.positionTableMonoFont {
+                if AppPreferences.positionTableMonoFont {
                     cell.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
                 } else {
                     cell.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
@@ -651,7 +667,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
 extension PositionTableView: TableViewDelegate {
     
     func rowSelected() {
-        self.mainView?.playerView?.handlePositionSelected(self.positionTable.selectedRow)
+        self.handlePositionSelected(self.positionTable.selectedRow)
     }
     
 }

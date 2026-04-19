@@ -24,15 +24,15 @@ class PreferenceView: ViewController {
     
     //Overrides
     override func viewDidLoad() {
-        self.txtSkipForward.integerValue   = Defaults.skipForward
-        self.txtSkipBack.integerValue      = Defaults.skipBack
-        self.txtBpmUpperBound.integerValue = Defaults.bpmUpperBound
-        self.txtBpmLowerBound.integerValue = Defaults.bpmLowerBound
-        self.txtLoopDelay.doubleValue      = Defaults.loopDelay
+        self.txtSkipForward.integerValue   = AppPreferences.skipForward
+        self.txtSkipBack.integerValue      = AppPreferences.skipBack
+        self.txtBpmUpperBound.integerValue = AppPreferences.bpmUpperBound
+        self.txtBpmLowerBound.integerValue = AppPreferences.bpmLowerBound
+        self.txtLoopDelay.doubleValue      = AppPreferences.loopDelay
                 
-        self.ddlbAppearance.selectItem(at: Defaults.appearance)
-        self.cbViewAfterSongLoad.selectItem(at: Defaults.viewAfterSongLoad)
-        self.cbBeatsChangeBehaviour.selectItem(at: Defaults.beatsChangeBehaviour)
+        self.ddlbAppearance.selectItem(at: AppPreferences.appearance)
+        self.cbViewAfterSongLoad.selectItem(at: AppPreferences.viewAfterSongLoad)
+        self.cbBeatsChangeBehaviour.selectItem(at: AppPreferences.beatsChangeBehaviour)
         
         if #available(OSX 10.14, *) {
             self.boxAppearance.isHidden = false

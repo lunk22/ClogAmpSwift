@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Defaults {
+class AppPreferences {
     
     static var appearance: Int {
         var prefAppearance = UserDefaults.standard.integer(forKey: "prefAppearance")
