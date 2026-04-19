@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "PositionTableView.numberOfRows(in:):PositionTableView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.mainView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Song.saveChanges():Song.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainView.viewDidAppear():MainView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.children">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

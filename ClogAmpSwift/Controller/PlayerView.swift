@@ -146,12 +146,12 @@ class PlayerView: ViewController {
         self.avAudioPlayer?.currentTime = Double(sender.integerValue) / 10000 * (self.avAudioPlayer?.duration ?? 0);
         self.updateTime()
     }
-}
-
-/*
- * PlayerDelegate Extension
- */
-extension PlayerView: PlayerDelegate {
+//}
+//
+///*
+// * PlayerDelegate Extension
+// */
+//extension PlayerView: PlayerDelegate {
     func handlePositionSelected(_ index: Int) {
         if let oPosition = self.currentSong?.positions[index] {
             let timeInterval = (Double(oPosition.time) / 1000) as TimeInterval
@@ -167,6 +167,9 @@ extension PlayerView: PlayerDelegate {
         return self.currentSong
     }
     func play() {
+        //If play is called while the song is playing, it should start over
+        self.stop()
+        
         if((self.avAudioPlayer?.play() ?? false)){
             //Start the Update of the UI every .1 seconds
             self.tick()
