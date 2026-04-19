@@ -172,7 +172,7 @@ class SongTableView: ViewController {
         DispatchQueue.global(qos: .background).async {
             var positionLoaded = false
             
-            FileSystemUtils.readFolderContentsAsSong(sPath: dir, oView: self) {
+            FileSystemUtils.readFolderContentsAsSong(sPath: dir) {
                 let song    = $0
                 let percent = $1
                 
@@ -185,7 +185,7 @@ class SongTableView: ViewController {
                     }else{
                         self.performSortSongs()
                         self.percentLabel.stringValue = ""
-//                        self.percentLabel.isHidden    = true
+                        self.percentLabel.isHidden = true
                     }
                 }
                 
@@ -260,8 +260,9 @@ class SongTableView: ViewController {
     
     func loadSelectedSong() {
         if(self.songTable.selectedRow >= 0) {
-            self.mainView?.playerView?.loadSong(song: self.aSongsForTable[self.songTable.selectedRow])
-            
+            let song = self.aSongsForTable[self.songTable.selectedRow]
+            self.mainView?.playerView?.loadSong(song: song)
+            self.mainView?.pdfView?.findPdfForSong(songName: song.getValueAsString("title"), fileName: song.filePathAsUrl.lastPathComponent)
             DispatchQueue.main.async {
                 self.mainView?.positionTableView?.refreshTable(single: true)
             }
@@ -283,6 +284,10 @@ class SongTableView: ViewController {
         dialog.canChooseFiles          = false;
         dialog.canCreateDirectories    = false;
         dialog.allowsMultipleSelection = false;
+        
+        if let savedPath = UserDefaults.standard.string(forKey: "musicFolderPath") {
+            dialog.directoryURL        = URL(fileURLWithPath: savedPath)
+        }
         
         if (dialog.runModal() == NSApplication.ModalResponse.OK) {
             if let result = dialog.url { // Pathname of the file
