@@ -8,7 +8,6 @@
 
 import AppKit
 import AVFoundation
-import AudioKit
 
 class PlayerView: ViewController {
     
