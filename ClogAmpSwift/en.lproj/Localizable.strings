@@ -8,3 +8,6 @@
 "songArtist" = "Artist";
 "songDate" = "Date played";
 "waitBeats" = "Wait %d Beats";
+"viewAfterSongLoadFileList" = "";
+"viewAfterSongLoadPositions" = "Positions";
+"viewAfterSongLoadPDF" = "PDF";

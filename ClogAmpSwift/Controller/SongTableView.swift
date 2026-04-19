@@ -10,7 +10,7 @@ import AppKit
 
 class SongTableView: ViewController {
     
-    //MARK: Properties
+    // MARK: Properties
     var aSongs         = [Song]()
     var aSongsForTable = [Song]()
     
@@ -30,13 +30,13 @@ class SongTableView: ViewController {
     
     weak var mainView: MainView?
     
-    //MARK: Outlets
+    // MARK: Outlets
     @IBOutlet weak var songTable: TableView!
     @IBOutlet weak var searchField: NSTextField!
     @IBOutlet weak var percentLabel: NSTextField!
     @IBOutlet weak var pathControl: NSPathControl!
     
-    //MARK: Overrides
+    // MARK: Overrides
     override func viewDidLoad() {
         if !UserDefaults.standard.bool(forKey: "prefStartFocusFilter") {
             delayWithSeconds(1.25, closure: {
@@ -109,11 +109,7 @@ class SongTableView: ViewController {
                 if FileManager.default.fileExists(atPath: lastLoadedSongURL) {
                     let url  = URL(string: lastLoadedSongURL.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!
                     let song = Song.retrieveSong(path: url)
-                    self.mainView?.playerView?.loadSong(song: song)
-                    
-                    DispatchQueue.main.async(qos: .userInitiated) {
-                        self.mainView?.positionTableView?.refreshTable(single: true)
-                    }
+                    self.loadSong(song, openLoadView: false)
                 }
             }
         }
@@ -126,7 +122,7 @@ class SongTableView: ViewController {
         switch event.keyCode {
             case 36: // Enter
                 if songTable.selectedRow >= 0 {
-                    self.mainView?.playerView?.loadSong(song: self.aSongsForTable[songTable.selectedRow])
+                    self.loadSong(self.aSongsForTable[songTable.selectedRow])
                     
                     DispatchQueue.main.async(qos: .userInitiated) {
                         self.mainView?.positionTableView?.refreshTable()
@@ -177,7 +173,23 @@ class SongTableView: ViewController {
         }
     }
     
-    //MARK: Custom Methods
+    // MARK: Custom Methods
+    func loadSong(_ song: Song, openLoadView: Bool = true) {
+        self.mainView?.playerView?.loadSong(song: song)
+        
+        if !openLoadView {return}
+        
+        let prefViewAfterSongLoad = UserDefaults.standard.integer(forKey: "prefViewAfterSongLoad")
+        switch prefViewAfterSongLoad {
+        case 1:
+            self.mainView?.tabView.selectTabViewItem(at: 1)
+        case 2:
+            self.mainView?.tabView.selectTabViewItem(at: 2)
+        default:
+            return
+        }
+    }
+    
     func setMusicDirectory(_ dir: String){
         self.aSongs.removeAll()
         self.aSongsForTable.removeAll()
@@ -268,10 +280,7 @@ class SongTableView: ViewController {
     func loadSelectedSong() {
         if(self.songTable.selectedRow >= 0) {
             let song = self.aSongsForTable[self.songTable.selectedRow]
-            self.mainView?.playerView?.loadSong(song: song)
-            DispatchQueue.main.async(qos: .userInitiated) {
-                self.mainView?.positionTableView?.refreshTable(single: true)
-            }
+            self.loadSong(song)
         }
     }
     
@@ -311,7 +320,7 @@ class SongTableView: ViewController {
         self.performSortSongs()
     }
     
-    //MARK: UI Selectors - Actions
+    // MARK: UI Selectors - Actions
     @IBAction func handleSongSelected(_ sender: Any) {
         self.loadSelectedSong()
     }
