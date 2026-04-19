@@ -8,3 +8,4 @@
 #import "SongHistoryItem.h"
 #import "ObjC.h"
 #import "Playlist.h"
+#import "PlaylistSongItem.h"

@@ -11,6 +11,7 @@
 #import "sqlite3.h"
 #import "SongHistoryItem.h"
 #import "Playlist.h"
+#import "PlaylistSongItem.h"
 
 @implementation Database
 
@@ -345,87 +346,16 @@
     }
 }
 
-//+ (NSMutableArray *)getPlaylistSongs:(int)playlistID{
-//    sqlite3 *database;
-//    int result;
-//    NSMutableArray *values = nil;
-//
-//    if (playlistID < 0) {
-//        return nil;
-//    }
-//
-//    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
-//    if(result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return nil;
-//    }
-//
-//    NSString *selectStmt = @"SELECT * FROM PlaylistSong WHERE PID = ";
-//    selectStmt = [selectStmt stringByAppendingFormat:@"%d ORDER BY SongOrder",playlistID];
-//
-//    sqlite3_stmt *statement;
-//
-//    result = sqlite3_prepare(database, [selectStmt cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, nil);
-//    if(result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return nil;
-//    }
-//
-//    values = [[NSMutableArray alloc] init];
-//
-//    while (sqlite3_step(statement) == SQLITE_ROW){
-//        //ID
-//        NSString *title    = nil;
-//
-//        @try {
-//            title = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 2) encoding:NSUTF8StringEncoding];
-//        }
-//        @catch (NSException *e) { title = @""; }
-//
-//        //Description
-//        NSString *filename = nil;
-//
-//        @try{
-//            filename = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 3) encoding:NSUTF8StringEncoding];
-//        }
-//        @catch (NSException *e) { filename = @""; }
-//
-//        //ContPlayback
-//        NSString *duration = nil;
-//
-//        @try {
-//            duration = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 4) encoding:NSUTF8StringEncoding];
-//        }
-//        @catch(NSException *e) { duration = @"0:00"; }
-//
-//        Song *song = [ClogAmpMacDataBuffer findSong:title withFilename:filename withDuration:duration];
-//
-//        if (song != nil){
-//            [values addObject:song];
-//        }
-//    }
-//
-//    sqlite3_finalize(statement);
-//    sqlite3_close(database);
-//
-//    if ([values count] == 0) {
-//        [values release];
-//        return nil;
-//    }else{
-//        [values autorelease];
-//        return values;
-//    }
-//}
-
-+ (NSMutableArray *)getSongHistory:(NSDate *)fromDate toDate:(NSDate *)toDate{
++ (NSArray *)getSongHistory:(NSDate *)fromDate toDate:(NSDate *)toDate{
     sqlite3 *database;
     int result;
     NSMutableArray *values = nil;
+    NSArray *emptyArray = [NSArray new];
     
     result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
     if(result != SQLITE_OK){
         sqlite3_close(database);
-        return nil;
+        return emptyArray;
     }
     
     NSString *selectStmt = @"SELECT * FROM SongHistory ORDER BY PlayedDate DESC, PlayedTime DESC";
@@ -435,7 +365,7 @@
     result = sqlite3_prepare(database, [selectStmt cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, nil);
     if(result != SQLITE_OK){
         sqlite3_close(database);
-        return nil;
+        return emptyArray;
     }
     
     values = [[NSMutableArray alloc] init];
@@ -520,7 +450,7 @@
     sqlite3_close(database);
     
     if ([values count] == 0) {
-        return nil;
+        return emptyArray;
     }else{
         return values;
     }
@@ -606,18 +536,17 @@
     return true;
 }
 
-//+ (bool)assignSongsToPlaylist:(int)plID withSongs:(NSMutableArray *)songs{
-//
-//    sqlite3 *database;
-//    int order = 0;
-//    int result;
-//
-//    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
-//    if(result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return false;
-//    }
-//
++ (bool)addSongToPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName withOrder:(int)orderIndex{
+
+    sqlite3 *database;
+    int result;
+
+    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return false;
+    }
+
 //    //Delete already assigned songs
 //    NSString *deleteExec = [NSString stringWithFormat:@"DELETE FROM PlaylistSong WHERE PID = %d",plID];
 //
@@ -626,31 +555,127 @@
 //        sqlite3_close(database);
 //        return false;
 //    }
-//
-//    for(Song *song in songs){
-//        order++;
-//
-//        NSString *exec = @"INSERT INTO PlaylistSong (PID, SongOrder, SongTitle, SongFileName, SongDuration) VALUES(";
-//        exec = [exec stringByAppendingFormat:@"%d",plID];
-//        exec = [exec stringByAppendingFormat:@", %d, \"",order];
-//        exec = [exec stringByAppendingString:[song title]];
-//        exec = [exec stringByAppendingString:@"\", \""];
-//        exec = [exec stringByAppendingString:[[song path] lastPathComponent]];
-//        exec = [exec stringByAppendingString:@"\", \""];
-//        exec = [exec stringByAppendingString:[song duration]];
-//        exec = [exec stringByAppendingString:@"\")"];
-//
-//        //Run the update
-//        result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
-//        if (result != SQLITE_OK){
-//            sqlite3_close(database);
-//            return false;
-//        }
-//    }
-//
-//    sqlite3_close(database);
-//    return true;
-//}
+
+    NSString *exec = @"INSERT INTO PlaylistSong (PID, SongOrder, SongTitle, SongFileName, SongDuration) VALUES(";
+    exec = [exec stringByAppendingFormat:@"%d",plID];
+    exec = [exec stringByAppendingFormat:@", %d, \"",orderIndex];
+    exec = [exec stringByAppendingString:title];
+    exec = [exec stringByAppendingString:@"\", \""];
+    exec = [exec stringByAppendingString:fileName];
+    exec = [exec stringByAppendingString:@"\", \""];
+    exec = [exec stringByAppendingFormat:@"%d",duration];
+    exec = [exec stringByAppendingString:@"\")"];
+
+    //Run the update
+    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
+    if (result != SQLITE_OK){
+        sqlite3_close(database);
+        return false;
+    }
+
+    sqlite3_close(database);
+    return true;
+}
+
++ (bool)updateSongOrderInPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName withOrder:(int)orderIndex{
+
+    sqlite3 *database;
+    int result;
+
+    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return false;
+    }
+
+    NSString *exec = @"UPDATE PlaylistSong SET SongOrder = ";
+    exec = [exec stringByAppendingFormat:@"%d",orderIndex];
+    exec = [exec stringByAppendingString:@" WHERE PID = "];
+    exec = [exec stringByAppendingFormat:@"%d AND SongTitle = \"",plID];
+    exec = [exec stringByAppendingString:title];
+    exec = [exec stringByAppendingString:@"\" AND SongFileName = \""];
+    exec = [exec stringByAppendingString:fileName];
+    exec = [exec stringByAppendingString:@"\""];
+    
+    //Run the update
+    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
+    if (result != SQLITE_OK){
+        sqlite3_close(database);
+        return false;
+    }
+
+    sqlite3_close(database);
+    return true;
+}
+
++ (NSArray *)getPlaylistSongs:(int)playlistID{
+    sqlite3 *database;
+    int result;
+    NSMutableArray *values = nil;
+    NSArray *emptyArray = [NSArray new];
+
+    if (playlistID < 0) {
+        return emptyArray;
+    }
+
+    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return emptyArray;
+    }
+
+    NSString *selectStmt = @"SELECT * FROM PlaylistSong WHERE PID = ";
+    selectStmt = [selectStmt stringByAppendingFormat:@"%d ORDER BY SongOrder",playlistID];
+
+    sqlite3_stmt *statement;
+
+    result = sqlite3_prepare(database, [selectStmt cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, nil);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return emptyArray;
+    }
+
+    values = [[NSMutableArray alloc] init];
+
+    while (sqlite3_step(statement) == SQLITE_ROW){
+        PlaylistSongItem *plsi = [PlaylistSongItem new];
+        
+        //Song Order
+        @try {
+            plsi.order = [[NSString stringWithCString:(char *)sqlite3_column_text(statement, 1) encoding:NSUTF8StringEncoding] intValue];
+        }
+        @catch (NSException *e) { plsi.title = @""; }
+        
+        //Song Title
+        @try {
+            plsi.title = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 2) encoding:NSUTF8StringEncoding];
+        }
+        @catch (NSException *e) { plsi.title = @""; }
+
+        //Description
+        @try{
+            plsi.fileName = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 3) encoding:NSUTF8StringEncoding];
+        }
+        @catch (NSException *e) { plsi.fileName = @""; }
+
+        //ContPlayback
+        @try {
+            plsi.duration = [[NSString stringWithCString:(char *)sqlite3_column_text(statement, 4) encoding:NSUTF8StringEncoding] intValue];
+        }
+        @catch(NSException *e) { plsi.duration = 0; }
+        
+        [values addObject:plsi];
+    }
+
+    sqlite3_finalize(statement);
+    sqlite3_close(database);
+
+    if ([values count] == 0) {
+        return emptyArray;
+    }else{
+        return values;
+    }
+}
 
 + (bool)deletePlaylist:(int)plID{
 

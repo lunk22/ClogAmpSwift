@@ -1,3 +1,6 @@
 "choosePdf" = "Choose PDF";
 "chooseFolder" = "Choose Folder";
 "newPlaylist" = "New Playlist";
+"darkAppearance" = "Dark";
+"lightAppearance" = "Light";
+"systemAppearance" = "System";

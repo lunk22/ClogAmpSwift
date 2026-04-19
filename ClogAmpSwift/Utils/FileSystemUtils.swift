@@ -9,6 +9,9 @@
 import AppKit
 
 class FileSystemUtils {
+    
+    static var aSongs = [Song]()
+    
     static func readFolderContentsAsURL(sPath: String, filterExtension: String = "mp3") -> [URL] {
         let sPathEncoded = sPath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
         
@@ -40,9 +43,13 @@ class FileSystemUtils {
     static func readFolderContentsAsSong(sPath: String, using block: @escaping (Song, Int/* Percent */) -> Void) {
         let aUrls = readFolderContentsAsURL(sPath: sPath)
         var count = 0
-
+        
+        // Free the buffer before redetermination
+        aSongs = []
+        
         for url in aUrls {
             let song = Song.retrieveSong(path: url)
+            aSongs.append(song)
             count = count + 1
             
             //Load the positions for the first 9 songs to make sure the framework works alright

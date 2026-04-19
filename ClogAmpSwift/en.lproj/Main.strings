@@ -449,3 +449,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Artist"; ObjectID = "ftq-1a-vQu"; */
 "ftq-1a-vQu.headerCell.title" = "Artist";
+
+/* Class = "NSBox"; title = "Appearance"; ObjectID = "SJi-NZ-Dod"; */
+"SJi-NZ-Dod.title" = "Appearance";

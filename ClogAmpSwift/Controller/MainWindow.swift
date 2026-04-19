@@ -15,12 +15,8 @@ class MainWindow: NSWindowController {
     @IBOutlet weak var tbStop: NSButton!
     @IBOutlet weak var segTabs: NSSegmentedControl!
     
-    
     override func windowDidLoad() {
         window?.setFrameAutosaveName("mainWindowAutosave")
-//        window?.appearance = NSAppearance(named: .aqua)     // Light
-//        window?.appearance = NSAppearance(named: .darkAqua) // Dark
-//        window?.appearance = nil                            // Inherit
         
         super.windowDidLoad()
         

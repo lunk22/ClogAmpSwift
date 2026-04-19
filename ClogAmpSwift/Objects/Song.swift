@@ -16,10 +16,10 @@ class Song {
     var title: String { didSet { self.titleChanged = true } }
     var artist: String { didSet { self.artistChanged = true } }
     var level: String { didSet { self.levelChanged = true } }
-    var duration: UInt
+    var duration: Int
     var speed: Int { didSet { self.speedChanged = true } }
-    var bpm: UInt { didSet { self.bpmChanged = true } }
-    var volume: UInt { didSet { self.volumeChanged = true } }
+    var bpm: Int { didSet { self.bpmChanged = true } }
+    var volume: Int { didSet { self.volumeChanged = true } }
     var hasPositions: Bool
     var positions: Array<Position>
     
@@ -96,10 +96,10 @@ class Song {
             }
             
             //Duration
-            self.duration = UInt(map?.value(forKey: "duration") as? Int ?? 0)
+            self.duration = Int(map?.value(forKey: "duration") as? Int ?? 0)
             
             //Read BPM
-            self.bpm = UInt(map?.value(forKey: "bpm") as? Int ?? 0)
+            self.bpm = Int(map?.value(forKey: "bpm") as? Int ?? 0)
             
             //Read Level
             self.level = map?.value(forKey: "cloggingLevel") as? String ?? ""
@@ -134,6 +134,8 @@ class Song {
             return "\(self.volume)"
         case "hasPositions":
             return self.hasPositions ? "✓" : ""
+        case "fileName":
+            return self.path.lastPathComponent
         default:
             return ""
         }
@@ -187,7 +189,7 @@ class Song {
             if bpm < 0 {
                 bpm = 0
             }
-            self.bpm = UInt(lround(Double(bpm)))
+            self.bpm = Int(lround(Double(bpm)))
             
             callback(bpm)
         }
