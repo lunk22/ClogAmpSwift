@@ -13,6 +13,7 @@ class MainView: NSViewController {
     weak var playerView: PlayerView?
     weak var songTableView: SongTableView?
     weak var positionTableView: PositionTableView?
+    weak var pdfView: PDFViewController?
     
     @IBOutlet weak var tabView: NSTabView!
         
@@ -66,10 +67,11 @@ class MainView: NSViewController {
     }
     
     override func viewDidAppear() {
-        self.playerView        = self.children[2] as? PlayerView
         self.songTableView     = self.children[0] as? SongTableView
         self.positionTableView = self.children[1] as? PositionTableView
-        
+        self.pdfView           = self.children[2] as? PDFViewController
+        self.playerView        = self.children[3] as? PlayerView
+
         self.playerView?.mainView        = self
         self.songTableView?.mainView     = self
         self.positionTableView?.mainView = self

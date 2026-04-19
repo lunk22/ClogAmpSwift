@@ -42,6 +42,9 @@
 		B7A3A9C0221AFCBD00CA5FE8 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */; };
 		B7A3A9C2221BE44400CA5FE8 /* CountdownWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */; };
 		B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */; };
+		B7B46605237042EB00AA9419 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B46604237042EB00AA9419 /* PDFView.swift */; };
+		B7B46608237046D800AA9419 /* PDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B46607237046D800AA9419 /* PDFKit.framework */; };
+		B7B4660C23754EE600AA9419 /* StringScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4660B23754EE600AA9419 /* StringScore.swift */; };
 		B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */; };
 		B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1A21F9A87E00532C1A /* Position.swift */; };
 		B7C8358422250E5700CF3360 /* AppIconBlue.icns in Resources */ = {isa = PBXBuildFile; fileRef = B7C8358322250E5700CF3360 /* AppIconBlue.icns */; };
@@ -107,6 +110,9 @@
 		B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownWindow.swift; sourceTree = "<group>"; };
 		B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionXmlParser.swift; sourceTree = "<group>"; };
+		B7B46604237042EB00AA9419 /* PDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
+		B7B46607237046D800AA9419 /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
+		B7B4660B23754EE600AA9419 /* StringScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringScore.swift; sourceTree = "<group>"; };
 		B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClogAmpSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		B7BD8F0621F7597800532C1A /* id3lib_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id3lib_frame.h; sourceTree = "<group>"; };
 		B7BD8F0721F7597800532C1A /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			files = (
 				B79853332217073500BDE678 /* libbass.dylib in Frameworks */,
 				5017716621FB2CD500D8A95A /* libid3-3.8.3.0.0.dylib in Frameworks */,
+				B7B46608237046D800AA9419 /* PDFKit.framework in Frameworks */,
 				B79853322217073500BDE678 /* libbass_fx.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +163,7 @@
 			children = (
 				50A37BA9207FF03D0020E218 /* ClogAmpSwift */,
 				50A37BA8207FF03D0020E218 /* Products */,
+				B7B46606237046D800AA9419 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -204,6 +212,7 @@
 				5017716821FF58C700D8A95A /* TimePanelView.swift */,
 				B75955852216D1A300D11E3F /* TimePanelWindow.swift */,
 				B722991E2200223B00AEFA90 /* ViewController.swift */,
+				B7B46604237042EB00AA9419 /* PDFView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -226,6 +235,7 @@
 			children = (
 				50043ED42080C76C0025DC2D /* FileSystemUtils.swift */,
 				B7DDFCB022141B3600637831 /* Tools.swift */,
+				B7B4660B23754EE600AA9419 /* StringScore.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -259,6 +269,14 @@
 				B70F1814221D957600FE1149 /* AppIconYellow.icns */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		B7B46606237046D800AA9419 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7B46607237046D800AA9419 /* PDFKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B7BD8ED321F73E4E00532C1A /* ObjCWrapper */ = {
@@ -396,6 +414,7 @@
 				B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */,
 				B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */,
 				B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */,
+				B7B46605237042EB00AA9419 /* PDFView.swift in Sources */,
 				504E5FA42080F4E0003DBA66 /* Song.swift in Sources */,
 				5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */,
 				B7364FD7221537AA00FB9C64 /* Player.swift in Sources */,
@@ -410,6 +429,7 @@
 				B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */,
 				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
 				B7985339221A812600BDE678 /* PreferencesView.swift in Sources */,
+				B7B4660C23754EE600AA9419 /* StringScore.swift in Sources */,
 				B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */,
 				B7DDFCB322141F5F00637831 /* Database.m in Sources */,
 				B78780F42216A131002B74B4 /* BassWrapper.m in Sources */,
