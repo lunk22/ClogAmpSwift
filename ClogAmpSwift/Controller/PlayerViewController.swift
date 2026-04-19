@@ -50,18 +50,13 @@ class PlayerViewController: ViewController {
         }
         didSet {
             PlayerAudioEngine.shared.stop()
-            
+
             if self.currentSong == nil { return }
-            
+
             self.currentSong!.loadPositions()
-            
+
             PlayerAudioEngine.shared.song = self.currentSong!
-            
-            if self.currentSong == nil {
-                self.descriptionField.stringValue = "---"
-                return
-            }
-            
+
             let x = self.currentSong!.getValueAsString("path")
             UserDefaults.standard.set(x, forKey: "lastLoadedSongURL")
             

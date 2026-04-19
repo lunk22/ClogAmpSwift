@@ -346,8 +346,8 @@ class PositionTableViewController: NSViewController {
                 }
                 
                 let xmlData = xmlDoc.xmlData(options: XMLNode.Options.nodePrettyPrint)
-                
-                try! xmlData.write(to: saveDialog.url!)
+
+                try? xmlData.write(to: saveDialog.url!)
             }
         }
     }

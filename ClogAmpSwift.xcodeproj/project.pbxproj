@@ -50,6 +50,7 @@
 		B74E7FE623794E8C00569664 /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = B74E7FE523794E8C00569664 /* ObjC.m */; };
 		B75955862216D1A300D11E3F /* TimePanelWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75955852216D1A300D11E3F /* TimePanelWindowController.swift */; };
 		B75955882216DD5800D11E3F /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75955872216DD5800D11E3F /* MainWindowController.swift */; };
+		B7612AED2F8E665A00EACF2C /* PDFPreviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7612AEC2F8E665A00EACF2C /* PDFPreviewWindowController.swift */; };
 		B76C88CE2C57CB7200D68A87 /* EQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76C88CD2C57CB7200D68A87 /* EQViewController.swift */; };
 		B78780F42216A131002B74B4 /* BassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B78780F32216A131002B74B4 /* BassWrapper.m */; };
 		B79853322217073500BDE678 /* libbass_fx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B79853302217073500BDE678 /* libbass_fx.dylib */; };
@@ -160,6 +161,7 @@
 		B74E7FE523794E8C00569664 /* ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjC.m; sourceTree = "<group>"; };
 		B75955852216D1A300D11E3F /* TimePanelWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePanelWindowController.swift; sourceTree = "<group>"; };
 		B75955872216DD5800D11E3F /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		B7612AEC2F8E665A00EACF2C /* PDFPreviewWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPreviewWindowController.swift; sourceTree = "<group>"; };
 		B76C88CD2C57CB7200D68A87 /* EQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EQViewController.swift; sourceTree = "<group>"; };
 		B78780F32216A131002B74B4 /* BassWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BassWrapper.m; sourceTree = "<group>"; };
 		B78780F52216A13C002B74B4 /* BassWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BassWrapper.h; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				B72299202202C9FD00AEFA90 /* SongTableViewController.swift */,
 				5017716821FF58C700D8A95A /* TimePanelViewController.swift */,
 				B75955852216D1A300D11E3F /* TimePanelWindowController.swift */,
+				B7612AEC2F8E665A00EACF2C /* PDFPreviewWindowController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				504E5FA42080F4E0003DBA66 /* Song.swift in Sources */,
 				5017716921FF58C700D8A95A /* TimePanelViewController.swift in Sources */,
 				B7B3A189237EBCC0009667CF /* Window.swift in Sources */,
+				B7612AED2F8E665A00EACF2C /* PDFPreviewWindowController.swift in Sources */,
 				50043ED52080C76C0025DC2D /* FileSystemUtils.swift in Sources */,
 				B7DDFCB122141B3600637831 /* Tools.swift in Sources */,
 				50ED82EE2DFEB65900B5E5C6 /* CAMShortcuts.swift in Sources */,

@@ -14,8 +14,8 @@ class DecibelTransformer: ValueTransformer {
 //    }
 
     override func transformedValue(_ value: Any?) -> Any? {
-        if value == nil { return 0.0 }
-        return "\(Int(roundf(value as! Float))) dB"
+        guard let number = value as? NSNumber else { return "0 dB" }
+        return "\(Int(roundf(number.floatValue))) dB"
     }
 
 }

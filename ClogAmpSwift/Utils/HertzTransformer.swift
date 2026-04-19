@@ -14,8 +14,8 @@ class HertzTransformer: ValueTransformer {
     //    }
     
     override func transformedValue(_ value: Any?) -> Any? {
-        if value == nil { return 0 }
-        return "\(value!) Hz"
+        guard let number = value as? NSNumber else { return "0 Hz" }
+        return "\(number.intValue) Hz"
     }
     
 }

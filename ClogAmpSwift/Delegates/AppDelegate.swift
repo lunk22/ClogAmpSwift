@@ -67,20 +67,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func showMenuBarItem() {
         // Add a status bar item in the menu bar for our app
-        do {
-            let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-            statusBarItem.button?.image = NSImage(shape: .play, color: .blue)
-            
-            let statusBarMenu = NSMenu()
-            statusBarItem.menu = statusBarMenu
-            
-            let menuItem = NSMenuItem()
-            menuItem.title = "I don't do anything"
-            
-            statusBarMenu.addItem(menuItem)
-            
-            self.statusBarItem = statusBarItem
-        }
+        let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        statusBarItem.button?.image = NSImage(shape: .play, color: .blue)
+
+        let statusBarMenu = NSMenu()
+        statusBarItem.menu = statusBarMenu
+
+        let menuItem = NSMenuItem()
+        menuItem.title = "I don't do anything"
+
+        statusBarMenu.addItem(menuItem)
+
+        self.statusBarItem = statusBarItem
     }
 
     func disableSystemSleep() {

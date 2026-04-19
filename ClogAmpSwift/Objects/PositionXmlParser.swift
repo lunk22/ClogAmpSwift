@@ -46,11 +46,8 @@ extension PositionXmlParser: XMLParserDelegate {
         case "jump":
             self.position?.jumpTo = string
         case "milliseconds":
-            if(Int(string)! > 0){
-                self.position?.time = UInt(string)!
-            } else {
-                self.position?.time = 0
-            }
+            let ms = UInt(string) ?? 0
+            self.position?.time = ms > 0 ? ms : 0
         default:
             return
         }

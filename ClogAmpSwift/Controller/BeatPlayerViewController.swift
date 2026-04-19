@@ -36,18 +36,19 @@ class BeatPlayerViewController: ViewController {
     }
     
     func preparePlayer() {
-        let primeUrl = Bundle.main.url(forResource: "PrimeAV", withExtension: "mp3")!
-        let clickUrl = Bundle.main.url(forResource: "Click", withExtension: "mp3")!
+        guard
+            let primeUrl = Bundle.main.url(forResource: "PrimeAV", withExtension: "mp3"),
+            let clickUrl = Bundle.main.url(forResource: "Click", withExtension: "mp3")
+        else { return }
 
         do {
-    
             self.player = try AVAudioPlayer(contentsOf: primeUrl)
             self.player!.prepareToPlay()
             self.player!.volume = 0.025
             self.player!.play()
             delayWithSeconds(0.1) {
                 self.player!.volume = 1
-                
+
                 do {
                     self.player = try AVAudioPlayer(contentsOf: clickUrl)
                     self.player!.prepareToPlay()

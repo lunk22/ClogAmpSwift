@@ -14,7 +14,7 @@ class HyperlinkTextField: NSTextField {
     @IBInspectable var href: String = ""
     
     override func awakeFromNib() {
-        super.viewWillDraw()
+        super.awakeFromNib()
         
         let attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: NSColor.linkColor,

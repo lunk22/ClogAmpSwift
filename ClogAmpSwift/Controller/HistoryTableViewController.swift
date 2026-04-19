@@ -22,8 +22,10 @@ class HistoryTableViewController: ViewController {
         if self.historyTable.selectedRow >= 0{
             aRowIndexes = self.historyTable.selectedRowIndexes
         }else{
+            let count = self.historyItems?.count ?? 0
+            guard count > 0 else { return }
             let aTmp = NSMutableIndexSet()
-            for n in 0...(self.historyItems?.count ?? 0 - 1){
+            for n in 0...(count - 1){
                 aTmp.add(n)
             }
             aRowIndexes = aTmp as IndexSet

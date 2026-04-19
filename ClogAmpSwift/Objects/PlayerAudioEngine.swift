@@ -9,7 +9,6 @@ import Foundation
 import AppKit
 import AVFoundation
 import MediaPlayer
-import Accelerate
 
 class PlayerAudioEngine {
     
@@ -317,7 +316,11 @@ class PlayerAudioEngine {
     func averagePowers(audioFileURL: URL, forChannel channelNumber: Int, completionHandler: @escaping(_ powers: [Float], _ success: Bool) -> ()) {
         // Credits go to https://stackoverflow.com/a/52280271
         // This is only slightly modified to handle errors
-        let audioFile = try! AVAudioFile(forReading: audioFileURL)
+        let audioFile = try? AVAudioFile(forReading: audioFileURL)
+        guard let audioFile = audioFile else {
+            completionHandler([0], false)
+            return
+        }
         let audioFilePFormat = audioFile.processingFormat
         let audioFileLength = audioFile.length
         
@@ -458,6 +461,7 @@ class PlayerAudioEngine {
             shouldPlay = true
             return
         }
+        shouldPlay = false
         if isPlaying() { self.seek(seconds: 0.0); return }
         if let song = song {
             
@@ -512,13 +516,13 @@ class PlayerAudioEngine {
     func stop() {
         audioPlayer.stop()
         audioEngine.stop()
+        removeMeteringTap()
+        endTimeObserver()
         playing = false
         paused = false
         offset = AVAudioFramePosition(0)
         doSeek(offset)
         MPNowPlayingInfoCenter.default().playbackState = .stopped
-        removeMeteringTap()
-        endTimeObserver()
         executeTimeObserverCallback()
     }
     
@@ -544,7 +548,7 @@ class PlayerAudioEngine {
         } else {
             offset = 0
         }
-        doSeek(currentFrame)
+        doSeek(offset)
     }
     
     // MARK: Player State
@@ -591,7 +595,7 @@ class PlayerAudioEngine {
     
     private func executeTimeObserverCallback() {
         printTimes()
-        timeObserverCallback!(0)
+        timeObserverCallback?(0)
         setMPNowPlayingInfoCenter()
     }
     
