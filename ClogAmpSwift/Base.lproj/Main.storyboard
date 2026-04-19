@@ -1009,7 +1009,7 @@
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Application" identifier="" id="K8K-xe-QFe">
-                                        <view key="view" ambiguous="YES" id="jkI-4W-dPL">
+                                        <view key="view" id="jkI-4W-dPL">
                                             <rect key="frame" x="10" y="33" width="447" height="325"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -1197,19 +1197,19 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Icon" identifier="" id="xQu-NP-vS3">
-                                        <view key="view" id="7wO-cn-abr">
+                                        <view key="view" ambiguous="YES" id="7wO-cn-abr">
                                             <rect key="frame" x="10" y="33" width="447" height="325"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box fixedFrame="YES" title="Select Icon when App is running" translatesAutoresizingMaskIntoConstraints="NO" id="PTi-iI-tup">
-                                                    <rect key="frame" x="6" y="219" width="383" height="104"/>
+                                                    <rect key="frame" x="6" y="219" width="435" height="104"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="VA6-IH-pSH">
-                                                        <rect key="frame" x="3" y="3" width="377" height="86"/>
+                                                        <rect key="frame" x="3" y="3" width="429" height="86"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <button identifier="AppIconNeonGreen" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zuF-jv-gcz">
-                                                                <rect key="frame" x="20" y="18" width="48" height="48"/>
+                                                                <rect key="frame" x="17" y="18" width="48" height="48"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IconNeonGreen" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="5y9-6y-SLh">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1220,7 +1220,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button identifier="AppIconGreen" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eK8-QJ-UGU">
-                                                                <rect key="frame" x="78" y="18" width="48" height="48"/>
+                                                                <rect key="frame" x="75" y="18" width="48" height="48"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IconGreen" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="gal-rB-kQz">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1231,7 +1231,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button identifier="AppIconTeal" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBU-b5-4uH">
-                                                                <rect key="frame" x="136" y="18" width="48" height="48"/>
+                                                                <rect key="frame" x="133" y="18" width="48" height="48"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IconTeal" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Y9c-yh-Vf7">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1242,7 +1242,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button identifier="AppIconYellow" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KoJ-2w-ynI">
-                                                                <rect key="frame" x="194" y="18" width="48" height="48"/>
+                                                                <rect key="frame" x="191" y="18" width="48" height="48"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IconYellow" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="RY5-Nq-xUw">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1253,7 +1253,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button identifier="AppIconRed" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mMa-h5-D8Z">
-                                                                <rect key="frame" x="252" y="18" width="48" height="48"/>
+                                                                <rect key="frame" x="249" y="18" width="48" height="48"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IconRed" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="7X6-x2-5zW">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1263,15 +1263,26 @@
                                                                     <action selector="setAppIcon:" target="TPq-mw-tuz" id="3B9-d8-kpl"/>
                                                                 </connections>
                                                             </button>
-                                                            <button identifier="AppIconWhite" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wUD-Ym-oLR">
-                                                                <rect key="frame" x="310" y="18" width="48" height="48"/>
+                                                            <button identifier="AppIconBlue" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wUD-Ym-oLR">
+                                                                <rect key="frame" x="307" y="18" width="48" height="48"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IconWhite" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Tlq-gX-PWP">
+                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IconBlue" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Tlq-gX-PWP">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <action selector="setAppIcon:" target="TPq-mw-tuz" id="fxO-js-yFD"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button identifier="AppIconWhite" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vn5-AY-M0N">
+                                                                <rect key="frame" x="365" y="18" width="48" height="48"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="IconWhite" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="pqT-ON-4z4">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="setAppIcon:" target="TPq-mw-tuz" id="LgY-rL-ksH"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -2613,6 +2624,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="IconBlue" width="512" height="512"/>
         <image name="IconGreen" width="512" height="512"/>
         <image name="IconNeonGreen" width="512" height="512"/>
         <image name="IconRed" width="512" height="512"/>
