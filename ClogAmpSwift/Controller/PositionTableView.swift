@@ -301,6 +301,10 @@ class PositionTableView: NSViewController {
         let identifier = oCol.identifier.rawValue
         
         if let song = self.mainView?.playerView?.currentSong {
+            if !song.hasPositions || song.positions.count <= iRow {
+                return
+            }
+            
             let position = song.positions[iRow]
             
             switch identifier {
@@ -351,6 +355,14 @@ class PositionTableView: NSViewController {
         self.loopCount = 0
         self.loopTimer?.invalidate()
         self.loopTimer = nil
+    }
+    
+    @IBAction func handleRefreshList(_ sender: Any) {
+        if let song = self.mainView?.playerView?.getSong() {
+            song.loadPositions(true)
+            
+            self.refreshTable(single: true)
+        }
     }
 }
 

@@ -387,6 +387,12 @@ class SongTableView: ViewController {
                 return
         }
     }
+    
+    @IBAction func handleRefreshList(_ sender: Any) {
+        if let musicPath = UserDefaults.standard.string(forKey: "musicFolderPath") {
+            self.setMusicDirectory(musicPath)
+        }
+    }
 }
 
 extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {

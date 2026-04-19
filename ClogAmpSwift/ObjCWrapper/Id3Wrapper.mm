@@ -68,9 +68,11 @@
     size_t dataSize;
     const unsigned char *positionsUChar;
     
-    ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, NULL, "ClogChoreoParts", positionsUChar, dataSize);
+    ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, "eng", "ClogChoreoParts", positionsUChar, dataSize);
     
-    if (found != nil && dataSize != 0){
+    bool isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
+    
+    if (found != nil && (dataSize != 0 || !isEmpty)){
         [dict setValue: [NSNumber numberWithBool:true] forKey:@"hasPositions"];
     }else{
         [dict setValue: [NSNumber numberWithBool:false] forKey:@"hasPositions"];
@@ -104,9 +106,11 @@
     const unsigned char *positionsUChar;
     
     ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
-    ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, NULL, "ClogChoreoParts", positionsUChar, dataSize);
+    ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, "eng", "ClogChoreoParts", positionsUChar, dataSize);
     
-    if (found != nil && dataSize != 0){
+    bool isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
+    
+    if (found != nil && (dataSize != 0 || !isEmpty)){
         return true;
     }
     
@@ -122,7 +126,9 @@
     ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
     ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, "eng", "ClogChoreoParts", positionsUChar, dataSize);
     
-    if (found != nil && dataSize != 0){
+    bool isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
+    
+    if (found != nil && (dataSize != 0 || !isEmpty)){
         
         // There is a whole bunch of chars
         // We have:
