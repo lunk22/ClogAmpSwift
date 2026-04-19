@@ -35,8 +35,8 @@ class AppPreferences: NSObject {
     }
     
     static var audioMetering: Bool {
-        return true
-//        return UserDefaults.standard.bool(forKey: "prefAudioMetering")
+//        return true
+        return UserDefaults.standard.bool(forKey: "prefAudioMetering")
     }
     
     static var autoDetermineBpm: Bool {
