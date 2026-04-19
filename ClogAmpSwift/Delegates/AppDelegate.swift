@@ -20,11 +20,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ValueTransformer.setValueTransformer( HertzTransformer(), forName: .hertzTransformer )
     }
     
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-//        if let appDomain = Bundle.main.bundleIdentifier {
-//            UserDefaults.standard.removePersistentDomain(forName: appDomain)
-//        }
-//        NSApplication.shared.terminate(self)
+    func applicationDidFinishLaunching(_ aNotification: Notification) {        
+//        UserDefaults.standard.reset() // Extension method - ONLY FOR TESTING
         
         // Insert code here to initialize your application
         Database.buildTablesIfNeeded()

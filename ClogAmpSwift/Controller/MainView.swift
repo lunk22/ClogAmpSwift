@@ -18,14 +18,6 @@ class MainView: ViewController {
     weak var pdfView: PDFViewController?
     
     @IBOutlet weak var tabView: NSTabView!
-        
-    override func viewWillAppear() {
-        
-        if let iconName = Settings.appIconName {
-            NSApplication.shared.applicationIconImage = NSImage(contentsOfFile: Bundle.main.path(forResource: iconName, ofType: "icns") ?? "")
-        }
-        
-    }
     
     override func viewWillDisappear() {
         PlayerAudioEngine.shared.song?.saveChanges()

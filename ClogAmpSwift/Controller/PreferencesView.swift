@@ -43,12 +43,6 @@ class PreferenceView: ViewController, NSTextFieldDelegate {
         
         self.cwHighlightColor.color = Settings.positionHighlightColor
         self.cwTextColor.color = Settings.positionTextColor
-
-        if #available(OSX 10.14, *) {
-            self.boxAppearance.isHidden = false
-        }else{
-            self.boxAppearance.isHidden = true
-        }
         
         super.viewDidLoad()
     }
@@ -63,7 +57,7 @@ class PreferenceView: ViewController, NSTextFieldDelegate {
     }
     
     @IBAction func setValue(_ sender: AnyObject) {
-        if sender === self.txtSkipForward! {
+        if sender.identifier == "a" {
             UserDefaults.standard.set(self.txtSkipForward.integerValue, forKey: "prefSkipForwardSeconds")
         }else if sender === self.txtSkipBack! {
             UserDefaults.standard.set(self.txtSkipBack.integerValue, forKey: "prefSkipBackSeconds")
@@ -184,13 +178,13 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
     func comboBoxSelectionDidChange(_ notification: Notification) {
         let uiElement: NSControl = notification.object as! NSControl
         if uiElement.identifier?.rawValue == "cbApperance" {
-            UserDefaults.standard.set(self.ddlbAppearance.indexOfSelectedItem, forKey: "prefAppearance")
+            UserDefaults.standard.set(self.ddlbAppearance.indexOfSelectedItem, forKey: UserDefaults.Keys.prefAppearance.rawValue)
         } else if uiElement.identifier?.rawValue == "cbViewAfterSongLoad" {
-            UserDefaults.standard.set(self.cbViewAfterSongLoad.indexOfSelectedItem, forKey: "prefViewAfterSongLoad")
+            UserDefaults.standard.set(self.cbViewAfterSongLoad.indexOfSelectedItem, forKey: UserDefaults.Keys.prefViewAfterSongLoad.rawValue)
         } else if uiElement.identifier?.rawValue == "cbBeatsChangeBehavior" {
-            UserDefaults.standard.set(self.cbBeatsChangeBehavior.indexOfSelectedItem, forKey: "prefBeatsChangeBehaviour")
+            UserDefaults.standard.set(self.cbBeatsChangeBehavior.indexOfSelectedItem, forKey: UserDefaults.Keys.prefBeatsChangeBehaviour.rawValue)
         } else if uiElement.identifier?.rawValue == "cbPositionAddBehavior" {
-            UserDefaults.standard.set(self.cbAddPositionBehavior.indexOfSelectedItem, forKey: "prefAddPositionBehaviour")
+            UserDefaults.standard.set(self.cbAddPositionBehavior.indexOfSelectedItem, forKey: UserDefaults.Keys.prefAddPositionBehaviour.rawValue)
         }
 
     }
