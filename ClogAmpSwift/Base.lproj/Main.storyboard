@@ -240,13 +240,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="678"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabView fixedFrame="YES" drawsBackground="NO" allowsTruncatedLabels="NO" initialItem="84A-Vs-Rhv" translatesAutoresizingMaskIntoConstraints="NO" id="eHG-h3-WsL">
+                            <tabView focusRingType="none" fixedFrame="YES" drawsBackground="NO" allowsTruncatedLabels="NO" initialItem="84A-Vs-Rhv" translatesAutoresizingMaskIntoConstraints="NO" id="eHG-h3-WsL">
                                 <rect key="frame" x="13" y="185" width="1086" height="479"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Songs" identifier="songs" id="84A-Vs-Rhv">
-                                        <view key="view" id="nyG-NY-YAM">
+                                        <view key="view" ambiguous="YES" id="nyG-NY-YAM">
                                             <rect key="frame" x="10" y="33" width="1066" height="433"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -276,7 +276,7 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="PDF" identifier="pdf" id="yda-ES-Prf">
-                                        <view key="view" ambiguous="YES" id="YUc-fT-s4j">
+                                        <view key="view" id="YUc-fT-s4j">
                                             <rect key="frame" x="10" y="33" width="1066" height="433"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -811,7 +811,7 @@
                                 <rect key="frame" x="18" y="155" width="36" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" alignment="justified" title="Speed" usesSingleLineMode="YES" id="dOs-ll-4nC">
-                                    <font key="font" metaFont="system" size="10"/>
+                                    <font key="font" metaFont="menu" size="10"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -850,7 +850,7 @@
                                 <rect key="frame" x="494" y="156" width="40" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Volume" id="w6d-9C-Brh">
-                                    <font key="font" metaFont="system" size="10"/>
+                                    <font key="font" metaFont="menu" size="10"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -904,7 +904,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="973" height="247"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pdfView identifier="pdfViewer" autoresizesSubviews="NO" wantsLayer="YES" appearanceType="aqua" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-xR-5N4">
+                            <pdfView identifier="pdfViewer" autoresizesSubviews="NO" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-xR-5N4">
                                 <rect key="frame" x="0.0" y="0.0" width="973" height="247"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </pdfView>
@@ -1435,7 +1435,7 @@
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9TZ-NU-mJx">
                                 <rect key="frame" x="800" y="225" width="172" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" borderStyle="bezel" drawsBackground="YES" id="nsD-QE-R90">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" drawsBackground="YES" id="nsD-QE-R90">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
