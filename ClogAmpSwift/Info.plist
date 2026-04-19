@@ -4,24 +4,6 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array/>
-			<key>CFBundleTypeMIMETypes</key>
-			<array/>
-			<key>CFBundleTypeName</key>
-			<string></string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array/>
-			<key>NSDocumentClass</key>
-			<string></string>
-		</dict>
-		<dict/>
-	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>
@@ -53,5 +35,7 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 </dict>
 </plist>
