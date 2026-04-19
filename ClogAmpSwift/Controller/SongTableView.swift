@@ -30,9 +30,16 @@ class SongTableView: ViewController {
     @IBOutlet weak var songTable: TableView!
     @IBOutlet weak var searchField: NSTextField!
     @IBOutlet weak var directoryLabel: NSTextField!
-
+    @IBOutlet weak var pathControl: NSPathControl!
+    
     //MARK: Overrides
     override func viewDidLoad() {
+        
+        self.delayWithSeconds(1.25, closure: {
+            DispatchQueue.main.async {
+                self.searchField.refusesFirstResponder = false
+            }
+        })
         
         self.songTable.selectionDelegate = self
         self.songTable.delegate          = self
@@ -137,6 +144,8 @@ class SongTableView: ViewController {
     func setMusicDirectory(_ dir: String){
         self.aSongs.removeAll()
         
+        self.pathControl.url = URL(fileURLWithPath: dir)
+        
         DispatchQueue.global(qos: .background).async {
             var positionLoaded = false
 
@@ -149,10 +158,10 @@ class SongTableView: ViewController {
                 
                 DispatchQueue.main.async {
                     if percent < 100 {
-                        self.directoryLabel.stringValue = "\(dir) - \(percent)%"
+                        self.directoryLabel.stringValue = "\(percent)%"
                     }else{
                         self.performSortSongs()
-                        self.directoryLabel.stringValue = "\(dir)"
+                        self.directoryLabel.stringValue = ""
                     }
                 }
                 
