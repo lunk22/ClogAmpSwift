@@ -34,18 +34,18 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide ClogAmpSwift" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide ClogAmpSwift" hidden="YES" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
+                                        <menuItem title="Hide Others" hidden="YES" keyEquivalent="h" id="Vdr-fp-XzO">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="VT4-aY-XCT"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show All" id="Kd2-mp-pUS">
+                                        <menuItem title="Show All" hidden="YES" id="Kd2-mp-pUS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="Dhg-Le-xox"/>
@@ -459,7 +459,8 @@
                                                             <action selector="orderFrontFontPanel:" target="YLy-65-1bz" id="WHr-nq-2xA"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Bold" tag="2" keyEquivalent="b" id="GB9-OM-e27">
+                                                    <menuItem title="Bold" tag="2" id="GB9-OM-e27">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="addFontTrait:" target="YLy-65-1bz" id="hqk-hr-sYV"/>
                                                         </connections>
@@ -801,7 +802,7 @@
                     </items>
                 </menu>
             </objects>
-            <point key="canvasLocation" x="17" y="-342"/>
+            <point key="canvasLocation" x="-69" y="-405"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -822,7 +823,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="300.5" y="26"/>
+            <point key="canvasLocation" x="-915" y="2"/>
         </scene>
         <!--Main View-->
         <scene sceneID="hIz-AP-VOD">
@@ -923,7 +924,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="410" y="573"/>
+            <point key="canvasLocation" x="-915" y="596"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="Khv-Js-u67">
@@ -944,7 +945,7 @@
                 </windowController>
                 <customObject id="7mB-Bn-WOi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997" y="-134"/>
+            <point key="canvasLocation" x="819" y="-92"/>
         </scene>
         <!--Time Panel View-->
         <scene sceneID="ieG-rq-9wv">
@@ -971,7 +972,7 @@
                 </viewController>
                 <customObject id="a6b-4c-sGW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1380.5" y="-150"/>
+            <point key="canvasLocation" x="1135" y="-119"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="AtZ-iD-YBR">
@@ -992,7 +993,7 @@
                 </windowController>
                 <customObject id="tre-Q5-drZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1985" y="-152"/>
+            <point key="canvasLocation" x="1198" y="-411"/>
         </scene>
         <!--Preferences-->
         <scene sceneID="aJh-2P-vUi">
@@ -1139,7 +1140,7 @@
                 </viewController>
                 <customObject id="AcR-4G-Jdu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1985" y="367"/>
+            <point key="canvasLocation" x="1816" y="-419"/>
         </scene>
         <!--Player View-->
         <scene sceneID="Pvh-Bu-1XD">
@@ -1342,7 +1343,7 @@
                 </windowController>
                 <customObject id="ADG-gK-MkV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1106.5" y="1636"/>
+            <point key="canvasLocation" x="164" y="-42"/>
         </scene>
         <!--Countdown-->
         <scene sceneID="EgP-0i-ri9">
@@ -1476,7 +1477,7 @@
                 </viewController>
                 <customObject id="WMi-Yl-aEK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1493" y="1665.5"/>
+            <point key="canvasLocation" x="504" y="-22"/>
         </scene>
         <!--Song Table-->
         <scene sceneID="0p8-ZZ-9fE">
@@ -1898,7 +1899,7 @@
                 </viewController>
                 <customObject id="Egk-O0-ygv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-677.5" y="948.5"/>
+            <point key="canvasLocation" x="-1181" y="1246"/>
         </scene>
         <!--Position Table View-->
         <scene sceneID="JJ0-sb-7aP">
@@ -2228,7 +2229,7 @@
                 </windowController>
                 <customObject id="EsP-IW-XYn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-339" y="1724"/>
+            <point key="canvasLocation" x="-31" y="596"/>
         </scene>
         <!--History-->
         <scene sceneID="g1X-Mk-Y0R">
@@ -2409,7 +2410,7 @@
                 </viewController>
                 <customObject id="at9-e5-zna" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="1842"/>
+            <point key="canvasLocation" x="681" y="589"/>
         </scene>
     </scenes>
     <resources>
