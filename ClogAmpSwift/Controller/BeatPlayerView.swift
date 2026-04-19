@@ -27,7 +27,8 @@ class BeatPlayerView: ViewController {
         super.viewDidLoad()
         
         self.txtBPM.placeholderString = "\(self.defaultBpm)"
-        self.txtBeats.stringValue = "&a1 &2 & 3 e & a 4 & 5 e& a 6e & a 7 e& a 8 &"
+//        //Joey Greg
+//        self.txtBeats.stringValue = "&a1 &2 & 3 e & a 4 & 5 e& a 6e & a 7 e& a 8 &"
     }
     
     override func viewDidDisappear() {
@@ -64,16 +65,14 @@ class BeatPlayerView: ViewController {
     }
     
     func printTime(andText text: String? = nil) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss SSS"
-//        formatter.dateStyle = .none
-        
-        if text != nil{
-            print("\(formatter.string(from: Date())) - \(text!)")
-        }else{
-            print("\(formatter.string(from: Date()))")
-        }
-        
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "HH:mm:ss SSS"
+//
+//        if text != nil{
+//            print("\(formatter.string(from: Date())) - \(text!)")
+//        }else{
+//            print("\(formatter.string(from: Date()))")
+//        }
     }
     
     func startPeriodicFunction(withBPM bpm: Int, closure: @escaping() -> () ) {
@@ -99,6 +98,8 @@ class BeatPlayerView: ViewController {
     }
     
     @IBAction func handlePlayBeats(_ sender: Any) {
+        if self.txtBeats.stringValue == "" { return }
+        
         var bpm = self.txtBPM?.integerValue ?? 0
         
         if bpm == 0 {
@@ -110,7 +111,7 @@ class BeatPlayerView: ViewController {
         self.startPeriodicFunction(withBPM: bpm) {
             let beatsString = self.txtBeats.stringValue
 
-            if self.stringPosition == beatsString.count || self.quaterCounter >= 400 {
+            if self.stringPosition == beatsString.count || self.quaterCounter >= 100 {
                 self.stopPeriodicFunction()
                 return
             }
