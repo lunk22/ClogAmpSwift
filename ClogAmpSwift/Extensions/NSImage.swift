@@ -7,8 +7,14 @@
 
 import Foundation
 
+enum Shape: String {
+    case play
+    case pause
+    case stop
+}
+
 extension NSImage {
-    convenience init(shape: String, color: NSColor, size: NSSize, fillHeight: Double? = nil) {
+    convenience init(shape: Shape, color: NSColor, size: NSSize, fillHeight: Double? = nil) {
         func generatePlay(_ rect: NSRect) -> Bool {
             // Height diff. between image size and the requested fill height
             let heightDiff = size.height - (fillHeight ?? size.height)
@@ -71,17 +77,15 @@ extension NSImage {
         }
         
         switch shape {
-            case "play":
+            case .play:
                 self.init(size: size, flipped: false, drawingHandler: generatePlay)
                 break
-            case "pause":
+            case .pause:
                 self.init(size: size, flipped: false, drawingHandler: generatePause)
                 break
-            case "stop":
+            case .stop:
                 self.init(size: size, flipped: false, drawingHandler: generateStop)
                 break
-            default:
-                self.init()
         }
     }
     

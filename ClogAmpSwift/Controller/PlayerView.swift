@@ -82,13 +82,13 @@ class PlayerView: ViewController {
     
     required init?(coder aDecoder: NSCoder) {
         
-        imgPlayGray = NSImage(shape: "play",   color: self.colorGray, size: NSSize(width: imgWidth, height: imgHeight))
-        imgPauseGray = NSImage(shape: "pause", color: self.colorGray, size: NSSize(width: imgWidth, height: imgHeight))
-        imgStopGray = NSImage(shape: "stop",   color: self.colorGray, size: NSSize(width: imgWidth, height: imgHeight))
+        imgPlayGray = NSImage(shape: .play,   color: self.colorGray, size: NSSize(width: imgWidth, height: imgHeight))
+        imgPauseGray = NSImage(shape: .pause, color: self.colorGray, size: NSSize(width: imgWidth, height: imgHeight))
+        imgStopGray = NSImage(shape: .stop,   color: self.colorGray, size: NSSize(width: imgWidth, height: imgHeight))
         
-        imgPlay = NSImage(shape: "play",   color: .systemGreen,  size: NSSize(width: imgWidth, height: imgHeight))
-        imgPause = NSImage(shape: "pause", color: .systemYellow, size: NSSize(width: imgWidth, height: imgHeight))
-        imgStop = NSImage(shape: "stop",   color: .systemRed,    size: NSSize(width: imgWidth, height: imgHeight))
+        imgPlay = NSImage(shape: .play,   color: .systemGreen,  size: NSSize(width: imgWidth, height: imgHeight))
+        imgPause = NSImage(shape: .pause, color: .systemYellow, size: NSSize(width: imgWidth, height: imgHeight))
+        imgStop = NSImage(shape: .stop,   color: .systemRed,    size: NSSize(width: imgWidth, height: imgHeight))
 
         super.init(coder: aDecoder)
         
@@ -165,7 +165,7 @@ class PlayerView: ViewController {
             let meteringLevelImgHeight = Float(self.imgHeight) * (PlayerAudioEngine.shared.meteringLevel / 100)
             
             if PlayerAudioEngine.shared.isPlaying(){
-                self.btnPlay.image = NSImage(shape: "play", color: .systemGreen, size: NSSize(width: self.imgWidth, height: self.imgHeight), fillHeight: Double(meteringLevelImgHeight))
+                self.btnPlay.image = NSImage(shape: .play, color: .systemGreen, size: NSSize(width: self.imgWidth, height: self.imgHeight), fillHeight: Double(meteringLevelImgHeight))
             }
         }
     }
