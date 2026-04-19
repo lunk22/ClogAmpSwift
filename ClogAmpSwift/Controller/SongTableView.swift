@@ -145,10 +145,11 @@ class SongTableView: ViewController {
         self.aSongs.removeAll()
         
         self.pathControl.url = URL(fileURLWithPath: dir)
+        self.directoryLabel.isHidden = false
         
         DispatchQueue.global(qos: .background).async {
             var positionLoaded = false
-
+            
             FileSystemUtils.readFolderContentsAsSong(sPath: dir, oView: self) {
                 let song    = $0
                 let percent = $1
@@ -162,6 +163,7 @@ class SongTableView: ViewController {
                     }else{
                         self.performSortSongs()
                         self.directoryLabel.stringValue = ""
+                        self.directoryLabel.isHidden    = true
                     }
                 }
                 
@@ -239,7 +241,7 @@ class SongTableView: ViewController {
             self.mainView?.playerView?.loadSong(song: self.aSongsForTable[self.songTable.selectedRow])
             
             DispatchQueue.main.async {
-                self.mainView?.positionTableView?.refreshTable()
+                self.mainView?.positionTableView?.refreshTable(single: true)
             }
         }
     }
