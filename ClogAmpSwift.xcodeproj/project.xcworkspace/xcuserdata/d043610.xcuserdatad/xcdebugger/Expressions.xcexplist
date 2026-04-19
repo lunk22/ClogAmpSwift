@@ -3,12 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Player.play():Player.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.getCurrentTime()">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "Player.getCurrentTime():Player.swift">
       </ContextState>
       <ContextState
          contextName = "SongTableView.tableView(_:objectValueFor:row:):SongTableView.swift">
@@ -54,6 +49,14 @@
          <PersistentStrings>
             <PersistentString
                value = "tableColumn!.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HistoryTableView.tableView(_:viewFor:row:):HistoryTableView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.historyItems?[row].date">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -112,7 +115,12 @@
          contextName = "Song.saveChanges():Song.swift">
       </ContextState>
       <ContextState
-         contextName = "Player.getCurrentTime():Player.swift">
+         contextName = "Player.play():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.getCurrentTime()">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

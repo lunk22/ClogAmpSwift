@@ -10,13 +10,6 @@ import AppKit
 
 class FileSystemUtils {
     static func readFolderContentsAsURL(sPath: String) -> [URL] {
-        /*func stringByAddingPercentEncodingForRFC3986(_ in: String) -> String? {
-            let unreserved = "-._~/?"
-            let allowed = NSMutableCharacterSet.alphanumeric()
-            allowed.addCharacters(in: unreserved)
-            return in.stringByAddingPercentEncodingWithAllowedCharacters(allowed)
-        }*/
-        
         let sPathEncoded = sPath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
         
         let fileManager = FileManager.default
@@ -38,11 +31,13 @@ class FileSystemUtils {
         return aFileURLs
     }
     
-    static func readFolderContentsAsSong(sPath: String, oView: ViewController) -> [Song] {        
-        var aSongs = [Song]()
-        for url in readFolderContentsAsURL(sPath: sPath) {
-            aSongs.append(Song(path: url))
+    static func readFolderContentsAsSong(sPath: String, oView: ViewController, using block: @escaping (Song, Int/* Percent */) -> Void) {
+        let aUrls = readFolderContentsAsURL(sPath: sPath)
+        var count = 0
+
+        for url in aUrls {
+            count = count + 1
+            block(Song(path: url), (count*100)/aUrls.count)
         }
-        return aSongs
     }
 }

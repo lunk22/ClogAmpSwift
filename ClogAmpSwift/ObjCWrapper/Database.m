@@ -179,7 +179,21 @@
         exec = [exec stringByAppendingString:@" "];
     }
     
-    exec = [exec stringByAppendingString:@"\", strftime(\"%d.%m.%Y\",'now', 'localtime'), strftime(\"%H:%M:%S\",'now', 'localtime'))"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //Save the date/time infos in UTC
+    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    
+    dateFormatter.dateFormat = @"yyyyMMdd";
+    NSString *date = [dateFormatter stringFromDate: [NSDate new]];
+    
+    dateFormatter.dateFormat = @"hhmmss";
+    NSString *time = [dateFormatter stringFromDate: [NSDate new]];
+    
+    exec = [exec stringByAppendingString:@"\", \""];
+    exec = [exec stringByAppendingString:date];
+    exec = [exec stringByAppendingString:@"\", \""];
+    exec = [exec stringByAppendingString:time];
+    exec = [exec stringByAppendingString:@"\")"];
     
     //Run the insert
     result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
@@ -414,7 +428,7 @@
         return nil;
     }
     
-    NSString *selectStmt = @"SELECT * FROM SongHistory ORDER BY PlayedDate, PlayedTime DESC";
+    NSString *selectStmt = @"SELECT * FROM SongHistory ORDER BY PlayedDate DESC, PlayedTime DESC";
     
     sqlite3_stmt *statement;
     
@@ -432,7 +446,7 @@
         NSString *artist = nil;
         NSString *path   = nil;
         NSString *dateS  = nil;
-        NSString *time   = nil;
+        NSString *timeS  = nil;
         
         @try {
             
@@ -456,30 +470,48 @@
         
         @try{
             dateS  = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 3) encoding:NSUTF8StringEncoding];
+            timeS  = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 4) encoding:NSUTF8StringEncoding];
             
-            time   = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 4) encoding:NSUTF8StringEncoding];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
             
-            dateS = [dateS stringByAppendingString:@" "];
-            dateS = [dateS stringByAppendingString:time];
+            //Create a NSDate for UTC
+            [dateFormatter setLocale: [[NSLocale alloc] initWithLocaleIdentifier: @"en_US_POSIX"]];
+            [timeFormatter setLocale: [[NSLocale alloc] initWithLocaleIdentifier: @"en_US_POSIX"]];
             
+            dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+            timeFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+            
+            [dateFormatter setDateFormat:@"yyyyMMdd"];
+            [timeFormatter setDateFormat:@"HHmmss"];
+            
+            NSDate *date = [dateFormatter dateFromString:dateS];
+            NSDate *time = [timeFormatter dateFromString:timeS];
+            
+            //Convert the NSDate objects to local format
+            [dateFormatter setLocale:NSLocale.currentLocale];
+            [timeFormatter setLocale:NSLocale.currentLocale];
+            
+            dateFormatter.timeZone = NSTimeZone.localTimeZone;
+            timeFormatter.timeZone = NSTimeZone.localTimeZone;
+            
+            [dateFormatter setLocalizedDateFormatFromTemplate:@"yyyyMMdd"];
+            dateS = [dateFormatter stringFromDate:date];
+            
+            [timeFormatter setLocalizedDateFormatFromTemplate:@"HH:mm:ss"];
+            timeS = [timeFormatter stringFromDate:time];
+
+        } @catch(NSException *e) {
+            dateS = @"";
+            timeS = @"";
         }
-        @catch(NSException *e) { dateS = @""; }
-        
-        [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        NSLocale* formatterLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"de_DE"];
-        
-        [dateFormatter setLocale:formatterLocale];
-        [dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm:ss"];
-        
-        NSDate *dateFromString = [dateFormatter dateFromString:dateS];
         
         SongHistoryItem *shi = [[SongHistoryItem alloc] init];
         
         shi.title  = title;
         shi.artist = artist;
         shi.file   = path;
-        shi.date   = dateFromString;
+        shi.date   = [[dateS stringByAppendingString:@", "] stringByAppendingString:timeS];
         
         [values addObject:shi];
     }

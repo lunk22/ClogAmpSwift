@@ -31,6 +31,10 @@ class HistoryTableView: ViewController {
         historyItems = Database.getSongHistory(nil, to: nil) as? [SongHistoryItem]
         self.historyTable.reloadData()
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd 'at' h:mm a" // superset of OP's format
+        let str = dateFormatter.string(from: Date())
+        print(str)
         super.viewDidLoad()
     }
 }
@@ -51,7 +55,7 @@ extension HistoryTableView: NSTableViewDelegate, NSTableViewDataSource {
                 case "file":
                     textField.stringValue = self.historyItems?[row].file ?? ""
                 case "date":
-                    textField.stringValue = self.historyItems?[row].date.description ?? ""
+                    textField.stringValue = self.historyItems?[row].date ?? ""
                 default:
                     textField.stringValue = ""
             }

@@ -1840,8 +1840,8 @@
         <scene sceneID="OFV-Aa-lpx">
             <objects>
                 <windowController id="Rx2-bm-TSd" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Qrn-6m-x7Z">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Qrn-6m-x7Z">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="313" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
@@ -1857,17 +1857,17 @@
             </objects>
             <point key="canvasLocation" x="-339" y="1724"/>
         </scene>
-        <!--History Table View-->
+        <!--History-->
         <scene sceneID="g1X-Mk-Y0R">
             <objects>
-                <viewController id="0uZ-kX-vHB" customClass="HistoryTableView" customModule="ClogAmpSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="History" id="0uZ-kX-vHB" customClass="HistoryTableView" customModule="ClogAmpSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="3Sc-ym-HRy">
                         <rect key="frame" x="0.0" y="0.0" width="686" height="556"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38V-eM-2kg">
                                 <rect key="frame" x="0.0" y="0.0" width="686" height="556"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="1bl-qT-ok8">
                                     <rect key="frame" x="1" y="0.0" width="684" height="555"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
