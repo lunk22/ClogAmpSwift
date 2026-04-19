@@ -42,7 +42,7 @@ class Song {
     }
     
     //MARK: Static Stuff
-    static var songDict: Dictionary<String, Song> = [:]
+    static var songDict: Dictionary<String, Song> = [:] //Empty dictionary
     static func retrieveSong(path: URL) -> Song{
         let stringPath = path.absoluteString.removingPercentEncoding!
         if let song = songDict[stringPath] {

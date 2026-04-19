@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "50A37BA6207FF03D0020E218"
-               BuildableName = "ClogAmpSwift.app"
+               BuildableName = "ClogAmpMac.app"
                BlueprintName = "ClogAmpSwift"
                ReferencedContainer = "container:ClogAmpSwift.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50A37BA6207FF03D0020E218"
-            BuildableName = "ClogAmpSwift.app"
+            BuildableName = "ClogAmpMac.app"
             BlueprintName = "ClogAmpSwift"
             ReferencedContainer = "container:ClogAmpSwift.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50A37BA6207FF03D0020E218"
-            BuildableName = "ClogAmpSwift.app"
+            BuildableName = "ClogAmpMac.app"
             BlueprintName = "ClogAmpSwift"
             ReferencedContainer = "container:ClogAmpSwift.xcodeproj">
          </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50A37BA6207FF03D0020E218"
-            BuildableName = "ClogAmpSwift.app"
+            BuildableName = "ClogAmpMac.app"
             BlueprintName = "ClogAmpSwift"
             ReferencedContainer = "container:ClogAmpSwift.xcodeproj">
          </BuildableReference>
