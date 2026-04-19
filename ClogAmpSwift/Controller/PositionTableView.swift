@@ -392,6 +392,7 @@ class PositionTableView: NSViewController {
             
             var sPdfHtml        = ""
             sPdfHtml = sPdfHtml + "<style>"
+            //sPdfHtml = sPdfHtml + "  table { font-size: 125%; }"
             sPdfHtml = sPdfHtml + "  div { display:inline; font-family: Arial; }"
             sPdfHtml = sPdfHtml + "  table, td { font-family: Arial; border: 0px solid black; border-collapse: collapse; }"
             sPdfHtml = sPdfHtml + "  td { padding: 0.75rem; vertical-align: top; }"
@@ -431,6 +432,7 @@ class PositionTableView: NSViewController {
                 comment = comment.replacingOccurrences(of: " [", with: " <wbr/>[")
                 comment = comment.replacingOccurrences(of: "] ", with: "] <wbr/>")
                 comment = comment.replacingOccurrences(of: " ", with: "&nbsp;")
+                comment = comment.replacingOccurrences(of: "\n", with: "<br/>")
                 
                 sPdfHtml = sPdfHtml + "    <tr>"
                 sPdfHtml = sPdfHtml + "      <td class=\"bold nowrap\">\(position.name)</td>"
