@@ -13,6 +13,7 @@ class Position {
     var comment: String
     var jumpTo:  String
     var time: UInt
+    var beats: Int
     
     //  Initializer
     init() {
@@ -20,6 +21,7 @@ class Position {
         self.comment = ""
         self.jumpTo  = ""
         self.time    = 0
+        self.beats   = 0 // Calculated
     }
     
     convenience init(name: String, comment: String, time: UInt) {
@@ -47,6 +49,8 @@ class Position {
                 return self.comment
             case "jumpTo":
                 return self.jumpTo
+            case "beats":
+                return "\(self.beats)"
             case "time":
                 //time = milliseconds
                 var calcTime = self.time
