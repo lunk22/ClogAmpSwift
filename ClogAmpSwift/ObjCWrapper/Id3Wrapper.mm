@@ -11,7 +11,7 @@
 
     ID3_Tag *id3Tag = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
     ID3_Frame *frame = nil;
-    
+
     //Title
     char *title = ID3_GetTitle(id3Tag);
     
@@ -145,14 +145,13 @@
 //}
 
 - (NSString *) loadPositions {
-    
     NSMutableString *returnString = [NSMutableString new];
     
     size_t dataSize = 0;
     const uchar *positionsUChar = nullptr;
     
     ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
-    
+
     ID3_Frame *syncLyricsFrame = id3Tag->Find(ID3FID_SYNCEDLYRICS, ID3FN_DESCRIPTION, "ClogChoreoParts");
     
     if (syncLyricsFrame != NULL) {
@@ -402,5 +401,23 @@
     
     return self;
 }
+
+//- (NSString *)readArtwork {
+//    ID3_Tag *tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
+//    if (tag) {
+//        ID3_Frame* frame = NULL;
+//        frame = tag->Find(ID3FID_PICTURE);
+//        if (frame != NULL)
+//        {
+//            ID3_Field* myField = frame->GetField(ID3FN_DATA);
+//            if (myField != NULL) {
+//                const unsigned char *uc = myField->GetRawBinary();
+//                return [NSString stringWithUTF8String:reinterpret_cast< char const* >(uc)];
+//            }
+//        }
+//    }
+//
+//    return nil;
+//}
 
 @end

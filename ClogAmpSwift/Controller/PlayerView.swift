@@ -70,7 +70,7 @@ class PlayerView: ViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        PlayerAudioEngine.shared.addTimeObserverCallback() {
+        PlayerAudioEngine.shared.setTimeObserverCallback() {
             _ in
             //Do stuff
             self.tick()
@@ -352,7 +352,7 @@ class PlayerView: ViewController {
     
     func decreaseSpeed() {
         if let song = PlayerAudioEngine.shared.song {
-            if(song.speed == 40){
+            if(song.speed == -40){
                 return
             }
             

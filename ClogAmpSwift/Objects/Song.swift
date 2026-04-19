@@ -30,7 +30,8 @@ class Song {
         }
     } }
     var waitBeats: Int { didSet { self.waitBeatsChanged = true } }
-    
+    var artwork: String = ""
+
     var titleChanged: Bool = false
     var artistChanged: Bool = false
     var levelChanged: Bool = false
@@ -84,7 +85,7 @@ class Song {
         self.hasPositions    = false
         self.positions       = []
         self.waitBeats       = 0
-        
+
         self.readBasicInfo()
     } //init
     
@@ -143,7 +144,7 @@ class Song {
             self.positionsChanged = false
             self.hasPositions = false
         }
-        
+
         if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){
             var sPositions = ""
             var count = 0

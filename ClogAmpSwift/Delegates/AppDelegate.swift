@@ -31,9 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
         
-        // Stop current song
-        NotificationCenter.default.post(name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
-        NotificationCenter.default.post(name: Notification.Name("CAM_Shutdown"), object: nil)
+        // Shutdown Audio API
+        NotificationCenter.default.post(name: PlayerAudioEngine.NotificationNames.shutdown, object: nil)
         
         // Wait 1 sec
         let ms: UInt32 = 1000
