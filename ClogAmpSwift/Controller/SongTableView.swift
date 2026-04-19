@@ -171,6 +171,7 @@ class SongTableView: ViewController {
     //MARK: Custom Methods
     func setMusicDirectory(_ dir: String){
         self.aSongs.removeAll()
+        self.aSongsForTable.removeAll()
         
         self.pathControl.url = URL(fileURLWithPath: dir)
         
@@ -213,6 +214,7 @@ class SongTableView: ViewController {
             DispatchQueue.main.async {
                 self.percentLabel.stringValue = ""
                 self.percentLabel.isHidden = true
+                self.songTable.reloadData()
             }
         }
     }
