@@ -474,3 +474,6 @@
 
 /* Class = "NSMenuItem"; title = "Check for Updates..."; ObjectID = "5YP-qf-1zO"; */
 "5YP-qf-1zO.title" = "Nach Updates suchen...";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "Ti8-Dd-Hf7"; */
+"Ti8-Dd-Hf7.title" = "Fenster";

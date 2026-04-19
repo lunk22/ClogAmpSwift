@@ -57,7 +57,7 @@ class PlayerView: ViewController {
             let title = self.currentSong!.getValueAsString("title")
             let duration = self.currentSong!.getValueAsString("duration")
             
-            self.descriptionField.stringValue = " \(title) (\(duration))"
+            self.descriptionField.stringValue = "\t\(title) (\(duration))"
             //Speed, Volume
             self.tick()
             //Time
@@ -175,7 +175,6 @@ class PlayerView: ViewController {
     func updateTime(_ seconds: Double = -1) {
         DispatchQueue.main.async {
             var percent: Int = 0;
-            var countSymbol = "";
             if(self.currentSong != nil) {
                 //Time Field: e.g. 3:24
                 var currentTime = seconds
@@ -196,13 +195,19 @@ class PlayerView: ViewController {
                 
                 if(self.countTimeDown) {
                     currentTime = Double(duration) - currentTime
-                    countSymbol = "- "
                 }
                 
                 let durMinutes = Int(Float(currentTime / 60).rounded(.down))
                 let durSeconds = Int(Double(currentTime).truncatingRemainder(dividingBy: 60))
-
-                self.lengthField.stringValue = durSeconds >= 10 ? "\(countSymbol)\(durMinutes):\(durSeconds)" : "\(countSymbol)\(durMinutes):0\(durSeconds)"
+                
+                let sSeconds = durSeconds >= 10 ? "\(durSeconds)" : "0\(durSeconds)"
+                let sMinutes = durMinutes >= 10 ? "\(durMinutes)" : "\(durMinutes)"
+                
+                if self.countTimeDown {
+                    self.lengthField.stringValue = "- \(sMinutes):\(sSeconds)"
+                }else{
+                    self.lengthField.stringValue = "\t\(sMinutes):\(sSeconds)"
+                }
             }
             
             self.timeSlider.integerValue = percent
