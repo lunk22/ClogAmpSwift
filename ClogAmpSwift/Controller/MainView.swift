@@ -46,18 +46,6 @@ class MainView: ViewController {
         super.viewDidAppear()
     }
     
-    @IBAction func play(_ sender: AnyObject) {
-        self.playerView?.doPlay()
-    }
-    
-    @IBAction func pause(_ sender: AnyObject) {
-        self.playerView?.doPause()
-    }
-    
-    @IBAction func stop(_ sender: AnyObject) {
-        self.playerView?.doStop()
-    }
-    
     @IBAction func increaseSpeed(_ sender: AnyObject) {
         self.playerView?.increaseSpeed()
     }
@@ -70,14 +58,6 @@ class MainView: ViewController {
         self.playerView?.resetSpeed()
     }
     
-    @IBAction func playerForward(_ sender: AnyObject) {
-        self.playerView?.jump(Defaults.skipForward)
-    }
-    
-    @IBAction func playerBack(_ sender: AnyObject) {
-        self.playerView?.jump(Defaults.skipBack)
-    }
-    
     @IBAction func focusFilterField(_ sender: Any) {
         self.tabView.selectTabViewItem(at: 0)
         self.songTableView?.searchField.becomeFirstResponder()
@@ -85,10 +65,6 @@ class MainView: ViewController {
     
     @IBAction func determineBpm(_ sender: Any) {
         self.playerView?.determineBpmFCS()
-    }
-    
-    @IBAction func saveSong(_ sender: Any) {
-        PlayerAudioEngine.shared.song?.saveChanges()
     }
     
     /*

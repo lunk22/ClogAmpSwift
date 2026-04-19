@@ -6,8 +6,6 @@
 //  Copyright © 2023 Pascal Roessel. All rights reserved.
 //
 
-import Foundation
-
 class BpmClickView: ViewController {
     
     @IBOutlet weak var calculatedBpmText: NSTextField!

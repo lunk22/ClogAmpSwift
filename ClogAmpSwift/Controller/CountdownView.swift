@@ -53,7 +53,7 @@ class CountdownView: ViewController {
             
         })
     }
-    @IBAction func pause(_ sender: NSButton) {
+    @IBAction func pauseCountdown(_ sender: NSButton) {
         if(self.timer?.isValid ?? false){
             self.timer?.invalidate()
             self.timer = nil
@@ -62,7 +62,7 @@ class CountdownView: ViewController {
 //            self.start(sender)
         }
     }
-    @IBAction func stop(_ sender: NSButton) {
+    @IBAction func stopCountdown(_ sender: NSButton) {
         self.timer?.invalidate()
         self.timer = nil
         self.calcTimerSeconds = self.timerSeconds

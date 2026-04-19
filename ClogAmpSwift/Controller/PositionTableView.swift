@@ -122,7 +122,7 @@ class PositionTableView: NSViewController {
             self.positionTable.selectRowIndexes([selRow], byExtendingSelection: false)
         }
         
-        if let song = self.mainView?.playerView?.getSong() {
+        if let song = PlayerAudioEngine.shared.song {
             song.sortPositions()
         }
         
@@ -133,7 +133,7 @@ class PositionTableView: NSViewController {
             }
             
             //No positions => no refresh
-            if let song = self.mainView?.playerView?.getSong() {
+            if let song = PlayerAudioEngine.shared.song {
                 if(song.getPositions().count < 1){
                     return
                 }
@@ -147,6 +147,10 @@ class PositionTableView: NSViewController {
                             return $0 === position
                         }) ?? -1
                     }
+                }
+                
+                if currentPosition > -1 && self.cbAutoscroll.state == NSControl.StateValue.on {
+                    self.positionTable.scrollRowToVisible(row: currentPosition, animated: true)
                 }
                 
                 if(PlayerAudioEngine.shared.isPlaying() && self.currentPosition != currentPosition){
@@ -559,8 +563,8 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
         if let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: nil) as? NSTableCellView {
             let textField = cell.textField!
             textField.drawsBackground = false
-            
-            if let song = self.mainView?.playerView?.getSong() {
+
+            if let song = PlayerAudioEngine.shared.song {
                 if song.getPositions().count <= row {
                     return nil
                 }
@@ -573,10 +577,6 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                         textField.drawsBackground = true
                         textField.backgroundColor = NSColor.systemOrange
                         textField.textColor       = NSColor.black
-
-                        if self.cbAutoscroll.state == NSControl.StateValue.on {
-                            self.positionTable.scrollRowToVisible(row: row, animated: true)
-                        }
                     }
                 }
 
