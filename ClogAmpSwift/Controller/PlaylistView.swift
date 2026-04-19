@@ -85,10 +85,6 @@ class PlaylistView: ViewController {
             return
         }
         
-//        print("Index: \(self.iSongIndex)")
-//        print("Count: \(self.aSongs.count)")
-//        print("######################")
-        
         if(self.iSongIndex >= 0 && self.aSongs.count > self.iSongIndex){
             self.playerView?.loadSong(song: self.aSongs[self.iSongIndex])
             self.songTable.reloadData()

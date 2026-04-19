@@ -21,8 +21,9 @@ class Player {
         self.song = song
 
         self.avPlayer = AVPlayer(url: self.song.filePathAsUrl)
-        self.avPlayer.automaticallyWaitsToMinimizeStalling = false
+        self.avPlayer.automaticallyWaitsToMinimizeStalling = true
         self.avPlayer.currentItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithm.spectral // High Quality Pitch Algorithm
+//        self.avPlayer.preroll(atRate: 1.0 + Float(Float(self.song.speed) / 100))
         self.songHistoryWritten = false
         
         playerLogger.clear()
@@ -37,8 +38,9 @@ class Player {
     }
     
     func play() {
-        self.setRate(1.0)
-        self.updateRate()
+//        self.setRate(1.0)
+//        self.updateRate()
+        self.setRate(1.0 + Float(Float(self.song.speed) / 100))
         
         if(!self.songHistoryWritten){
             self.songHistoryWritten = true
@@ -138,10 +140,8 @@ class Player {
             
             if self.observer != nil {
                 print("SUCCESS: Time Observer added - \(self.song.title)", to: &playerLogger)
-                print("SUCCESS: Time Observer added - \(self.song.title)")
             } else {
                 print("ERROR: Failed to add time observer in time - \(self.song.title)", to: &playerLogger)
-                print("ERROR: Failed to add time observer in time - \(self.song.title)")
             }
         }
         
@@ -163,7 +163,5 @@ class Player {
         NotificationCenter.default.removeObserver(self)
         
         print("SUCCESS: Time Observer removed - \(self.song.title)", to: &playerLogger)
-        print("SUCCESS: Time Observer removed - \(self.song.title)")
-        
     }
 }
