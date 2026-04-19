@@ -98,8 +98,6 @@ class Song {
         switch property {
         case "path":
             return self.path.absoluteString.removingPercentEncoding!
-//            path = path
-//            return path
         case "title":
             return self.title
         case "artist":
@@ -116,6 +114,31 @@ class Song {
             return "\(self.volume)"
         case "hasPositions":
             return self.hasPositions ? "✓" : ""
+        default:
+            return ""
+        }
+    } //func getValueAsString
+    
+    func getValueToCompare(_ property: String) -> Any {
+        switch property {
+        case "path":
+            return self.path.absoluteString.removingPercentEncoding!
+        case "title":
+            return self.title
+        case "artist":
+            return self.artist
+        case "level":
+            return self.level
+        case "duration":
+            return self.duration
+        case "speed":
+            return self.speed
+        case "bpm":
+            return self.bpm
+        case "volume":
+            return self.volume
+        case "hasPositions":
+            return self.hasPositions ? "a" : "b"
         default:
             return ""
         }

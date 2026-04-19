@@ -16,7 +16,7 @@ class SongTableView: NSViewController {
     var sSortBy        = "title"
     var bSortAsc       = true
     
-    var fontSize       = 12
+    var fontSize       = 0
     
     weak var mainView: MainView?
     
@@ -26,6 +26,18 @@ class SongTableView: NSViewController {
     @IBOutlet weak var directoryLabel: NSTextField!
     
     //Overrides
+    override func viewDidLoad() {
+        self.fontSize = UserDefaults.standard.integer(forKey: "songTableFontSize")
+        if(self.fontSize == 0){
+            self.fontSize = 12
+        }
+        
+        //In case of first run, set title and ascending. In case the app already ran at least once, nothing changes the sort here
+        self.songTable.sortDescriptors = [NSSortDescriptor(key: self.sSortBy, ascending: self.bSortAsc)]
+        
+        super.viewDidLoad()
+    }
+    
     override func keyDown(with event: NSEvent) {
 
         switch event.keyCode {
@@ -34,18 +46,18 @@ class SongTableView: NSViewController {
                     self.mainView?.playerView?.loadSong(song: self.aSongsForTable[songTable.selectedRow])
                     
                     DispatchQueue.main.async {
-                        self.mainView?.positionTableView?.positionTable.reloadData()
+                        self.mainView?.positionTableView?.refreshTable()
                     }
                 }
 //            case 48: // Tab
 //                self.songTable.edit
             default:
-                self.interpretKeyEvents([event])
+                self.mainView?.keyDown(with: event)
         }
         
 //        if(keyPressed == "enter"){
 //        }else{
-//            self.mainView?.keyDown(with: event)
+//
 //        }
     }
     
@@ -60,7 +72,7 @@ class SongTableView: NSViewController {
                 self.aSongsForTable = self.aSongs
                 
                 DispatchQueue.main.async {
-                    self.songTable.sortDescriptors = [NSSortDescriptor(key: self.sSortBy, ascending: self.bSortAsc)]
+                    self.performSortSongs()
                 }
             }
         }
@@ -76,31 +88,57 @@ class SongTableView: NSViewController {
     }
     
     func performSortSongs() {
-        self.aSongsForTable.sort(by: {
-            if(self.bSortAsc){
-                return $0.getValueAsString(self.sSortBy).uppercased() < $1.getValueAsString(self.sSortBy).uppercased()
-            }else{
-                return $0.getValueAsString(self.sSortBy).uppercased() > $1.getValueAsString(self.sSortBy).uppercased()
+        func compare(a: Any, b: Any) -> Bool {
+            if let valueA = a as? Int, let valueB = b as? Int {
+                if(self.bSortAsc){
+                    return valueA < valueB
+                }else{
+                    return valueA > valueB
+                }
+            } else if let valueA = a as? String, let valueB = b as? String {
+                if(self.bSortAsc){
+                    return valueA < valueB
+                }else{
+                    return valueA > valueB
+                }
+//            } else if let valueA = a as? Bool, let valueB = b as? Bool {
+//                if(self.bSortAsc){
+//                    return valueA == valueB
+//                }else{
+//                    return valueA != valueB
+//                }
+            } else {
+                return false;
             }
+        }
+        
+        self.aSongsForTable.sort(by: {
+            return compare(a: $0.getValueToCompare(self.sSortBy), b: $1.getValueToCompare(self.sSortBy))
         })
         
         //Update the table view to represent the new sort order
         DispatchQueue.main.async {
+            //don't call self.refreshTable() as it would remember the selection
             self.songTable.reloadData()
         }
     }
     
+    func refreshTable() {
+        let selRow = self.songTable.selectedRow
+        self.songTable.reloadData()
+        self.songTable.selectRowIndexes([selRow], byExtendingSelection: false)
+    }
+    
     //UI Selectors
-    @IBAction func handleSongSelected(_ sender: NSTableView) {
-        if sender.selectedRow >= 0 {
-            self.mainView?.playerView?.loadSong(song: self.aSongsForTable[sender.selectedRow])
+    @IBAction func handleSongSelected(_ sender: Any) {
+        if(self.songTable.selectedRow >= 0) {
+            self.mainView?.playerView?.loadSong(song: self.aSongsForTable[self.songTable.selectedRow])
             
             DispatchQueue.main.async {
-                self.mainView?.positionTableView?.positionTable.reloadData()
+                self.mainView?.positionTableView?.refreshTable()
             }
         }
     }
-    
     
     @IBAction func handleSelectMusicDirectory(_ sender: Any) {
         let dialog = NSOpenPanel();
@@ -122,12 +160,16 @@ class SongTableView: NSViewController {
     
     @IBAction func handleIncreaseTextSize(_ sender: NSButton) {
         self.fontSize += 1
-        self.songTable.reloadData()
+        self.refreshTable()
+        
+        UserDefaults.standard.set(self.fontSize, forKey: "songTableFontSize")
     }
     
     @IBAction func handleDecreaseTextSize(_ sender: NSButton) {
         self.fontSize -= 1
-        self.songTable.reloadData()
+        self.refreshTable()
+        
+        UserDefaults.standard.set(self.fontSize, forKey: "songTableFontSize")
     }
 }
 
@@ -205,11 +247,6 @@ extension SongTableView: NSTextFieldDelegate {
         }
         
         self.performSortSongs()
-        
-        //Update the table view to represent the new sort order
-        DispatchQueue.main.async {
-            self.songTable.reloadData()
-        }
     }
     
 }
