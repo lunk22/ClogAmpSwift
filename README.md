@@ -6,7 +6,8 @@ ClogAmp from Mac (Swift)
 ## Used libraries:
 - [id3Lib](http://id3lib.sourceforge.net/) => Read mp3 info
 - [BASS & BASS FX](http://www.un4seen.com/) => Determine BPM
-- [SwiftyStringScore](https://github.com/yichizhang/SwiftyStringScore) => Find matching PDFs
+- [SwiftyStringScore](https://github.com/yichizhang/SwiftyStringScore) [License](https://github.com/yichizhang/SwiftyStringScore/blob/master/LICENSE) => Find matching PDFs
+- [CocoaPDFCreator](https://github.com/owlswipe/CocoaPDFCreator) [License](https://github.com/owlswipe/CocoaPDFCreator/blob/master/LICENSE) => Export History as PDF
 
 ## Used fonts:
-- [B612](https://github.com/polarsys/b612)
+- [B612](https://github.com/polarsys/b612) [License](https://github.com/polarsys/b612/blob/master/OFL.txt)
