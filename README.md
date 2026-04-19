@@ -18,13 +18,14 @@ Built for Clogging Enthusiasts to play music, manipulate speed, edit positions, 
 - Countdown (Cmd+D)
 - History (with PDF generation - Cmd+P)
 - Playlists (Cmd+L)
-- EQ (Cmd+E)
+- Simple Equalizer (Cmd+E)
 - Calculate BPM (automatically or via Cmd+B)
 - Beats Player (experimental - hear how a step sounds like - Tools => Beats Player)
 - Integrated with MacOS Media Keys and Control Center
 
 ## Screenshots
-
+<img src="https://raw.githubusercontent.com/lunk22/ClogAmpSwift/refs/heads/master/Screenshots/ClogAmpMacMainWindow.png" width="500">
+<img src="https://raw.githubusercontent.com/lunk22/ClogAmpSwift/refs/heads/master/Screenshots/ClogAmpMacPositions.png" width="500">
 
 
 ## Used libraries / Frameworks:
@@ -33,6 +34,3 @@ Built for Clogging Enthusiasts to play music, manipulate speed, edit positions, 
 - [SwiftyStringScore](https://github.com/yichizhang/SwiftyStringScore) - [License](https://github.com/yichizhang/SwiftyStringScore/blob/master/LICENSE) => Find matching PDFs
 - [Sparkle](https://sparkle-project.org/) - [GitHub](https://github.com/sparkle-project/Sparkle) - [License](https://github.com/sparkle-project/Sparkle/blob/master/LICENSE) => Version updates
 - [swift-html-to-pdf](https://github.com/coenttb/swift-html-to-pdf/) - [License](https://github.com/coenttb/swift-html-to-pdf/blob/main/LICENCE) => Convert Positions/History to PDF
-
-## Used fonts:
-- [B612](https://github.com/polarsys/b612) - [License](https://github.com/polarsys/b612/blob/master/OFL.txt)

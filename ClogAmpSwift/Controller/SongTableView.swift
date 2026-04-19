@@ -251,13 +251,6 @@ class SongTableView: ViewController {
                         $0.getValueAsString("path").lowercased().contains(self.filterValue)
                     )
                     
-//                    if titleScore > 0.0 {
-//                        print("###################################################")
-//                        print("############ \($0.getValueAsString("title"))")
-//                        print("Title Score: \(titleScore), rounded: \(titleScoreRounded)")
-//                        print("Match: \(match)")
-//                    }
-                    
                     return match
                 }
                 

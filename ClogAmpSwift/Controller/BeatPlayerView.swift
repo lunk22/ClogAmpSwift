@@ -64,17 +64,6 @@ class BeatPlayerView: ViewController {
         }
     }
     
-    func printTime(andText text: String? = nil) {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "HH:mm:ss SSS"
-//
-//        if text != nil{
-//            print("\(formatter.string(from: Date())) - \(text!)")
-//        }else{
-//            print("\(formatter.string(from: Date()))")
-//        }
-    }
-    
     func startPeriodicFunction(withBPM bpm: Int, closure: @escaping() -> () ) {
         if bpm == 0 { return }
         
@@ -133,23 +122,19 @@ class BeatPlayerView: ViewController {
             var bIsAnd  = false
             var bIsA    = false
             var bIsBeat = false
-            var printChar = ""
+            
             switch(self.quaterCounter % 4){
                 case 0:
                     bIsE = true
-                    printChar = "e"
                     break
                 case 1:
                     bIsAnd = true
-                    printChar = "&"
                     break
                 case 2:
                     bIsA = true
-                    printChar = "a"
                     break
                 case 3:
                     bIsBeat = true
-                    printChar = "1"
                     self.beatCounter += 1
                     break
                 default: break // nothing
@@ -163,11 +148,6 @@ class BeatPlayerView: ViewController {
                 self.stringPosition += 1 + count
 
                 self.playSound()
-                
-                self.printTime(andText: "\(printChar) - beatCounter: \(self.beatCounter) - currentChar: \(currentChar) - click")
-
-            }else{
-                self.printTime(andText: "\(printChar) - beatCounter: \(self.beatCounter) - currentChar: \(currentChar)")
             }
 
             self.quaterCounter += 1
