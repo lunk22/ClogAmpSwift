@@ -12,14 +12,30 @@ class TimePanelView: ViewController {
     // MARK: Outlets
     @IBOutlet weak var textFieldTime: NSTextField!
     
-    
     // MARK: Properties
     var timer: Timer?
     
     
     // MARK: Functions
-    override func viewWillAppear() {
+    override func viewWillLayout() {
+        // Determine relevant settings
+        let width  = self.view.frame.width
+        let height = self.view.frame.height
+        let fontName = self.textFieldTime.font?.fontName ?? "Monaco"
         
+        // Calculate height
+        // let height = width / 4.554
+        
+        // Calculate font size
+        let newFontSizeForWidth: CGFloat = width / 5.372
+        let newFontSizeForHeight: CGFloat = height / 1.179
+        let newFontSize = min(newFontSizeForWidth, newFontSizeForHeight)
+        
+        // Update UI
+        self.textFieldTime.font = NSFont.init(name: fontName, size: CGFloat(newFontSize))
+    }
+    
+    override func viewWillAppear() {
 //        self.textFieldTime.font = NSFont.init(name: "B612-Regular", size: CGFloat(70))
         self.textFieldTime.alignment = .center
         

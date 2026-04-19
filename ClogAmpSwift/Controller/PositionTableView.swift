@@ -506,7 +506,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
             
             sPdfHtml = sPdfHtml + " </table>"
             
-            CreatePDF(htmlString: sPdfHtml, fileName: song.title)
+            createPDF(htmlString: sPdfHtml, fileName: song.title)
         }
     }
     

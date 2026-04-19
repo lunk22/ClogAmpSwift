@@ -459,8 +459,8 @@
 /* Class = "NSButtonCell"; title = "Continuous Playback"; ObjectID = "wMT-zO-iZk"; */
 "wMT-zO-iZk.title" = "Continuous Playback";
 
-/* Class = "NSMenuItem"; title = "Print..."; ObjectID = "hm1-1f-8uH"; */
-"hm1-1f-8uH.title" = "Print...";
+/* Class = "NSMenuItem"; title = "Generate PDF..."; ObjectID = "hm1-1f-8uH"; */
+"hm1-1f-8uH.title" = "Generate PDF...";
 
 /* Class = "NSBox"; title = "Automatic Updates"; ObjectID = "Vhr-lk-94f"; */
 "Vhr-lk-94f.title" = "Automatic Updates";
