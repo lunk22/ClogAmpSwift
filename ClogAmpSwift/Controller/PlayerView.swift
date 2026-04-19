@@ -283,23 +283,23 @@ class PlayerView: ViewController {
         PlayerAudioEngine.shared.setRate(newSpeed)
     }
     
-    func increaseSpeed() {
+    func increaseSpeed(_ offset: Int? = 1) {
         if let song = PlayerAudioEngine.shared.song {
             if(song.speed == 40){
                 return
             }
 
-            self.setSpeed(song.speed + 1)
+            self.setSpeed(song.speed + (offset ?? 1))
         }
     }
     
-    func decreaseSpeed() {
+    func decreaseSpeed(_ offset: Int? = 1) {
         if let song = PlayerAudioEngine.shared.song {
             if(song.speed == -40){
                 return
             }
             
-            self.setSpeed(song.speed - 1)
+            self.setSpeed(song.speed - (offset ?? 1))
         }
     }
     

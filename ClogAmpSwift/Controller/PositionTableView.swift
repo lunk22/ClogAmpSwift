@@ -283,7 +283,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
             }
         }
     }
-    
+
     @IBAction func exportToXml(_ sender: NSButton) {
         if let song = self.mainView?.playerView?.currentSong {
             let saveDialog = NSSavePanel()
@@ -587,7 +587,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 textField.backgroundColor = NSColor.controlColor
                 textField.textColor       = NSColor.controlTextColor
 
-                if PlayerAudioEngine.shared.isPlaying() {
+                if !PlayerAudioEngine.shared.isStopped() {
                     if(self.currentPosition == row){
                         textField.drawsBackground = true
                         textField.backgroundColor = NSColor.systemOrange

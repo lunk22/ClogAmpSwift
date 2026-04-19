@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="22009"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
-        <plugIn identifier="com.apple.pdfkit.ibplugin" version="22155"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="22500"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.pdfkit.ibplugin" version="22505"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
@@ -127,10 +127,26 @@
                                                 <action selector="paste:" target="Ady-hI-5gd" id="UvS-8e-Qdg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Delete" hidden="YES" id="pa3-QI-u2k">
+                                        <menuItem isSeparatorItem="YES" id="baW-hT-Rft"/>
+                                        <menuItem title="Select All" keyEquivalent="a" id="Z0V-8Y-vtk">
+                                            <connections>
+                                                <action selector="selectAll:" target="Ady-hI-5gd" id="Wu0-sd-AHU"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="MrQ-un-zuX"/>
+                                        <menuItem title="Add Position" keyEquivalent="a" id="Wgk-gG-Efk">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="delete:" target="Ady-hI-5gd" id="0Mk-Ml-PaM"/>
+                                                <action selector="handleAddPosition:" target="Ady-hI-5gd" id="8ct-wa-u4S"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Remove Position" id="GZP-5g-uFi">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="handleRemovePosition:" target="Ady-hI-5gd" id="8aG-FF-aUX"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -228,22 +244,41 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="96U-6H-vCD"/>
-                                        <menuItem title="Increase Speed" keyEquivalent="+" id="29Q-si-zFB">
+                                        <menuItem title="Speed" id="x61-5M-0zu">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="increaseSpeed:" target="Ady-hI-5gd" id="V8C-EK-BKF"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Decrease Speed" keyEquivalent="-" id="f7m-rQ-0TS">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="decreaseSpeed:" target="Ady-hI-5gd" id="MN1-YN-Rix"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Reset Speed" keyEquivalent="n" id="7pX-sO-eAU">
-                                            <connections>
-                                                <action selector="resetPlayerSpeed:" target="Ady-hI-5gd" id="3Qm-yK-hOh"/>
-                                            </connections>
+                                            <menu key="submenu" title="Speed" id="KoQ-FZ-Rd9">
+                                                <items>
+                                                    <menuItem title="Increase Speed 1%" keyEquivalent="+" id="29Q-si-zFB">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="increaseSpeed:" target="Ady-hI-5gd" id="V8C-EK-BKF"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Increase Speed 5%" keyEquivalent="+" id="dXQ-TJ-el7">
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                                        <connections>
+                                                            <action selector="increaseSpeed5:" target="Ady-hI-5gd" id="7rf-oe-NHk"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Decrease Speed 1%" keyEquivalent="-" id="f7m-rQ-0TS">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="decreaseSpeed:" target="Ady-hI-5gd" id="MN1-YN-Rix"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Decrease Speed 5%" keyEquivalent="-" id="cHg-fz-2CY">
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                                        <connections>
+                                                            <action selector="decreaseSpeed5:" target="Ady-hI-5gd" id="x9d-C1-pWo"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Reset Speed" keyEquivalent="n" id="7pX-sO-eAU">
+                                                        <connections>
+                                                            <action selector="resetPlayerSpeed:" target="Ady-hI-5gd" id="3Qm-yK-hOh"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
                                         </menuItem>
                                     </items>
                                 </menu>

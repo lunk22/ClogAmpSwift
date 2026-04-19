@@ -277,6 +277,9 @@ class PlayerAudioEngine {
             
             audioPlayer.pause()
             audioEngine.pause()
+
+            endTimeObserver()
+            executeTimeObserverCallback()
         }else{
             play()
         }

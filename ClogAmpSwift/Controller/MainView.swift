@@ -47,13 +47,21 @@ class MainView: ViewController {
     }
     
     @IBAction func increaseSpeed(_ sender: AnyObject) {
-        self.playerView?.increaseSpeed()
+        self.playerView?.increaseSpeed(1)
     }
     
     @IBAction func decreaseSpeed(_ sender: AnyObject) {
-        self.playerView?.decreaseSpeed()
+        self.playerView?.decreaseSpeed(1)
     }
-    
+
+    @IBAction func increaseSpeed5(_ sender: AnyObject) {
+        self.playerView?.increaseSpeed(5)
+    }
+
+    @IBAction func decreaseSpeed5(_ sender: AnyObject) {
+        self.playerView?.decreaseSpeed(5)
+    }
+
     @IBAction func resetPlayerSpeed(_ sender: AnyObject) {
         self.playerView?.resetSpeed()
     }
