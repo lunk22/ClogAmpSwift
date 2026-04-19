@@ -32,7 +32,7 @@ class PDFViewController: NSViewController {
         dialog.canCreateDirectories    = false
         dialog.allowsMultipleSelection = false
         
-        if let savedPath = UserDefaults.standard.string(forKey: "pdfFolderPath") {
+        if let savedPath = AppPreferences.folderPathPDF {
             dialog.directoryURL        = URL(fileURLWithPath: savedPath)
         }
         
@@ -62,7 +62,7 @@ class PDFViewController: NSViewController {
         dialog.allowsMultipleSelection = false
         dialog.allowedContentTypes     = [.pdf]
         
-        if let savedPath = UserDefaults.standard.string(forKey: "pdfFolderPath") {
+        if let savedPath = AppPreferences.folderPathPDF {
             dialog.directoryURL        = URL(fileURLWithPath: savedPath)
         }
         
@@ -90,7 +90,7 @@ class PDFViewController: NSViewController {
     }
     
     func openPdfInUi(_ url: URL) {
-        DispatchQueue.main.async(qos: .userInitiated) {
+        DispatchQueue.main.async(qos: .default) {
             let fileUrl = URL(fileURLWithPath: url.path)
             if let pdfDocument = PDFDocument(url: fileUrl) {
                 self.pdfView.displayMode = .singlePageContinuous
@@ -106,7 +106,7 @@ class PDFViewController: NSViewController {
         do {
             try ObjC.catchException {
                 self.pdfView.document = nil
-                DispatchQueue.main.async(qos: .userInitiated) {
+                DispatchQueue.main.async(qos: .default) {
                     self.pdfView.updateLayer()
                 }
             }
@@ -138,7 +138,7 @@ class PDFViewController: NSViewController {
         
         if let pdfPath = Database.getAssignedPDF(fileName) {
             self.openPdfInUi(URL(fileURLWithPath: pdfPath))
-        } else if let savedPath = UserDefaults.standard.string(forKey: "pdfFolderPath") {
+        } else if let savedPath = AppPreferences.folderPathPDF {
             DispatchQueue.global(qos: .background).async {
                 if self.aPdfUrls.count == 0 {
                     self.aPdfUrls = FileSystemUtils.readFolderContentsAsURL(sPath: savedPath, filterExtension: "pdf")

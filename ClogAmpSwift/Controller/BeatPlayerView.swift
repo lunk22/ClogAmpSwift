@@ -45,7 +45,7 @@ class BeatPlayerView: ViewController {
             self.player!.prepareToPlay()
             self.player!.volume = 0.025
             self.player!.play()
-            delayWithSeconds(0.1){
+            delayWithSeconds(0.1) {
                 self.player!.volume = 1
                 
                 do {

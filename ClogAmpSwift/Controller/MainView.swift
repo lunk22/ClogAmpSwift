@@ -21,15 +21,15 @@ class MainView: ViewController {
         
     override func viewWillAppear() {
         
-        if let iconName = UserDefaults.standard.string(forKey: "AppIconName") {
+        if let iconName = AppPreferences.appIconName {
             NSApplication.shared.applicationIconImage = NSImage(contentsOfFile: Bundle.main.path(forResource: iconName, ofType: "icns") ?? "")
         }
         
     }
     
     override func viewWillDisappear() {
-        self.playerView?.getSong()?.saveChanges()
-        NSApplication.shared.terminate(self)
+        PlayerAudioEngine.shared.song?.saveChanges()
+        super.viewWillDisappear()
     }
     
     override func viewDidAppear() {
@@ -46,18 +46,6 @@ class MainView: ViewController {
         super.viewDidAppear()
     }
     
-    @IBAction func play(_ sender: AnyObject) {
-        self.playerView?.doPlay()
-    }
-    
-    @IBAction func pause(_ sender: AnyObject) {
-        self.playerView?.doPause()
-    }
-    
-    @IBAction func stop(_ sender: AnyObject) {
-        self.playerView?.doStop()
-    }
-    
     @IBAction func increaseSpeed(_ sender: AnyObject) {
         self.playerView?.increaseSpeed()
     }
@@ -70,47 +58,14 @@ class MainView: ViewController {
         self.playerView?.resetSpeed()
     }
     
-    @IBAction func playerForward(_ sender: AnyObject) {
-        self.playerView?.jump(5)
-    }
-    
-    @IBAction func playerBack(_ sender: AnyObject) {
-        self.playerView?.jump(5)
-    }
-    
     @IBAction func focusFilterField(_ sender: Any) {
         self.tabView.selectTabViewItem(at: 0)
         self.songTableView?.searchField.becomeFirstResponder()
     }
-    @IBAction func determineBpm(_ sender: Any){
+    
+    @IBAction func determineBpm(_ sender: Any) {
         self.playerView?.determineBpmFCS()
-    }
-    
-    /*
-     --- Store ---
-     
-     UserDefaults.standard.set(true, forKey: "Key") //Bool
-     UserDefaults.standard.set(1, forKey: "Key")  //Integer
-     UserDefaults.standard.set("TEST", forKey: "Key") //setObject
-     
-     --- Retrieve ---
-     
-     UserDefaults.standard.bool(forKey: "Key")
-     UserDefaults.standard.integer(forKey: "Key")
-     UserDefaults.standard.string(forKey: "Key")
-     
-     --- Remove ---
-     
-     UserDefaults.standard.removeObject(forKey: "Key")
-     
-     --- Remove all Keys ---
-     
-     if let appDomain = Bundle.main.bundleIdentifier {
-        UserDefaults.standard.removePersistentDomain(forName: appDomain)
-     }
-     
-    */
-    
+    }  
 }
 
 extension MainView: NSTabViewDelegate {

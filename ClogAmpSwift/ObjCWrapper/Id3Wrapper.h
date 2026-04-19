@@ -23,6 +23,8 @@
 
 - (id)init:(NSString*)path;
 
+//- (NSString *)readArtwork;
+
 @end
 
 #endif /* Id3Wrapper_h */

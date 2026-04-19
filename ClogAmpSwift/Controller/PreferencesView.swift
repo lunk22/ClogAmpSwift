@@ -20,51 +20,19 @@ class PreferenceView: ViewController {
     @IBOutlet weak var boxAppearance: NSBox!
     @IBOutlet weak var ddlbAppearance: NSComboBox!
     @IBOutlet weak var cbViewAfterSongLoad: NSComboBox!
+    @IBOutlet weak var cbBeatsChangeBehaviour: NSComboBox!
     
     //Overrides
     override func viewDidLoad() {
-        
-        //Read Defaults / create them accordingly
-        var prefSkipForwardSeconds = UserDefaults.standard.integer(forKey: "prefSkipForwardSeconds")
-        if prefSkipForwardSeconds == 0 {
-            prefSkipForwardSeconds = 5
-        }
-        
-        var prefSkipBackSeconds = UserDefaults.standard.integer(forKey: "prefSkipBackSeconds")
-        if prefSkipBackSeconds == 0 {
-            prefSkipBackSeconds = 5
-        }
+        self.txtSkipForward.integerValue   = AppPreferences.skipForward
+        self.txtSkipBack.integerValue      = AppPreferences.skipBack
+        self.txtBpmUpperBound.integerValue = AppPreferences.bpmUpperBound
+        self.txtBpmLowerBound.integerValue = AppPreferences.bpmLowerBound
+        self.txtLoopDelay.doubleValue      = AppPreferences.loopDelay
                 
-        var prefBpmUpperBound = UserDefaults.standard.integer(forKey: "prefBpmUpperBound")
-        if prefBpmUpperBound == 0 {
-            prefBpmUpperBound = 140
-        }
-        
-        var prefBpmLowerBound = UserDefaults.standard.integer(forKey: "prefBpmLowerBound")
-        if prefBpmLowerBound == 0 {
-            prefBpmLowerBound = 70
-        }
-        
-        let prefLoopDelay        = UserDefaults.standard.double(forKey: "prefLoopDelay")
-                
-        var prefAppearance = UserDefaults.standard.integer(forKey: "prefAppearance")
-        var prefViewAfterSongLoad = UserDefaults.standard.integer(forKey: "prefViewAfterSongLoad")
-        
-        self.txtSkipForward.integerValue   = prefSkipForwardSeconds
-        self.txtSkipBack.integerValue      = prefSkipBackSeconds
-        self.txtBpmUpperBound.integerValue = prefBpmUpperBound
-        self.txtBpmLowerBound.integerValue = prefBpmLowerBound
-        self.txtLoopDelay.doubleValue      = prefLoopDelay
-        
-        if(prefAppearance < 0 || prefAppearance > 2){
-           prefAppearance = 0
-        }
-        self.ddlbAppearance.selectItem(at: prefAppearance)
-        
-        if(prefViewAfterSongLoad < 0 || prefViewAfterSongLoad > 2){
-            prefViewAfterSongLoad = 0
-        }
-        self.cbViewAfterSongLoad.selectItem(at: prefViewAfterSongLoad)
+        self.ddlbAppearance.selectItem(at: AppPreferences.appearance)
+        self.cbViewAfterSongLoad.selectItem(at: AppPreferences.viewAfterSongLoad)
+        self.cbBeatsChangeBehaviour.selectItem(at: AppPreferences.beatsChangeBehaviour)
         
         if #available(OSX 10.14, *) {
             self.boxAppearance.isHidden = false
@@ -78,6 +46,10 @@ class PreferenceView: ViewController {
     //MARK: Actions
     @IBAction func handleMonoChanged(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("monoChanged"), object: nil)
+    }
+    
+    @IBAction func handleShowBeatsChanged(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name("showBeats"), object: nil)
     }
     
     @IBAction func setValue(_ sender: AnyObject) {
@@ -99,7 +71,7 @@ class PreferenceView: ViewController {
             //Sparkle, if the automatic updates are turned on, perform an initial check on app launch
             if let updater = SUUpdater.shared(){
                 if updater.automaticallyChecksForUpdates {
-                    delayWithSeconds(1){
+                    delayWithSeconds(1) {
                         updater.checkForUpdatesInBackground()
                         updater.resetUpdateCycle()
                     }
@@ -120,7 +92,15 @@ class PreferenceView: ViewController {
 //MARK: ComboBox Appearance
 extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
     func numberOfItems(in comboBox: NSComboBox) -> Int {
-        return 3 //Dark, Light, System
+        if comboBox.identifier?.rawValue == "cbApperance" {
+            return 3 //Dark, Light, System
+        } else if comboBox.identifier?.rawValue == "cbViewAfterSongLoad" {
+            return 3 //Empty, Positions, PDF
+        } else if comboBox.identifier?.rawValue == "cbBeatsChangeBehaviour" {
+            return 2 //Adjust next position, move all following positions
+        }
+        
+        return 0
     }
     
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
@@ -146,6 +126,15 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
                 default:
                     return NSString(string: "")
             }
+        } else if comboBox.identifier?.rawValue == "cbBeatsChangeBehaviour" {
+            switch index {
+                case 0:
+                    return NSLocalizedString("beatsChangeBehaviourAdjustFollowing", bundle: Bundle.main, comment: "") as NSString
+                case 1:
+                    return NSLocalizedString("beatsChangeBehaviourMoveAllFollowing", bundle: Bundle.main, comment: "") as NSString
+                default:
+                    return NSString(string: "")
+            }
         }
         
         return NSString(string: "")
@@ -158,6 +147,8 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
             UserDefaults.standard.set(self.ddlbAppearance.indexOfSelectedItem, forKey: "prefAppearance")
         } else if uiElement.identifier?.rawValue == "cbViewAfterSongLoad" {
             UserDefaults.standard.set(self.cbViewAfterSongLoad.indexOfSelectedItem, forKey: "prefViewAfterSongLoad")
+        } else if uiElement.identifier?.rawValue == "cbBeatsChangeBehaviour" {
+            UserDefaults.standard.set(self.cbBeatsChangeBehaviour.indexOfSelectedItem, forKey: "prefBeatsChangeBehaviour")
         }
         
     }
