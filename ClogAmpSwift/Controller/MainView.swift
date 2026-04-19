@@ -32,24 +32,29 @@ class MainView: NSViewController {
     }
     
     override func keyDown(with event: NSEvent) {
-        let keyPressed = (event.characters ?? "").lowercased()
-
-        if(keyPressed == "+"){
-            self.playerView!.increaseSpeed()
-        }else if(keyPressed == "-"){
-            self.playerView!.decreaseSpeed()
-        }else if(keyPressed == "p"){
-            self.playerView!.play()
-        }else if(keyPressed == "s"){
-            self.playerView!.stop()
-        }else if(keyPressed == " "){
-            self.playerView!.pause()
-        }else if(keyPressed == "f"){
-          if(event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.shift]){
-            self.songTableView?.searchField.becomeFirstResponder()
-          }
-        }else{
-            self.interpretKeyEvents([event])
+        
+//        let keyPressed = (event.characters ?? "").lowercased()
+//        print("Key: \(keyPressed) - Code: \(event.keyCode)")
+        
+        switch event.keyCode {
+            case 30: // +
+                self.playerView!.increaseSpeed()
+            case 44: // -
+                self.playerView!.decreaseSpeed()
+            case 35: // P
+                self.playerView!.play()
+            case 1: // S
+                self.playerView!.stop()
+            case 49: // Space
+                self.playerView!.pause()
+            case 3: // F
+                if(event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.shift]){
+                    self.songTableView?.searchField.becomeFirstResponder()
+                }else{
+                    self.interpretKeyEvents([event])
+                }
+            default:
+                self.interpretKeyEvents([event])
         }
 
     }

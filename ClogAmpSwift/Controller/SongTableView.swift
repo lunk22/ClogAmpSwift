@@ -25,12 +25,26 @@ class SongTableView: NSViewController {
     
     //Overrides
     override func keyDown(with event: NSEvent) {
-        let keyPressed = (event.characters ?? "").lowercased()
-        
-        if(keyPressed == "enter"){
-        }else{
-            self.mainView?.keyDown(with: event)
+
+        switch event.keyCode {
+            case 36: // Enter
+                if songTable.selectedRow >= 0 {
+                    self.mainView?.playerView?.loadSong(song: self.aSongsForTable[songTable.selectedRow])
+                    
+                    DispatchQueue.main.async {
+                        self.mainView?.positionTableView?.positionTable.reloadData()
+                    }
+                }
+//            case 48: // Tab
+//                self.songTable.edit
+            default:
+                self.interpretKeyEvents([event])
         }
+        
+//        if(keyPressed == "enter"){
+//        }else{
+//            self.mainView?.keyDown(with: event)
+//        }
     }
     
     func setMusicDirectory(_ dir: String){
@@ -106,6 +120,9 @@ class SongTableView: NSViewController {
 }
 
 extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
+//    func tableView(_ tableView: NSTableView, shouldEdit tableColumn: NSTableColumn?, row: Int) -> Bool {
+//        return false
+//    }
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if(self.aSongsForTable.count <= (row)){ return "" }

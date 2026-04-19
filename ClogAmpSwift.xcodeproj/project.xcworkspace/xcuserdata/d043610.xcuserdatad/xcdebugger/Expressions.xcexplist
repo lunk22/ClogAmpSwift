@@ -3,15 +3,12 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "PositionTableView.numberOfRows(in:):PositionTableView.swift">
+         contextName = "SongTableView.keyDown(with:):SongTableView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.mainView">
+               value = "event.keyCode">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Song.saveChanges():Song.swift">
       </ContextState>
       <ContextState
          contextName = "MainView.viewDidAppear():MainView.swift">
@@ -20,6 +17,20 @@
                value = "self.children">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Song.saveChanges():Song.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PositionTableView.numberOfRows(in:):PositionTableView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.mainView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SongTableView.tableView(_:objectValueFor:row:):SongTableView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
