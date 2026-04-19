@@ -241,7 +241,7 @@ class PositionTableView: NSViewController {
         openDialog.canCreateDirectories    = false
         openDialog.canChooseDirectories    = false
         openDialog.canChooseFiles          = true
-        openDialog.allowedFileTypes        = ["infoexport"]
+        openDialog.allowedContentTypes     = [.init(filenameExtension: "infoexport")!]
         openDialog.allowsOtherFileTypes    = false
         
         if openDialog.runModal() == NSApplication.ModalResponse.OK {
@@ -263,7 +263,7 @@ class PositionTableView: NSViewController {
             saveDialog.showsResizeIndicator    = true
             saveDialog.showsHiddenFiles        = false
             saveDialog.canCreateDirectories    = true
-            saveDialog.allowedFileTypes        = ["infoexport"]
+            saveDialog.allowedContentTypes     = [.init(filenameExtension: "infoexport")!]
             saveDialog.allowsOtherFileTypes    = false
             
             if saveDialog.runModal() == NSApplication.ModalResponse.OK {

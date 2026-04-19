@@ -14,6 +14,8 @@ class PlayerView: ViewController {
     weak var mainView: MainView?
     var countTimeDown: Bool = UserDefaults.standard.bool(forKey: "countTimeDown")
     
+    var count: Int = 0
+    
     /*
      * Outlets
      */
@@ -44,11 +46,14 @@ class PlayerView: ViewController {
             self.currentSong?.saveChanges()
         }
         didSet {
+            self.count = 0
             self.doStop()
             self.currentSong!.loadPositions()
             self.avPlayer = Player(song: self.currentSong!)
             self.avPlayer?.addTimeObserverCallback(using: {
                 [weak self] time in
+                self?.count += 1
+                print("tick \(self!.count)")
                 //Do stuff
                 self?.tick(updateSongTab: false, updatePositionTab: false)
                 self?.updateTime()
@@ -259,10 +264,7 @@ class PlayerView: ViewController {
         let v1 = Double(sender.integerValue) / sender.maxValue
         let duration = self.avPlayer?.getDuration() ?? 0
         let time = duration * v1
-        self.avPlayer?.seek(seconds: time){
-            _ in
-            self.updateTime()
-        }
+        self.avPlayer?.seek(seconds: time)
     }
     
     @IBAction func changeTimeDisplay(_ sender: NSButton) {
@@ -311,16 +313,14 @@ class PlayerView: ViewController {
         }
         
         if let oPosition = self.currentSong?.positions[index] {
-            self.avPlayer?.seek(seconds: Float64(oPosition.time / 1000)){
-                _ in
-                self.tick(updateSongTab: false, updatePositionTab: false)
-                
-                let prefPlayPositionOnSelection = UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")
-                
-                if prefPlayPositionOnSelection && !(self.avPlayer?.isPlaying() ?? false){
-                    self.doPlay()
-                }
+            self.avPlayer?.seek(seconds: Float64(oPosition.time / 1000))
+            
+            let prefPlayPositionOnSelection = UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")
+            
+            if prefPlayPositionOnSelection && !(self.avPlayer?.isPlaying() ?? false){
+                self.doPlay()
             }
+            
         }
     } //func handlePositionSelected
     
@@ -337,12 +337,10 @@ class PlayerView: ViewController {
     func doPlay() {
         if(self.avPlayer?.isPlaying() ?? false){
             //If play is called while the song is playing, it should start over
-            self.avPlayer?.stop({ _ in
-                self.mainView?.positionTableView?.positionTable.scrollToBeginningOfDocument(nil)
-                self.avPlayer?.play()
-                //Update UI
-                self.tick()
-            })
+            self.avPlayer?.seek(seconds: 0.0)
+            self.mainView?.positionTableView?.positionTable.scrollToBeginningOfDocument(nil)
+            //Update UI
+//            self.tick()
         }else{
             if(self.avPlayer?.getCurrentTime() == 0.0){
                 self.mainView?.positionTableView?.positionTable.scrollToBeginningOfDocument(nil)
@@ -362,33 +360,24 @@ class PlayerView: ViewController {
         }
     }
     func doStop() {
-        self.avPlayer?.stop({
-            _ in
-            self.tick()
-        })
+        self.avPlayer?.stop()
     }
     func jump(_ seconds: Int) {
         self.avPlayer?.jump(seconds)
-        self.updateTime()
-        
-        self.tick(updateSongTab: false, updatePositionTab: false)
     }
     func increaseSpeed() {
         if(self.currentSong?.speed == 40){
             return
         }
         self.currentSong?.speed += 1
-        self.tick(updateSongTab: true, updatePositionTab: false)
     }
     func decreaseSpeed() {
         if(self.currentSong?.speed == -40){
             return
         }
         self.currentSong?.speed -= 1
-        self.tick(updateSongTab: true, updatePositionTab: false)
     }
     func resetSpeed() {
         self.currentSong?.speed = 0
-        self.tick(updateSongTab: true, updatePositionTab: false)
     }
 }

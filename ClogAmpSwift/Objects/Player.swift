@@ -58,34 +58,37 @@ class Player {
         }
     }
     
-    func stop(_ block: @escaping (Bool) -> Void) {
+    func stop() {
         self.setRate(0.0)
-        self.seek(seconds: 0.0, using: block)
+        self.seek(seconds: 0.0)
     }
     
     func isPlaying() -> Bool {
         return self.avPlayer.rate > 0.0
     }
     
-    func seek(seconds: Float64, using block: @escaping (Bool) -> Void) {
+    func seek(seconds: Float64) {
         let timescale = self.avPlayer.currentItem?.asset.duration.timescale ?? 1000
-        self.doSeek(seconds: (seconds * Double(timescale)), timescale: timescale, using: block)
+        self.doSeek(seconds: (seconds * Double(timescale)), timescale: timescale)
     }
     
-    private func doSeek(seconds: Float64, timescale: CMTimeScale, using block: @escaping (Bool) -> Void) {
+    private func doSeek(seconds: Float64, timescale: CMTimeScale) {
         self.avPlayer.seek(
-            to: CMTimeMake(value: Int64(lround(seconds)), timescale: timescale),
-            toleranceBefore: CMTime.zero,
-            toleranceAfter: CMTime.zero,
-            completionHandler: block
+            to: CMTimeMake(value: Int64(lround(seconds)), timescale: timescale)
         )
+//        self.avPlayer.seek(
+//            to: CMTimeMake(value: Int64(lround(seconds)), timescale: timescale),
+//            toleranceBefore: CMTime.zero,
+//            toleranceAfter: CMTime.zero,
+//            completionHandler: block
+//        )
     }
     
     func jump(_ seconds: Int) {
         let currentTime = self.getCurrentTime()
         let jumpPos = currentTime + Double(seconds)
         
-        self.doSeek(seconds: jumpPos * 1000, timescale: 1000){_ in }
+        self.doSeek(seconds: jumpPos * 1000, timescale: 1000)
     }
     
     func updateRate(){
@@ -117,7 +120,7 @@ class Player {
     }
     
     @objc func songFinished() {
-        self.stop({ _ in })
+        self.stop()
     }
     
     func addTimeObserverCallback(using block: @escaping (CMTime) -> Void) {
@@ -130,13 +133,15 @@ class Player {
             var count = 0
             while self.observer == nil && count < 10 {
                 count += 1
-                self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: nil, using: callback)
+                self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: .main, using: callback)
             }
             
             if self.observer != nil {
                 print("SUCCESS: Time Observer added - \(self.song.title)", to: &playerLogger)
+                print("SUCCESS: Time Observer added - \(self.song.title)")
             } else {
                 print("ERROR: Failed to add time observer in time - \(self.song.title)", to: &playerLogger)
+                print("ERROR: Failed to add time observer in time - \(self.song.title)")
             }
         }
         
@@ -158,6 +163,7 @@ class Player {
         NotificationCenter.default.removeObserver(self)
         
         print("SUCCESS: Time Observer removed - \(self.song.title)", to: &playerLogger)
+        print("SUCCESS: Time Observer removed - \(self.song.title)")
         
     }
 }

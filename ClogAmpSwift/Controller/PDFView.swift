@@ -60,7 +60,7 @@ class PDFViewController: NSViewController {
         dialog.canChooseFiles          = true
         dialog.canCreateDirectories    = false
         dialog.allowsMultipleSelection = false
-        dialog.allowedFileTypes        = ["pdf"]
+        dialog.allowedContentTypes     = [.pdf]
         
         if let savedPath = UserDefaults.standard.string(forKey: "pdfFolderPath") {
             dialog.directoryURL        = URL(fileURLWithPath: savedPath)
