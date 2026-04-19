@@ -29,7 +29,7 @@ class MainView: ViewController {
     
     override func viewWillDisappear() {
         PlayerAudioEngine.shared.song?.saveChanges()
-        NSApplication.shared.terminate(self)
+        super.viewWillDisappear()
     }
     
     override func viewDidAppear() {
