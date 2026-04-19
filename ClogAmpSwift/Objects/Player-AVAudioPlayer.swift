@@ -23,7 +23,6 @@
 //            self.avPlayer = try AVAudioPlayer(contentsOf: self.song.filePathAsUrl)
 //            self.avPlayer?.prepareToPlay()
 //            self.avPlayer?.enableRate = true
-//            print(self.avPlayer?.settings)
 ////            let settings = [AVAudioTimePitchAlgorithm: AVAudioTimePitchAlgorithm.spectral]
 ////                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
 ////                AVSampleRateKey: 12000,
@@ -78,8 +77,6 @@
 //    }
 //    
 //    private func seek(seconds: Float64, timescale: CMTimeScale, using block: @escaping (Bool) -> Void) {
-////        print("Raw: \(seconds), TimeScale: \(timescale),  Seconds: \(seconds / Double(timescale))")
-//
 //        self.avPlayer?.currentTime = Double(seconds / Float64(timescale))
 //        
 //        block(true)
