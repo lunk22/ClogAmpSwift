@@ -105,6 +105,7 @@ class PDFPreviewWindowController: NSWindowController {
                     let content = UNMutableNotificationContent()
                     content.body = "\(self.fileName).pdf successfully created"
                     content.sound = .default
+                    content.userInfo = ["pdfPath": destURL.path]
                     let request = UNNotificationRequest(identifier: "ClogAmpMac", content: content, trigger: nil)
                     UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
                     try? await UNUserNotificationCenter.current().add(request)

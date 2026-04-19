@@ -16,19 +16,23 @@ class TimePanelViewController: ViewController {
     
     
     // MARK: Functions
-    override func viewWillLayout() {
-        // Determine relevant settings
-        let width  = self.view.frame.width
-        let height = self.view.frame.height
-        let fontName = self.textFieldTime.font?.fontName ?? "Menlo"
-        
-        // Calculate font size
-        let newFontSizeForWidth: CGFloat = width / 4.25 // 4.514
-        let newFontSizeForHeight: CGFloat = height / 1.15
-        let newFontSize = min(newFontSizeForWidth, newFontSizeForHeight)
+    override func viewDidLayout() {
+        super.viewDidLayout()
 
-        // Update UI
-        self.textFieldTime.font = NSFont.init(name: fontName, size: CGFloat(newFontSize))
+        let fontName = self.textFieldTime.font?.fontName ?? "Menlo"
+        let font = NSFont(name: fontName, size: 100) ?? NSFont.monospacedDigitSystemFont(ofSize: 100, weight: .regular)
+
+        // Measure a representative string at size 100 to derive a scaling ratio
+        let sampleString = " 00:00:00"
+        let attrs: [NSAttributedString.Key: Any] = [.font: font]
+        let sampleSize = (sampleString as NSString).size(withAttributes: attrs)
+
+        let scaleForWidth  = self.view.frame.width  / sampleSize.width
+        let scaleForHeight = self.view.frame.height / sampleSize.height
+        let newFontSize    = min(scaleForWidth, scaleForHeight) * 100
+
+        self.textFieldTime.font = NSFont(name: fontName, size: newFontSize)
+                               ?? NSFont.monospacedDigitSystemFont(ofSize: newFontSize, weight: .regular)
     }
     
     override func viewWillAppear() {
