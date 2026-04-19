@@ -156,6 +156,18 @@ class PositionTableView: NSViewController {
         
         UserDefaults.standard.set(self.fontSize, forKey: "positionTableFontSize")
     }
+    @IBAction func handleSetTime(_ sender: NSButton) {
+        let posIndex = self.positionTable.selectedRow
+        if posIndex < 0 {
+            return
+        }
+        
+        if let song = self.mainView?.playerView?.currentSong {
+            song.positions[posIndex].time = UInt(lround((self.mainView?.playerView?.avPlayer?.getCurrentTime() ?? 0) * 1000))
+            song.positionsChanged = true
+            self.refreshTable(single: true)
+        }
+    }
     @IBAction func onEndEditing(_ sender: NSTextField) {
         let iRow = self.positionTable.row(for: sender)
         let iCol = self.positionTable.column(for: sender)
@@ -209,21 +221,6 @@ class PositionTableView: NSViewController {
                 return
             }
         }
-        
-//        switch identifier {
-//        case "title":
-//            if song.title != text {
-//                song.title = text
-//                song.saveChanges()
-//            }
-//        case "artist":
-//            if song.artist != text {
-//                song.artist = text
-//                song.saveChanges()
-//            }
-//        default:
-//            return
-//        }
     }
 }
 
