@@ -171,6 +171,7 @@ class SongTableView: ViewController {
     //MARK: Custom Methods
     func setMusicDirectory(_ dir: String){
         self.aSongs.removeAll()
+        self.aSongsForTable.removeAll()
         
         self.pathControl.url = URL(fileURLWithPath: dir)
         
@@ -213,6 +214,7 @@ class SongTableView: ViewController {
             DispatchQueue.main.async {
                 self.percentLabel.stringValue = ""
                 self.percentLabel.isHidden = true
+                self.songTable.reloadData()
             }
         }
     }
@@ -374,8 +376,8 @@ class SongTableView: ViewController {
                     song.saveChanges()
                 }
             case "bpm":
-                if song.bpm != UInt(text) {
-                    song.bpm = UInt(text) ?? 0  
+                if song.bpm != Int(text) {
+                    song.bpm = Int(text) ?? 0  
                     song.saveChanges()
                 }
             case "level":
@@ -442,10 +444,15 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
         
     }
     
-    //Don't ask why, but this function prevents the cells from switching to edit mode on a single click in a non-selected row
     func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
-        return nil;
+        return self.aSongsForTable[row].getValueAsString("path") as NSString
     }
+
+    
+//    //Don't ask why, but this function prevents the cells from switching to edit mode on a single click in a non-selected row
+//    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+//        return nil;
+//    }
 }
 
 extension SongTableView: TableViewDelegate {
@@ -480,18 +487,3 @@ extension SongTableView: NSTextFieldDelegate {
     }
     
 }
-
-//extension SongTableView: NSTouchBarDelegate {
-//  override func makeTouchBar() -> NSTouchBar? {
-//    // 1
-//    let touchBar = NSTouchBar()
-//    touchBar.delegate = self
-//    // 2
-//    touchBar.customizationIdentifier = .travelBar
-//    // 3
-//    touchBar.defaultItemIdentifiers = [.infoLabelItem]
-//    // 4
-//    touchBar.customizationAllowedItemIdentifiers = [.infoLabelItem]
-//    return touchBar
-//  }
-//}

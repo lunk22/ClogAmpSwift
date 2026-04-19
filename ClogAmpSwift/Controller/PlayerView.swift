@@ -170,7 +170,7 @@ class PlayerView: ViewController {
             if var bpm = self.currentSong?.bpm {
                 if bpm > 0 {
                     let percent = Double(Int(100) + Int(self.currentSong?.speed ?? 0)) / 100
-                    bpm = UInt(lround((Double(bpm) * percent)))
+                    bpm = Int(lround((Double(bpm) * percent)))
                     self.bpmText.stringValue = "\(bpm) bpm"
                 }else{
                     self.bpmText.stringValue = ""
@@ -256,7 +256,7 @@ class PlayerView: ViewController {
     }
     
     @IBAction func volumeChanged(_ sender: NSSlider) {
-        self.currentSong?.volume = UInt(sender.integerValue)
+        self.currentSong?.volume = Int(sender.integerValue)
         self.updateVolume()
     }
     

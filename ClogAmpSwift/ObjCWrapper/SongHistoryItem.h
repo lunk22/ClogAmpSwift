@@ -13,7 +13,7 @@
 	NSString *title;
 	NSString *artist;
 	NSString *file;
-	NSString   *date;
+	NSString *date;
 }
 
 //@property (nonatomic, readwrite) bool selectToPrint;

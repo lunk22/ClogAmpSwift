@@ -130,7 +130,6 @@ class PositionTableView: NSViewController {
                             self.loopTimer = Timer.scheduledTimer(withTimeInterval: prefLoopDelay, repeats: false, block: {
                                 _ in
                                 self.loopCount += 1
-                                print("Loop Count: \(self.loopCount)")
                                 
                                 if self.txtLoopTimes.integerValue != 0 && self.loopCount >= self.txtLoopTimes.integerValue {
                                     self.cbLoop.state = NSControl.StateValue.off
@@ -175,6 +174,7 @@ class PositionTableView: NSViewController {
             currentTime *= 1000 //Milliseconds
             song.positions.append( Position( name: "Name", comment: "", time: UInt(lround(currentTime)) ) )
             song.positionsChanged = true
+            song.hasPositions = true
             self.refreshTable(single: true)
         }
     }
@@ -372,7 +372,6 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
         
         if let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: nil) as? NSTableCellView {
             let textField = cell.textField!
-//            let fontDescriptor = textField.font!.fontDescriptor
             
             if let song = self.mainView?.playerView?.getSong() {
                 

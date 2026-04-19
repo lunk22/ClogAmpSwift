@@ -22,6 +22,8 @@ class PreferenceView: ViewController {
     @IBOutlet weak var cbAutoDetermineBPM: NSButton!
     @IBOutlet weak var cbMonoSongs: NSButton!
     @IBOutlet weak var cbMonoPositions: NSButton!
+    @IBOutlet weak var boxAppearance: NSBox!
+    @IBOutlet weak var ddlbAppearance: NSComboBox!
     
     //Overrides
     override func viewDidLoad() {
@@ -56,6 +58,8 @@ class PreferenceView: ViewController {
         
         let prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
         let prefMonoFontPositons = UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
+        
+        var prefAppearance = UserDefaults.standard.integer(forKey: "prefAppearance")
         
         self.txtSkipForward.integerValue   = prefSkipForwardSeconds
         self.txtSkipBack.integerValue      = prefSkipBackSeconds
@@ -99,8 +103,21 @@ class PreferenceView: ViewController {
             self.cbMonoPositions.state = NSControl.StateValue.off
         }
         
+        if(prefAppearance < 0 || prefAppearance > 2){
+           prefAppearance = 0
+        }
+        self.ddlbAppearance.selectItem(at: prefAppearance)
+        
+        if #available(OSX 10.14, *) {
+            self.boxAppearance.isHidden = false
+        }else{
+            self.boxAppearance.isHidden = true
+        }
+        
         super.viewDidLoad()
     }
+    
+    //MARK: Actions
     
     @IBAction func setValue(_ sender: AnyObject) {
         if sender === self.txtSkipForward! {
@@ -138,5 +155,29 @@ class PreferenceView: ViewController {
             UserDefaults.standard.set(iconName, forKey: "AppIconName")
             NSApplication.shared.applicationIconImage = NSImage(contentsOfFile: Bundle.main.path(forResource: iconName, ofType: "icns") ?? "")
         }
+    }
+}
+
+//MARK: ComboBox Appearance
+extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
+    func numberOfItems(in comboBox: NSComboBox) -> Int {
+        return 3 //Dark, Light, System
+    }
+    
+    func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
+        switch index {
+            case 0:
+                return NSLocalizedString("systemAppearance", bundle: Bundle.main, comment: "") as NSString
+            case 1:
+                return NSLocalizedString("darkAppearance", bundle: Bundle.main, comment: "") as NSString
+            case 2:
+                return NSLocalizedString("lightAppearance", bundle: Bundle.main, comment: "") as NSString
+            default:
+                return NSString(string: "")
+        }
+    }
+    
+    func comboBoxSelectionDidChange(_ notification: Notification) {
+        UserDefaults.standard.set(self.ddlbAppearance.indexOfSelectedItem, forKey: "prefAppearance")
     }
 }
