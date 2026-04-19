@@ -9,21 +9,15 @@
 import AppKit
 
 class TimePanelView: ViewController {
-    /*
-     * MARK: Outlets
-     */
+    // MARK: Outlets
     @IBOutlet weak var textFieldTime: NSTextField!
     
     
-    /*
-     * MARK: Properties
-     */
+    // MARK: Properties
     var timer: Timer?
     
     
-    /*
-     * MARK: Functions
-     */
+    // MARK: Functions
     override func viewWillAppear() {
 
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {
@@ -57,7 +51,7 @@ class TimePanelView: ViewController {
             
             DispatchQueue.main.async(qos: .userInitiated) {
                 self.textFieldTime.stringValue = time
-//                self.textFieldTime.sizeToFit()
+                self.textFieldTime.sizeToFit()
             }
             
         })

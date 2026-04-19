@@ -19,6 +19,8 @@ class SongTableView: ViewController {
     
     var fontSize       = 0
     
+    var listRefreshRunning = false
+    
     var prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
     
     //Search stuff
@@ -191,6 +193,12 @@ class SongTableView: ViewController {
     }
     
     func setMusicDirectory(_ dir: String){
+        // Guard clause: Prevent multiple refreshes running simultaneously
+        if self.listRefreshRunning {
+            return
+        }
+        
+        self.listRefreshRunning = true
         self.aSongs.removeAll()
         self.aSongsForTable.removeAll()
         
@@ -222,6 +230,7 @@ class SongTableView: ViewController {
                 self.percentLabel.isHidden = true
                 self.filterTable()
                 self.refreshTable()
+                self.listRefreshRunning = false
             }
         }
     }
@@ -247,12 +256,6 @@ class SongTableView: ViewController {
                 }else{
                     return valueA > valueB
                 }
-//            } else if let valueA = a as? Bool, let valueB = b as? Bool {
-//                if(self.bSortAsc){
-//                    return valueA == valueB
-//                }else{
-//                    return valueA != valueB
-//                }
             } else {
                 return false;
             }
