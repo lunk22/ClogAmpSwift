@@ -19,6 +19,8 @@ class SongTableView: ViewController {
     
     var fontSize       = 0
     
+    let prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
+    
     //Search stuff
     var lastSearchTime: UInt64 = 0
     var searchSting    = ""
@@ -397,12 +399,16 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
         
         if let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: nil) as? NSTableCellView {
             let textField = cell.textField!
-            let fontDescriptor = textField.font!.fontDescriptor
             
             textField.stringValue = self.aSongsForTable[row].getValueAsString(tableColumn!.identifier.rawValue)
-            textField.font = NSFont.init(descriptor: fontDescriptor, size: CGFloat(self.fontSize))
+            
+            if prefMonoFontSongs {
+                textField.font = NSFont.init(name: "PTMono-Regular", size: CGFloat(self.fontSize))
+            } else {
+                textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
+            }
+            
             textField.sizeToFit()
-//            textField.alignment = NSTextAlignment.right
             textField.setFrameOrigin(NSZeroPoint)
             return cell
         }
@@ -411,7 +417,11 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return CGFloat(self.fontSize + 3)
+        if prefMonoFontSongs {
+            return CGFloat(round(Double(self.fontSize) * 1.7))
+        } else {
+            return CGFloat(self.fontSize + 8)
+        }
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {

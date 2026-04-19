@@ -21,6 +21,8 @@ class PositionTableView: NSViewController {
     
     weak var mainView: MainView?
     
+    let prefMonoFontPositons = UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
+    
     //MARK: Outlets
     @IBOutlet weak var positionTable: TableView!
     @IBOutlet weak var cbLoop: NSButton!
@@ -358,7 +360,7 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
         
         if let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: nil) as? NSTableCellView {
             let textField = cell.textField!
-            let fontDescriptor = textField.font!.fontDescriptor
+//            let fontDescriptor = textField.font!.fontDescriptor
             
             if let song = self.mainView?.playerView?.getSong() {
                 
@@ -387,7 +389,13 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
                 textField.stringValue = ""
             }
             
-            textField.font = NSFont.init(descriptor: fontDescriptor, size: CGFloat(self.fontSize))// .systemFont(ofSize: CGFloat(self.fontSize))
+            if prefMonoFontPositons {
+                textField.font = NSFont.init(name: "PTMono-Regular", size: CGFloat(self.fontSize))
+            } else {
+                textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
+            }
+            
+//            textField.font = NSFont.init(descriptor: fontDescriptor.withFace("Noteworthy-Bold"), size: CGFloat(self.fontSize))// .systemFont(ofSize: CGFloat(self.fontSize))
             textField.sizeToFit()
             
             return cell
@@ -397,7 +405,11 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return CGFloat(self.fontSize + 3)
+        if prefMonoFontPositons {
+            return CGFloat(round(Double(self.fontSize) * 1.7))
+        } else {
+            return CGFloat(self.fontSize + 8)
+        }
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {

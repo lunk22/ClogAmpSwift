@@ -3,23 +3,4 @@
    uuid = "5C8FD188-5CB9-4637-8C56-B40136CFCC4D"
    type = "1"
    version = "2.0">
-   <Breakpoints>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9B2F77BE-4C6E-4EC0-982F-E9523840F648"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ClogAmpSwift/Controller/SongTableView.swift"
-            timestampString = "573651528.249662"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
-            landmarkName = "tableView(_:viewFor:row:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-   </Breakpoints>
 </Bucket>
