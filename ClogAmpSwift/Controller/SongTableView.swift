@@ -171,27 +171,26 @@ class SongTableView: ViewController {
         self.aSongs.removeAll()
         
         self.pathControl.url = URL(fileURLWithPath: dir)
-        self.percentLabel.isHidden = false
         
         DispatchQueue.global(qos: .background).async {
             var positionLoaded = false
-            
+
             FileSystemUtils.readFolderContentsAsSong(sPath: dir) {
                 let song    = $0
                 let percent = $1
                 
+                DispatchQueue.main.async {
+                    self.percentLabel.isHidden = false
+                    
+                    if percent < 100 {
+                        self.percentLabel.stringValue = "\(percent)%"
+                    }
+                }
+                
                 self.aSongs.append(song)
                 self.aSongsForTable = self.aSongs
                 
-                DispatchQueue.main.async {
-                    if percent < 100 {
-                        self.percentLabel.stringValue = "\(percent)%"
-                    }else{
-                        self.performSortSongs()
-                        self.percentLabel.stringValue = ""
-                        self.percentLabel.isHidden = true
-                    }
-                }
+                
                 
                 if !positionLoaded {
                     self.aSongs[0].loadPositions(true)
@@ -207,6 +206,11 @@ class SongTableView: ViewController {
                 DispatchQueue.main.async {
                     self.performSortSongs()
                 }
+            }
+            
+            DispatchQueue.main.async {
+                self.percentLabel.stringValue = ""
+                self.percentLabel.isHidden = true
             }
         }
     }

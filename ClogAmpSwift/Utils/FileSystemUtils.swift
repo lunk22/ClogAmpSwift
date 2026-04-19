@@ -22,7 +22,7 @@ class FileSystemUtils {
         aPaths = aPaths?.filter{ $0.hasSuffix(filterExtension) }
         
         //convert strings to URLs
-        for sFilePath in aPaths! {
+        for sFilePath in aPaths ?? [] {
             let sFilePathEncoded = sFilePath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
             let stringPath = "\(sPathEncoded)/\(sFilePathEncoded)"
 //            if(filterExtension == "pdf"){
