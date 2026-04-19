@@ -177,14 +177,6 @@ class SongTableView: ViewController {
         }
     }
     
-    @IBAction func determineBpmForCurrentSong(_ sender: Any) {
-        self.mainView?.playerView?.currentSong?.determineBassBPM(){
-            _ = $0
-//            print("BPM of \(self.aSongs[20].getValueAsString("title")): \(bpm)")
-            self.refreshTable()
-        }
-    }
-    
     //UI Selectors
     @IBAction func handleSongSelected(_ sender: Any) {
         self.loadSelectedSong()
@@ -222,6 +214,13 @@ class SongTableView: ViewController {
         
         UserDefaults.standard.set(self.fontSize, forKey: "songTableFontSize")
     }
+    @IBAction func handleSearchEnter(_ sender: NSTextField) {
+//        print("enter")
+//        self.delayWithSeconds(0.5){
+            self.songTable.enclosingScrollView?.becomeFirstResponder()
+//        }
+    }
+    
     @IBAction func onEndEditing(_ sender: NSTextField) {
         let iRow = self.songTable.row(for: sender)
         let iCol = self.songTable.column(for: sender)
@@ -252,6 +251,10 @@ class SongTableView: ViewController {
 extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
+        if self.aSongsForTable.count <= row {
+            return nil
+        }
         
         if let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: nil) as? NSTableCellView {
             let textField = cell.textField!

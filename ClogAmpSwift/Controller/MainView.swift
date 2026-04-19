@@ -20,6 +20,8 @@ class MainView: NSViewController {
     weak var songTableView: SongTableView?
     weak var positionTableView: PositionTableView?
     
+    @IBOutlet weak var tabView: NSTabView!
+    
     override func viewWillDisappear() {
         self.playerView?.getSong()?.saveChanges()
     }
@@ -99,7 +101,11 @@ class MainView: NSViewController {
     }
     
     @IBAction func focusFilterField(_ sender: Any) {
+        self.tabView.selectTabViewItem(at: 0)
         self.songTableView?.searchField.becomeFirstResponder()
+    }
+    @IBAction func determineBpm(_ sender: Any){
+        self.playerView?.determineBpmFCS()
     }
     
     /*
@@ -122,7 +128,7 @@ class MainView: NSViewController {
      --- Remove all Keys ---
      
      if let appDomain = Bundle.main.bundleIdentifier {
-     UserDefaults.standard.removePersistentDomain(forName: appDomain)
+        UserDefaults.standard.removePersistentDomain(forName: appDomain)
      }
      
     */
