@@ -44,6 +44,10 @@
 		B7A3A9C0221AFCBD00CA5FE8 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */; };
 		B7A3A9C2221BE44400CA5FE8 /* CountdownWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */; };
 		B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */; };
+		B7B3A177237ACFC7009667CF /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3A176237ACFC7009667CF /* PlaylistView.swift */; };
+		B7B3A179237BDC70009667CF /* SwiftPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3A178237BDC70009667CF /* SwiftPlaylist.swift */; };
+		B7B3A17C237C09BC009667CF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7B3A17E237C09BC009667CF /* Localizable.strings */; };
+		B7B3A185237E726A009667CF /* Playlist.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B3A184237E726A009667CF /* Playlist.mm */; };
 		B7B46605237042EB00AA9419 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B46604237042EB00AA9419 /* PDFView.swift */; };
 		B7B46608237046D800AA9419 /* PDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B46607237046D800AA9419 /* PDFKit.framework */; };
 		B7B4660C23754EE600AA9419 /* StringScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4660B23754EE600AA9419 /* StringScore.swift */; };
@@ -125,6 +129,12 @@
 		B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownWindow.swift; sourceTree = "<group>"; };
 		B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionXmlParser.swift; sourceTree = "<group>"; };
+		B7B3A176237ACFC7009667CF /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		B7B3A178237BDC70009667CF /* SwiftPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPlaylist.swift; sourceTree = "<group>"; };
+		B7B3A17D237C09BC009667CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7B3A17F237C09CC009667CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7B3A183237E726A009667CF /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
+		B7B3A184237E726A009667CF /* Playlist.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Playlist.mm; sourceTree = "<group>"; };
 		B7B46604237042EB00AA9419 /* PDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
 		B7B46607237046D800AA9419 /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
 		B7B4660B23754EE600AA9419 /* StringScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringScore.swift; sourceTree = "<group>"; };
@@ -208,6 +218,7 @@
 				B79853312217073500BDE678 /* libbass.dylib */,
 				50A37BB3207FF03E0020E218 /* Info.plist */,
 				50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */,
+				B7B3A17E237C09BC009667CF /* Localizable.strings */,
 			);
 			path = ClogAmpSwift;
 			sourceTree = "<group>";
@@ -220,6 +231,7 @@
 				B7D9C06722145A3200A70F4A /* HistoryTableView.swift */,
 				50A37BAC207FF03D0020E218 /* MainView.swift */,
 				B75955872216DD5800D11E3F /* MainWindow.swift */,
+				B7B3A176237ACFC7009667CF /* PlaylistView.swift */,
 				50DC6D872081D68100B7C347 /* PlayerView.swift */,
 				B72299222202D0EA00AEFA90 /* PositionTableView.swift */,
 				B7985338221A812600BDE678 /* PreferencesView.swift */,
@@ -241,6 +253,7 @@
 				B7BD8F1A21F9A87E00532C1A /* Position.swift */,
 				504E5FA32080F4E0003DBA66 /* Song.swift */,
 				B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */,
+				B7B3A178237BDC70009667CF /* SwiftPlaylist.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -317,6 +330,8 @@
 				B7DDFCB422141F6B00637831 /* Database.h */,
 				B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */,
 				B7BD8F1921F7611000532C1A /* Id3Wrapper.h */,
+				B7B3A183237E726A009667CF /* Playlist.h */,
+				B7B3A184237E726A009667CF /* Playlist.mm */,
 				B7D9C0622214513B00A70F4A /* SongHistoryItem.h */,
 				B7D9C0632214513B00A70F4A /* SongHistoryItem.m */,
 				B74E7FE423794E5500569664 /* ObjC.h */,
@@ -417,6 +432,7 @@
 				B70F181A221D957700FE1149 /* AppIconYellow.icns in Resources */,
 				B70F1817221D957700FE1149 /* AppIconGreen.icns in Resources */,
 				B70F181B221D957700FE1149 /* AppIconNeonGreen.icns in Resources */,
+				B7B3A17C237C09BC009667CF /* Localizable.strings in Resources */,
 				50A37BB2207FF03E0020E218 /* Main.storyboard in Resources */,
 				B70F1819221D957700FE1149 /* AppIconWhite.icns in Resources */,
 				B70F1818221D957700FE1149 /* AppIconTeal.icns in Resources */,
@@ -439,10 +455,12 @@
 				B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */,
 				B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */,
 				B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */,
+				B7B3A179237BDC70009667CF /* SwiftPlaylist.swift in Sources */,
 				B74E7FE623794E8C00569664 /* ObjC.m in Sources */,
 				B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */,
 				B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */,
 				B7B46605237042EB00AA9419 /* PDFView.swift in Sources */,
+				B7B3A185237E726A009667CF /* Playlist.mm in Sources */,
 				504E5FA42080F4E0003DBA66 /* Song.swift in Sources */,
 				5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */,
 				B7364FD7221537AA00FB9C64 /* Player.swift in Sources */,
@@ -457,6 +475,7 @@
 				B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */,
 				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
 				B7985339221A812600BDE678 /* PreferencesView.swift in Sources */,
+				B7B3A177237ACFC7009667CF /* PlaylistView.swift in Sources */,
 				B7B4660C23754EE600AA9419 /* StringScore.swift in Sources */,
 				B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */,
 				B7DDFCB322141F5F00637831 /* Database.m in Sources */,
@@ -476,6 +495,15 @@
 				B7C8358922281CB200CF3360 /* en */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B7B3A17E237C09BC009667CF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7B3A17D237C09BC009667CF /* en */,
+				B7B3A17F237C09CC009667CF /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -623,7 +651,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "1.1.4 beta";
+				MARKETING_VERSION = "1.2.0 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -664,7 +692,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "1.1.4 beta";
+				MARKETING_VERSION = "1.2.0 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
