@@ -10,19 +10,19 @@ import AppKit
 
 class TimePanelView: ViewController {
     /*
-     * Outlets
+     * MARK: Outlets
      */
     @IBOutlet weak var textFieldTime: NSTextField!
     
     
     /*
-     * Properties
+     * MARK: Properties
      */
     var timer: Timer?
     
     
     /*
-     * Functions
+     * MARK: Functions
      */
     override func viewWillAppear() {
 

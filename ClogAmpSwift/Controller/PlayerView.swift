@@ -46,6 +46,8 @@ class PlayerView: ViewController {
             self.currentSong!.loadPositions()
             self.avPlayer = Player(song: self.currentSong!)
             self.registerPeriodicUpdate()
+            let x = self.currentSong!.getValueAsString("path")
+            UserDefaults.standard.set(x, forKey: "lastLoadedSongURL")
             
             //Update UI
             //Text of selected song

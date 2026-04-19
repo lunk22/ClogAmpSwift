@@ -87,6 +87,24 @@ class SongTableView: ViewController {
         super.viewDidLoad()
     }
     
+    override func viewDidAppear() {
+        
+        //Load previously loaded Song (Song that was loaded as the app was last closed)
+        if let lastLoadedSongURL = UserDefaults.standard.string(forKey: "lastLoadedSongURL") {
+            if FileManager.default.fileExists(atPath: lastLoadedSongURL) {
+                let url  = URL(string: lastLoadedSongURL.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!
+                let song = Song.retrieveSong(path: url)
+                self.mainView?.playerView?.loadSong(song: song)
+                
+                DispatchQueue.main.async {
+                    self.mainView?.positionTableView?.refreshTable(single: true)
+                }
+            }
+        }
+        
+        super.viewDidAppear()
+    }
+    
     override func keyDown(with event: NSEvent) {
     
         switch event.keyCode {

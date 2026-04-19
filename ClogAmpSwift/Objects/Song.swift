@@ -41,7 +41,20 @@ class Song {
                self.positionsChanged
     }
     
-    //  Initializer
+    //MARK: Static Stuff
+    static var songDict: Dictionary<String, Song> = [:]
+    static func retrieveSong(path: URL) -> Song{
+        let stringPath = path.absoluteString.removingPercentEncoding!
+        if let song = songDict[stringPath] {
+            return song
+        }else{
+            let newSong = Song(path: path)
+            songDict[stringPath] = newSong
+            return newSong
+        }
+    }
+    
+    // Initializer
     init(path: URL) {
         //Initial Values
         self.path          = path
@@ -56,8 +69,10 @@ class Song {
         self.hasPositions  = false
         self.positions     = []
         
+        let stringPath = self.getValueAsString("path")
+        
         //Read ID3 Info
-        if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")) {
+        if let oId3Wrapper = Id3Wrapper(stringPath) {
             let map = oId3Wrapper.readBasicInfo()
             
             //Title
