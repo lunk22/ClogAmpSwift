@@ -152,7 +152,7 @@
                                                 <segue destination="Rx2-bm-TSd" kind="show" id="01v-Ll-Ffv"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Playlists" keyEquivalent="l" id="AWr-DK-5Se">
+                                        <menuItem title="Playlists" hidden="YES" keyEquivalent="l" id="AWr-DK-5Se">
                                             <connections>
                                                 <segue destination="0fg-Ju-sI0" kind="show" id="aEP-nP-8xB"/>
                                             </connections>

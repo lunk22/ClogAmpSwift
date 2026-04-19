@@ -139,7 +139,7 @@ class PDFViewController: NSViewController {
         let pdfPath = Database.getAssignedPDF(fileName)
         
         if pdfPath != nil {
-            self.openPdfInUi(URL(string: pdfPath!)!)
+            self.openPdfInUi(URL(fileURLWithPath: pdfPath!))
         } else if let savedPath = UserDefaults.standard.string(forKey: "pdfFolderPath") {
             DispatchQueue.global(qos: .background).async {
                 if self.aPdfUrls.count == 0 {
