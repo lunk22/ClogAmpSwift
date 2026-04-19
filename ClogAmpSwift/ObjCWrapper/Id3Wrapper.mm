@@ -145,7 +145,6 @@
         NSString *jumpTo;
         
         while (count < dataSize){
-            name = @"";
             comment = @"";
             jumpTo = @"";
             

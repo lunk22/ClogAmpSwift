@@ -10,16 +10,21 @@ import AppKit
 
 class PositionTableView: NSViewController {
     
+    //MARK: Properties
     var fontSize        = 0
     var visible         = false
     var currentPosition = -1
     
+    var loopCount       = 0
+    
     weak var mainView: MainView?
     
-    //Outlets
+    //MARK: Outlets
     @IBOutlet weak var positionTable: TableView!
+    @IBOutlet weak var cbLoop: NSButton!
+    @IBOutlet weak var txtLoopTimes: NSTextField!
     
-    //Overrides
+    //MARK: Overrides
     override func viewDidLoad() {
         
         self.positionTable.selectionDelegate = self
@@ -33,6 +38,7 @@ class PositionTableView: NSViewController {
         
         super.viewDidLoad()
     }
+    
     override func keyDown(with event: NSEvent) {
         var positionIndex = -1
         
@@ -68,14 +74,16 @@ class PositionTableView: NSViewController {
             positionIndex += 10
         }
         
-        self.mainView?.playerView?.handlePositionSelected(positionIndex)
-        
         if(positionIndex < self.mainView?.playerView?.currentSong?.positions.count ?? 0){
             let indexSet = IndexSet(integer: positionIndex)
             self.positionTable.selectRowIndexes(indexSet, byExtendingSelection: false)
         }
+        
+        //Always use this one method to perform a position selection
+        self.handleSelectPosition(nil)
     }
     
+    //MARK: Custom Methods
     func refreshTable(single: Bool = false) {
         func performRefresh() {
             let selRow = self.positionTable.selectedRow
@@ -111,22 +119,42 @@ class PositionTableView: NSViewController {
                 }
                 
                 if((self.mainView?.playerView?.avPlayer?.isPlaying() ?? false ) && self.currentPosition != currentPosition){
-                    self.currentPosition = currentPosition
-                    performRefresh()
+                    if self.cbLoop.state == NSControl.StateValue.on {
+                        self.loopCount += 1
+                        
+                        if self.loopCount >= self.txtLoopTimes.integerValue {
+                            self.cbLoop.state = NSControl.StateValue.off
+                        }
+                        
+                        self.mainView?.playerView?.handlePositionSelected(self.currentPosition)
+                    }else{
+                        self.cbLoop.state = NSControl.StateValue.off
+                        self.currentPosition = currentPosition
+                        performRefresh()
+                    }
                 }
             }
         }else{
             //Single Update
             performRefresh()
         }
-        
-        
     }
     
-    //UI Selectors
-    @IBAction func handleSelectPosition(_ sender: NSTableView) {
+    //MARK: UI Selectors
+    @IBAction func handleSelectPosition(_ sender: NSTableView?) {
+        /*
+         Position selected:
+         - reset loop count
+         - remembered selected position as the current one
+         - refresh once to get rid of the orange highlight for a potentially old row
+           => refreshTable evaluates currentPosition. If it fits the current time, no update is triggered => old highligt would stay
+        */
+        self.loopCount = 0
+        self.currentPosition = self.positionTable.selectedRow
+        self.refreshTable(single: true)
         self.mainView?.playerView?.handlePositionSelected(self.positionTable.selectedRow)
     }
+    
     @IBAction func handleAddPosition(_ sender: NSButton) {
         if let song = self.mainView?.playerView?.currentSong {
             var currentTime = self.mainView?.playerView?.avPlayer?.getCurrentTime() ?? 0 //Seconds
@@ -136,6 +164,7 @@ class PositionTableView: NSViewController {
             self.refreshTable(single: true)
         }
     }
+    
     @IBAction func handleRemovePosition(_ sender: NSButton) {
         if self.positionTable.selectedRow < 0 {
             return
@@ -154,12 +183,14 @@ class PositionTableView: NSViewController {
         
         UserDefaults.standard.set(self.fontSize, forKey: "positionTableFontSize")
     }
+    
     @IBAction func handleDecreaseTextSize(_ sender: NSButton) {
         self.fontSize -= 1
         self.refreshTable(single: true)
         
         UserDefaults.standard.set(self.fontSize, forKey: "positionTableFontSize")
     }
+    
     @IBAction func handleSetTime(_ sender: NSButton) {
         let posIndex = self.positionTable.selectedRow
         if posIndex < 0 {
@@ -172,6 +203,7 @@ class PositionTableView: NSViewController {
             self.refreshTable(single: true)
         }
     }
+    
     @IBAction func importFromXml(_ sender: NSButton) {
         let openDialog = NSOpenPanel();
         openDialog.title                   = "Import Positions"
@@ -194,6 +226,7 @@ class PositionTableView: NSViewController {
             }
         }
     }
+    
     @IBAction func exportToXml(_ sender: NSButton) {
         if let song = self.mainView?.playerView?.currentSong {
             let saveDialog = NSSavePanel()
@@ -241,6 +274,7 @@ class PositionTableView: NSViewController {
             }
         }
     }
+    
     @IBAction func onEndEditing(_ sender: NSTextField) {
         let iRow = self.positionTable.row(for: sender)
         let iCol = self.positionTable.column(for: sender)
@@ -298,6 +332,12 @@ class PositionTableView: NSViewController {
                 return
             }
         }
+    }
+    
+    @IBAction func handleLoopChanged(_ sender: NSButton) {
+//        if sender.state == NSControl.StateValue.on {
+            self.loopCount = 0
+//        }
     }
 }
 
