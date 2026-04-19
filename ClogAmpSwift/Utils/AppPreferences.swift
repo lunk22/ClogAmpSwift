@@ -19,8 +19,7 @@ class AppPreferences {
     }
 
     static var addPositionOffset: Int {
-        var prefAddPositionOffset = UserDefaults.standard.integer(forKey: "prefAddPositionOffset")
-        return prefAddPositionOffset
+        return UserDefaults.standard.integer(forKey: "prefAddPositionOffset")
     }
 
     static var appearance: Int {
@@ -102,6 +101,33 @@ class AppPreferences {
     
     static var playPositionOnSelection: Bool {
         return UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")
+    }
+    
+    static var positionHighlight: Bool {
+        if UserDefaults.standard.value(forKey: "prefHighlightPosition") == nil {
+            UserDefaults.standard.set(true, forKey: "prefHighlightPosition")
+        }
+        return UserDefaults.standard.bool(forKey: "prefHighlightPosition")
+    }
+    
+    static var positionHighlightColor: NSColor {
+        if let data = UserDefaults.standard.data(forKey: "prefPositionHighlightColor") {
+            if let color = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSColor.self, from: data) {
+                return color as NSColor
+            }
+        }
+        
+        return NSColor.systemOrange
+    }
+    
+    static var positionTextColor: NSColor {
+        if let data = UserDefaults.standard.data(forKey: "prefPositionTextColor") {
+            if let color = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSColor.self, from: data) {
+                return color as NSColor
+            }
+        }
+        
+        return NSColor.black
     }
     
     static var positionTableFontSize: Int {

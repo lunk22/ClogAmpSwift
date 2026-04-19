@@ -607,11 +607,11 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 textField.backgroundColor = NSColor.controlColor
                 textField.textColor       = NSColor.controlTextColor
 
-                if !PlayerAudioEngine.shared.isStopped() {
+                if AppPreferences.positionHighlight && !PlayerAudioEngine.shared.isStopped() {
                     if(self.currentPosition == row){
                         textField.drawsBackground = true
-                        textField.backgroundColor = NSColor.systemOrange
-                        textField.textColor       = NSColor.black
+                        textField.backgroundColor = AppPreferences.positionHighlightColor
+                        textField.textColor       = AppPreferences.positionTextColor
                     }
                 }
 
