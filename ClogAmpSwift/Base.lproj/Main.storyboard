@@ -71,11 +71,7 @@
                                                 <segue destination="kFC-bL-dcm" kind="show" id="xku-6Z-S4A"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Select Song" keyEquivalent="s" id="qeD-AF-xKl">
-                                            <connections>
-                                                <action selector="handleSongSelected:" target="Ady-hI-5gd" id="QeL-db-kgi"/>
-                                            </connections>
-                                        </menuItem>
+                                        <menuItem title="Edit Song" keyEquivalent="e" id="qeD-AF-xKl"/>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -836,11 +832,11 @@
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Songs" identifier="songs" id="84A-Vs-Rhv">
-                                        <view key="view" ambiguous="YES" id="nyG-NY-YAM">
+                                        <view key="view" id="nyG-NY-YAM">
                                             <rect key="frame" x="10" y="33" width="1066" height="394"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <containerView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8q-2v-WEP">
+                                                <containerView translatesAutoresizingMaskIntoConstraints="NO" id="W8q-2v-WEP">
                                                     <rect key="frame" x="3" y="3" width="1060" height="388"/>
                                                     <connections>
                                                         <segue destination="uTS-cM-QNI" kind="embed" id="Oul-NZ-EIj"/>
@@ -858,11 +854,11 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Positions" identifier="positions" id="ruU-r9-Lws">
-                                        <view key="view" id="eai-KZ-jSO">
+                                        <view key="view" ambiguous="YES" id="eai-KZ-jSO">
                                             <rect key="frame" x="10" y="33" width="1066" height="394"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <containerView translatesAutoresizingMaskIntoConstraints="NO" id="g8s-sr-BkS">
+                                                <containerView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8s-sr-BkS">
                                                     <rect key="frame" x="3" y="3" width="1060" height="388"/>
                                                     <connections>
                                                         <segue destination="ogj-Ej-2Vt" kind="embed" id="oCm-4b-lXT"/>
@@ -1189,7 +1185,7 @@
                                     <rect key="frame" x="1" y="0.0" width="970" height="198"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" typeSelect="NO" autosaveName="songTable" rowSizeStyle="automatic" headerView="pnK-Hc-SKf" viewBased="YES" id="5qV-u3-dBg">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" typeSelect="NO" autosaveName="songTable" rowSizeStyle="automatic" headerView="pnK-Hc-SKf" viewBased="YES" id="5qV-u3-dBg" customClass="TableView" customModule="ClogAmpSwift" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="970" height="173"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1557,7 +1553,7 @@
                                     <rect key="frame" x="1" y="0.0" width="987" height="261"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" typeSelect="NO" autosaveName="positionTable" rowSizeStyle="automatic" headerView="ap9-K0-d2M" viewBased="YES" id="02w-V8-VKM">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" typeSelect="NO" autosaveName="positionTable" rowSizeStyle="automatic" headerView="ap9-K0-d2M" viewBased="YES" id="02w-V8-VKM" customClass="TableView" customModule="ClogAmpSwift" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="987" height="236"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="0.0" height="2"/>

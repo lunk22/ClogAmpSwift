@@ -8,7 +8,7 @@
 
 import AppKit
 
-class SongTableView: NSViewController {
+class SongTableView: ViewController {
     
     var aSongs         = [Song]()
     var aSongsForTable = [Song]()
@@ -21,12 +21,15 @@ class SongTableView: NSViewController {
     weak var mainView: MainView?
     
     //Outlets
-    @IBOutlet weak var songTable: NSTableView!
+    @IBOutlet weak var songTable: TableView!
     @IBOutlet weak var searchField: NSTextField!
     @IBOutlet weak var directoryLabel: NSTextField!
-    
+
     //Overrides
     override func viewDidLoad() {
+        
+        self.songTable.selectionDelegate = self
+        
         self.fontSize = UserDefaults.standard.integer(forKey: "songTableFontSize")
         if(self.fontSize == 0){
             self.fontSize = 12
@@ -34,7 +37,7 @@ class SongTableView: NSViewController {
         
         //In case of first run, set title and ascending. In case the app already ran at least once, nothing changes the sort here
         self.songTable.sortDescriptors = [NSSortDescriptor(key: self.sSortBy, ascending: self.bSortAsc)]
-        
+
         super.viewDidLoad()
     }
     
@@ -63,7 +66,7 @@ class SongTableView: NSViewController {
     func setMusicDirectory(_ dir: String){
         DispatchQueue.global(qos: .background).async {
             
-            self.aSongs = FileSystemUtils.readFolderContentsAsSong(sPath: dir)
+            self.aSongs = FileSystemUtils.readFolderContentsAsSong(sPath: dir, oView: self)
             
             if(self.aSongs.count > 0){
                 self.aSongs[0].loadPositions(true)
@@ -128,8 +131,7 @@ class SongTableView: NSViewController {
         self.songTable.selectRowIndexes([selRow], byExtendingSelection: false)
     }
     
-    //UI Selectors
-    @IBAction func handleSongSelected(_ sender: Any) {
+    func loadSelectedSong() {
         if(self.songTable.selectedRow >= 0) {
             self.mainView?.playerView?.loadSong(song: self.aSongsForTable[self.songTable.selectedRow])
             
@@ -137,6 +139,11 @@ class SongTableView: NSViewController {
                 self.mainView?.positionTableView?.refreshTable()
             }
         }
+    }
+    
+    //UI Selectors
+    @IBAction func handleSongSelected(_ sender: Any) {
+        self.loadSelectedSong()
     }
     
     @IBAction func handleSelectMusicDirectory(_ sender: Any) {
@@ -223,6 +230,14 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
         
         song.saveChanges()
     }
+}
+
+extension SongTableView: TableViewDelegate {
+    
+    func rowSelected() {
+        self.loadSelectedSong()
+    }
+    
 }
 
 extension SongTableView: NSTextFieldDelegate {

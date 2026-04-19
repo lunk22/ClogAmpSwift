@@ -6,7 +6,8 @@
 //  MIT License
 //
 
-import Foundation
+import AppKit
+
 class FileSystemUtils {
     static func readFolderContentsAsURL(sPath: String) -> [URL] {
         /*func stringByAddingPercentEncodingForRFC3986(_ in: String) -> String? {
@@ -37,7 +38,7 @@ class FileSystemUtils {
         return aFileURLs
     }
     
-    static func readFolderContentsAsSong(sPath: String) -> [Song] {
+    static func readFolderContentsAsSong(sPath: String, oView: ViewController) -> [Song] {        
         var aSongs = [Song]()
         for url in readFolderContentsAsURL(sPath: sPath) {
             aSongs.append(Song(path: url))
