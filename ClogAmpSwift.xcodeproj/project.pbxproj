@@ -17,7 +17,25 @@
 		50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D872081D68100B7C347 /* PlayerView.swift */; };
 		50DC6D8F2081F06600B7C347 /* PlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */; };
 		B70E24BE21F5E5E700387D0A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E24BD21F5E5E700387D0A /* View.swift */; };
+		B7BD8ED821F74C2500532C1A /* libid3-3.8.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BD8ED721F74C2400532C1A /* libid3-3.8.3.0.0.dylib */; };
+		B7BD8EEB21F754D600532C1A /* libid3-3.8.3.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B7BD8ED721F74C2400532C1A /* libid3-3.8.3.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */; };
+		B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1A21F9A87E00532C1A /* Position.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B7BD8EEC21F754D600532C1A /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B7BD8EEB21F754D600532C1A /* libid3-3.8.3.0.0.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		50043ED42080C76C0025DC2D /* FileSystemUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemUtils.swift; sourceTree = "<group>"; };
@@ -33,6 +51,25 @@
 		50DC6D872081D68100B7C347 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDelegate.swift; sourceTree = "<group>"; };
 		B70E24BD21F5E5E700387D0A /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClogAmpSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		B7BD8ED721F74C2400532C1A /* libid3-3.8.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libid3-3.8.3.0.0.dylib"; path = "ClogAmpSwift/libid3-3.8.3.0.0.dylib"; sourceTree = SOURCE_ROOT; };
+		B7BD8F0621F7597800532C1A /* id3lib_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id3lib_frame.h; sourceTree = "<group>"; };
+		B7BD8F0721F7597800532C1A /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		B7BD8F0821F7597800532C1A /* reader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		B7BD8F0921F7597800532C1A /* sized_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sized_types.h; sourceTree = "<group>"; };
+		B7BD8F0A21F7597800532C1A /* tag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tag.h; sourceTree = "<group>"; };
+		B7BD8F0B21F7597800532C1A /* field.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = field.h; sourceTree = "<group>"; };
+		B7BD8F0C21F7597800532C1A /* id3lib_strings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id3lib_strings.h; sourceTree = "<group>"; };
+		B7BD8F0D21F7597800532C1A /* globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = globals.h; sourceTree = "<group>"; };
+		B7BD8F0E21F7597800532C1A /* writer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		B7BD8F0F21F7597800532C1A /* readers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = readers.h; sourceTree = "<group>"; };
+		B7BD8F1021F7597800532C1A /* misc_support.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = misc_support.h; sourceTree = "<group>"; };
+		B7BD8F1121F7597800532C1A /* id3lib_streams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id3lib_streams.h; sourceTree = "<group>"; };
+		B7BD8F1221F7597800532C1A /* writers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = writers.h; sourceTree = "<group>"; };
+		B7BD8F1321F7597900532C1A /* id3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id3.h; sourceTree = "<group>"; };
+		B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Id3Wrapper.mm; sourceTree = "<group>"; };
+		B7BD8F1921F7611000532C1A /* Id3Wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Id3Wrapper.h; sourceTree = "<group>"; };
+		B7BD8F1A21F9A87E00532C1A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7BD8ED821F74C2500532C1A /* libid3-3.8.3.0.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +103,7 @@
 		50A37BA9207FF03D0020E218 /* ClogAmpSwift */ = {
 			isa = PBXGroup;
 			children = (
+				B7BD8ED321F73E4E00532C1A /* ObjCWrapper */,
 				B70E24BC21F5E5CC00387D0A /* CustomClasses */,
 				50DC6D8D2081F03E00B7C347 /* Delegates */,
 				50DC6D8A2081DA4B00B7C347 /* Objects */,
@@ -73,6 +112,7 @@
 				50A37BB0207FF03E0020E218 /* Main.storyboard */,
 				50A37BAA207FF03D0020E218 /* AppDelegate.swift */,
 				50A37BAE207FF03E0020E218 /* Assets.xcassets */,
+				B7BD8ED721F74C2400532C1A /* libid3-3.8.3.0.0.dylib */,
 				50A37BB3207FF03E0020E218 /* Info.plist */,
 				50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */,
 			);
@@ -93,6 +133,7 @@
 			children = (
 				504E5FA32080F4E0003DBA66 /* Song.swift */,
 				50DC6D852081D22F00B7C347 /* Model.swift */,
+				B7BD8F1A21F9A87E00532C1A /* Position.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -121,6 +162,38 @@
 			path = CustomClasses;
 			sourceTree = "<group>";
 		};
+		B7BD8ED321F73E4E00532C1A /* ObjCWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				B7BD8F0521F7597800532C1A /* id3 */,
+				B7BD8F1321F7597900532C1A /* id3.h */,
+				B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */,
+				B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */,
+				B7BD8F1921F7611000532C1A /* Id3Wrapper.h */,
+			);
+			path = ObjCWrapper;
+			sourceTree = "<group>";
+		};
+		B7BD8F0521F7597800532C1A /* id3 */ = {
+			isa = PBXGroup;
+			children = (
+				B7BD8F0621F7597800532C1A /* id3lib_frame.h */,
+				B7BD8F0721F7597800532C1A /* utils.h */,
+				B7BD8F0821F7597800532C1A /* reader.h */,
+				B7BD8F0921F7597800532C1A /* sized_types.h */,
+				B7BD8F0A21F7597800532C1A /* tag.h */,
+				B7BD8F0B21F7597800532C1A /* field.h */,
+				B7BD8F0C21F7597800532C1A /* id3lib_strings.h */,
+				B7BD8F0D21F7597800532C1A /* globals.h */,
+				B7BD8F0E21F7597800532C1A /* writer.h */,
+				B7BD8F0F21F7597800532C1A /* readers.h */,
+				B7BD8F1021F7597800532C1A /* misc_support.h */,
+				B7BD8F1121F7597800532C1A /* id3lib_streams.h */,
+				B7BD8F1221F7597800532C1A /* writers.h */,
+			);
+			path = id3;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,6 +204,7 @@
 				50A37BA3207FF03D0020E218 /* Sources */,
 				50A37BA4207FF03D0020E218 /* Frameworks */,
 				50A37BA5207FF03D0020E218 /* Resources */,
+				B7BD8EEC21F754D600532C1A /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -205,6 +279,8 @@
 				50A37BAD207FF03D0020E218 /* MainView.swift in Sources */,
 				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
 				50DC6D8F2081F06600B7C347 /* PlayerDelegate.swift in Sources */,
+				B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */,
+				B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,19 +415,34 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ClogAmpSwift/ObjCWrapper/**",
+				);
 				INFOPLIST_FILE = ClogAmpSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ClogAmpSwift",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ClogAmpSwift/ObjCWrapper/ClogAmpSwift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ClogAmpSwift/ObjCWrapper/**",
+				);
 			};
 			name = Debug;
 		};
@@ -359,19 +450,33 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ClogAmpSwift/ObjCWrapper/**",
+				);
 				INFOPLIST_FILE = ClogAmpSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ClogAmpSwift",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ClogAmpSwift/ObjCWrapper/ClogAmpSwift-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ClogAmpSwift/ObjCWrapper/**",
+				);
 			};
 			name = Release;
 		};
