@@ -126,6 +126,7 @@
 		B7BD8F1921F7611000532C1A /* Id3Wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Id3Wrapper.h; sourceTree = "<group>"; };
 		B7BD8F1A21F9A87E00532C1A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		B7C8358322250E5700CF3360 /* AppIconBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIconBlue.icns; sourceTree = "<group>"; };
+		B7C8358522280FC200CF3360 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player-AVAudioPlayer.swift"; sourceTree = "<group>"; };
 		B7D9C0622214513B00A70F4A /* SongHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongHistoryItem.h; sourceTree = "<group>"; };
 		B7D9C0632214513B00A70F4A /* SongHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongHistoryItem.m; sourceTree = "<group>"; };
@@ -421,6 +422,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				50A37BB1207FF03E0020E218 /* Base */,
+				B7C8358522280FC200CF3360 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -432,6 +434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -492,6 +495,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
