@@ -27,6 +27,7 @@ class PositionTableView: NSViewController {
     @IBOutlet weak var positionTable: TableView!
     @IBOutlet weak var cbLoop: NSButton!
     @IBOutlet weak var txtLoopTimes: NSTextField!
+    @IBOutlet weak var cbAutoscroll: NSButton!
     
     //MARK: Overrides
     override func viewDidLoad() {
@@ -462,6 +463,10 @@ extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
                         textField.drawsBackground = true
                         textField.backgroundColor = NSColor.systemOrange
                         textField.textColor       = NSColor.black
+                        
+                        if self.cbAutoscroll.state == NSControl.StateValue.on {
+                            self.positionTable.scrollRowToVisible(row: row, animated: true)
+                        }
                     }
                 }
                 
