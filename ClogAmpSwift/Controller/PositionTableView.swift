@@ -737,4 +737,8 @@ extension PositionTableView: TableViewDelegate {
         self.handlePositionSelected(self.positionTable.selectedRow)
     }
     
+    func rightClicked() {
+        // Do nothing
+    }
+    
 }

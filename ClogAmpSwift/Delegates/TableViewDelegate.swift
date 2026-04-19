@@ -9,4 +9,6 @@ import AppKit
 
 protocol TableViewDelegate: NSTableViewDelegate {
     func rowSelected()
+    
+    func rightClicked()
 }

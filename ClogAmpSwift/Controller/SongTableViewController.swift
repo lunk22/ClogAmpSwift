@@ -1,14 +1,13 @@
 //
-//  SongTableView.swift
+//  SongTableViewController.swift
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 31.01.19.
-//  MIT License
 //
 
 import AppKit
 
-class SongTableView: ViewController {
+class SongTableViewController: ViewController {
     
     // MARK: Properties
     var aSongs         = [Song]()
@@ -385,7 +384,7 @@ class SongTableView: ViewController {
     }
 }
 
-extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
+extension SongTableViewController: NSTableViewDelegate, NSTableViewDataSource {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
@@ -447,15 +446,52 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
 //    }
 }
 
-extension SongTableView: TableViewDelegate {
+extension SongTableViewController: TableViewDelegate {
     
     func rowSelected() {
         self.loadSelectedSong()
     }
     
+    func rightClicked() {
+        let menu = NSMenu()
+        
+        let menuItemLoad = NSMenuItem(title: NSLocalizedString("menuLoadSong", comment: ""), action: #selector(menuLoadSong(_:)), keyEquivalent: "")
+        let menuItemFinder = NSMenuItem(title: NSLocalizedString("menuOpenInFinder", comment: ""), action: #selector(menuOpenInFinder(_:)), keyEquivalent: "")
+        
+        menuItemLoad.isEnabled = self.songTable.clickedRow >= 0
+        menuItemFinder.isEnabled = self.songTable.clickedRow >= 0
+        
+        menuItemLoad.image = NSImage(named: NSImage.touchBarPlayTemplateName)
+        menuItemFinder.image = NSImage(named: NSImage.pathTemplateName)
+        
+        menu.addItem(menuItemLoad)
+        menu.addItem(menuItemFinder)
+        menu.delegate = self
+        
+        self.songTable.menu = menu
+    }
+    
+    @objc func menuLoadSong(_ sender: AnyObject) {
+        self.loadSelectedSong()
+    }
+    
+    @objc func menuOpenInFinder(_ sender: AnyObject) {
+        if self.songTable.selectedRow >= 0 {
+            let song = self.aSongsForTable[self.songTable.selectedRow]
+            NSWorkspace.shared.activateFileViewerSelecting([song.filePathAsUrl])
+        }
+    }
+    
 }
 
-extension SongTableView: NSTextFieldDelegate {
+extension SongTableViewController: NSMenuDelegate {
+    func menuWillOpen(_ menu: NSMenu) {
+        let clickedRow: Int = self.songTable.clickedRow
+        self.songTable.selectRowIndexes(IndexSet(integer: clickedRow), byExtendingSelection: false)
+    }
+}
+
+extension SongTableViewController: NSTextFieldDelegate {
     //For the search field
     
     func controlTextDidChange(_ obj: Notification) {

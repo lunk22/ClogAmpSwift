@@ -20,6 +20,14 @@ class TableView: NSTableView, NSTableViewDataSource, NSTableViewDelegate, NSText
         }
     }
     
+    override func rightMouseDown(with event: NSEvent) {
+        super.rightMouseDown(with: event)
+        
+        if(self.selectedRow >= 0) {
+            selectionDelegate?.rightClicked()
+        }
+    }
+    
     func scrollRowToVisible(row: Int, animated: Bool) {
         //See https://stackoverflow.com/questions/11767557/scroll-an-nstableview-so-that-a-row-is-centered
         if animated {

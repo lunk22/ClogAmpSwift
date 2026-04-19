@@ -2461,7 +2461,7 @@ IA
         <!--Song Table-->
         <scene sceneID="0p8-ZZ-9fE">
             <objects>
-                <viewController title="Song Table" showSeguePresentationStyle="single" id="uTS-cM-QNI" customClass="SongTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Song Table" showSeguePresentationStyle="single" id="uTS-cM-QNI" customClass="SongTableViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" misplaced="YES" id="b06-Er-8KR">
                         <rect key="frame" x="0.0" y="0.0" width="989" height="122"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
