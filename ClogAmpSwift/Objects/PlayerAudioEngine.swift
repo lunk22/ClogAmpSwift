@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Freundlich, Pascal on 16.11.23.
-//  Copyright © 2023 Pascal Freundlich. All rights reserved.
 //
 
 import Foundation
@@ -207,15 +206,17 @@ class PlayerAudioEngine {
         }
         
         MPRemoteCommandCenter.shared().skipForwardCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [Settings.skipForward as NSNumber]
+        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [Settings.skipForward as NSNumber] // Prevents the UI from showing a number
         MPRemoteCommandCenter.shared().skipForwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            print("MP Remote Command: Skip Forward")
             self.jump(Settings.skipForward)
             return .success
         }
         
         MPRemoteCommandCenter.shared().skipBackwardCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [Settings.skipBack as NSNumber]
+        MPRemoteCommandCenter.shared().skipBackwardCommand.preferredIntervals = [Settings.skipBack as NSNumber] // Prevents the UI from showing a number
         MPRemoteCommandCenter.shared().skipBackwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            print("MP Remote Command: Skip Back")
             self.jump((Settings.skipBack * -1))
             return .success
         }
@@ -227,17 +228,17 @@ class PlayerAudioEngine {
             return .success
         }
         
-        MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().nextTrackCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-            self.jump(Settings.skipForward)
-            return .success
-        }
+        MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = false
+//        MPRemoteCommandCenter.shared().nextTrackCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+//            self.jump(Settings.skipForward)
+//            return .success
+//        }
         
-        MPRemoteCommandCenter.shared().previousTrackCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().previousTrackCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-            self.jump((Settings.skipBack * -1))
-            return .success
-        }
+        MPRemoteCommandCenter.shared().previousTrackCommand.isEnabled = false
+//        MPRemoteCommandCenter.shared().previousTrackCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+//            self.jump((Settings.skipBack * -1))
+//            return .success
+//        }
         
         // .playing enables the media keys initially. Set it to .stopped immediately after to reflect it properly in the command center UI
         MPNowPlayingInfoCenter.default().playbackState = .playing

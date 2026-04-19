@@ -12,6 +12,8 @@
 		50113FF9272AF58A00EEB9A1 /* libid3-3.8.3.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		50113FFB27324F0A00EEB9A1 /* SongLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50113FFA27324F0A00EEB9A1 /* SongLog.swift */; };
 		5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017716821FF58C700D8A95A /* TimePanelView.swift */; };
+		502D65532CF9C690007C4E81 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502D65522CF9C690007C4E81 /* HyperlinkTextField.swift */; };
+		502D65552CF9CC86007C4E81 /* SettingsAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502D65542CF9CC86007C4E81 /* SettingsAboutViewController.swift */; };
 		504E5FA42080F4E0003DBA66 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E5FA32080F4E0003DBA66 /* Song.swift */; };
 		50A09BAC22104B0A00365544 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAB22104B0A00365544 /* TableView.swift */; };
 		50A09BAE22104BA800365544 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAD22104BA800365544 /* TableViewDelegate.swift */; };
@@ -41,7 +43,6 @@
 		B73E0DF82C5B67FD0064D4A3 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E0DF72C5B67FD0064D4A3 /* NSImage.swift */; };
 		B73E0DFA2C5CD3B40064D4A3 /* HertzTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E0DF92C5CD3B40064D4A3 /* HertzTransformer.swift */; };
 		B74E7FE623794E8C00569664 /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = B74E7FE523794E8C00569664 /* ObjC.m */; };
-		B74E7FEB23795C6C00569664 /* B612-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = B74E7FE823795A0500569664 /* B612-Regular.ttf */; };
 		B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75955852216D1A300D11E3F /* TimePanelWindow.swift */; };
 		B75955882216DD5800D11E3F /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75955872216DD5800D11E3F /* MainWindow.swift */; };
 		B76C88CE2C57CB7200D68A87 /* EQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76C88CD2C57CB7200D68A87 /* EQView.swift */; };
@@ -91,7 +92,6 @@
 			files = (
 				B7D7C4382B1A1E1F007DCA96 /* PrimeAV.mp3 in CopyFiles */,
 				B7F48C9E238FEA0300C3DB01 /* Click.mp3 in CopyFiles */,
-				B74E7FEB23795C6C00569664 /* B612-Regular.ttf in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +116,8 @@
 		50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libid3-3.8.3.0.0.dylib"; sourceTree = "<group>"; };
 		50113FFA27324F0A00EEB9A1 /* SongLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLog.swift; sourceTree = "<group>"; };
 		5017716821FF58C700D8A95A /* TimePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePanelView.swift; sourceTree = "<group>"; };
+		502D65522CF9C690007C4E81 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
+		502D65542CF9CC86007C4E81 /* SettingsAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAboutViewController.swift; sourceTree = "<group>"; };
 		504E5FA32080F4E0003DBA66 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		50A09BAB22104B0A00365544 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		50A09BAD22104BA800365544 /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
@@ -148,7 +150,6 @@
 		B73E0DF92C5CD3B40064D4A3 /* HertzTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzTransformer.swift; sourceTree = "<group>"; };
 		B74E7FE423794E5500569664 /* ObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjC.h; sourceTree = "<group>"; };
 		B74E7FE523794E8C00569664 /* ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjC.m; sourceTree = "<group>"; };
-		B74E7FE823795A0500569664 /* B612-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "B612-Regular.ttf"; sourceTree = "<group>"; };
 		B75955852216D1A300D11E3F /* TimePanelWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePanelWindow.swift; sourceTree = "<group>"; };
 		B75955872216DD5800D11E3F /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		B76C88CD2C57CB7200D68A87 /* EQView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EQView.swift; sourceTree = "<group>"; };
@@ -250,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				B713648B2B15F295009B800F /* Extensions */,
-				B74E7FE7237959D100569664 /* Fonts */,
 				B7BD8ED321F73E4E00532C1A /* ObjCWrapper */,
 				B70E24BC21F5E5CC00387D0A /* CustomClasses */,
 				50DC6D8D2081F03E00B7C347 /* Delegates */,
@@ -295,6 +295,7 @@
 				B7B46604237042EB00AA9419 /* PDFView.swift */,
 				B720A3022CF74AD5000C73D2 /* SettingsTabViewController.swift */,
 				50FDB7E02CF79693001A3054 /* SettingsGeneralViewController.swift */,
+				502D65542CF9CC86007C4E81 /* SettingsAboutViewController.swift */,
 				50FDB7E42CF7BCD1001A3054 /* SettingsPositionsViewController.swift */,
 				50FDB7E62CF87413001A3054 /* SettingsIconViewController.swift */,
 			);
@@ -342,6 +343,7 @@
 		B70E24BC21F5E5CC00387D0A /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				502D65522CF9C690007C4E81 /* HyperlinkTextField.swift */,
 				50A09BAB22104B0A00365544 /* TableView.swift */,
 				B7B3A188237EBCC0009667CF /* Window.swift */,
 				B7B3A18A237EC209009667CF /* Panel.swift */,
@@ -359,14 +361,6 @@
 				50FDB7E22CF79C0F001A3054 /* UserDefaults.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		B74E7FE7237959D100569664 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				B74E7FE823795A0500569664 /* B612-Regular.ttf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B7B46606237046D800AA9419 /* Frameworks */ = {
@@ -526,6 +520,7 @@
 				50113FFB27324F0A00EEB9A1 /* SongLog.swift in Sources */,
 				B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */,
 				B7B3A179237BDC70009667CF /* SwiftPlaylist.swift in Sources */,
+				502D65532CF9C690007C4E81 /* HyperlinkTextField.swift in Sources */,
 				B74E7FE623794E8C00569664 /* ObjC.m in Sources */,
 				B7D141522382B1F30056B042 /* PasteboardWriter.swift in Sources */,
 				B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */,
@@ -546,6 +541,7 @@
 				B73E0DF82C5B67FD0064D4A3 /* NSImage.swift in Sources */,
 				B7B765372B0F3D6E0019BF7C /* Settings.swift in Sources */,
 				B75955882216DD5800D11E3F /* MainWindow.swift in Sources */,
+				502D65552CF9CC86007C4E81 /* SettingsAboutViewController.swift in Sources */,
 				B7A3A9C2221BE44400CA5FE8 /* CountdownWindow.swift in Sources */,
 				50A37BAD207FF03D0020E218 /* MainView.swift in Sources */,
 				B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */,

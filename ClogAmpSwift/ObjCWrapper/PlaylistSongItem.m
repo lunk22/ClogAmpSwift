@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 16.11.19.
-//  Copyright © 2019 Pascal Roessel. All rights reserved.
 //
 
 #import "PlaylistSongItem.h"

@@ -627,7 +627,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
             }
 
             if Settings.positionTableMonoFont {
-                textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
+                textField.font = NSFont.init(name: "Menlo", size: CGFloat(self.fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
             }
@@ -656,7 +656,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 cell.wraps = true
                 
                 if Settings.positionTableMonoFont {
-                    cell.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
+                    cell.font = NSFont.init(name: "Menlo", size: CGFloat(self.fontSize))
                 } else {
                     cell.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
                 }

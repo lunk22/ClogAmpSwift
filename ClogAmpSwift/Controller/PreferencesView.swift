@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 18.02.19.
-//  Copyright © 2019 Pascal Roessel. All rights reserved.
 //
 
 import AppKit

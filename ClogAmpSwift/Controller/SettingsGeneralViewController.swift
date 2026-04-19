@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Pascal Freundlich on 27.11.24.
-//  Copyright © 2024 Pascal Roessel. All rights reserved.
 //
 
 import AppKit
@@ -13,6 +12,7 @@ class SettingsGeneralViewController: NSViewController {
     
     // MARK: VARS
     @objc let defaults: UserDefaults = .standard
+    @objc let version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     
     // MARK: OUTLETS
     @IBOutlet weak var ddlbAppearance: NSComboBox!

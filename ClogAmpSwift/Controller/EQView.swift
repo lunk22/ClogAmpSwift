@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Freundlich, Pascal on 29.11.23.
-//  Copyright © 2023 Pascal Roessel. All rights reserved.
 //
 
 class EQView: ViewController {

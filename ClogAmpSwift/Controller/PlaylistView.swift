@@ -3,7 +3,6 @@
 //  ClogAmpSwift
 //
 //  Created by Roessel, Pascal on 12.11.19.
-//  Copyright © 2019 Pascal Roessel. All rights reserved.
 //
 
 import AppKit
@@ -284,7 +283,7 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
             
             
             if Settings.songTableMonoFont {
-                textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(fontSize))
+                textField.font = NSFont.init(name: "Menlo", size: CGFloat(fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(fontSize))
             }
