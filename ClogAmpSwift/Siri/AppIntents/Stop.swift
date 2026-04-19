@@ -11,14 +11,13 @@ import AppIntents
 
 @available(macOS 13.0, *)
 struct Stop: AppIntent {
-    static let intentClassName = "Stop"
-
     static var title: LocalizedStringResource = "Stop song"
     static var description = IntentDescription("Stop the currently playing song")
     static var openAppWhenRun = false
 
     @MainActor
     func perform() async throws -> some IntentResult {
+        guard PlayerAudioEngine.shared.song != nil else { return .result() }
         PlayerAudioEngine.shared.stop()
         return .result()
     }

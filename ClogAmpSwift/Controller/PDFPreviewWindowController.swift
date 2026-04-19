@@ -50,9 +50,9 @@ class PDFPreviewWindowController: NSWindowController {
             }
         }
 
-        let saveButton = NSButton(title: "Save…", target: self, action: #selector(handleSave))
+        let saveButton = NSButton(title: NSLocalizedString("pdfSave", bundle: Bundle.main, comment: ""), target: self, action: #selector(handleSave))
         saveButton.keyEquivalent = "\r"
-        let closeButton = NSButton(title: "Close", target: self, action: #selector(handleClose))
+        let closeButton = NSButton(title: NSLocalizedString("pdfClose", bundle: Bundle.main, comment: ""), target: self, action: #selector(handleClose))
 
         let buttonStack = NSStackView(views: [closeButton, saveButton])
         buttonStack.orientation = .horizontal
@@ -81,7 +81,7 @@ class PDFPreviewWindowController: NSWindowController {
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.allowedContentTypes = [.pdf]
-        savePanel.nameFieldStringValue = fileName
+        savePanel.nameFieldStringValue = sanitizedFileName(fileName)
 
         guard let window = self.window else { return }
         savePanel.beginSheetModal(for: window) { [weak self] result in
@@ -116,6 +116,16 @@ class PDFPreviewWindowController: NSWindowController {
                 }
             }
         }
+    }
+
+    private func sanitizedFileName(_ name: String) -> String {
+        // Characters forbidden in macOS filenames or commonly problematic
+        let forbidden = CharacterSet(charactersIn: "/:\\?%*|\"<>")
+        let sanitized = name
+            .components(separatedBy: forbidden)
+            .joined(separator: "-")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        return sanitized.isEmpty ? "Export" : sanitized
     }
 
     @objc private func handleClose() {

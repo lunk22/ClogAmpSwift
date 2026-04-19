@@ -19,3 +19,17 @@
 "menuLoadSong" = "Load song";
 "menuOpenInFinder" = "Show in Finder";
 "menuDetermineBPM" = "Determine BPM";
+"importPositions" = "Import Positions";
+"exportPositions" = "Export Positions";
+"pdfSave" = "Save…";
+"pdfClose" = "Close";
+"pdfPreview" = "Preview";
+"pdfFont" = "Font";
+"pdfTitleSize" = "Title size (rem)";
+"pdfArtistSize" = "Artist size (rem)";
+"pdfSubheaderSize" = "Subheader size (rem)";
+"pdfNameSize" = "Name size (rem)";
+"pdfCommentSize" = "Description size (rem)";
+"pdfCellPadding" = "Cell padding (rem)";
+"pdfHeaderSpacing" = "Header spacing";
+"pdfResetDefaults" = "Reset to Defaults";

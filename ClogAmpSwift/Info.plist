@@ -44,6 +44,9 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>PlayFromBeginningIntent</string>
+		<string>PlayIntent</string>
+		<string>PauseIntent</string>
+		<string>StopIntent</string>
 	</array>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>

@@ -25,7 +25,7 @@ class SettingsPDFViewController: NSViewController {
     private let paddingField      = NSTextField()
     private let spacingStepper    = NSStepper()
     private let spacingField      = NSTextField()
-    private let resetButton       = NSButton(title: "Reset to Defaults", target: nil, action: nil)
+    private let resetButton = NSButton(title: NSLocalizedString("pdfResetDefaults", bundle: Bundle.main, comment: ""), target: nil, action: nil)
 
     private let previewWebView    = WKWebView()
 
@@ -79,14 +79,14 @@ class SettingsPDFViewController: NSViewController {
         controlsPanel.translatesAutoresizingMaskIntoConstraints = false
 
         let rows: [(String, NSView, NSView)] = [
-            ("Font",              fontPopUp,            NSView()),
-            ("Title size (rem)",  titleSizeField,       titleSizeStepper),
-            ("Artist size (rem)", artistSizeField,      artistSizeStepper),
-            ("Subheader size (rem)", subheaderSizeField, subheaderSizeStepper),
-            ("Name size (rem)",   nameSizeField,        nameSizeStepper),
-            ("Comment size (rem)", commentSizeField,    commentSizeStepper),
-            ("Cell padding (rem)", paddingField,        paddingStepper),
-            ("Header spacing",    spacingField,         spacingStepper),
+            (NSLocalizedString("pdfFont",          bundle: Bundle.main, comment: ""), fontPopUp,            NSView()),
+            (NSLocalizedString("pdfTitleSize",     bundle: Bundle.main, comment: ""), titleSizeField,       titleSizeStepper),
+            (NSLocalizedString("pdfArtistSize",    bundle: Bundle.main, comment: ""), artistSizeField,      artistSizeStepper),
+            (NSLocalizedString("pdfSubheaderSize", bundle: Bundle.main, comment: ""), subheaderSizeField,   subheaderSizeStepper),
+            (NSLocalizedString("pdfNameSize",      bundle: Bundle.main, comment: ""), nameSizeField,        nameSizeStepper),
+            (NSLocalizedString("pdfCommentSize",   bundle: Bundle.main, comment: ""), commentSizeField,     commentSizeStepper),
+            (NSLocalizedString("pdfCellPadding",   bundle: Bundle.main, comment: ""), paddingField,         paddingStepper),
+            (NSLocalizedString("pdfHeaderSpacing", bundle: Bundle.main, comment: ""), spacingField,         spacingStepper),
         ]
 
         var previousAnchor = controlsPanel.topAnchor
@@ -146,7 +146,7 @@ class SettingsPDFViewController: NSViewController {
         previewBorder.translatesAutoresizingMaskIntoConstraints = false
         previewBorder.addSubview(previewWebView)
 
-        let previewLabel = NSTextField(labelWithString: "Preview")
+        let previewLabel = NSTextField(labelWithString: NSLocalizedString("pdfPreview", bundle: Bundle.main, comment: ""))
         previewLabel.font = NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
         previewLabel.textColor = .secondaryLabelColor
         previewLabel.translatesAutoresizingMaskIntoConstraints = false

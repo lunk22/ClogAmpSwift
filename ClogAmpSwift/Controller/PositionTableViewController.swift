@@ -283,7 +283,7 @@ class PositionTableViewController: NSViewController {
     
     @IBAction func importFromXml(_ sender: NSButton) {
         let openDialog = NSOpenPanel();
-        openDialog.title                   = "Import Positions"
+        openDialog.title = NSLocalizedString("importPositions", bundle: Bundle.main, comment: "")
         openDialog.showsResizeIndicator    = true
         openDialog.showsHiddenFiles        = false
         openDialog.canCreateDirectories    = false
@@ -307,7 +307,7 @@ class PositionTableViewController: NSViewController {
     @IBAction func exportToXml(_ sender: NSButton) {
         if let song = self.mainView?.playerView?.currentSong {
             let saveDialog = NSSavePanel()
-            saveDialog.title                   = "Export Positions"
+            saveDialog.title = NSLocalizedString("exportPositions", bundle: Bundle.main, comment: "")
             saveDialog.showsResizeIndicator    = true
             saveDialog.showsHiddenFiles        = false
             saveDialog.canCreateDirectories    = true
@@ -511,7 +511,8 @@ class PositionTableViewController: NSViewController {
 
             sPdfHtml = sPdfHtml + " </table>"
 
-            createPDF(htmlString: sPdfHtml, fileName: song.title) { _ in }
+            let suggestedName = [song.title, song.artist].filter { !$0.isEmpty }.joined(separator: " - ")
+            createPDF(htmlString: sPdfHtml, fileName: suggestedName.isEmpty ? song.getValueAsString("fileName") : suggestedName) { _ in }
         }
     }
     
