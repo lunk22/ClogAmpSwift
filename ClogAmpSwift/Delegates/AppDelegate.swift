@@ -25,7 +25,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         }
-
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
