@@ -16,12 +16,12 @@ class Song {
     var title: String { didSet { self.titleChanged = true } }
     var artist: String { didSet { self.artistChanged = true } }
     var level: String { didSet { self.levelChanged = true } }
-    var duration: String
+    var duration: UInt
     var speed: Int { didSet { self.speedChanged = true } }
     var bpm: UInt { didSet { self.bpmChanged = true } }
     var volume: UInt { didSet { self.volumeChanged = true } }
     var hasPositions: Bool
-    var positions: Array<Position> { didSet { self.positionsChanged = true } }
+    var positions: Array<Position>
     
     var titleChanged: Bool = false
     var artistChanged: Bool = false
@@ -49,7 +49,7 @@ class Song {
         self.title         = path.deletingPathExtension().lastPathComponent
         self.artist        = ""
         self.level         = ""
-        self.duration      = ""
+        self.duration      = 0
         self.speed         = 0
         self.bpm           = 0
         self.volume        = 100
@@ -87,6 +87,8 @@ class Song {
                     }
                 }
             }
+            
+            self.duration = UInt(oId3Wrapper.readDuration())
 
 //            //Read BPM
 //            bpm = [Tools getBPMs:id3Tag];
@@ -107,7 +109,11 @@ class Song {
         case "level":
             return self.level
         case "duration":
-            return self.duration
+            let durMinutes = Int(Float(self.duration / 60).rounded(.down))
+            let durSeconds = Int(Double(self.duration).truncatingRemainder(dividingBy: 60))
+            
+            let pntTime = durSeconds >= 10 ? "\(durMinutes):\(durSeconds)" : "\(durMinutes):0\(durSeconds)"
+            return "\(pntTime)"
         case "speed":
             return "\(self.speed) %"
         case "bpm":
@@ -150,6 +156,7 @@ class Song {
         if(force){
             //Force read? => Free previously read positions
             self.positions = []
+            self.positionsChanged = false
         }
         
         //If positions have been read, don't do it again
@@ -180,17 +187,29 @@ class Song {
     func saveChanges() {
         if(!self.songChanged){ return; }
         
-        //Read ID3 Info
+        //Save ID3 Info
         if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){
+            //-----------------------
+            //------- Title ---------
+            //-----------------------
             if(self.titleChanged){
                 oId3Wrapper.saveTitle(self.title)
             }
+            //-----------------------
+            //------- Artist --------
+            //-----------------------
             if(self.artistChanged){
                 oId3Wrapper.saveArtist(self.artist)
             }
+            //-----------------------
+            //------- Level ---------
+            //-----------------------
             if(self.levelChanged){
                 oId3Wrapper.saveUserText("CloggingLevel", sValue: self.level)
             }
+            //-----------------------
+            //------- Speed ---------
+            //-----------------------
             if(self.speedChanged){
                 oId3Wrapper.saveUserText("LastTempo", sValue: "\(self.speed)")
             }
@@ -200,8 +219,33 @@ class Song {
 //            if(self.volumeChanged){
 //
 //            }
+            //-----------------------
+            //------ Positions ------
+            //-----------------------
             if(self.positionsChanged){
+                //Make sure they're in order
+                self.sortPositions()
                 
+                var posString = ""
+                
+                //Prepare for the id3 wrapper
+                for position in self.positions {
+                    if(posString != ""){
+                        posString.append("$LS") //$LS = Line Seperator
+                    }
+                    
+                    posString.append(position.name)
+                    posString.append("$CS") //$CS = Cell Seperator
+                    posString.append(position.comment)
+                    posString.append("$CS") //$CS = Cell Seperator
+                    posString.append(position.jumpTo)
+                    posString.append("$CS") //$CS = Cell Seperator
+                    posString.append("\(position.time)")
+                }
+                
+                print(posString)
+                
+                oId3Wrapper.savePositions(posString)
             }
             
             //Reset change flags
@@ -213,5 +257,9 @@ class Song {
             self.volumeChanged    = false
             self.positionsChanged = false
         }
+    }
+    
+    func sortPositions() {
+        self.positions.sort(by: { return $0.time < $1.time })
     }
 }

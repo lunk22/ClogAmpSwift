@@ -29,15 +29,21 @@ class SongTableView: ViewController {
     override func viewDidLoad() {
         
         self.songTable.selectionDelegate = self
+        self.songTable.delegate          = self
+        self.songTable.dataSource        = self
         
         self.fontSize = UserDefaults.standard.integer(forKey: "songTableFontSize")
         if(self.fontSize == 0){
             self.fontSize = 12
         }
+
+        if let musicPath = UserDefaults.standard.string(forKey: "musicFolderPath") {
+            self.setMusicDirectory(musicPath)
+        }
         
         //In case of first run, set title and ascending. In case the app already ran at least once, nothing changes the sort here
         self.songTable.sortDescriptors = [NSSortDescriptor(key: self.sSortBy, ascending: self.bSortAsc)]
-
+        
         super.viewDidLoad()
     }
     
@@ -160,6 +166,7 @@ class SongTableView: ViewController {
         if (dialog.runModal() == NSApplication.ModalResponse.OK) {
             if let result = dialog.url { // Pathname of the file
                 self.setMusicDirectory(result.path)
+                UserDefaults.standard.set(result.path, forKey: "musicFolderPath")
             }
         }
     }
@@ -176,6 +183,31 @@ class SongTableView: ViewController {
         self.refreshTable()
         
         UserDefaults.standard.set(self.fontSize, forKey: "songTableFontSize")
+    }
+    @IBAction func onEndEditing(_ sender: NSTextField) {
+        let iRow = self.songTable.row(for: sender)
+        let iCol = self.songTable.column(for: sender)
+        let oCol = self.songTable.tableColumns[iCol]
+        
+        let text = sender.stringValue
+        let identifier = oCol.identifier.rawValue
+        
+        let song = self.aSongsForTable[iRow]
+        
+        switch identifier {
+        case "title":
+            if song.title != text {
+                song.title = text
+                song.saveChanges()
+            }
+        case "artist":
+            if song.artist != text {
+                song.artist = text
+                song.saveChanges()
+            }
+        default:
+            return
+        }
     }
 }
 
@@ -211,24 +243,6 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
             self.sortSongs(by: oDesc.key!, ascending: oDesc.ascending )
         }
         
-    }
-    
-    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        let text = object ?? ""
-        let identifier = tableColumn!.identifier.rawValue
-        
-        let song = self.aSongsForTable[row]
-        
-        switch identifier {
-        case "title":
-            song.title = "\(text)"
-        case "artist":
-            song.artist = "\(text)"
-        default:
-            return
-        }
-        
-        song.saveChanges()
     }
 }
 

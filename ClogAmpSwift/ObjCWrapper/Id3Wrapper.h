@@ -11,6 +11,7 @@
 
 - (NSString *) readTitle;
 - (NSString *) readArtist;
+- (int) readDuration;
 - (NSString *) readUserText:(const char*)text;
 - (bool) hasPositions;
 - (NSString *) loadPositions;
@@ -18,7 +19,7 @@
 - (void) saveTitle:(NSString *)sValue;
 - (void) saveArtist:(NSString *)sValue;
 - (void) saveUserText:(NSString *)text sValue:(NSString *)sValue;
-- (void) savePositions:(NSString *)text sValue:(NSString *)sValue;
+- (void) savePositions:(NSString *)positionString;
 
 - (id)init:(NSString*)path;
 

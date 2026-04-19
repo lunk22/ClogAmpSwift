@@ -20,13 +20,15 @@
 		50A37BB2207FF03E0020E218 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A37BB0207FF03E0020E218 /* Main.storyboard */; };
 		50DC6D862081D22F00B7C347 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D852081D22F00B7C347 /* Model.swift */; };
 		50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D872081D68100B7C347 /* PlayerView.swift */; };
-		50DC6D8F2081F06600B7C347 /* PlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */; };
 		B70E24BE21F5E5E700387D0A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E24BD21F5E5E700387D0A /* View.swift */; };
 		B722991F2200223B00AEFA90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B722991E2200223B00AEFA90 /* ViewController.swift */; };
 		B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299202202C9FD00AEFA90 /* SongTableView.swift */; };
 		B72299232202D0EA00AEFA90 /* PositionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299222202D0EA00AEFA90 /* PositionTableView.swift */; };
 		B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */; };
 		B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1A21F9A87E00532C1A /* Position.swift */; };
+		B7D220EA2211C2AC00207F1D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D220E92211C2AC00207F1D /* Player.swift */; };
+		B7DDFCB122141B3600637831 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDFCB022141B3600637831 /* Tools.swift */; };
+		B7DDFCB322141F5F00637831 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DDFCB222141F5F00637831 /* Database.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,7 +61,6 @@
 		50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClogAmpSwift.entitlements; sourceTree = "<group>"; };
 		50DC6D852081D22F00B7C347 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		50DC6D872081D68100B7C347 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDelegate.swift; sourceTree = "<group>"; };
 		B70E24BD21F5E5E700387D0A /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		B722991E2200223B00AEFA90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B72299202202C9FD00AEFA90 /* SongTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableView.swift; sourceTree = "<group>"; };
@@ -82,6 +83,10 @@
 		B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Id3Wrapper.mm; sourceTree = "<group>"; };
 		B7BD8F1921F7611000532C1A /* Id3Wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Id3Wrapper.h; sourceTree = "<group>"; };
 		B7BD8F1A21F9A87E00532C1A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		B7D220E92211C2AC00207F1D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		B7DDFCB022141B3600637831 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		B7DDFCB222141F5F00637831 /* Database.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		B7DDFCB422141F6B00637831 /* Database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +155,7 @@
 				504E5FA32080F4E0003DBA66 /* Song.swift */,
 				50DC6D852081D22F00B7C347 /* Model.swift */,
 				B7BD8F1A21F9A87E00532C1A /* Position.swift */,
+				B7D220E92211C2AC00207F1D /* Player.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -158,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				50043ED42080C76C0025DC2D /* FileSystemUtils.swift */,
+				B7DDFCB022141B3600637831 /* Tools.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -165,7 +172,6 @@
 		50DC6D8D2081F03E00B7C347 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */,
 				50A09BAD22104BA800365544 /* TableViewDelegate.swift */,
 			);
 			path = Delegates;
@@ -188,6 +194,8 @@
 				B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */,
 				B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */,
 				B7BD8F1921F7611000532C1A /* Id3Wrapper.h */,
+				B7DDFCB222141F5F00637831 /* Database.m */,
+				B7DDFCB422141F6B00637831 /* Database.h */,
 			);
 			path = ObjCWrapper;
 			sourceTree = "<group>";
@@ -293,17 +301,19 @@
 				B70E24BE21F5E5E700387D0A /* View.swift in Sources */,
 				50A09BAC22104B0A00365544 /* TableView.swift in Sources */,
 				50DC6D862081D22F00B7C347 /* Model.swift in Sources */,
+				B7D220EA2211C2AC00207F1D /* Player.swift in Sources */,
 				504E5FA42080F4E0003DBA66 /* Song.swift in Sources */,
 				5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */,
 				50043ED52080C76C0025DC2D /* FileSystemUtils.swift in Sources */,
+				B7DDFCB122141B3600637831 /* Tools.swift in Sources */,
 				50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */,
 				B72299232202D0EA00AEFA90 /* PositionTableView.swift in Sources */,
 				B722991F2200223B00AEFA90 /* ViewController.swift in Sources */,
 				50A37BAD207FF03D0020E218 /* MainView.swift in Sources */,
 				B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */,
 				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
-				50DC6D8F2081F06600B7C347 /* PlayerDelegate.swift in Sources */,
 				B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */,
+				B7DDFCB322141F5F00637831 /* Database.m in Sources */,
 				B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

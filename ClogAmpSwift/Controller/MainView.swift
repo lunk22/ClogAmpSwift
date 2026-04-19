@@ -34,6 +34,8 @@ class MainView: NSViewController {
                 self.playerView!.increaseSpeed()
             case 44: // -
                 self.playerView!.decreaseSpeed()
+            case 45: // N
+                self.playerView!.resetSpeed()
             case 35: // P
                 self.playerView!.play()
             case 1: // S

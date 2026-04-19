@@ -31,6 +31,19 @@
     }
 }
 
+- (int) readDuration {
+    ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
+    ID3_Frame *frame = nil;
+    
+    frame = id3Tag->Find(ID3FID_SONGLEN);
+    
+    const Mp3_Headerinfo* mp3Info = id3Tag->GetMp3HeaderInfo();
+    
+//    NSString *returnText = [NSString stringWithFormat:@"%d", mp3Info->time];
+    
+    return mp3Info->time;
+}
+
 - (NSString *) readUserText:(const char*)text {
     ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
     ID3_Frame *frame = nil;
@@ -101,14 +114,10 @@
             comment = @"";
             jumpTo = @"";
             
-//            NSLog(@"-----");
-//            NSData *dataData = [NSData dataWithBytes:positionsUChar length:sizeof(positionsUChar)];
-//            NSLog(@"data = %@", dataData);
-            
             positionsChar = (char *)positionsUChar;
             length = strlen(positionsChar) + 1; //Because of the '\0'
             
-            NSString *posiLine = [NSString stringWithUTF8String:positionsChar];
+            NSString *posiLine = [NSString stringWithCString:positionsChar encoding:NSISOLatin1StringEncoding];
             
             positionsUChar += length;
             count += length;
@@ -196,6 +205,70 @@
     if(bAdd){
         id3Tag->AttachFrame(frame);
     }
+    
+    id3Tag->Update();
+}
+
+- (void) savePositions:(NSString *)positionString {
+    ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
+    
+    unsigned char buf[4096], *ptr = buf;
+    
+    NSString *temp    = nil;
+    NSString *comment = nil;
+    
+    int len = 0;
+    
+    if(![positionString isEqual: @""]){
+
+        NSArray *positionLine = [positionString componentsSeparatedByString:@"$LS"];
+        
+        for (unsigned int i = 0; i < [positionLine count]; i++) {
+            NSArray *position = [[positionLine objectAtIndex:i] componentsSeparatedByString:@"$CS"];
+            
+            temp = [position objectAtIndex:0]; //Index 0 = Name
+            if (temp == nil) {
+                temp = @"";
+            }
+            
+            comment = [position objectAtIndex:1]; //Index 1 = Description
+            if (comment == nil) {
+                comment = @"";
+            }
+            
+            temp = [temp stringByAppendingString:@"\t"];
+            temp = [temp stringByAppendingString:comment];
+            
+            strcpy((char *)ptr, [temp cStringUsingEncoding:NSISOLatin1StringEncoding]);
+            NSUInteger length = [temp length] +1;
+            
+            len += length;
+            ptr += length;
+            
+            //Index 2 = Jump To
+            // tbd...
+            
+            // add the ms (32bit number)
+            int ms = [[position objectAtIndex:3] intValue]; //Index 3 = Time in ms
+            
+            for (int j = 0; j < 4; j++) {
+                unsigned char temp = (ms & 0xff000000) >> 24;
+                ptr[j] = temp; // Write leftmost byte
+                ms <<= 8;      // and make the one to its right leftmost
+            }
+            
+            len += 4;
+            ptr += 4;
+        }
+   
+    }
+    
+    //Save info
+    unsigned char charRep[len];
+    
+    memcpy((char *)charRep, (char *)buf, len);
+    
+    ID3_AddSyncLyrics(id3Tag, charRep, len, ID3TSF_MS, "ClogChoreoParts", "eng", ID3CT_MOVEMENT, true);
     
     id3Tag->Update();
 }
