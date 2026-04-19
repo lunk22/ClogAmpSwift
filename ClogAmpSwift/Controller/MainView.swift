@@ -82,8 +82,13 @@ class MainView: ViewController {
         self.tabView.selectTabViewItem(at: 0)
         self.songTableView?.searchField.becomeFirstResponder()
     }
-    @IBAction func determineBpm(_ sender: Any){
+    
+    @IBAction func determineBpm(_ sender: Any) {
         self.playerView?.determineBpmFCS()
+    }
+    
+    @IBAction func saveSong(_ sender: Any) {
+        PlayerAudioEngine.shared.song?.saveChanges()
     }
     
     /*
