@@ -43,7 +43,7 @@ class PositionTableView: NSViewController {
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("monoChanged"), object: nil, queue: nil){ _ in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async(qos: .userInitiated) {
                 self.prefMonoFontPositons = UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
                 self.positionTable.reloadData()
             }

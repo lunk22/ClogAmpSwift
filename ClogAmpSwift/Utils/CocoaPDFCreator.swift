@@ -4,8 +4,7 @@ import WebKit
 public func CreatePDF(htmlString: String, fileName: String = "Export") {
     let webView = WebView()
     webView.mainFrame.loadHTMLString(htmlString, baseURL: nil)
-    let when = DispatchTime.now() + 1
-    DispatchQueue.main.asyncAfter(deadline: when) {
+    delayWithSeconds(0.1) {
         let printOpts: [NSPrintInfo.AttributeKey : AnyObject] = [NSPrintInfo.AttributeKey.jobDisposition : NSPrintInfo.JobDisposition.preview as AnyObject]
         let printInfo: NSPrintInfo = NSPrintInfo(dictionary: printOpts)
         printInfo.paperSize = NSMakeSize(595, 842)

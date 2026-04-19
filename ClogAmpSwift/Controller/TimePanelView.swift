@@ -55,7 +55,7 @@ class TimePanelView: ViewController {
                 time += ":\(seconds)"
             }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async(qos: .userInitiated) {
                 self.textFieldTime.stringValue = time
 //                self.textFieldTime.sizeToFit()
             }

@@ -149,7 +149,7 @@ class PlayerView: ViewController {
     func updateRate(){
         self.avPlayer?.updateRate()
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async(qos: .userInitiated) {
             self.speedSlider.integerValue = self.currentSong?.speed ?? 0
             self.speedText.stringValue    = "\(self.currentSong?.speed ?? 0)%"
             
@@ -167,7 +167,7 @@ class PlayerView: ViewController {
         }
     }
     func updateTime(_ seconds: Double = -1) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async(qos: .userInitiated) {
             var percent: Int = 0;
             if(self.currentSong != nil) {
                 //Time Field: e.g. 3:24
@@ -215,7 +215,7 @@ class PlayerView: ViewController {
     func updateVolume(){
         self.avPlayer?.updateVolume()
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async(qos: .userInitiated) {
             self.volumeSlider.integerValue = Int(self.currentSong?.volume ?? 100)
             self.volumeText.stringValue    = "\(self.currentSong?.volume ?? 100)%"
         }

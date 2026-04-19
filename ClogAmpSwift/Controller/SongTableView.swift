@@ -40,13 +40,13 @@ class SongTableView: ViewController {
     override func viewDidLoad() {
         if !UserDefaults.standard.bool(forKey: "prefStartFocusFilter") {
             delayWithSeconds(1.25, closure: {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async(qos: .userInitiated) {
                     self.songTable.enclosingScrollView?.becomeFirstResponder()
                 }
             })
         } else {
             delayWithSeconds(1.25, closure: {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async(qos: .userInitiated) {
                     self.searchField.becomeFirstResponder()
                 }
             })
@@ -93,7 +93,7 @@ class SongTableView: ViewController {
         self.songTable.sortDescriptors = [NSSortDescriptor(key: self.sSortBy, ascending: self.bSortAsc)]
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("monoChanged"), object: nil, queue: nil){ _ in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async(qos: .userInitiated) {
                 self.prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
                 self.refreshTable()
             }
@@ -111,7 +111,7 @@ class SongTableView: ViewController {
                     let song = Song.retrieveSong(path: url)
                     self.mainView?.playerView?.loadSong(song: song)
                     
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async(qos: .userInitiated) {
                         self.mainView?.positionTableView?.refreshTable(single: true)
                     }
                 }
@@ -128,7 +128,7 @@ class SongTableView: ViewController {
                 if songTable.selectedRow >= 0 {
                     self.mainView?.playerView?.loadSong(song: self.aSongsForTable[songTable.selectedRow])
                     
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async(qos: .userInitiated) {
                         self.mainView?.positionTableView?.refreshTable()
                     }
                 }
@@ -184,33 +184,28 @@ class SongTableView: ViewController {
         
         self.pathControl.url = URL(fileURLWithPath: dir)
         
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .userInitiated).async {
 
-            FileSystemUtils.readFolderContentsAsSong(sPath: dir) {
-                let song    = $0
-                let percent = $1
-                
-                DispatchQueue.main.async {
-                    self.percentLabel.isHidden = false
-                    
-                    if percent < 100 {
+            self.aSongs = FileSystemUtils.readFolderContentsAsSong(sPath: dir, percentCallback: {
+                let percent = $0
+                if percent < 100 {
+                    DispatchQueue.main.async(qos: .userInitiated) {
                         self.percentLabel.stringValue = "\(percent)%"
+                        self.percentLabel.isHidden = false
                     }
                 }
                 
-                self.aSongs.append(song)
-                self.aSongsForTable = self.aSongs
-            }
+            })
             
             if(self.aSongs.count > 0){
                 self.aSongsForTable = self.aSongs
                 
-                DispatchQueue.main.async {
+                DispatchQueue.main.async(qos: .userInitiated) {
                     self.performSortSongs()
                 }
             }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async(qos: .userInitiated) {
                 self.percentLabel.stringValue = ""
                 self.percentLabel.isHidden = true
                 self.filterTable()
@@ -260,7 +255,7 @@ class SongTableView: ViewController {
     }
     
     func refreshTable(_ rememberSelection: Bool = true) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async(qos: .userInitiated) {
             let selRow = self.songTable.selectedRow
             self.songTable.reloadData()
 //            self.filterTable()
@@ -274,7 +269,7 @@ class SongTableView: ViewController {
         if(self.songTable.selectedRow >= 0) {
             let song = self.aSongsForTable[self.songTable.selectedRow]
             self.mainView?.playerView?.loadSong(song: song)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async(qos: .userInitiated) {
                 self.mainView?.positionTableView?.refreshTable(single: true)
             }
         }
