@@ -243,12 +243,58 @@ class Settings: NSObject {
     static var updateNameMatchingPositions: Bool {
         return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefUpdateNameMatchingPositions.rawValue)
     }
-    
+
     static var viewAfterSongLoad: Int {
         var prefViewAfterSongLoad = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefViewAfterSongLoad.rawValue)
         if(prefViewAfterSongLoad < 0 || prefViewAfterSongLoad > 2){
             prefViewAfterSongLoad = 0
         }
         return prefViewAfterSongLoad
+    }
+
+    // MARK: PDF Layout
+
+    static let pdfAvailableFonts = ["Arial", "Helvetica", "Georgia", "Times New Roman", "Courier", "Menlo", "Palatino"]
+
+    static var pdfFontFamily: String {
+        let v = UserDefaults.standard.string(forKey: UserDefaults.Keys.pdfFontFamily.rawValue) ?? ""
+        return v.isEmpty ? "Arial" : v
+    }
+
+    static var pdfTitleSize: Double {
+        let v = UserDefaults.standard.double(forKey: UserDefaults.Keys.pdfTitleSize.rawValue)
+        return v > 0 ? v : 2.5
+    }
+
+    static var pdfArtistSize: Double {
+        let v = UserDefaults.standard.double(forKey: UserDefaults.Keys.pdfArtistSize.rawValue)
+        return v > 0 ? v : 1.2
+    }
+
+    static var pdfSubheaderSize: Double {
+        let v = UserDefaults.standard.double(forKey: UserDefaults.Keys.pdfSubheaderSize.rawValue)
+        return v > 0 ? v : 1.0
+    }
+
+    static var pdfPositionNameSize: Double {
+        let v = UserDefaults.standard.double(forKey: UserDefaults.Keys.pdfPositionNameSize.rawValue)
+        return v > 0 ? v : 1.0
+    }
+
+    static var pdfCommentSize: Double {
+        let v = UserDefaults.standard.double(forKey: UserDefaults.Keys.pdfCommentSize.rawValue)
+        return v > 0 ? v : 1.0
+    }
+
+    static var pdfCellPadding: Double {
+        let v = UserDefaults.standard.double(forKey: UserDefaults.Keys.pdfCellPadding.rawValue)
+        return v > 0 ? v : 0.75
+    }
+
+    static var pdfHeaderSpacing: Double {
+        guard UserDefaults.standard.object(forKey: UserDefaults.Keys.pdfHeaderSpacing.rawValue) != nil else {
+            return 1.0
+        }
+        return UserDefaults.standard.double(forKey: UserDefaults.Keys.pdfHeaderSpacing.rawValue)
     }
 }

@@ -20,6 +20,11 @@ class SettingsIconViewController: NSViewController {
     @IBOutlet weak var rbAppIconWhite: NSButton!
     
     // MARK: INIT
+    override var preferredContentSize: NSSize {
+        get { NSSize(width: 804, height: 454) }
+        set { }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

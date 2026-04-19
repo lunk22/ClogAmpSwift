@@ -79,6 +79,16 @@ extension UserDefaults {
         // Settings - Icon
         case AppIconName
         
+        // Settings - PDF Layout
+        case pdfFontFamily
+        case pdfTitleSize
+        case pdfArtistSize
+        case pdfSubheaderSize
+        case pdfPositionNameSize
+        case pdfCommentSize
+        case pdfCellPadding
+        case pdfHeaderSpacing
+
         // NOT AVAILABLE IN SETTINGS
         case prefAudioMetering // defaults write de.pascalroessel.ClogAmpSwift prefAudioMetering -bool true
     }

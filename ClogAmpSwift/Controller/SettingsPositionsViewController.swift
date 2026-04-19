@@ -39,6 +39,11 @@ class SettingsPositionsViewController: NSViewController {
     }
     
     // MARK: View overrides
+    override var preferredContentSize: NSSize {
+        get { NSSize(width: 804, height: 454) }
+        set { }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

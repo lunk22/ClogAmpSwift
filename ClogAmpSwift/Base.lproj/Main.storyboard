@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="24006"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24412"/>
-        <plugIn identifier="com.apple.pdfkit.ibplugin" version="24412"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="24701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
+        <plugIn identifier="com.apple.pdfkit.ibplugin" version="24765"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -615,6 +615,7 @@ CA
                         <tabViewItem label="Positions" id="E1Y-Fs-hDX">
                             <imageReference key="image" image="list.number" catalog="system" symbolScale="large"/>
                         </tabViewItem>
+                        <tabViewItem label="Position PDF Export" image="textformat.alt" catalog="system" id="WVI-XB-QUM"/>
                         <tabViewItem label="Icon" id="f15-0A-6o8">
                             <imageReference key="image" image="photo" catalog="system" symbolScale="large"/>
                         </tabViewItem>
@@ -632,6 +633,7 @@ CA
                         <outlet property="tabView" destination="pZ2-jq-fV0" id="EsS-C3-Mof"/>
                         <segue destination="qhU-Gw-geV" kind="relationship" relationship="tabItems" id="Wno-t0-doh"/>
                         <segue destination="8JY-25-ZrM" kind="relationship" relationship="tabItems" id="IRd-R6-zNN"/>
+                        <segue destination="Mji-cL-aWe" kind="relationship" relationship="tabItems" id="WQe-Wu-1oD"/>
                         <segue destination="t6I-ag-HhY" kind="relationship" relationship="tabItems" id="C8L-eF-tYm"/>
                         <segue destination="FmP-DM-yKz" kind="relationship" relationship="tabItems" id="XjT-1j-M2d"/>
                     </connections>
@@ -3908,6 +3910,19 @@ IA
             </objects>
             <point key="canvasLocation" x="-6672" y="3458"/>
         </scene>
+        <!--SettingsPDF View Controller-->
+        <scene sceneID="eh8-Vz-16Q">
+            <objects>
+                <viewController id="Mji-cL-aWe" customClass="SettingsPDFViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="RXP-KJ-TfT">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="B6p-Nu-3Xb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7997" y="3993"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Icon" width="256" height="256"/>
@@ -3930,5 +3945,6 @@ IA
         <image name="photo" catalog="system" width="24" height="18"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
         <image name="stop.fill" catalog="system" width="14" height="13"/>
+        <image name="textformat.alt" catalog="system" width="18" height="12"/>
     </resources>
 </document>

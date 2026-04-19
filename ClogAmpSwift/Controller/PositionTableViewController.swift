@@ -452,38 +452,45 @@ class PositionTableViewController: NSViewController {
                 let sLocWait = (NSLocalizedString("waitBeats", bundle: Bundle.main, comment: "") as NSString as String)
                 sWait = String.localizedStringWithFormat(sLocWait, song.waitBeats)
             }
-            
+
+            let font          = Settings.pdfFontFamily
+            let titleSize     = Settings.pdfTitleSize
+            let artistSize    = Settings.pdfArtistSize
+            let subheaderSize = Settings.pdfSubheaderSize
+            let nameSize      = Settings.pdfPositionNameSize
+            let commentSize   = Settings.pdfCommentSize
+            let cellPadding   = Settings.pdfCellPadding
+            let headerSpacing = "<div style='display: block; margin-bottom: \(Settings.pdfHeaderSpacing)rem'></div>"
+
             var sPdfHtml        = ""
             sPdfHtml = sPdfHtml + "<style>"
-            //sPdfHtml = sPdfHtml + "  table { font-size: 125%; }"
-            sPdfHtml = sPdfHtml + "  div { display:inline; font-family: Arial; }"
-            sPdfHtml = sPdfHtml + "  table, td { font-family: Arial; border: 0px solid black; border-collapse: collapse; }"
-            sPdfHtml = sPdfHtml + "  td { padding: 0.75rem; vertical-align: top; }"
+            sPdfHtml = sPdfHtml + "  div { display:inline; font-family: '\(font)'; }"
+            sPdfHtml = sPdfHtml + "  table, td { font-family: '\(font)'; border: 0px solid black; border-collapse: collapse; }"
+            sPdfHtml = sPdfHtml + "  td { padding: \(cellPadding)rem; vertical-align: top; }"
             sPdfHtml = sPdfHtml + "  .center {  display: table; margin-right: auto; margin-left: auto; }"
             sPdfHtml = sPdfHtml + "  .bold {  font-weight: bold; }"
             sPdfHtml = sPdfHtml + "  .nowrap {  white-space: nowrap; }"
             sPdfHtml = sPdfHtml + "</style>"
 
             sPdfHtml = sPdfHtml + "<div class='center'>"
-            sPdfHtml = sPdfHtml + "  <div style='font-size: 2.5rem'>\(song.title)</div>&nbsp;<div style='font-size: 1.2rem'>\(song.artist)</div>"
+            sPdfHtml = sPdfHtml + "  <div style='font-size: \(titleSize)rem'>\(song.title)</div>&nbsp;<div style='font-size: \(artistSize)rem'>\(song.artist)</div>"
             sPdfHtml = sPdfHtml + "</div>"
-            sPdfHtml = sPdfHtml + "<div class='center'>"
+            sPdfHtml = sPdfHtml + "<div class='center' style='font-size: \(subheaderSize)rem'>"
             sPdfHtml = sPdfHtml + "  \(song.getValueAsString("duration"))"
-            
+
             if song.getValueAsString("level") != "" {
                 sPdfHtml = sPdfHtml + " &ndash; \(song.level)"
             }
-            
+
             if sWait != "" {
                 sPdfHtml = sPdfHtml + " &ndash; \(sWait)"
             }
-            
+
             sPdfHtml = sPdfHtml + "</div>"
-            sPdfHtml = sPdfHtml + "<br/>"
+            sPdfHtml = sPdfHtml + headerSpacing
 
             sPdfHtml = sPdfHtml + " <table>"
-            
-            
+
             for position in song.getPositions() {
                 var comment = position.comment
                 comment = comment.replacingOccurrences(of: "- ", with: "- <wbr/>")
@@ -495,21 +502,16 @@ class PositionTableViewController: NSViewController {
                 comment = comment.replacingOccurrences(of: " ", with: "&nbsp;")
                 comment = comment.replacingOccurrences(of: "", with: "<br/>")
                 comment = comment.replacingOccurrences(of: "\n", with: "<br/>")
-                
+
                 sPdfHtml = sPdfHtml + "    <tr>"
-                sPdfHtml = sPdfHtml + "      <td class='bold nowrap'>\(position.name)</td>"
-                sPdfHtml = sPdfHtml + "      <td>\(comment)</td>"
+                sPdfHtml = sPdfHtml + "      <td class='bold nowrap' style='font-size: \(nameSize)rem'>\(position.name)</td>"
+                sPdfHtml = sPdfHtml + "      <td style='font-size: \(commentSize)rem'>\(comment)</td>"
                 sPdfHtml = sPdfHtml + "    </tr>"
             }
-            
+
             sPdfHtml = sPdfHtml + " </table>"
-            
-            createPDF(htmlString: sPdfHtml, fileName: song.title) { url in
-//                DispatchQueue.main.async {
-//                    self.previewPdf(url)
-//                }
-            }
-            
+
+            createPDF(htmlString: sPdfHtml, fileName: song.title) { _ in }
         }
     }
     
