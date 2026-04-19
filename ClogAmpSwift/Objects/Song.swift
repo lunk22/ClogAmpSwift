@@ -148,17 +148,19 @@ class Song {
     } //func getValueAsString
     
     func determineBassBPM( callback: @escaping (Float) -> Void ) {
-//        DispatchQueue.global(qos: .background).async {
-//            var bpm = BassWrapper.determineBPM(self.getValueAsString("path"), length: Int32(self.duration))
-//            
-//            if bpm > 150 {
-//                bpm /= 2
-//            }else if bpm < 60 {
-//                bpm *= 2
-//            }
-//            
-//            callback(bpm)
-//        }
+        DispatchQueue.global(qos: .background).async {
+            var bpm = BassWrapper.determineBPM(self.getValueAsString("path"), length: Int32(self.duration))
+            
+            if bpm > 150 {
+                bpm /= 2
+            }else if bpm < 60 {
+                bpm *= 2
+            }
+            
+            self.bpm = UInt(lround(Double(bpm)))
+            
+            callback(bpm)
+        }
     }
     
     func loadPositions(_ force: Bool = true) {

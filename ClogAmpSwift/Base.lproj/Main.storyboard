@@ -134,7 +134,13 @@
                                                 <segue destination="kFC-bL-dcm" kind="show" id="xku-6Z-S4A"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="History..." keyEquivalent="h" id="sC0-Fk-FMh">
+                                        <menuItem title="Determine BPM" keyEquivalent="b" id="hEg-Op-LJI">
+                                            <connections>
+                                                <action selector="determineBpmForCurrentSong:" target="Ady-hI-5gd" id="kYB-WF-30A"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="History..." id="sC0-Fk-FMh">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <segue destination="Rx2-bm-TSd" kind="modal" id="01v-Ll-Ffv"/>
                                             </connections>
