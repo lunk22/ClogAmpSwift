@@ -16,6 +16,7 @@
 		502D65552CF9CC86007C4E81 /* SettingsAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502D65542CF9CC86007C4E81 /* SettingsAboutViewController.swift */; };
 		504E5FA42080F4E0003DBA66 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E5FA32080F4E0003DBA66 /* Song.swift */; };
 		50556BFA2CFE3DD300F4C716 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 50556BF92CFE3DD300F4C716 /* Sparkle */; };
+		509279E52D59242600AAD9EF /* Shortcuts.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 509279E42D59242600AAD9EF /* Shortcuts.intentdefinition */; };
 		50A09BAC22104B0A00365544 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAB22104B0A00365544 /* TableView.swift */; };
 		50A09BAE22104BA800365544 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAD22104BA800365544 /* TableViewDelegate.swift */; };
 		50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAA207FF03D0020E218 /* AppDelegate.swift */; };
@@ -116,6 +117,7 @@
 		502D65522CF9C690007C4E81 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
 		502D65542CF9CC86007C4E81 /* SettingsAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAboutViewController.swift; sourceTree = "<group>"; };
 		504E5FA32080F4E0003DBA66 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		509279E42D59242600AAD9EF /* Shortcuts.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Shortcuts.intentdefinition; sourceTree = "<group>"; };
 		50A09BAB22104B0A00365544 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		50A09BAD22104BA800365544 /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		50A37BA7207FF03D0020E218 /* ClogAmpMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClogAmpMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +226,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		509279E22D5923B200AAD9EF /* Siri */ = {
+			isa = PBXGroup;
+			children = (
+				509279E42D59242600AAD9EF /* Shortcuts.intentdefinition */,
+			);
+			path = Siri;
+			sourceTree = "<group>";
+		};
 		50A37B9E207FF03D0020E218 = {
 			isa = PBXGroup;
 			children = (
@@ -244,12 +254,12 @@
 		50A37BA9207FF03D0020E218 /* ClogAmpSwift */ = {
 			isa = PBXGroup;
 			children = (
-				B713648B2B15F295009B800F /* Extensions */,
 				B7BD8ED321F73E4E00532C1A /* ObjCWrapper */,
 				B70E24BC21F5E5CC00387D0A /* CustomClasses */,
 				50DC6D8D2081F03E00B7C347 /* Delegates */,
 				50DC6D8A2081DA4B00B7C347 /* Objects */,
 				50DC6D892081DA3100B7C347 /* Controller */,
+				509279E22D5923B200AAD9EF /* Siri */,
 				50DC6D8B2081DA6400B7C347 /* Utils */,
 				50A37BB0207FF03E0020E218 /* Main.storyboard */,
 				B70F180E221D781800FE1149 /* Assets.xcassets */,
@@ -309,6 +319,7 @@
 		50DC6D8B2081DA6400B7C347 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B713648B2B15F295009B800F /* Extensions */,
 				50043ED42080C76C0025DC2D /* FileSystemUtils.swift */,
 				B7DDFCB022141B3600637831 /* Tools.swift */,
 				B7B4660B23754EE600AA9419 /* StringScore.swift */,
@@ -507,6 +518,7 @@
 				50A09BAC22104B0A00365544 /* TableView.swift in Sources */,
 				50FDB7E32CF79C0F001A3054 /* UserDefaults.swift in Sources */,
 				50AF239A2A5F2FAA0019A846 /* PlayerLog.swift in Sources */,
+				509279E52D59242600AAD9EF /* Shortcuts.intentdefinition in Sources */,
 				B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */,
 				50FDB7E12CF79693001A3054 /* SettingsGeneralViewController.swift in Sources */,
 				B7D7C4352B17382D007DCA96 /* BpmClickViewController.swift in Sources */,
@@ -717,7 +729,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.9;
+				CURRENT_PROJECT_VERSION = 1.6.10;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
@@ -743,7 +755,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = "1.6.9 beta";
+				MARKETING_VERSION = "1.6.10 beta";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-fprofile-instr-generate";
 				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;
@@ -773,7 +785,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.9;
+				CURRENT_PROJECT_VERSION = 1.6.10;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
@@ -799,7 +811,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = "1.6.9 beta";
+				MARKETING_VERSION = "1.6.10 beta";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-fprofile-instr-generate";
 				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;

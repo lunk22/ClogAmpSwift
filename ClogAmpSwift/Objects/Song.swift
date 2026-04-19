@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 
-class Song: PositionDelegate {
+class Song {
     
     struct NotificationNames {
         static let bpmChanged = Notification.Name("Song_BpmChanged")
@@ -44,7 +44,7 @@ class Song: PositionDelegate {
     } }
     var waitBeats: Int { didSet { self.waitBeatsChanged = true } }
     var artwork: String = ""
-
+    
     var titleChanged: Bool = false
     var artistChanged: Bool = false
     var levelChanged: Bool = false
@@ -60,13 +60,13 @@ class Song: PositionDelegate {
     
     var songChanged: Bool {
         let changes = self.titleChanged     ||
-                      self.artistChanged    ||
-                      self.levelChanged     ||
-                      self.speedChanged     ||
-                      self.bpmChanged       ||
-                      self.positionsChanged ||
-                      self.positionRemoved  ||
-                      self.waitBeatsChanged
+        self.artistChanged    ||
+        self.levelChanged     ||
+        self.speedChanged     ||
+        self.bpmChanged       ||
+        self.positionsChanged ||
+        self.positionRemoved  ||
+        self.waitBeatsChanged
         // for debugging purposes
         return changes
     }
@@ -81,7 +81,7 @@ class Song: PositionDelegate {
     
     //MARK: Static Stuff
     static var songDict: Dictionary<String, Song> = [:] //Empty dictionary
-    static func retrieveSong(path: URL) -> Song{        
+    static func retrieveSong(path: URL) -> Song{
         let stringPath = path.absoluteString.removingPercentEncoding!
         if songDict.count > 0, let song = songDict[stringPath] {
             song.readBasicInfo()
@@ -112,7 +112,7 @@ class Song: PositionDelegate {
         self.positionRemoved = false
         self.positions       = []
         self.waitBeats       = 0
-
+        
         self.readBasicInfo()
     } //init
     
@@ -170,7 +170,7 @@ class Song: PositionDelegate {
             self.positions = []
             self.hasPositions = false
         }
-
+        
         if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){
             var sPositions = ""
             var count = 0
@@ -299,7 +299,7 @@ class Song: PositionDelegate {
             }else if bpm < Float(Settings.bpmLowerBound) {
                 bpm *= 2
             }
-
+            
             self.bpm = Int(lround(Double(bpm)))
             print("BPM Determination - END: \(self.bpm)")
             callback(self.bpm)
@@ -362,9 +362,9 @@ class Song: PositionDelegate {
                 oId3Wrapper.removeAllBpms()
                 oId3Wrapper.saveBPM(Int32(self.bpm))
             }
-//            if(self.volumeChanged){
-//
-//            }
+            //            if(self.volumeChanged){
+            //
+            //            }
             //-----------------------
             //------ Positions ------
             //-----------------------
@@ -427,7 +427,9 @@ class Song: PositionDelegate {
         
         return false
     }
-    
+}
+ 
+extension Song: PositionDelegate {
     // MARK: Delegate
     func descriptionDidChange(name: String, description: String) {
         if !Settings.updateNameMatchingPositions { return }
