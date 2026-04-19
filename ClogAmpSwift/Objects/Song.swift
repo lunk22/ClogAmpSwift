@@ -34,7 +34,9 @@ class Song {
     func getValueAsString(_ property: String) -> String {
         switch property {
         case "path":
-            return self.path.absoluteString
+            var path = self.path.absoluteString
+            path = path.removingPercentEncoding!
+            return path
         case "title":
             return self.title
         case "artist":

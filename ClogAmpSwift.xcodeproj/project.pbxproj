@@ -16,6 +16,7 @@
 		50DC6D862081D22F00B7C347 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D852081D22F00B7C347 /* Model.swift */; };
 		50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D872081D68100B7C347 /* PlayerView.swift */; };
 		50DC6D8F2081F06600B7C347 /* PlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */; };
+		B70E24BE21F5E5E700387D0A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E24BD21F5E5E700387D0A /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		50DC6D852081D22F00B7C347 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		50DC6D872081D68100B7C347 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		50DC6D8E2081F06600B7C347 /* PlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDelegate.swift; sourceTree = "<group>"; };
+		B70E24BD21F5E5E700387D0A /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		50A37BA9207FF03D0020E218 /* ClogAmpSwift */ = {
 			isa = PBXGroup;
 			children = (
+				B70E24BC21F5E5CC00387D0A /* CustomClasses */,
 				50DC6D8D2081F03E00B7C347 /* Delegates */,
 				50DC6D8A2081DA4B00B7C347 /* Objects */,
 				50DC6D892081DA3100B7C347 /* ViewController */,
@@ -110,6 +113,14 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
+		B70E24BC21F5E5CC00387D0A /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				B70E24BD21F5E5E700387D0A /* View.swift */,
+			);
+			path = CustomClasses;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,6 +153,7 @@
 				TargetAttributes = {
 					50A37BA6207FF03D0020E218 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -185,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B70E24BE21F5E5E700387D0A /* View.swift in Sources */,
 				50DC6D862081D22F00B7C347 /* Model.swift in Sources */,
 				504E5FA42080F4E0003DBA66 /* Song.swift in Sources */,
 				50043ED52080C76C0025DC2D /* FileSystemUtils.swift in Sources */,
@@ -326,6 +339,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
@@ -336,7 +350,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -344,6 +359,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
@@ -354,7 +370,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmr.ClogAmpSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
