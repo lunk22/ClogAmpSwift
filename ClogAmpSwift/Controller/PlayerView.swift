@@ -316,7 +316,9 @@ class PlayerView: ViewController {
     } //func handlePositionSelected
     
     func loadSong(song: Song) {
-        self.currentSong = song
+        if song.songFileExists() {
+            self.currentSong = song
+        }
     }
     func getSong() -> Song? {
         return self.currentSong
