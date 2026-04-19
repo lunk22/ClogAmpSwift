@@ -65,24 +65,19 @@
     }
     
     //Has Positions
-    size_t dataSize;
-    const unsigned char *positionsUChar;
+    size_t dataSize = 0;
     
-    ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, "eng", "ClogChoreoParts", positionsUChar, dataSize);
+    ID3_Frame *syncLyricsFrame = id3Tag->Find(ID3FID_SYNCEDLYRICS, ID3FN_DESCRIPTION, "ClogChoreoParts");
     
-    bool isEmpty = true;
-    
-    if(found != NULL && dataSize > 0){
-        char *testChar = (char *)positionsUChar;
-
-        if (testChar == NULL) {
-            isEmpty = true;
-        } else {
-            isEmpty = false;
+    if (syncLyricsFrame != NULL) {
+        ID3_Field* dataField = syncLyricsFrame->GetField(ID3FN_DATA);
+        if (dataField != NULL) {
+            dataSize = dataField->Size();
         }
     }
     
-    if (found != NULL && (dataSize > 0 || !isEmpty)){
+    if (dataSize > 0){
+        NSLog(@"Size: %ld", dataSize);
         [dict setValue: [NSNumber numberWithBool:true] forKey:@"hasPositions"];
     }else{
         [dict setValue: [NSNumber numberWithBool:false] forKey:@"hasPositions"];
@@ -154,25 +149,22 @@
     
     NSMutableString *returnString = [NSMutableString new];
     
-    size_t dataSize;
+    size_t dataSize = 0;
     const uchar *positionsUChar;
     
     ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
-    ID3_Frame *found = ID3_GetSyncLyrics(id3Tag, "eng", "ClogChoreoParts", positionsUChar, dataSize);
     
-    bool isEmpty = true;
+    ID3_Frame *syncLyricsFrame = id3Tag->Find(ID3FID_SYNCEDLYRICS, ID3FN_DESCRIPTION, "ClogChoreoParts");
     
-    if(found != NULL && dataSize > 0){
-        char *testChar = (char *)positionsUChar;
-
-        if (testChar == NULL) {
-            isEmpty = true;
-        } else {
-            isEmpty = false;
+    if (syncLyricsFrame != NULL) {
+        ID3_Field* dataField = syncLyricsFrame->GetField(ID3FN_DATA);
+        if (dataField != NULL) {
+            dataSize       = dataField->Size();
+            positionsUChar = dataField->GetRawBinary();
         }
     }
     
-    if (found != NULL && (dataSize > 0 || !isEmpty)){
+    if (dataSize > 0){
         
         // There is a whole bunch of chars
         // We have:
