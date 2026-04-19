@@ -31,4 +31,30 @@ struct SongLog: TextOutputStream {
     }
 }
 
+struct NormalizationLog: TextOutputStream {
+    
+    func clear() {
+        let fm = FileManager.default
+        let log = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("ClogAmpSwift/normalizationLog.txt")
+        //if fm.fileExists(atPath: log.path) {
+            try? fm.removeItem(atPath: log.path)
+        //}
+    }
+    
+    func write(_ string: String) {
+        let fm = FileManager.default
+        let log = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("ClogAmpSwift/normalizationLog.txt")
+        if let stringData = string.data(using: .utf8){
+            if let handle = try? FileHandle(forWritingTo: log) {
+                handle.seekToEndOfFile()
+                handle.write(stringData)
+                handle.closeFile()
+            } else {
+                try? stringData.write(to: log)
+            }
+        }
+    }
+}
+
 var songLogger = SongLog()
+var normalizationLogger = NormalizationLog()

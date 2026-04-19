@@ -145,6 +145,14 @@ class Settings: NSObject {
         return UserDefaults.standard.double(forKey: UserDefaults.Keys.prefLoopDelay.rawValue)
     }
     
+    static var normalizeAudioBoost: Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefNormalizeAudioBoost.rawValue)
+    }
+    
+    static var normalizeAudioLevels: Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefNormalizeAudioLevels.rawValue)
+    }
+    
     static var playPositionOnSelection: Bool {
         return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefPlayPositionOnSelection.rawValue)
     }

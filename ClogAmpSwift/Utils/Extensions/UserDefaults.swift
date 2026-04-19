@@ -56,6 +56,9 @@ extension UserDefaults {
         
         case prefPreventSleepWhenActive
         
+        case prefNormalizeAudioLevels
+        case prefNormalizeAudioBoost
+        
         // Settings - Positions
         case prefPlayPositionOnSelection
         

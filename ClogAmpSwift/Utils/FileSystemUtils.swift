@@ -85,6 +85,8 @@ class FileSystemUtils {
         aSongs = []
         
         songLogger.clear()
+        normalizationLogger.clear()
+
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1 // synchronous execution
         

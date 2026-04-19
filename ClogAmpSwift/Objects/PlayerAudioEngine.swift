@@ -246,6 +246,9 @@ class PlayerAudioEngine {
     }
     
     private func prepareAudioPlayer() {
+        // Reset gain
+        equalizer.globalGain = 0
+        
         audioEngine.disconnectNodeInput(audioPlayer)
         audioEngine.detach(audioPlayer)
         
@@ -254,6 +257,24 @@ class PlayerAudioEngine {
         audioEngine.connect(audioPlayer, to: speedControl, format: nil)
         
         audioPlayer.scheduleFile(audioFile!, at: nil)
+        
+        if Settings.normalizeAudioLevels {
+            print("Audio normalization started for file: \(audioFile!.url)", to: &normalizationLogger)
+            averagePowers(audioFileURL: audioFile!.url, forChannel: 0, completionHandler: { powers,success  in
+                if !success {
+                    print("Failed to perform audio normalization.", to: &normalizationLogger)
+                    print("----------------------------------------------------", to: &normalizationLogger)
+                    return
+                }
+                
+                let maxValue = powers.max() ?? 0.0
+                // Calc with -10 to not deviate too far from system volume. Calculate with base of 0 will increase the gain too much
+                let adjustedGain = Settings.normalizeAudioBoost ? -5 - maxValue : -10 - maxValue
+                self.equalizer.globalGain = adjustedGain
+                print("Audio normalization completed. Gain adjustment: \(adjustedGain) - Boost active: \(Settings.normalizeAudioBoost)", to: &normalizationLogger)
+                print("----------------------------------------------------", to: &normalizationLogger)
+            })
+        }
     }
     
     // MARK: Player Settings
@@ -267,6 +288,66 @@ class PlayerAudioEngine {
     }
     
     // Metering
+    func averagePowers(audioFileURL: URL, forChannel channelNumber: Int, completionHandler: @escaping(_ powers: [Float], _ success: Bool) -> ()) {
+        // Credits go to https://stackoverflow.com/a/52280271
+        // This is only slightly modified to handle errors
+        let audioFile = try! AVAudioFile(forReading: audioFileURL)
+        let audioFilePFormat = audioFile.processingFormat
+        let audioFileLength = audioFile.length
+        
+        //Set the size of frames to read from the audio file, you can adjust this to your liking
+        let frameSizeToRead = Int(audioFilePFormat.sampleRate/20)
+        
+        //This is to how many frames/portions we're going to divide the audio file
+        let numberOfFrames = Int(audioFileLength)/frameSizeToRead
+        
+        //Create a pcm buffer the size of a frame
+        guard let audioBuffer = AVAudioPCMBuffer(pcmFormat: audioFilePFormat, frameCapacity: AVAudioFrameCount(frameSizeToRead)) else {
+            completionHandler([0], false)
+            return
+        }
+        
+        //Do the calculations in a background thread, if you don't want to block the main thread for larger audio files
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            //This is the array to be returned
+            var returnArray : [Float] = [Float]()
+            
+            //We're going to read the audio file, frame by frame
+            for i in 0..<numberOfFrames {
+                
+                //Change the position from which we are reading the audio file, since each frame starts from a different position in the audio file
+                audioFile.framePosition = AVAudioFramePosition(i * frameSizeToRead)
+                
+                //Read the frame from the audio file
+                do {
+                    try audioFile.read(into: audioBuffer, frameCount: AVAudioFrameCount(frameSizeToRead))
+                } catch {
+                    completionHandler([0], false)
+                    return
+                }
+                
+                //Get the data from the chosen channel
+                let channelData = audioBuffer.floatChannelData![channelNumber]
+                
+                //This is the array of floats
+                let arr = Array(UnsafeBufferPointer(start:channelData, count: frameSizeToRead))
+                
+                //Calculate the mean value of the absolute values
+                let meanValue = arr.reduce(0, {$0 + abs($1)})/Float(arr.count)
+                
+                //Calculate the dB power (You can adjust this), if average is less than 0.000_000_01 we limit it to -160.0
+                let dbPower: Float = meanValue > 0.000_000_01 ? (20 * log10(meanValue)) : -160.0
+                
+                //append the db power in the current frame to the returnArray
+                returnArray.append(dbPower)
+            }
+            
+            //Return the dBPowers
+            completionHandler(returnArray, true)
+        }
+    }
+
     func convertPower(power: Float) -> Float {
         guard power.isFinite else { return 0.0 }
         let minDb: Float = -80.0
@@ -281,6 +362,7 @@ class PlayerAudioEngine {
     
     func installMeteringTap() {
         let format = audioEngine.mainMixerNode.outputFormat(forBus: 0)
+        
         audioEngine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _  in
             if Settings.audioMetering {
                 guard let channelData = buffer.floatChannelData else {
@@ -355,10 +437,8 @@ class PlayerAudioEngine {
                     
                     try self.audioEngine.start()
                     self.audioPlayer.play()
-                    
-                    // Print gain
-                    print("File: \(self.song?.title ?? "") | Gain: \(self.equalizer.globalGain)")
-            //        equalizer.globalGain
+
+//                    print("File: \(self.song?.title ?? "") | Gain: \(self.equalizer.globalGain)")
                     
                     self.playing = true
                     MPNowPlayingInfoCenter.default().playbackState = .playing

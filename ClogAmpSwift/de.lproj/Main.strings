@@ -774,3 +774,6 @@
 
 /* Class = "NSButtonCell"; title = "Prevent system sleep when active"; ObjectID = "8Lo-uH-DMG"; */
 "8Lo-uH-DMG.title" = "Ruhezustand verhindern wenn aktiv";
+
+/* Normalize Audio (reload required) */
+"Gts-oe-EAq.title" = "Audio normalisieren (Neuladen erforderlich)";

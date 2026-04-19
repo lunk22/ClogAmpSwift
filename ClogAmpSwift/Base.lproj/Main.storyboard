@@ -743,6 +743,23 @@ CA
                                                 </binding>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ss1-Go-aGQ">
+                                            <rect key="frame" x="18" y="2" width="324" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Normalize Audio (reload required)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Gts-oe-EAq">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefNormalizeAudioLevels" id="YTt-T5-QEd">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
