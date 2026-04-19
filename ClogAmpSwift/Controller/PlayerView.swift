@@ -12,6 +12,7 @@ import AVFoundation
 class PlayerView: ViewController {
     
     weak var mainView: MainView?
+    var countTimeDown: Bool = UserDefaults.standard.bool(forKey: "countTimeDown")
     
     /*
      * Outlets
@@ -94,7 +95,7 @@ class PlayerView: ViewController {
         self.avPlayer?.addPeriodicTimeObserver() {
             [weak self] time in
             //Do stuff
-            self?.updateTime(Double(time.value / Int64(time.timescale)))
+            self?.updateTime()//Double(time.value / Int64(time.timescale)))
             self?.updatePositionTable(single: false)
         }
     }
@@ -159,23 +160,34 @@ class PlayerView: ViewController {
     func updateTime(_ seconds: Double = -1) {
         DispatchQueue.main.async {
             var percent: Int = 0;
+            var countSymbol = "";
             if(self.currentSong != nil) {
                 //Time Field: e.g. 3:24
                 var currentTime = seconds
+
                 if(currentTime == -1){
                     currentTime = self.avPlayer?.getCurrentTime() ?? 0
+                }
+                
+                //Position Slider
+                let duration = self.currentSong?.duration ?? 0
+//                if(duration.isNaN) {
+//                    duration = 0
+//                }
+                
+                if(duration > 0){
+                    percent = lround(Double(currentTime / Double(duration) * 10000))
+                }
+                
+                if(self.countTimeDown) {
+                    currentTime = Double(duration) - currentTime
+                    countSymbol = "- "
                 }
                 
                 let durMinutes = Int(Float(currentTime / 60).rounded(.down))
                 let durSeconds = Int(Double(currentTime).truncatingRemainder(dividingBy: 60))
 
-                self.lengthField.stringValue = durSeconds >= 10 ? "\(durMinutes):\(durSeconds)" : "\(durMinutes):0\(durSeconds)"
-                
-                //Position Slider
-                let duration = self.avPlayer?.getDuration() ?? 0
-                if(duration > 0.0){
-                    percent = lround(Double(currentTime / duration * 10000))
-                }
+                self.lengthField.stringValue = durSeconds >= 10 ? "\(countSymbol)\(durMinutes):\(durSeconds)" : "\(countSymbol)\(durMinutes):0\(durSeconds)"
             }
             
             self.timeSlider.integerValue = percent
@@ -235,6 +247,12 @@ class PlayerView: ViewController {
             self.updateTime()
             self.registerPeriodicUpdate()
         }
+    }
+    
+    @IBAction func changeTimeDisplay(_ sender: NSButton) {
+        self.countTimeDown = !self.countTimeDown
+        self.updateTime()
+        UserDefaults.standard.set(self.countTimeDown, forKey: "countTimeDown")
     }
     
     func determineBpmFCS() {
