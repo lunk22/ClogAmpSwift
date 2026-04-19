@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Database.h"
 #import "sqlite3.h"
+#import "SongHistoryItem.h"
 
 @implementation Database
 
@@ -402,101 +403,96 @@
 //    }
 //}
 
-//+ (NSMutableArray *)getSongHistory:(NSDate *)fromDate toDate:(NSDate *)toDate{
-//    sqlite3 *database;
-//    int result;
-//    NSMutableArray *values = nil;
-//    
-//    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
-//    if(result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return nil;
-//    }
-//    
-//    NSString *selectStmt = @"SELECT * FROM SongHistory ORDER BY PlayedDate, PlayedTime DESC";
-//    
-//    sqlite3_stmt *statement;
-//    
-//    result = sqlite3_prepare(database, [selectStmt cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, nil);
-//    if(result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return nil;
-//    }
-//    
-//    values = [[NSMutableArray alloc] init];
-//    
-//    while (sqlite3_step(statement) == SQLITE_ROW){
-//        
-//        NSString *title  = nil;
-//        NSString *artist = nil;
-//        NSString *path   = nil;
-//        NSString *dateS  = nil;
-//        NSString *time   = nil;
-//        
-//        @try {
-//            
-//            title = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 0) encoding:NSUTF8StringEncoding];
-//            
-//        }
-//        @catch(NSException *e) { title = @""; }
-//        
-//        @try {
-//            artist = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 1) encoding:NSUTF8StringEncoding];
-//            
-//        }
-//        @catch(NSException *e) { artist = @""; }
-//        
-//        @try{
-//            
-//            path = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 2) encoding:NSUTF8StringEncoding];
-//            
-//        }
-//        @catch(NSException *e) { path = @""; }
-//        
-//        @try{
-//            dateS  = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 3) encoding:NSUTF8StringEncoding];
-//            
-//            time   = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 4) encoding:NSUTF8StringEncoding];
-//            
-//            dateS = [dateS stringByAppendingString:@" "];
-//            dateS = [dateS stringByAppendingString:time];
-//            
-//        }
-//        @catch(NSException *e) { dateS = @""; }
-//        
-//        [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        NSLocale* formatterLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"de_DE"];
-//        
-//        [dateFormatter setLocale:formatterLocale];
-//        [dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm:ss"];
-//        
-//        NSDate *dateFromString = [dateFormatter dateFromString:dateS];
-//        
-//        SongHistoryItem *shi = [[[SongHistoryItem alloc] init] autorelease];
-//        
-//        shi.title  = title;
-//        shi.artist = artist;
-//        shi.file   = path;
-//        shi.date   = dateFromString;
-//        
-//        [values addObject:shi];
-//        
-//        [dateFormatter release];
-//        [formatterLocale release];
-//    }
-//    
-//    sqlite3_finalize(statement);
-//    sqlite3_close(database);
-//    
-//    if ([values count] == 0) {
-//        [values release];
-//        return nil;
-//    }else{
-//        [values autorelease];
-//        return values;
-//    }
-//}
++ (NSMutableArray *)getSongHistory:(NSDate *)fromDate toDate:(NSDate *)toDate{
+    sqlite3 *database;
+    int result;
+    NSMutableArray *values = nil;
+    
+    result = sqlite3_open([[Database getDBPath] cStringUsingEncoding:NSUTF8StringEncoding], &database);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return nil;
+    }
+    
+    NSString *selectStmt = @"SELECT * FROM SongHistory ORDER BY PlayedDate, PlayedTime DESC";
+    
+    sqlite3_stmt *statement;
+    
+    result = sqlite3_prepare(database, [selectStmt cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, nil);
+    if(result != SQLITE_OK){
+        sqlite3_close(database);
+        return nil;
+    }
+    
+    values = [[NSMutableArray alloc] init];
+    
+    while (sqlite3_step(statement) == SQLITE_ROW){
+        
+        NSString *title  = nil;
+        NSString *artist = nil;
+        NSString *path   = nil;
+        NSString *dateS  = nil;
+        NSString *time   = nil;
+        
+        @try {
+            
+            title = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 0) encoding:NSUTF8StringEncoding];
+            
+        }
+        @catch(NSException *e) { title = @""; }
+        
+        @try {
+            artist = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 1) encoding:NSUTF8StringEncoding];
+            
+        }
+        @catch(NSException *e) { artist = @""; }
+        
+        @try{
+            
+            path = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 2) encoding:NSUTF8StringEncoding];
+            
+        }
+        @catch(NSException *e) { path = @""; }
+        
+        @try{
+            dateS  = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 3) encoding:NSUTF8StringEncoding];
+            
+            time   = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 4) encoding:NSUTF8StringEncoding];
+            
+            dateS = [dateS stringByAppendingString:@" "];
+            dateS = [dateS stringByAppendingString:time];
+            
+        }
+        @catch(NSException *e) { dateS = @""; }
+        
+        [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSLocale* formatterLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"de_DE"];
+        
+        [dateFormatter setLocale:formatterLocale];
+        [dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm:ss"];
+        
+        NSDate *dateFromString = [dateFormatter dateFromString:dateS];
+        
+        SongHistoryItem *shi = [[SongHistoryItem alloc] init];
+        
+        shi.title  = title;
+        shi.artist = artist;
+        shi.file   = path;
+        shi.date   = dateFromString;
+        
+        [values addObject:shi];
+    }
+    
+    sqlite3_finalize(statement);
+    sqlite3_close(database);
+    
+    if ([values count] == 0) {
+        return nil;
+    }else{
+        return values;
+    }
+}
 
 //+ (int)addPlaylist:(NSString *)desc withContPlayback:(bool)contPlayback{
 //    sqlite3 *database;

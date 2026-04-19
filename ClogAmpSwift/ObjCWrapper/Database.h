@@ -27,7 +27,7 @@
 //
 //+ (NSMutableArray *)getPlaylistSongs:(int)playlistID;
 
-//+ (NSMutableArray *)getSongHistory:(NSDate *)fromDate toDate:(NSDate *)toDate;
++ (NSMutableArray *)getSongHistory:(NSDate *)fromDate toDate:(NSDate *)toDate;
 
 //+ (int)addPlaylist:(NSString *)desc withContPlayback:(bool)contPlayback;
 //
