@@ -435,10 +435,10 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
-        return self.aSongsForTable[row].getValueAsString("path") as NSString
+//        return self.aSongsForTable[row].getValueAsString("path") as NSString
+        return PasteboardWriter(path: self.aSongsForTable[row].getValueAsString("path"), at: -1)
     }
 
-    
 //    //Don't ask why, but this function prevents the cells from switching to edit mode on a single click in a non-selected row
 //    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
 //        return nil;

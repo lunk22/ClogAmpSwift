@@ -42,8 +42,7 @@ class PlaylistView: ViewController {
         self.aPlaylists = Database.getPlaylists() as! [Playlist]
         
 //        // https://www.natethompson.io/2019/03/23/nstableview-drag-and-drop.html
-//        self.songTable.registerForDraggedTypes([.string, .tableViewIndex])
-        self.songTable.registerForDraggedTypes([.string])
+        self.songTable.registerForDraggedTypes([.string, .tableRowIndex])
         
         let viewController = NSApplication.shared.windows[0].contentViewController as! MainView
         self.playerView = viewController.playerView
@@ -62,12 +61,17 @@ class PlaylistView: ViewController {
         if iIndex < 0 { return }
         self.aSongs = []
         self.oSelectedPlaylist = self.aPlaylists[iIndex]
+        
+        self.cbContPlayback.state = self.oSelectedPlaylist!.contPlayback ? NSControl.StateValue.on : NSControl.StateValue.off
+        self.txtPause.integerValue = Int(self.oSelectedPlaylist!.pause)
+        
         let aSongItems = Database.getPlaylistSongs(self.oSelectedPlaylist!.plID) as! [PlaylistSongItem]
         
         for playlistSong in aSongItems {
             if let foundSong = FileSystemUtils.aSongs.first(where:{$0.title == playlistSong.title || $0.filePathAsUrl.lastPathComponent == playlistSong.fileName}){
                 self.aSongs.append(foundSong)
             }
+            
         }
         
         self.songTable.reloadData()
@@ -84,6 +88,27 @@ class PlaylistView: ViewController {
         
         self.playerView?.loadSong(song: self.aSongs[self.iSongIndex])
         self.songTable.reloadData()
+    }
+    
+    func updatePlaylist(oPL: Playlist? = nil) {
+        if oPL != nil {
+            Database.updatePlaylist(
+                oPL!.plID,
+                withDesc: oPL!.description,
+                withContPlayback: oPL!.contPlayback,
+                withPause: oPL!.pause,
+                withOrder: oPL!.order
+            )
+        }else if let oPlaylist = self.oSelectedPlaylist {
+            Database.updatePlaylist(
+                oPlaylist.plID,
+                withDesc: oPlaylist.description,
+                withContPlayback: self.cbContPlayback.state == NSControl.StateValue.on,
+                withPause: Int32(self.txtPause?.integerValue ?? 0),
+                withOrder: oPlaylist.order
+            )
+        }
+        self.playlistTable.reloadData()
     }
     
     @IBAction func addNewPlaylist(_ sender: Any) {
@@ -129,6 +154,8 @@ class PlaylistView: ViewController {
         
         let oPlaylist = self.aPlaylists[iRow]
         oPlaylist.description = text
+        
+        self.updatePlaylist(oPL: oPlaylist)
     }
     
     @IBAction func handleDoubleClickSong(_ sender: Any) {
@@ -195,6 +222,12 @@ class PlaylistView: ViewController {
     
     @IBAction func changeContPlayback(_ sender: Any) {
         self.txtPause.isEnabled = self.cbContPlayback.state == NSControl.StateValue.on
+        
+        self.updatePlaylist()
+    }
+    
+    @IBAction func handlePauseChange(_ sender: Any) {
+        self.updatePlaylist()
     }
     
     @objc func songFinished() {
@@ -240,18 +273,17 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(fontSize))
             }
             
-            textField.drawsBackground = false
-            textField.backgroundColor = NSColor.controlColor
-            textField.textColor       = NSColor.controlTextColor
-            
-            if(self.iSongIndex == row){
-                textField.drawsBackground = true
-                textField.backgroundColor = NSColor.systemOrange
-                textField.textColor       = NSColor.black
+            if(tableColumn!.identifier as NSString as String) == "title"{
+                textField.drawsBackground = false
+                textField.backgroundColor = NSColor.controlColor
+                textField.textColor       = NSColor.controlTextColor
+                
+                if(self.iSongIndex == row){
+                    textField.drawsBackground = true
+                    textField.backgroundColor = NSColor.systemOrange
+                    textField.textColor       = NSColor.black
+                }
             }
-            
-//            textField.sizeToFit()
-//            textField.setFrameOrigin(NSZeroPoint)
             
             return cell
         }
@@ -283,14 +315,24 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        return PasteboardWriter(path: self.aSongs[row].getValueAsString("path"), at: row)
+    }
+    
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         if tableView != self.songTable{ return [] }
         
-        if dropOperation == .above {
-            return .move
+        guard dropOperation == .above else { return [] }
+
+        if let source = info.draggingSource as? NSTableView,
+            source === tableView
+        {
+            tableView.draggingDestinationFeedbackStyle = .gap
+        } else {
+            tableView.draggingDestinationFeedbackStyle = .regular
         }
-        return []
+        return .move
         
     }
 
@@ -299,22 +341,47 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
         if tableView != self.songTable{ return false }
         if self.oSelectedPlaylist == nil{ return false }
         
+        var newIndex = row
+        
         guard let items = info.draggingPasteboard.pasteboardItems
         else { return false }
         
-        let aPaths = items.compactMap{ $0.string(forType: .string) }
+        for item in items {
+            let sPath = item.string(forType: .string)!
+            let oldIndex = item.propertyList(forType: .tableRowIndex)! as! NSInteger
 
-        for path in aPaths {
-            if let song = FileSystemUtils.aSongs.first(where: { $0.getValueAsString("path") == path }){
-                self.aSongs.insert(song, at: row)
-                
-                Database.addSong(
-                    toPlaylist:   self.oSelectedPlaylist!.plID,
-                    withTitle:    song.getValueAsString("title"),
-                    withDuration: Int32(song.duration),
-                    withFileName: song.getValueAsString("fileName"),
-                    withOrder:    0
-                )
+            
+            if let song = FileSystemUtils.aSongs.first(where: { $0.getValueAsString("path") == sPath }){
+                if oldIndex >= 0 {
+                    if newIndex > oldIndex{
+                        newIndex -= 1
+                    }
+                    self.aSongs.remove(at: oldIndex)
+                    self.aSongs.insert(song, at: newIndex)
+                    
+                    if self.iSongIndex == oldIndex {
+                        self.iSongIndex = newIndex
+                    }else if oldIndex <= self.iSongIndex && self.iSongIndex <= newIndex {
+                        self.iSongIndex -= 1
+                    }else if oldIndex >= self.iSongIndex && self.iSongIndex >= newIndex {
+                        self.iSongIndex += 1
+                    }
+                    
+                    // Animate the rows
+                    tableView.beginUpdates()
+                    tableView.moveRow(at: oldIndex, to: newIndex)
+                    tableView.endUpdates()
+                } else {
+                    self.aSongs.insert(song, at: newIndex)
+                    
+                    Database.addSong(
+                        toPlaylist:   self.oSelectedPlaylist!.plID,
+                        withTitle:    song.getValueAsString("title"),
+                        withDuration: Int32(song.duration),
+                        withFileName: song.getValueAsString("fileName"),
+                        withOrder:    0
+                    )
+                }
                 
                 var count = 0
                 for song in self.aSongs {
