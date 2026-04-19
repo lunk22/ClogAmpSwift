@@ -495,6 +495,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
                 comment = comment.replacingOccurrences(of: "] ", with: "] <wbr/>")
                 comment = comment.replacingOccurrences(of: " ", with: "&nbsp;")
                 comment = comment.replacingOccurrences(of: "", with: "<br/>")
+                comment = comment.replacingOccurrences(of: "\n", with: "<br/>")
                 
                 sPdfHtml = sPdfHtml + "    <tr>"
                 sPdfHtml = sPdfHtml + "      <td class='bold nowrap'>\(position.name)</td>"
