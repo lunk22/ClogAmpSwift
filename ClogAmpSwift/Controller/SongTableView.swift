@@ -84,10 +84,14 @@ class SongTableView: ViewController {
                     if percent < 100 {
                         self.directoryLabel.stringValue = "\(dir) - \(percent)%"
                     }else{
+                        self.performSortSongs()
+                        
                         self.directoryLabel.stringValue = "\(dir)"
+                        self.aSongs[20].determineBassBPM(){
+                            let bpm = $0
+                            print("BPM of \(self.aSongs[20].getValueAsString("title")): \(bpm)")
+                        }
                     }
-                    
-                    self.performSortSongs()
                 }
                 
                 if !positionLoaded {
@@ -107,7 +111,7 @@ class SongTableView: ViewController {
             }
         }
         
-        self.directoryLabel.stringValue = dir;
+//        self.directoryLabel.stringValue = dir;
     }
     
     func sortSongs(by: String, ascending: Bool){

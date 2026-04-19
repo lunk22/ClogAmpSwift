@@ -1,7 +1,7 @@
+#ifndef Id3Wrapper_h
+#define Id3Wrapper_h
+
 #import <Foundation/Foundation.h>
-//#import "id3.h"
-//#import "id3/tag.h"
-//#import "id3/misc_support.h"
 
 @interface Id3Wrapper : NSObject {
     NSString *path;
@@ -9,9 +9,7 @@
 
 @property (nonatomic, retain) NSString *path;
 
-- (NSString *) readTitle;
-- (NSString *) readArtist;
-- (int) readDuration;
+- (NSMutableDictionary *) readBasicInfo;
 - (NSString *) readUserText:(const char*)text;
 - (bool) hasPositions;
 - (NSString *) loadPositions;
@@ -24,3 +22,5 @@
 - (id)init:(NSString*)path;
 
 @end
+
+#endif /* Id3Wrapper_h */
