@@ -9,38 +9,50 @@
 import Cocoa
 import Sparkle
 import MediaPlayer
+import IOKit
+import IOKit.pwr_mgt
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBarItem: NSStatusItem?
-//    public let updateController: SPUStandardUpdaterController
+    var systemSleepDisabled: Bool = false
+    var noSleepAssertionID: IOPMAssertionID = 0
     
     override init() {
-//        updateController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+        super.init()
         // Access via:
         // NSApplication.shared.delegate as! AppDelegate
         
         ValueTransformer.setValueTransformer( DecibelTransformer(), forName: .decibelTransformer )
         ValueTransformer.setValueTransformer( HertzTransformer(), forName: .hertzTransformer )
         
-        super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: NSApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: NSApplication.willResignActiveNotification, object: nil)
+        
+//        NotificationCenter.default.addObserver(forName: NSNotification.Name("caffeinateChanged"), object: nil, queue: nil){ _ in
+//            if self.caffeinateProcess == nil {
+//                self.appMovedToForeground()
+//            } else {
+//                self.appMovedToBackground()
+//            }
+//        }
     }
     
-    func applicationDidFinishLaunching(_ aNotification: Notification) {        
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
 //        UserDefaults.standard.reset() // Extension method - ONLY FOR TESTING
         
         Database.buildTablesIfNeeded()
         
 //        showMenuBarItem()  // just to play around a little
     }
+    
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        NotificationCenter.default.post(name: PlayerAudioEngine.NotificationNames.shutdown, object: nil) // Shutdown Audio API
 
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Shutdown Audio API
-        NotificationCenter.default.post(name: PlayerAudioEngine.NotificationNames.shutdown, object: nil)
+        reenableSystemSleep()
         
-        // Wait 1 sec
-        let ms: UInt32 = 1000
-        usleep(1000 * ms) // 1000 ms = 1 sec
+        return .terminateNow
+        
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -57,12 +69,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusBarItem.menu = statusBarMenu
             
             let menuItem = NSMenuItem()
-            menuItem.title = "I don't to anything"
+            menuItem.title = "I don't do anything"
             
             statusBarMenu.addItem(menuItem)
             
             self.statusBarItem = statusBarItem
         }
+    }
+    
+    func disableSystemSleep() {
+//        guard !systemSleepDisabled else { return }
+//        
+//        let noSleepReturn = IOPMAssertionCreateWithName(
+//            kIOPMAssertionTypeNoDisplaySleep as CFString,
+//            IOPMAssertionLevel(kIOPMAssertionLevelOn),
+//            "ClogAmpMac active" as CFString,
+//            &noSleepAssertionID
+//        )
+//        guard noSleepReturn == kIOReturnSuccess else { return }
+//        systemSleepDisabled = true
+//        print("System Sleep disabled")
+    }
+    
+    func reenableSystemSleep() {
+//        guard systemSleepDisabled else { return }
+//        
+//        let noSleepReturn = IOPMAssertionRelease(noSleepAssertionID)
+//        guard noSleepReturn == kIOReturnSuccess else { return }
+//        systemSleepDisabled = false
+//        print("System Sleep reenabled")
+    }
+    
+    // MARK: Eventhandler / Menu Actions
+    @objc func appMovedToForeground() {
+        disableSystemSleep()
+    }
+    
+    @objc func appMovedToBackground() {
+        reenableSystemSleep()
     }
     
     @IBAction func openUpdateHistory(_ sender: Any) {
