@@ -5,3 +5,4 @@ ClogAmp from Mac (Swift)
 
 ## Used libraries:
 - [id3Lib](http://id3lib.sourceforge.net/)
+- [BASS & BASS FX](http://www.un4seen.com/)
