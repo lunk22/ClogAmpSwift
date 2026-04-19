@@ -448,7 +448,7 @@
                 </windowController>
                 <customObject id="7mB-Bn-WOi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="862" y="-93"/>
+            <point key="canvasLocation" x="388" y="-663"/>
         </scene>
         <!--Time Panel View-->
         <scene sceneID="ieG-rq-9wv">
@@ -475,7 +475,7 @@
                 </viewController>
                 <customObject id="a6b-4c-sGW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1346" y="-98"/>
+            <point key="canvasLocation" x="426" y="-675"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="AtZ-iD-YBR">
@@ -496,7 +496,7 @@
                 </windowController>
                 <customObject id="tre-Q5-drZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="592" y="-473"/>
+            <point key="canvasLocation" x="-605" y="-428"/>
         </scene>
         <!--Preferences-->
         <scene sceneID="aJh-2P-vUi">
@@ -869,7 +869,7 @@
                 </viewController>
                 <customObject id="AcR-4G-Jdu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1242" y="-509"/>
+            <point key="canvasLocation" x="-738" y="-444"/>
         </scene>
         <!--Player View-->
         <scene sceneID="Pvh-Bu-1XD">
@@ -950,7 +950,7 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eek-Ko-Hx5">
-                                <rect key="frame" x="105" y="41" width="96" height="14"/>
+                                <rect key="frame" x="94" y="41" width="96" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" title="Playlist active" placeholderString="" id="Owl-es-RPo">
                                     <font key="font" metaFont="message" size="11"/>
@@ -962,7 +962,7 @@
                                 <rect key="frame" x="18" y="155" width="36" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" alignment="justified" title="Speed" usesSingleLineMode="YES" id="dOs-ll-4nC">
-                                    <font key="font" metaFont="system" size="10"/>
+                                    <font key="font" metaFont="label"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1001,7 +1001,7 @@
                                 <rect key="frame" x="494" y="156" width="70" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Volume" id="w6d-9C-Brh">
-                                    <font key="font" metaFont="system" size="10"/>
+                                    <font key="font" metaFont="label"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1045,7 +1045,7 @@
                 </viewController>
                 <customObject id="XUw-5S-rFu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="167" y="1219"/>
+            <point key="canvasLocation" x="74" y="1031"/>
         </scene>
         <!--PDF View-->
         <scene sceneID="R0u-LD-O8w">
@@ -1067,7 +1067,7 @@
                 </viewController>
                 <customObject id="PYz-VR-zO6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-631.5" y="1330.5"/>
+            <point key="canvasLocation" x="-359" y="1358"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="QZ5-wx-4U1">
@@ -1088,7 +1088,7 @@
                 </windowController>
                 <customObject id="ADG-gK-MkV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="164" y="-42"/>
+            <point key="canvasLocation" x="-21" y="-1010"/>
         </scene>
         <!--Countdown-->
         <scene sceneID="EgP-0i-ri9">
@@ -1222,7 +1222,7 @@
                 </viewController>
                 <customObject id="WMi-Yl-aEK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504" y="-22"/>
+            <point key="canvasLocation" x="38" y="-1010"/>
         </scene>
         <!--Song Table-->
         <scene sceneID="0p8-ZZ-9fE">
@@ -2005,7 +2005,7 @@
                 </windowController>
                 <customObject id="EsP-IW-XYn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-31" y="596"/>
+            <point key="canvasLocation" x="-547" y="-1010"/>
         </scene>
         <!--History-->
         <scene sceneID="g1X-Mk-Y0R">
@@ -2186,7 +2186,7 @@
                 </viewController>
                 <customObject id="at9-e5-zna" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="681" y="589"/>
+            <point key="canvasLocation" x="-664" y="-1170"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dpr-Io-3DF">
