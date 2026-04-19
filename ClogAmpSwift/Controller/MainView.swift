@@ -18,6 +18,7 @@ class MainView: NSViewController {
     
     override func viewWillDisappear() {
         self.playerView?.getSong()?.saveChanges()
+        NSApplication.shared.terminate(self)
     }
     
     override func keyDown(with event: NSEvent) {

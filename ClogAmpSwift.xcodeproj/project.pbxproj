@@ -35,6 +35,7 @@
 		B7985339221A812600BDE678 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7985338221A812600BDE678 /* PreferencesView.swift */; };
 		B7A3A9C0221AFCBD00CA5FE8 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */; };
 		B7A3A9C2221BE44400CA5FE8 /* CountdownWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */; };
+		B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */; };
 		B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */; };
 		B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1A21F9A87E00532C1A /* Position.swift */; };
 		B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */; };
@@ -92,6 +93,7 @@
 		B7985338221A812600BDE678 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownWindow.swift; sourceTree = "<group>"; };
+		B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionXmlParser.swift; sourceTree = "<group>"; };
 		B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClogAmpSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		B7BD8F0621F7597800532C1A /* id3lib_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id3lib_frame.h; sourceTree = "<group>"; };
 		B7BD8F0721F7597800532C1A /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
@@ -173,18 +175,18 @@
 		50DC6D892081DA3100B7C347 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				50A37BAC207FF03D0020E218 /* MainView.swift */,
-				50DC6D872081D68100B7C347 /* PlayerView.swift */,
-				B722991E2200223B00AEFA90 /* ViewController.swift */,
-				B72299202202C9FD00AEFA90 /* SongTableView.swift */,
-				B72299222202D0EA00AEFA90 /* PositionTableView.swift */,
-				B7D9C06722145A3200A70F4A /* HistoryTableView.swift */,
-				5017716821FF58C700D8A95A /* TimePanelView.swift */,
-				B75955852216D1A300D11E3F /* TimePanelWindow.swift */,
-				B75955872216DD5800D11E3F /* MainWindow.swift */,
-				B7985338221A812600BDE678 /* PreferencesView.swift */,
 				B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */,
 				B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */,
+				B7D9C06722145A3200A70F4A /* HistoryTableView.swift */,
+				50A37BAC207FF03D0020E218 /* MainView.swift */,
+				B75955872216DD5800D11E3F /* MainWindow.swift */,
+				50DC6D872081D68100B7C347 /* PlayerView.swift */,
+				B72299222202D0EA00AEFA90 /* PositionTableView.swift */,
+				B7985338221A812600BDE678 /* PreferencesView.swift */,
+				B72299202202C9FD00AEFA90 /* SongTableView.swift */,
+				5017716821FF58C700D8A95A /* TimePanelView.swift */,
+				B75955852216D1A300D11E3F /* TimePanelWindow.swift */,
+				B722991E2200223B00AEFA90 /* ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -192,11 +194,12 @@
 		50DC6D8A2081DA4B00B7C347 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				504E5FA32080F4E0003DBA66 /* Song.swift */,
 				50DC6D852081D22F00B7C347 /* Model.swift */,
-				B7BD8F1A21F9A87E00532C1A /* Position.swift */,
 				B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */,
 				B7364FD6221537AA00FB9C64 /* Player.swift */,
+				B7BD8F1A21F9A87E00532C1A /* Position.swift */,
+				504E5FA32080F4E0003DBA66 /* Song.swift */,
+				B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -221,8 +224,8 @@
 		B70E24BC21F5E5CC00387D0A /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
-				B70E24BD21F5E5E700387D0A /* View.swift */,
 				50A09BAB22104B0A00365544 /* TableView.swift */,
+				B70E24BD21F5E5E700387D0A /* View.swift */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -234,15 +237,15 @@
 				B7BD8F1321F7597900532C1A /* id3.h */,
 				B79853352217074500BDE678 /* bass_fx.h */,
 				B79853342217074400BDE678 /* bass.h */,
-				B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */,
-				B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */,
-				B7BD8F1921F7611000532C1A /* Id3Wrapper.h */,
-				B7DDFCB222141F5F00637831 /* Database.m */,
-				B7DDFCB422141F6B00637831 /* Database.h */,
-				B7D9C0622214513B00A70F4A /* SongHistoryItem.h */,
-				B7D9C0632214513B00A70F4A /* SongHistoryItem.m */,
 				B78780F32216A131002B74B4 /* BassWrapper.m */,
 				B78780F52216A13C002B74B4 /* BassWrapper.h */,
+				B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */,
+				B7DDFCB222141F5F00637831 /* Database.m */,
+				B7DDFCB422141F6B00637831 /* Database.h */,
+				B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */,
+				B7BD8F1921F7611000532C1A /* Id3Wrapper.h */,
+				B7D9C0622214513B00A70F4A /* SongHistoryItem.h */,
+				B7D9C0632214513B00A70F4A /* SongHistoryItem.m */,
 			);
 			path = ObjCWrapper;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */,
 				B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */,
 				B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */,
+				B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */,
 				504E5FA42080F4E0003DBA66 /* Song.swift in Sources */,
 				5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */,
 				B7364FD7221537AA00FB9C64 /* Player.swift in Sources */,

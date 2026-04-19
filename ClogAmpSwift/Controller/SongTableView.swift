@@ -10,6 +10,7 @@ import AppKit
 
 class SongTableView: ViewController {
     
+    //MARK: Properties
     var aSongs         = [Song]()
     var aSongsForTable = [Song]()
     
@@ -25,12 +26,12 @@ class SongTableView: ViewController {
     
     weak var mainView: MainView?
     
-    //Outlets
+    //MARK: Outlets
     @IBOutlet weak var songTable: TableView!
     @IBOutlet weak var searchField: NSTextField!
     @IBOutlet weak var directoryLabel: NSTextField!
 
-    //Overrides
+    //MARK: Overrides
     override func viewDidLoad() {
         
         self.songTable.selectionDelegate = self
@@ -53,9 +54,7 @@ class SongTableView: ViewController {
     }
     
     override func keyDown(with event: NSEvent) {
-        
-        
-        
+    
         switch event.keyCode {
             case 36: // Enter
                 if songTable.selectedRow >= 0 {
@@ -66,9 +65,6 @@ class SongTableView: ViewController {
                     }
                 }
             default:
-//            if !event.modifierFlags.contains(.shift) {
-//                self.mainView?.keyDown(with: event)
-//            }else{
                 let currentSearchTime = mach_absolute_time() //nanoseconds
                 
                 //1ms = 1 000 000 ns
@@ -110,18 +106,16 @@ class SongTableView: ViewController {
                 }else{
                     self.mainView?.keyDown(with: event)
                 }
-//            }
-            
         }
-
     }
     
+    //MARK: Custom Methods
     func setMusicDirectory(_ dir: String){
         self.aSongs.removeAll()
         
         DispatchQueue.global(qos: .background).async {
             var positionLoaded = false
-//            self.aSongs =
+
             FileSystemUtils.readFolderContentsAsSong(sPath: dir, oView: self) {
                 let song    = $0
                 let percent = $1
@@ -134,12 +128,7 @@ class SongTableView: ViewController {
                         self.directoryLabel.stringValue = "\(dir) - \(percent)%"
                     }else{
                         self.performSortSongs()
-                        
                         self.directoryLabel.stringValue = "\(dir)"
-//                        self.aSongs[20].determineBassBPM(){
-//                            let bpm = $0
-//                            print("BPM of \(self.aSongs[20].getValueAsString("title")): \(bpm)")
-//                        }
                     }
                 }
                 
@@ -159,8 +148,6 @@ class SongTableView: ViewController {
                 }
             }
         }
-        
-//        self.directoryLabel.stringValue = dir;
     }
     
     func sortSongs(by: String, ascending: Bool){
@@ -224,7 +211,7 @@ class SongTableView: ViewController {
         }
     }
     
-    //UI Selectors
+    //MARK: UI Selectors - Actions
     @IBAction func handleSongSelected(_ sender: Any) {
         self.loadSelectedSong()
     }

@@ -137,6 +137,10 @@ class PositionTableView: NSViewController {
         }
     }
     @IBAction func handleRemovePosition(_ sender: NSButton) {
+        if self.positionTable.selectedRow < 0 {
+            return
+        }
+
         if let song = self.mainView?.playerView?.currentSong {
             song.positions.remove(at: self.positionTable.selectedRow)
             song.positionsChanged = true
@@ -168,10 +172,83 @@ class PositionTableView: NSViewController {
             self.refreshTable(single: true)
         }
     }
+    @IBAction func importFromXml(_ sender: NSButton) {
+        let openDialog = NSOpenPanel();
+        openDialog.title                   = "Import Positions"
+        openDialog.showsResizeIndicator    = true
+        openDialog.showsHiddenFiles        = false
+        openDialog.canCreateDirectories    = false
+        openDialog.canChooseDirectories    = false
+        openDialog.canChooseFiles          = true
+        openDialog.allowedFileTypes        = ["infoexport"]
+        openDialog.allowsOtherFileTypes    = false
+        
+        if openDialog.runModal() == NSApplication.ModalResponse.OK {
+//            print(openDialog.url)
+            let xmlParser = XMLParser(contentsOf: openDialog.url!)
+            let posParser = PositionXmlParser()
+            posParser.song = self.mainView?.playerView?.currentSong
+            xmlParser?.delegate = posParser
+            if xmlParser?.parse() ?? false {
+                self.refreshTable(single: true)
+            }
+        }
+    }
+    @IBAction func exportToXml(_ sender: NSButton) {
+        if let song = self.mainView?.playerView?.currentSong {
+            let saveDialog = NSSavePanel()
+            saveDialog.title                   = "Export Positions"
+            saveDialog.showsResizeIndicator    = true
+            saveDialog.showsHiddenFiles        = false
+            saveDialog.canCreateDirectories    = true
+            saveDialog.allowedFileTypes        = ["infoexport"]
+            saveDialog.allowsOtherFileTypes    = false
+            
+            if saveDialog.runModal() == NSApplication.ModalResponse.OK {
+                //OK, save the positions to the desired file
+                
+                let xmlDoc = XMLDocument(kind: XMLNode.Kind.document)
+                let xmlRoot = XMLElement(name: "mediafile")
+                let xmlPositionList = XMLElement(name: "positionlist")
+                
+                xmlDoc.version           = "1.0"
+                xmlDoc.characterEncoding = "UTF-8"
+                xmlDoc.isStandalone      = true
+                xmlDoc.setRootElement(xmlRoot)
+                
+                xmlRoot.addChild(xmlPositionList)
+                
+                for position in song.positions {
+                    let xmlPosition = XMLElement(name: "position")
+                    xmlPositionList.addChild(xmlPosition)
+
+                    let xmlJump = XMLElement(name: "jump", stringValue: "-1")
+                    xmlPosition.addChild(xmlJump)
+                    
+                    let xmlTime = XMLElement(name: "milliseconds", stringValue: "\(position.time)")
+                    xmlPosition.addChild(xmlTime)
+                    
+                    let xmlComment = XMLElement(name: "comment", stringValue: position.comment)
+                    xmlPosition.addChild(xmlComment)
+                    
+                    let xmlName = XMLElement(name: "name", stringValue: position.name)
+                    xmlPosition.addChild(xmlName)
+                }
+                
+                let xmlData = xmlDoc.xmlData(options: XMLNode.Options.nodePrettyPrint)
+                
+                try! xmlData.write(to: saveDialog.url!)
+            }
+        }
+    }
     @IBAction func onEndEditing(_ sender: NSTextField) {
         let iRow = self.positionTable.row(for: sender)
         let iCol = self.positionTable.column(for: sender)
         let oCol = self.positionTable.tableColumns[iCol]
+        
+        if iRow < 0 {
+            return
+        }
         
         let text = sender.stringValue
         let identifier = oCol.identifier.rawValue
