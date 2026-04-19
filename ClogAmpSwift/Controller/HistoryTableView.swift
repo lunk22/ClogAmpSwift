@@ -35,7 +35,17 @@ class HistoryTableView: ViewController {
     }
     
     func createPDF() {
-        if self.historyTable.selectedRow < 0 { return }
+        var aRowIndexes: IndexSet
+        
+        if self.historyTable.selectedRow >= 0{
+            aRowIndexes = self.historyTable.selectedRowIndexes
+        }else{
+            let aTmp = NSMutableIndexSet()
+            for n in 0...(self.historyItems?.count ?? 0 - 1){
+                aTmp.add(n)
+            }
+            aRowIndexes = aTmp as IndexSet
+        }
         
         //Read Translatable Table Headers
         let header1 = NSLocalizedString("songTitle", bundle: Bundle.main, comment: "") as NSString as String
@@ -44,9 +54,9 @@ class HistoryTableView: ViewController {
         
         var sPdfHtml        = ""
         sPdfHtml = sPdfHtml + "<style>"
+        sPdfHtml = sPdfHtml + " th, td { border-bottom: 1px solid #ddd; font-family:'Arial'; padding: 5px }"
         sPdfHtml = sPdfHtml + " th { text-align: left; }"
-//        sPdfHtml = sPdfHtml + " table, th, td { border: 1px solid black; border-collapse: collapse; font-family:'Arial' }"
-        sPdfHtml = sPdfHtml + " th, td { border-bottom: 1px solid #ddd; font-family:'Arial'; padding: 10px }"
+        sPdfHtml = sPdfHtml + " td { font-size: 12px; }"
         sPdfHtml = sPdfHtml + "</style>"
         sPdfHtml = sPdfHtml + "<br/>"
         sPdfHtml = sPdfHtml + "<br/>"
@@ -60,7 +70,7 @@ class HistoryTableView: ViewController {
         sPdfHtml = sPdfHtml + "     <th>\(header3)</th>"
         sPdfHtml = sPdfHtml + " </tr>"
         
-        for index in self.historyTable.selectedRowIndexes {
+        for index in aRowIndexes {
             if self.historyItems != nil && self.historyItems!.count > index {
                 sPdfHtml = sPdfHtml + " <tr>"
                 sPdfHtml = sPdfHtml + "     <td>\(self.historyItems![index].title ?? "")</td>"

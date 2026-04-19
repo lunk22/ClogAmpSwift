@@ -459,5 +459,5 @@
 /* Class = "NSButtonCell"; title = "Continuous Playback"; ObjectID = "wMT-zO-iZk"; */
 "wMT-zO-iZk.title" = "Continuous Playback";
 
-/* Class = "NSMenuItem"; title = "Export as PDF..."; ObjectID = "GRi-IM-gZT"; */
-"GRi-IM-gZT.title" = "Export as PDF..."
+/* Class = "NSMenuItem"; title = "Print..."; ObjectID = "hm1-1f-8uH"; */
+"hm1-1f-8uH.title" = "Print...";
