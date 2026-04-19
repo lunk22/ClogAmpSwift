@@ -62,7 +62,9 @@ class HistoryTableViewController: ViewController {
         }
         sPdfHtml = sPdfHtml + "</table>"
         
-        createPDF(htmlString: sPdfHtml, fileName: "History")
+        createPDF(htmlString: sPdfHtml, fileName: "History") { _ in 
+            // do nothing
+        }
     }
     
     //Overrides

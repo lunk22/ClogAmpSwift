@@ -11,7 +11,7 @@ import HtmlToPdf
 import UserNotifications
 //import CryptoKit
 
-public func createPDF(htmlString: String, fileName: String = "Export") {
+public func createPDF(htmlString: String, fileName: String = "Export", closure: @escaping (_ savePdfUrl: URL) -> ()) {
     let savePanel = NSSavePanel()
     savePanel.canCreateDirectories = true
     savePanel.allowedContentTypes = [.pdf]
@@ -42,6 +42,8 @@ public func createPDF(htmlString: String, fileName: String = "Export") {
                         UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
                         try await UNUserNotificationCenter.current().add(request)
                     }
+                    
+                    await closure(savePanel.url!)
                 } catch {
                     
                 }

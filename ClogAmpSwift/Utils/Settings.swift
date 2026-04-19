@@ -156,6 +156,13 @@ class Settings: NSObject {
         return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefHighlightPosition.rawValue)
     }
     
+    static var positionHighlightTextOnly: Bool {
+        if UserDefaults.standard.value(forKey: UserDefaults.Keys.prefHighlightPositionTextOnly.rawValue) == nil {
+            UserDefaults.standard.set(false, forKey: UserDefaults.Keys.prefHighlightPositionTextOnly.rawValue)
+        }
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefHighlightPositionTextOnly.rawValue)
+    }
+    
     static var positionHighlightColor: NSColor {
         if let data = UserDefaults.standard.data(forKey: UserDefaults.Keys.prefPositionHighlightColor.rawValue) {
             if let color = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSColor.self, from: data) {

@@ -7,6 +7,7 @@
 
 import AppKit
 import WebKit
+import PDFKit
 
 class PositionTableViewController: NSViewController {
     
@@ -505,9 +506,36 @@ class PositionTableViewController: NSViewController {
             
             sPdfHtml = sPdfHtml + " </table>"
             
-            createPDF(htmlString: sPdfHtml, fileName: song.title)
+            createPDF(htmlString: sPdfHtml, fileName: song.title) { url in
+//                DispatchQueue.main.async {
+//                    self.previewPdf(url)
+//                }
+            }
+            
         }
     }
+    
+//    func previewPdf(_ url: URL) {
+//        // create an empty view controller
+//        let controller = NSViewController()
+//        controller.view = NSView(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(600), height: CGFloat(750)))
+//        
+//        let popover = NSPopover()
+//        popover.contentViewController = controller
+//        popover.contentSize = controller.view.frame.size
+//        
+//        popover.behavior = .transient
+//        popover.animates = true
+//        
+//        let pdfDocument = PDFDocument(url: url)
+//        let pdfView = PDFView(frame: controller.view.frame)
+//        pdfView.document = pdfDocument
+//        pdfView.autoScales = true
+//        
+//        
+//        controller.view.addSubview(pdfView)
+//        popover.show(relativeTo: self.view.bounds, of: self.view, preferredEdge: NSRectEdge.maxY)
+//    }
     
     func updateBeatsByAdjusting(rowIndex: Int, beats: Int) {
         if let song = PlayerAudioEngine.shared.song {
@@ -654,9 +682,11 @@ extension PositionTableViewController: NSTableViewDataSource, NSTableViewDelegat
 
                 if Settings.positionHighlight && !PlayerAudioEngine.shared.isStopped() {
                     if(self.currentPosition == row){
-                        textField.drawsBackground = true
-                        textField.backgroundColor = Settings.positionHighlightColor
-                        textField.textColor       = Settings.positionTextColor
+                        if(!Settings.positionHighlightTextOnly) {
+                            textField.drawsBackground = true
+                            textField.backgroundColor = Settings.positionHighlightColor
+                        }
+                        textField.textColor = Settings.positionTextColor
                     }
                 }
 

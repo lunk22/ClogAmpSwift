@@ -690,23 +690,6 @@ CA
                                                 </binding>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYf-kR-God">
-                                            <rect key="frame" x="18" y="22" width="324" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Auto-Determine BPM" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="d47-zQ-8R8">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefAutoDetermineBPM" id="NSV-er-yZG">
-                                                    <dictionary key="options">
-                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
-                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                                    </dictionary>
-                                                </binding>
-                                            </connections>
-                                        </button>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ej1-PC-kzq">
                                             <rect key="frame" x="204" y="113" width="50" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -743,6 +726,23 @@ CA
                                                 </binding>
                                             </connections>
                                         </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYf-kR-God">
+                                            <rect key="frame" x="18" y="26" width="324" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Auto-Determine BPM" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="d47-zQ-8R8">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefAutoDetermineBPM" id="NSV-er-yZG">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
@@ -998,7 +998,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDk-1l-Ie3">
-                                            <rect key="frame" x="18" y="22" width="322" height="14"/>
+                                            <rect key="frame" x="18" y="31" width="322" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Use Mono Font for Positions" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Auf-SD-W1q">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3650,14 +3650,14 @@ IA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Highlighting" translatesAutoresizingMaskIntoConstraints="NO" id="Wcu-gV-IDD">
-                                <rect key="frame" x="20" y="54" width="362" height="138"/>
+                                <rect key="frame" x="20" y="20" width="362" height="172"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="cMQ-px-g7l">
-                                    <rect key="frame" x="0.0" y="0.0" width="362" height="121"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362" height="155"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fly-rH-3Px">
-                                            <rect key="frame" x="18" y="84" width="328" height="18"/>
+                                            <rect key="frame" x="16" y="115" width="328" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Highlight active position" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qHz-aJ-xLg">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3673,17 +3673,44 @@ IA
                                                 </binding>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U37-e0-Sar">
+                                            <rect key="frame" x="16" y="93" width="81" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Text only" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AUc-Ph-QPQ">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="8JY-25-ZrM" name="value" keyPath="defaults.prefHighlightPositionTextOnly" id="QmS-4l-0gg">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </button>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pvg-A1-sXT">
-                                            <rect key="frame" x="18" y="49" width="284" height="16"/>
+                                            <rect key="frame" x="16" y="57" width="284" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Highlight Color" id="ipP-m4-hMX">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="8JY-25-ZrM" name="enabled" keyPath="defaults.prefHighlightPositionTextOnly" id="wtV-Ts-JRm">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="1"/>
+                                                        <integer key="NSNullPlaceholder" value="1"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDr-F4-kAC">
-                                            <rect key="frame" x="18" y="17" width="284" height="16"/>
+                                            <rect key="frame" x="16" y="25" width="284" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Text Color" id="8qF-ZF-Eg5">
                                                 <font key="font" metaFont="system"/>
@@ -3692,15 +3719,23 @@ IA
                                             </textFieldCell>
                                         </textField>
                                         <colorWell identifier="highlightColor" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AkK-Ye-RyR">
-                                            <rect key="frame" x="305" y="42" width="44" height="28"/>
+                                            <rect key="frame" x="303" y="50" width="44" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <color key="color" red="1" green="0.54118653819999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <connections>
                                                 <action selector="handleColorSelected:" target="8JY-25-ZrM" id="Qds-Cq-1C7"/>
+                                                <binding destination="8JY-25-ZrM" name="enabled" keyPath="defaults.prefHighlightPositionTextOnly" id="1My-Xs-IHI">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="1"/>
+                                                        <integer key="NSNullPlaceholder" value="1"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </colorWell>
                                         <colorWell identifier="textColor" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UPO-pe-jzZ">
-                                            <rect key="frame" x="305" y="10" width="44" height="28"/>
+                                            <rect key="frame" x="303" y="18" width="44" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <connections>
@@ -3787,6 +3822,7 @@ IA
                     </connections>
                 </viewController>
                 <customObject id="JPD-L2-OxM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="xPd-Nc-iau"/>
             </objects>
             <point key="canvasLocation" x="-8144" y="3535"/>
         </scene>

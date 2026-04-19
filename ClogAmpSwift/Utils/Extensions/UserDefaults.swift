@@ -63,6 +63,7 @@ extension UserDefaults {
         case prefBeatsChangeBehaviour
         
         case prefHighlightPosition
+        case prefHighlightPositionTextOnly
         case prefPositionHighlightColor
         case prefPositionTextColor
         
