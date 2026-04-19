@@ -82,16 +82,16 @@ class FileSystemUtils {
         // Free the buffer before redetermination
         aSongs = []
         
-        logger.clear()
+        songLogger.clear()
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1 // synchronous execution
         
         for url in aUrls {
             
             queue.addOperation {
-                print("\(dateFormatter.string(from: Date())): Complete: \((currentIndex*100)/aUrls.count)%", to: &logger)
-                print("\(dateFormatter.string(from: Date())): File processed: \(url.path)", to: &logger)
-                print("----------------------------------------------------", to: &logger)
+                print("\(dateFormatter.string(from: Date())): Complete: \((currentIndex*100)/aUrls.count)%", to: &songLogger)
+                print("\(dateFormatter.string(from: Date())): File processed: \(url.path)", to: &songLogger)
+                print("----------------------------------------------------", to: &songLogger)
                 
                 let song = Song.retrieveSong(path: url)
                 aSongs.append(song)

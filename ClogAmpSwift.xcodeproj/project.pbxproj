@@ -10,7 +10,7 @@
 		50043ED52080C76C0025DC2D /* FileSystemUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50043ED42080C76C0025DC2D /* FileSystemUtils.swift */; };
 		50113FF8272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */; };
 		50113FF9272AF58A00EEB9A1 /* libid3-3.8.3.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		50113FFB27324F0A00EEB9A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50113FFA27324F0A00EEB9A1 /* Log.swift */; };
+		50113FFB27324F0A00EEB9A1 /* SongLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50113FFA27324F0A00EEB9A1 /* SongLog.swift */; };
 		5017716921FF58C700D8A95A /* TimePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017716821FF58C700D8A95A /* TimePanelView.swift */; };
 		504E5FA42080F4E0003DBA66 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E5FA32080F4E0003DBA66 /* Song.swift */; };
 		50A09BAC22104B0A00365544 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAB22104B0A00365544 /* TableView.swift */; };
@@ -18,6 +18,7 @@
 		50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAA207FF03D0020E218 /* AppDelegate.swift */; };
 		50A37BAD207FF03D0020E218 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAC207FF03D0020E218 /* MainView.swift */; };
 		50A37BB2207FF03E0020E218 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A37BB0207FF03E0020E218 /* Main.storyboard */; };
+		50AF239A2A5F2FAA0019A846 /* PlayerLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF23992A5F2FAA0019A846 /* PlayerLog.swift */; };
 		50DC6D862081D22F00B7C347 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D852081D22F00B7C347 /* Model.swift */; };
 		50DC6D882081D68100B7C347 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D872081D68100B7C347 /* PlayerView.swift */; };
 		B70F180F221D781800FE1149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B70F180E221D781800FE1149 /* Assets.xcassets */; };
@@ -106,7 +107,7 @@
 /* Begin PBXFileReference section */
 		50043ED42080C76C0025DC2D /* FileSystemUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemUtils.swift; sourceTree = "<group>"; };
 		50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libid3-3.8.3.0.0.dylib"; sourceTree = "<group>"; };
-		50113FFA27324F0A00EEB9A1 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		50113FFA27324F0A00EEB9A1 /* SongLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLog.swift; sourceTree = "<group>"; };
 		5017716821FF58C700D8A95A /* TimePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePanelView.swift; sourceTree = "<group>"; };
 		504E5FA32080F4E0003DBA66 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		50A09BAB22104B0A00365544 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 		50A37BB1207FF03E0020E218 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		50A37BB3207FF03E0020E218 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClogAmpSwift.entitlements; sourceTree = "<group>"; };
+		50AF23992A5F2FAA0019A846 /* PlayerLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLog.swift; sourceTree = "<group>"; };
 		50DC6D852081D22F00B7C347 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		50DC6D872081D68100B7C347 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		B70F180E221D781800FE1149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -298,7 +300,8 @@
 				B7B4660B23754EE600AA9419 /* StringScore.swift */,
 				B7D141512382B1F30056B042 /* PasteboardWriter.swift */,
 				B7A887B82382DA1B00C82399 /* CocoaPDFCreator.swift */,
-				50113FFA27324F0A00EEB9A1 /* Log.swift */,
+				50113FFA27324F0A00EEB9A1 /* SongLog.swift */,
+				50AF23992A5F2FAA0019A846 /* PlayerLog.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -493,9 +496,10 @@
 				B7A3A9C0221AFCBD00CA5FE8 /* CountdownView.swift in Sources */,
 				50A09BAC22104B0A00365544 /* TableView.swift in Sources */,
 				50DC6D862081D22F00B7C347 /* Model.swift in Sources */,
+				50AF239A2A5F2FAA0019A846 /* PlayerLog.swift in Sources */,
 				B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */,
 				B7A887B92382DA1B00C82399 /* CocoaPDFCreator.swift in Sources */,
-				50113FFB27324F0A00EEB9A1 /* Log.swift in Sources */,
+				50113FFB27324F0A00EEB9A1 /* SongLog.swift in Sources */,
 				B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */,
 				B7B3A179237BDC70009667CF /* SwiftPlaylist.swift in Sources */,
 				B74E7FE623794E8C00569664 /* ObjC.m in Sources */,
@@ -683,7 +687,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.5.8;
+				CURRENT_PROJECT_VERSION = 1.5.9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
@@ -708,7 +712,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = "1.5.8 beta";
+				MARKETING_VERSION = "1.5.9 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -729,7 +733,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.5.8;
+				CURRENT_PROJECT_VERSION = 1.5.9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
@@ -754,7 +758,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = "1.5.8 beta";
+				MARKETING_VERSION = "1.5.9 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;
 				PRODUCT_NAME = ClogAmpMac;
 				PROVISIONING_PROFILE_SPECIFIER = "";

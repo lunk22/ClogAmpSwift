@@ -15,8 +15,6 @@ class Player {
     var avPlayer: AVPlayer
     var observer: Any?
     var songHistoryWritten: Bool
-    
-//    var callbackClosure: @escaping (CMTime) -> Void
     var timeObserverCallback: ((CMTime) -> Void)?
     
     init(song: Song) {
@@ -26,19 +24,15 @@ class Player {
         self.avPlayer.automaticallyWaitsToMinimizeStalling = false
         self.avPlayer.currentItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithm.spectral // High Quality Pitch Algorithm
         self.songHistoryWritten = false
+        
+        playerLogger.clear()
+    }
+    
+    deinit {
+        self.removeTimeObserver()
     }
     
     func setRate(_ newRate: Float) {
-        let oldRate = self.avPlayer.rate
-        
-        if(oldRate == 0.0 && newRate > 0.0) {
-            // was stopped, will play
-            self.addTimeObserver()
-        } else if(newRate == 0.0){
-            // will stop
-            self.removeTimeObserver()
-        }
-        
         self.avPlayer.rate = newRate
     }
     
@@ -67,10 +61,6 @@ class Player {
     func stop(_ block: @escaping (Bool) -> Void) {
         self.setRate(0.0)
         self.seek(seconds: 0.0, using: block)
-        // setRate removed the time observer, but after setting the time to 0 we need to update one final time.
-        if let callback = self.timeObserverCallback {
-            callback(CMTimeMake(value: 0, timescale: 1000))
-        }
     }
     
     func isPlaying() -> Bool {
@@ -132,11 +122,22 @@ class Player {
     
     func addTimeObserverCallback(using block: @escaping (CMTime) -> Void) {
         self.timeObserverCallback = block
+        self.addTimeObserver()
     }
     
     func addTimeObserver() {
         if let callback = self.timeObserverCallback {
-            self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: nil, using: callback)
+            var count = 0
+            while self.observer == nil && count < 10 {
+                count += 1
+                self.observer = self.avPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 100, timescale: 1000), queue: nil, using: callback)
+            }
+            
+            if self.observer != nil {
+                print("SUCCESS: Time Observer added - \(self.song.title)", to: &playerLogger)
+            } else {
+                print("ERROR: Failed to add time observer in time - \(self.song.title)", to: &playerLogger)
+            }
         }
         
         NotificationCenter.default.addObserver(self,
@@ -145,7 +146,6 @@ class Player {
            object: nil
         ) // Add song finished observer
         
-        print("Time Observer added")
     }
     
     func removeTimeObserver() {
@@ -157,7 +157,7 @@ class Player {
         
         NotificationCenter.default.removeObserver(self)
         
-        print("Time Observer removed")
+        print("SUCCESS: Time Observer removed - \(self.song.title)", to: &playerLogger)
         
     }
 }

@@ -49,6 +49,8 @@ class PositionTableView: NSViewController {
             }
         }
         
+        self.positionTable.enclosingScrollView?.becomeFirstResponder()
+        
         super.viewDidLoad()
     }
     
