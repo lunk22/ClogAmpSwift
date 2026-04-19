@@ -9,8 +9,20 @@
 import Foundation
 
 extension String {
-    var isInteger: Bool {
+    func isInteger() -> Bool {
         let numbers = CharacterSet(charactersIn: "0123456789")
         return CharacterSet(charactersIn: self).isSubset(of: numbers)
+    }
+    
+    func asInteger() -> Int {
+        if self != "" {
+            if self.isInteger() {
+                return Int(self)!
+            } else {
+                return 0
+            }
+        }
+        
+        return 0
     }
 }

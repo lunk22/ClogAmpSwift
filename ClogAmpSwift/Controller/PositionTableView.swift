@@ -330,9 +330,7 @@ class PositionTableView: NSViewController {
                 return
             }
             
-            let positions = song.getPositions()
-            
-            let position = positions[iRow]
+            let position = song.getPositions()[iRow]
             
             switch identifier {
                 case "name":
@@ -354,6 +352,8 @@ class PositionTableView: NSViewController {
                         
                         let time     = UInt(Int(min+sec+msec))
                         
+                        if time > (song.duration * 1000) { self.refreshTable(single: true); return }
+                        
                         if position.time != time {
                             position.time = time
                             self.refreshTable(single: true)
@@ -371,19 +371,31 @@ class PositionTableView: NSViewController {
                         position.jumpTo = text
                     }
                 case "beats":
+                    var nextPosition: Position
+                    
                     // Guard Clauses
-                    if !text.isInteger || Int(text)! < 0 { return } // not an int or negative int?
-                    if Int(text)! == position.beats { return } // no change?
-                    if positions.count < iRow+1 { return } // no following position?
-
-                    // beats manually changed => alter next position so the current one has the requested beats
-                    let nextPosition = positions[iRow+1]
+                    if !text.isInteger() || text.asInteger() < 0 { self.refreshTable(single: true); return } // not an int or negative int? just refresh to get the old value
+                    if text.asInteger() == position.beats { return } // no change?
+                    
                     let durationForBeats = Double(text)! / song.beatsPerMS
                     var newCalculatedTime = position.time + UInt(lround(durationForBeats))
+                    
+                    if newCalculatedTime > (song.duration * 1000) { self.refreshTable(single: true); return }
+                    
+                    // beats manually changed => alter next position so the current one has the requested beats
+                    if song.getPositions().count > iRow+1 {
+                        nextPosition = song.getPositions()[iRow+1]
+                        
+                    } else {
+                        // no following position
+                        nextPosition = Position(name: "", comment: "", time: 0, new: true)
+                        song.addPosition(nextPosition)
+                    }
+
                     nextPosition.time = newCalculatedTime
                     
                     // adjust all later positions as well, if no time is left for them and positions would trade places
-                    for (index, adjustPosition) in positions.enumerated() {
+                    for (index, adjustPosition) in song.getPositions().enumerated() {
                         if index < iRow + 1 { continue }
                         
                         if adjustPosition.time <= newCalculatedTime {
