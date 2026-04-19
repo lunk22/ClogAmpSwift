@@ -69,9 +69,6 @@ class Song {
             //Artist
             self.artist = map?.value(forKey: "artist") as? String ?? ""
             
-            //Read Level
-            self.level = map?.value(forKey: "cloggingLevel") as? String ?? ""
-            
             //Read Tempo
             if let sTempo = map?.value(forKey: "lastTempo") as? String{
                 if(sTempo != ""){
@@ -83,13 +80,18 @@ class Song {
                 }
             }
             
+            //Duration
             self.duration = UInt(map?.value(forKey: "duration") as? Int ?? 0)
+            
+            //Read BPM
+            self.bpm = UInt(map?.value(forKey: "bpm") as? Int ?? 0)
+            
+            //Read Level
+            self.level = map?.value(forKey: "cloggingLevel") as? String ?? ""
             
             //Has Positions
             self.hasPositions = map?.value(forKey: "hasPositions") as? Bool ?? false
             
-//            //Read BPM
-//            bpm = [Tools getBPMs:id3Tag];
         }
     } //init
     
@@ -224,9 +226,13 @@ class Song {
             if(self.speedChanged){
                 oId3Wrapper.saveUserText("LastTempo", sValue: "\(self.speed)")
             }
-//            if(self.bpmChanged){
-//
-//            }
+            //-----------------------
+            //-------- BPM ----------
+            //-----------------------
+            if(self.bpmChanged){
+                oId3Wrapper.removeAllBpms()
+                oId3Wrapper.saveBPM(Int32(self.bpm))
+            }
 //            if(self.volumeChanged){
 //
 //            }

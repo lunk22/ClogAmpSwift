@@ -17,6 +17,8 @@
 - (void) saveTitle:(NSString *)sValue;
 - (void) saveArtist:(NSString *)sValue;
 - (void) saveUserText:(NSString *)text sValue:(NSString *)sValue;
+- (void) removeAllBpms;
+- (void) saveBPM:(int)bpm;
 - (void) savePositions:(NSString *)positionString;
 
 - (id)init:(NSString*)path;

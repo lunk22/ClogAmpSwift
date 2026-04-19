@@ -35,7 +35,6 @@
     
     //CloggingLevel
     frame = nil;
-
     frame = id3Tag->Find(ID3FID_USERTEXT, ID3FN_DESCRIPTION, [@"CloggingLevel" cStringUsingEncoding:NSUTF8StringEncoding]);
     if (frame){
         char *usertext = ID3_GetString(frame, ID3FN_TEXT);
@@ -44,11 +43,25 @@
     
     //LastTempo
     frame = nil;
-    
     frame = id3Tag->Find(ID3FID_USERTEXT, ID3FN_DESCRIPTION, [@"LastTempo" cStringUsingEncoding:NSUTF8StringEncoding]);
+    
     if (frame){
         char *usertext = ID3_GetString(frame, ID3FN_TEXT);
         [dict setValue: [NSString stringWithUTF8String:usertext] forKey:@"lastTempo"];
+    }
+    
+    //BPM
+    frame = nil;
+    frame = id3Tag->Find(ID3FID_BPM);
+    
+    if (frame != NULL) {
+        char *sBPM = ID3_GetString(frame, ID3FN_TEXT);
+        
+        if (sBPM != nil) {
+            @try {
+                [dict setValue: [NSNumber numberWithInt:[[NSString stringWithCString:sBPM encoding:NSUTF8StringEncoding] intValue]] forKey:@"bpm"];
+            }@catch (NSException *e) {}
+        }
     }
     
     //Has Positions
@@ -218,13 +231,56 @@
     
     // IMPORTANT:
     // Always specify the text encoding, for every field
-    frame->Field(ID3FN_TEXTENC).Set(ID3TE_UTF8); //ID3TE_ISO8859_1    ID3TE_UTF8
-    frame->Field(ID3FN_DESCRIPTION).SetEncoding(ID3TE_UTF8); //ID3TE_ISO8859_1
-    frame->Field(ID3FN_DESCRIPTION).Set([sValue cStringUsingEncoding:NSUTF8StringEncoding]);
-    frame->Field(ID3FN_TEXT).SetEncoding(ID3TE_UTF8); //ID3TE_ISO8859_1
-    frame->Field(ID3FN_TEXT).Set([text cStringUsingEncoding:NSUTF8StringEncoding]);
+    frame->Field(ID3FN_TEXTENC).Set(ID3TE_ISO8859_1); //ID3TE_ISO8859_1    ID3TE_UTF8
+    frame->Field(ID3FN_DESCRIPTION).SetEncoding(ID3TE_ISO8859_1);
+    frame->Field(ID3FN_DESCRIPTION).Set([text cStringUsingEncoding:NSISOLatin1StringEncoding]);
+    frame->Field(ID3FN_TEXT).SetEncoding(ID3TE_ISO8859_1);
+    frame->Field(ID3FN_TEXT).Set([sValue cStringUsingEncoding:NSISOLatin1StringEncoding]);
     
     if(bAdd){
+        id3Tag->AttachFrame(frame);
+    }
+    
+    id3Tag->Update();
+}
+
+- (void) removeAllBpms {
+    ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
+    ID3_Frame *frame = NULL;
+    int num_removed = 0;
+    
+    if (NULL == id3Tag)
+    {
+        return;
+    }
+    
+    while ((frame = id3Tag->Find(ID3FID_BPM)))
+    {
+        frame = id3Tag->RemoveFrame(frame);
+        delete frame;
+        num_removed++;
+    }
+    
+    id3Tag->Update();
+}
+
+- (void) saveBPM:(int)bpm {
+    ID3_Tag *id3Tag  = new ID3_Tag([self.path cStringUsingEncoding:NSUTF8StringEncoding]);
+    ID3_Frame* frame;
+
+    if (bpm < 0){
+        bpm = 0;
+    }
+    
+    const char *charBPM = [[NSString stringWithFormat:@"%i",bpm] UTF8String];
+
+//    [Tools removeBPMs:id3Tag];
+
+    frame = new ID3_Frame(ID3FID_BPM);
+
+    if (frame){
+        frame->Field(ID3FN_TEXT).SetEncoding(ID3TE_ISO8859_1);
+        frame->Field(ID3FN_TEXT) = charBPM;
         id3Tag->AttachFrame(frame);
     }
     

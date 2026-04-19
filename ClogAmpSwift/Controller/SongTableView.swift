@@ -215,10 +215,11 @@ class SongTableView: ViewController {
         UserDefaults.standard.set(self.fontSize, forKey: "songTableFontSize")
     }
     @IBAction func handleSearchEnter(_ sender: NSTextField) {
-//        print("enter")
-//        self.delayWithSeconds(0.5){
-            self.songTable.enclosingScrollView?.becomeFirstResponder()
-//        }
+        self.songTable.enclosingScrollView?.becomeFirstResponder()
+        if self.aSongsForTable.count > 0 {
+            let indexSet = IndexSet(integer: 0)
+            self.songTable.selectRowIndexes(indexSet, byExtendingSelection: false)
+        }
     }
     
     @IBAction func onEndEditing(_ sender: NSTextField) {
@@ -232,18 +233,28 @@ class SongTableView: ViewController {
         let song = self.aSongsForTable[iRow]
         
         switch identifier {
-        case "title":
-            if song.title != text {
-                song.title = text
-                song.saveChanges()
-            }
-        case "artist":
-            if song.artist != text {
-                song.artist = text
-                song.saveChanges()
-            }
-        default:
-            return
+            case "title":
+                if song.title != text {
+                    song.title = text
+                    song.saveChanges()
+                }
+            case "artist":
+                if song.artist != text {
+                    song.artist = text
+                    song.saveChanges()
+                }
+            case "bpm":
+                if song.bpm != UInt(text) {
+                    song.bpm = UInt(text) ?? 0  
+                    song.saveChanges()
+                }
+            case "level":
+                if song.level != text {
+                    song.level = text
+                    song.saveChanges()
+                }
+            default:
+                return
         }
     }
 }
