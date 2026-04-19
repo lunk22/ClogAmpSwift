@@ -20,6 +20,7 @@ class PreferenceView: ViewController {
     @IBOutlet weak var boxAppearance: NSBox!
     @IBOutlet weak var ddlbAppearance: NSComboBox!
     @IBOutlet weak var cbViewAfterSongLoad: NSComboBox!
+    @IBOutlet weak var cbBeatsChangeBehaviour: NSComboBox!
     
     //Overrides
     override func viewDidLoad() {
@@ -31,6 +32,7 @@ class PreferenceView: ViewController {
                 
         self.ddlbAppearance.selectItem(at: Defaults.appearance)
         self.cbViewAfterSongLoad.selectItem(at: Defaults.viewAfterSongLoad)
+        self.cbBeatsChangeBehaviour.selectItem(at: Defaults.beatsChangeBehaviour)
         
         if #available(OSX 10.14, *) {
             self.boxAppearance.isHidden = false
@@ -90,7 +92,15 @@ class PreferenceView: ViewController {
 //MARK: ComboBox Appearance
 extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
     func numberOfItems(in comboBox: NSComboBox) -> Int {
-        return 3 //Dark, Light, System
+        if comboBox.identifier?.rawValue == "cbApperance" {
+            return 3 //Dark, Light, System
+        } else if comboBox.identifier?.rawValue == "cbViewAfterSongLoad" {
+            return 3 //Empty, Positions, PDF
+        } else if comboBox.identifier?.rawValue == "cbBeatsChangeBehaviour" {
+            return 2 //Adjust next position, move all following positions
+        }
+        
+        return 0
     }
     
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
@@ -116,6 +126,15 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
                 default:
                     return NSString(string: "")
             }
+        } else if comboBox.identifier?.rawValue == "cbBeatsChangeBehaviour" {
+            switch index {
+                case 0:
+                    return NSLocalizedString("beatsChangeBehaviourAdjustFollowing", bundle: Bundle.main, comment: "") as NSString
+                case 1:
+                    return NSLocalizedString("beatsChangeBehaviourMoveAllFollowing", bundle: Bundle.main, comment: "") as NSString
+                default:
+                    return NSString(string: "")
+            }
         }
         
         return NSString(string: "")
@@ -128,6 +147,8 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
             UserDefaults.standard.set(self.ddlbAppearance.indexOfSelectedItem, forKey: "prefAppearance")
         } else if uiElement.identifier?.rawValue == "cbViewAfterSongLoad" {
             UserDefaults.standard.set(self.cbViewAfterSongLoad.indexOfSelectedItem, forKey: "prefViewAfterSongLoad")
+        } else if uiElement.identifier?.rawValue == "cbBeatsChangeBehaviour" {
+            UserDefaults.standard.set(self.cbBeatsChangeBehaviour.indexOfSelectedItem, forKey: "prefBeatsChangeBehaviour")
         }
         
     }

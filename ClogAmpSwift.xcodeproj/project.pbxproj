@@ -67,6 +67,7 @@
 		B7C8358422250E5700CF3360 /* AppIconBlue.icns in Resources */ = {isa = PBXBuildFile; fileRef = B7C8358322250E5700CF3360 /* AppIconBlue.icns */; };
 		B7D141502382B0FF0056B042 /* PasteboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D1414F2382B0FF0056B042 /* PasteboardType.swift */; };
 		B7D141522382B1F30056B042 /* PasteboardWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D141512382B1F30056B042 /* PasteboardWriter.swift */; };
+		B7D7C4352B17382D007DCA96 /* BpmClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D7C4342B17382D007DCA96 /* BpmClickView.swift */; };
 		B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C0632214513B00A70F4A /* SongHistoryItem.m */; };
 		B7D9C06822145A3200A70F4A /* HistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C06722145A3200A70F4A /* HistoryTableView.swift */; };
 		B7DDFCB122141B3600637831 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDFCB022141B3600637831 /* Tools.swift */; };
@@ -190,6 +191,7 @@
 		B7C8358922281CB200CF3360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B7D1414F2382B0FF0056B042 /* PasteboardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardType.swift; sourceTree = "<group>"; };
 		B7D141512382B1F30056B042 /* PasteboardWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWriter.swift; sourceTree = "<group>"; };
+		B7D7C4342B17382D007DCA96 /* BpmClickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BpmClickView.swift; sourceTree = "<group>"; };
 		B7D9C0622214513B00A70F4A /* SongHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongHistoryItem.h; sourceTree = "<group>"; };
 		B7D9C0632214513B00A70F4A /* SongHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongHistoryItem.m; sourceTree = "<group>"; };
 		B7D9C06722145A3200A70F4A /* HistoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableView.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				B7F48C9F2390E37F00C3DB01 /* BeatPlayerView.swift */,
+				B7D7C4342B17382D007DCA96 /* BpmClickView.swift */,
 				B7A3A9BF221AFCBD00CA5FE8 /* CountdownView.swift */,
 				B7A3A9C1221BE44400CA5FE8 /* CountdownWindow.swift */,
 				B7D9C06722145A3200A70F4A /* HistoryTableView.swift */,
@@ -514,6 +517,7 @@
 				50AF239A2A5F2FAA0019A846 /* PlayerLog.swift in Sources */,
 				B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */,
 				B7A887B92382DA1B00C82399 /* CocoaPDFCreator.swift in Sources */,
+				B7D7C4352B17382D007DCA96 /* BpmClickView.swift in Sources */,
 				50113FFB27324F0A00EEB9A1 /* SongLog.swift in Sources */,
 				B75955862216D1A300D11E3F /* TimePanelWindow.swift in Sources */,
 				B7B3A179237BDC70009667CF /* SwiftPlaylist.swift in Sources */,
