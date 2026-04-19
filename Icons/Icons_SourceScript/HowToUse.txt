@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/12306223/how-to-manually-create-icns-files-using-iconutil
+
+Here's a script to convert a 1024x1024 png (named "Icon1024.png") to the required icns file. Save it to a file called "CreateICNS.src" in the folder where your png file is, then in terminal "cd" to the same folder and type "source CreateICNS.src" to call it
