@@ -54,7 +54,7 @@ class Song {
     static var songDict: Dictionary<String, Song> = [:] //Empty dictionary
     static func retrieveSong(path: URL) -> Song{        
         let stringPath = path.absoluteString.removingPercentEncoding!
-        if let song = songDict[stringPath] {
+        if songDict.count > 0, let song = songDict[stringPath] {
             song.readBasicInfo()
             return song
         }else{

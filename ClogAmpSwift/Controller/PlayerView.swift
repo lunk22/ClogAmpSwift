@@ -44,11 +44,17 @@ class PlayerView: ViewController {
             self.currentSong?.saveChanges()
         }
         didSet {
-            self.stop()
-            self.deregisterPeriodicUpdates()
+            self.doStop()
             self.currentSong!.loadPositions()
             self.avPlayer = Player(song: self.currentSong!)
-            self.registerPeriodicUpdate()
+            self.avPlayer?.addTimeObserverCallback(using: {
+                [weak self] time in
+                //Do stuff
+                self?.tick(updateSongTab: false, updatePositionTab: false)
+                self?.updateTime()
+                self?.updatePositionTable(single: false)
+            })
+
             let x = self.currentSong!.getValueAsString("path")
             UserDefaults.standard.set(x, forKey: "lastLoadedSongURL")
             
@@ -85,34 +91,11 @@ class PlayerView: ViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let colorFilter = CIFilter(name: "CIFalseColor")!
-//        colorFilter.setDefaults()
-//        if #available(OSX 10.14, *) {
-//            colorFilter.setValue(CIColor(cgColor: NSColor.green.cgColor), forKey: "inputColor0")
-//            colorFilter.setValue(CIColor(cgColor: NSColor.controlTextColor.cgColor), forKey: "inputColor1")
-//        } else {
-//            // Fallback on earlier versions
-//        }
-//
-//        self.timeSlider.contentFilters = [colorFilter]
     }
     
     /*
      * Update related stuff
      */
-    func registerPeriodicUpdate() {
-        self.avPlayer?.addPeriodicTimeObserver() {
-            [weak self] time in
-            //Do stuff
-            self?.updateTime()//Double(time.value / Int64(time.timescale)))
-            self?.updatePositionTable(single: false)
-        }
-    }
-    
-    func deregisterPeriodicUpdates() {
-        self.avPlayer?.removeTimeObserver()
-    }
     
     func tick(updateSongTab: Bool = false, updatePositionTab: Bool = true) {
         if(updatePositionTab){
@@ -250,15 +233,15 @@ class PlayerView: ViewController {
      * Actions
      */
     @IBAction func play(_ sender: Any) {
-        self.play()
+        self.doPlay()
     }
     
     @IBAction func pause(_ sender: Any) {
-        self.pause()
+        self.doPause()
     }
     
     @IBAction func stop(_ sender: Any) {
-        self.stop()
+        self.doStop()
     }
     
     @IBAction func speedChanged(_ sender: NSSlider) {
@@ -273,14 +256,12 @@ class PlayerView: ViewController {
     }
     
     @IBAction func timeChanged(_ sender: NSSlider) {
-        self.deregisterPeriodicUpdates()
         let v1 = Double(sender.integerValue) / sender.maxValue
         let duration = self.avPlayer?.getDuration() ?? 0
         let time = duration * v1
         self.avPlayer?.seek(seconds: time){
             _ in
             self.updateTime()
-            self.registerPeriodicUpdate()
         }
     }
     
@@ -337,7 +318,7 @@ class PlayerView: ViewController {
                 let prefPlayPositionOnSelection = UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")
                 
                 if prefPlayPositionOnSelection && !(self.avPlayer?.isPlaying() ?? false){
-                    self.play()
+                    self.doPlay()
                 }
             }
         }
@@ -348,13 +329,12 @@ class PlayerView: ViewController {
             self.currentSong = song
         }
     }
+    
     func getSong() -> Song? {
         return self.currentSong
     }
-    @objc func songFinished() {
-        self.stop()
-    }
-    func play() {
+    
+    func doPlay() {
         if(self.avPlayer?.isPlaying() ?? false){
             //If play is called while the song is playing, it should start over
             self.avPlayer?.stop({ _ in
@@ -370,33 +350,22 @@ class PlayerView: ViewController {
             self.avPlayer?.play()
             //Update UI
             self.tick()
-            
-            NotificationCenter.default.addObserver(self,
-               selector: #selector(songFinished),
-               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-               object: nil
-            ) // Add observer
         }
         
     }
-    func pause() {
+    func doPause() {
         if(self.avPlayer?.isPlaying() ?? false){
             self.avPlayer?.pause()
             self.tick()
         }else{
-            self.play()
+            self.doPlay()
         }
     }
-    func stop() {
+    func doStop() {
         self.avPlayer?.stop({
             _ in
             self.tick()
         })
-        
-        NotificationCenter.default.removeObserver(self,
-            name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-            object: nil
-        )
     }
     func jump(_ seconds: Int) {
         self.avPlayer?.jump(seconds)

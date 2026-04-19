@@ -47,15 +47,15 @@ class MainView: ViewController {
     }
     
     @IBAction func play(_ sender: AnyObject) {
-        self.playerView?.play()
+        self.playerView?.doPlay()
     }
     
     @IBAction func pause(_ sender: AnyObject) {
-        self.playerView?.pause()
+        self.playerView?.doPause()
     }
     
     @IBAction func stop(_ sender: AnyObject) {
-        self.playerView?.stop()
+        self.playerView?.doStop()
     }
     
     @IBAction func increaseSpeed(_ sender: AnyObject) {

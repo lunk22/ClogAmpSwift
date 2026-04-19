@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import Foundation
 
 class FileSystemUtils {
     
@@ -91,26 +92,45 @@ class FileSystemUtils {
         dateFormatter.dateFormat = "HH:mm:ss.SSS"
         
         let aUrls = readFolderContentsAsURL(sPath: sPath)
-        var count = 0
+        var currentIndex = 0
         
         // Free the buffer before redetermination
         aSongs = []
         
         logger.clear()
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 10
         
         for url in aUrls {
             
-            print("\(dateFormatter.string(from: Date())): Complete: \((count*100)/aUrls.count)%", to: &logger)
-//            print("\(dateFormatter.string(from: Date())): Currently processed File: \(url.path)", to: &logger)
+            print("\(dateFormatter.string(from: Date())): Complete: \((currentIndex*100)/aUrls.count)%", to: &logger)
             print("\(dateFormatter.string(from: Date())): File processed: \(url.path)", to: &logger)
             print("----------------------------------------------------", to: &logger)
+
+            queue.addOperation {
+                let song = Song.retrieveSong(path: url)
+                aSongs.append(song)
+                currentIndex = currentIndex + 1
+
+                block(song, (currentIndex*100)/aUrls.count)
+            }
             
-            let song = Song.retrieveSong(path: url)
-            aSongs.append(song)
-            count = count + 1
+//            {
+//                let song = Song.retrieveSong(path: url)
+//                aSongs.append(song)
+//                currentIndex = currentIndex + 1
+//
+//                block(song, (currentIndex*100)/aUrls.count)
+//            }
+
+//            let op = queue.schedule(after: OperationQueue.SchedulerTimeType.init(Date()+1), interval: OperationQueue.SchedulerTimeType.Stride.milliseconds(10), tolerance: OperationQueue.SchedulerTimeType.Stride.seconds(5), operation)
             
-            block(song, (count*100)/aUrls.count)
+            
+//            op.cancel()
+            
             
         }
+
+        queue.waitUntilAllOperationsAreFinished()
     }
 }

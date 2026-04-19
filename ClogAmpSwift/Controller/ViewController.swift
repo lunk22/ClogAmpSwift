@@ -29,11 +29,11 @@ class ViewController : NSViewController {
             case 45: // N
                 self._playerView!.resetSpeed()
             case 35: // P
-                self._playerView!.play()
+                self._playerView!.doPlay()
             case 1: // S
-                self._playerView!.stop()
+                self._playerView!.doStop()
             case 49: // Space
-                self._playerView!.pause()
+                self._playerView!.doPause()
             case 3: // F
                 var prefSkipForwardSeconds = UserDefaults.standard.integer(forKey: "prefSkipForwardSeconds")
                 if prefSkipForwardSeconds == 0 {
