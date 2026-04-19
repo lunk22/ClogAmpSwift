@@ -443,6 +443,9 @@
 /* Class = "NSButtonCell"; title = "Use Mono Font for Positions"; ObjectID = "D27-I2-QtF"; */
 "D27-I2-QtF.title" = "Mono Schrift für Positionen verwenden";
 
+/* Class = "NSMenuItem"; title = "Reload List"; ObjectID = "rJe-5J-acX"; */
+"rJe-5J-acX.title" = "Liste neu laden";
+
 // Used in Sourcecode
 "choosePdf" = "PDF auswählen";
 "chooseFolder" = "Ordner auswählen";
