@@ -13,6 +13,17 @@ import MediaPlayer
 
 class PlayerAudioEngine {
     
+    struct NotificationNames {
+        static let playing = Notification.Name("PlayerAudioEnging_Playing")
+        static let paused = Notification.Name("PlayerAudioEnging_Paused")
+        static let stopped = Notification.Name("PlayerAudioEnging_Stopped")
+        static let rateChanged = Notification.Name("PlayerAudioEnging_RateChanged")
+        static let volumeChanged = Notification.Name("PlayerAudioEnging_VolumeChanged")
+        static let positionChanged = Notification.Name("PlayerAudioEnging_PositionChanged")
+    }
+    
+    static let shared = PlayerAudioEngine()
+    
     // MARK: Instance Vars
     var song: Song? = nil {
         willSet {
@@ -28,6 +39,7 @@ class PlayerAudioEngine {
             offset = AVAudioFramePosition(0)
             
             setRate(song!.speed)
+            setVolume(song!.volume)
             
             playerLogger.clear()
             
@@ -59,6 +71,11 @@ class PlayerAudioEngine {
         didSet {
             if playing {
                 paused = false
+                NotificationCenter.default.post(name: NotificationNames.playing, object: nil)
+            } else {
+                if !paused {
+                    NotificationCenter.default.post(name: NotificationNames.stopped, object: nil)
+                }
             }
         }
     }
@@ -74,6 +91,11 @@ class PlayerAudioEngine {
         didSet {
             if paused {
                 playing = false
+                NotificationCenter.default.post(name: NotificationNames.paused, object: nil)
+            } else {
+                if !playing {
+                    NotificationCenter.default.post(name: NotificationNames.stopped, object: nil)
+                }
             }
         }
     }
@@ -119,7 +141,7 @@ class PlayerAudioEngine {
     
     // MARK: Functions
     
-    init() {
+    private init() {
         // 1: create the AVAudio stuff
         audioEngine = AVAudioEngine()
         speedControl = AVAudioUnitVarispeed()
@@ -135,7 +157,6 @@ class PlayerAudioEngine {
         audioEngine.connect(audioPlayer, to: speedControl, format: nil)
         audioEngine.connect(speedControl, to: pitchControl, format: nil)
         audioEngine.connect(pitchControl, to: audioEngine.mainMixerNode, format: nil)
-        audioEngine.mainMixerNode.volume = 0
 
         NotificationCenter.default.addObserver(self,
            selector: #selector(shutdown),
@@ -178,10 +199,6 @@ class PlayerAudioEngine {
         MPNowPlayingInfoCenter.default().playbackState = .stopped
     }
     
-    deinit {
-        removeTimeObserver()
-    }
-    
     func prepareAudioPlayer() {
         audioEngine.disconnectNodeInput(audioPlayer)
         audioEngine.detach(audioPlayer)
@@ -194,6 +211,7 @@ class PlayerAudioEngine {
     }
         
     func setRate(_ offset: Int) {
+        song?.speed = offset
         let newRate = 1.0 + Float(offset) / 100
         pitchControl.rate = newRate
         
@@ -202,32 +220,43 @@ class PlayerAudioEngine {
 //            song.pitch = lround(log2(Double(speedControl.rate)) * 1200.0) * -1
 //            updatePitch()
 //        }
+        
+        NotificationCenter.default.post(name: NotificationNames.rateChanged, object: nil)
+    }
+    
+    func setVolume(_ volume: Int) {
+        song?.volume = volume
+        NotificationCenter.default.post(name: NotificationNames.volumeChanged, object: nil)
     }
     
     // MARK: Controlling the Player
     func play() {
         if isPlaying() { return }
         if let song = song {
-            do {
-                try audioEngine.start()
-                audioPlayer.play()
-                
-                playing = true
-                MPNowPlayingInfoCenter.default().playbackState = .playing
-//                MPRemoteCommandEvent.
-                
-                addTimeObserver()
-                
-                if(!songHistoryWritten){
-                    songHistoryWritten = true
-                    Database.insertSong(
-                        intoHistory: song.getValueAsString("title"),
-                        withArtist: song.getValueAsString("artist"),
-                        withPath: song.getValueAsString("path")
-                    )
+            
+            // Highest Prio for song playback
+            DispatchQueue.main.async(qos: .userInteractive) {
+                do {
+                    
+                    try self.audioEngine.start()
+                    self.audioPlayer.play()
+                    
+                    self.playing = true
+                    MPNowPlayingInfoCenter.default().playbackState = .playing
+                    
+                    self.startTimeObserver()
+                    
+                    if(!self.songHistoryWritten){
+                        self.songHistoryWritten = true
+                        Database.insertSong(
+                            intoHistory: song.getValueAsString("title"),
+                            withArtist: song.getValueAsString("artist"),
+                            withPath: song.getValueAsString("path")
+                        )
+                    }
+                } catch {
+                    /* Handle the error. */
                 }
-            } catch {
-                /* Handle the error. */
             }
         }
     }
@@ -314,7 +343,7 @@ class PlayerAudioEngine {
         timeObserverCallback!(0)
     }
     
-    func addTimeObserver() {
+    func startTimeObserver() {
         func execute() {
             if cancelTimeObserver {
                 cancelTimeObserver = false
@@ -361,15 +390,17 @@ class PlayerAudioEngine {
         }
     }
     
-    func updateRate(){
-        if let song = song {
-            setRate(song.speed)
-        }
-    }
-    
-    func updateVolume() {
-        //        avPlayer.volume = Float(song.volume) / 100
-    }
+//    func updateRate(){
+//        if let song = song {
+//            setRate(song.speed)
+//        }
+//    }
+//    
+//    func updateVolume() {
+//        //        avPlayer.volume = Float(song.volume) / 100
+//        
+//        self.setVolume(song.volume)
+//    }
     
     func printTimes() {
         print("Sample Frame: \(sampleTime) | Paused Frame: \(pausedFrame) | Offset: \(offset) |  => Current Frame: \(currentFrame)")

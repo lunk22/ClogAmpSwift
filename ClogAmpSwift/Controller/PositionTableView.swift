@@ -40,13 +40,13 @@ class PositionTableView: NSViewController {
         self.fontSize = Defaults.positionTableFontSize
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("monoChanged"), object: nil, queue: nil){ _ in
-            DispatchQueue.main.async(qos: .userInitiated) {
+            DispatchQueue.main.async(qos: .default) {
                 self.positionTable.reloadData()
             }
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("showBeats"), object: nil, queue: nil){ _ in
-            DispatchQueue.main.async(qos: .userInitiated) {
+            DispatchQueue.main.async(qos: .default) {
                 self.updateBeatsColumnVisibility()
             }
         }
@@ -133,7 +133,7 @@ class PositionTableView: NSViewController {
                 }
             
                 var currentPosition = -1
-                let currentTime = self.mainView?.playerView?.avPlayer?.getCurrentTime() ?? -1
+                let currentTime = PlayerAudioEngine.shared.getCurrentTime()
                 let positions = song.getPositions()
                 for position in positions {
                     if(Double(position.time / 1000) <= currentTime){
@@ -143,7 +143,7 @@ class PositionTableView: NSViewController {
                     }
                 }
                 
-                if((self.mainView?.playerView?.avPlayer?.isPlaying() ?? false ) && self.currentPosition != currentPosition){
+                if(PlayerAudioEngine.shared.isPlaying() && self.currentPosition != currentPosition){
                     if self.cbLoop.state == NSControl.StateValue.on {
                         if !(self.loopTimer?.isValid ?? false) {
                             let loopPos = self.currentPosition
@@ -189,8 +189,8 @@ class PositionTableView: NSViewController {
     }
     
     @IBAction func handleAddPosition(_ sender: NSButton) {
-        if let song = self.mainView?.playerView?.currentSong {
-            var currentTime = self.mainView?.playerView?.avPlayer?.getCurrentTime() ?? 0 //Seconds
+        if let song = PlayerAudioEngine.shared.song {
+            var currentTime = PlayerAudioEngine.shared.getCurrentTime() //Seconds
             currentTime *= 1000 //Milliseconds
             song.addPosition( Position( name: "Name", comment: "", time: UInt(lround(currentTime)) ) )
             self.refreshTable(single: true)
@@ -230,8 +230,8 @@ class PositionTableView: NSViewController {
             return
         }
         
-        if let song = self.mainView?.playerView?.currentSong {
-            song.getPositions()[posIndex].time = UInt(lround((self.mainView?.playerView?.avPlayer?.getCurrentTime() ?? 0) * 1000))
+        if let song = PlayerAudioEngine.shared.song {
+            song.getPositions()[posIndex].time = UInt(lround(PlayerAudioEngine.shared.getCurrentTime() * 1000))
             song.positionsChanged = true
             self.refreshTable(single: true)
         }
@@ -472,7 +472,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 textField.backgroundColor = NSColor.controlColor
                 textField.textColor       = NSColor.controlTextColor
 
-                if(self.mainView?.playerView?.avPlayer?.isPlaying() ?? false){
+                if PlayerAudioEngine.shared.isPlaying() {
                     if(self.currentPosition == row){
                         textField.drawsBackground = true
                         textField.backgroundColor = NSColor.systemOrange

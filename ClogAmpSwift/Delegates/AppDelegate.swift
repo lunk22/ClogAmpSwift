@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //Sparkle, if the automatic updates are turned on, perform an initial check on app launch
         if let updater = SUUpdater.shared(){
             if updater.automaticallyChecksForUpdates {
-                delayWithSeconds(5){
+                delayWithSeconds(5) {
                     updater.checkForUpdatesInBackground()
                     updater.resetUpdateCycle()
                 }

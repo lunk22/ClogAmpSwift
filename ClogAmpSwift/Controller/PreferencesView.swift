@@ -69,7 +69,7 @@ class PreferenceView: ViewController {
             //Sparkle, if the automatic updates are turned on, perform an initial check on app launch
             if let updater = SUUpdater.shared(){
                 if updater.automaticallyChecksForUpdates {
-                    delayWithSeconds(1){
+                    delayWithSeconds(1) {
                         updater.checkForUpdatesInBackground()
                         updater.resetUpdateCycle()
                     }
