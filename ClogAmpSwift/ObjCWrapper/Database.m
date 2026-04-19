@@ -189,7 +189,7 @@
     dateFormatter.dateFormat = @"yyyyMMdd";
     NSString *date = [dateFormatter stringFromDate: [NSDate new]];
     
-    dateFormatter.dateFormat = @"hhmmss";
+    dateFormatter.dateFormat = @"HHmmss";
     NSString *time = [dateFormatter stringFromDate: [NSDate new]];
     
     exec = [exec stringByAppendingString:@"\", \""];

@@ -55,6 +55,7 @@
                                                 <action selector="handleSelectMusicDirectory:" target="Ady-hI-5gd" id="d5I-kJ-Zc1"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="S4W-id-kEY"/>
                                         <menuItem title="Open PDF Folder…" id="7Dt-8U-nbt">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -73,6 +74,7 @@
                                                 <action selector="handleRemovePdfAssignment:" target="Ady-hI-5gd" id="KZU-l8-H9O"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="SfJ-YE-2TR"/>
                                         <menuItem title="Export Positions..." id="5mT-mF-117">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -85,7 +87,8 @@
                                                 <action selector="importFromXml:" target="Ady-hI-5gd" id="5fX-aC-fkK"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Print..." keyEquivalent="p" id="GRi-IM-gZT">
+                                        <menuItem isSeparatorItem="YES" id="Ai3-w7-fsU"/>
+                                        <menuItem title="Export as PDF..." keyEquivalent="p" id="GRi-IM-gZT">
                                             <connections>
                                                 <action selector="printList" target="Ady-hI-5gd" id="G1F-H2-j7I"/>
                                             </connections>
@@ -137,14 +140,20 @@
                                                 <action selector="focusFilterField:" target="Ady-hI-5gd" id="3bV-MT-S6t"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Time" keyEquivalent="t" id="Scw-3x-0hP">
-                                            <connections>
-                                                <segue destination="kFC-bL-dcm" kind="show" id="xku-6Z-S4A"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Determine BPM" keyEquivalent="b" id="Zhg-Sn-7pH">
                                             <connections>
                                                 <action selector="determineBpm:" target="Ady-hI-5gd" id="ksC-du-SGg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Reload List" keyEquivalent="r" id="rJe-5J-acX">
+                                            <connections>
+                                                <action selector="handleRefreshList:" target="Ady-hI-5gd" id="Qtb-du-c1k"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="M5M-04-aHN"/>
+                                        <menuItem title="Show Time" keyEquivalent="t" id="Scw-3x-0hP">
+                                            <connections>
+                                                <segue destination="kFC-bL-dcm" kind="show" id="xku-6Z-S4A"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Countdown" keyEquivalent="d" id="h6c-1T-6YU">
@@ -160,11 +169,6 @@
                                         <menuItem title="Playlists" keyEquivalent="l" id="AWr-DK-5Se">
                                             <connections>
                                                 <segue destination="0fg-Ju-sI0" kind="show" id="aEP-nP-8xB"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Reload List" keyEquivalent="r" id="rJe-5J-acX">
-                                            <connections>
-                                                <action selector="handleRefreshList:" target="Ady-hI-5gd" id="Qtb-du-c1k"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -219,7 +223,6 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Reset Speed" keyEquivalent="n" id="7pX-sO-eAU">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="resetPlayerSpeed:" target="Ady-hI-5gd" id="3Qm-yK-hOh"/>
                                             </connections>
@@ -1373,7 +1376,7 @@
                                 <rect key="frame" x="18" y="155" width="36" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" alignment="justified" title="Speed" usesSingleLineMode="YES" id="dOs-ll-4nC">
-                                    <font key="font" metaFont="system" size="10"/>
+                                    <font key="font" metaFont="menu" size="10"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1395,7 +1398,7 @@
                                 <rect key="frame" x="15" y="24" width="42" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="- bpm" id="ygE-ap-Vgv">
-                                    <font key="font" metaFont="menu" size="9"/>
+                                    <font key="font" metaFont="label" size="9"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1412,7 +1415,7 @@
                                 <rect key="frame" x="494" y="156" width="70" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Volume" id="w6d-9C-Brh">
-                                    <font key="font" metaFont="system" size="10"/>
+                                    <font key="font" metaFont="menu" size="10"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -2501,7 +2504,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="1uF-AV-PWg">
-                                                            <rect key="frame" x="251" y="1" width="246" height="17"/>
+                                                            <rect key="frame" x="250.5" y="1" width="246" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a4q-hi-rxX">
@@ -2567,7 +2570,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="EcW-z8-8tB">
-                                                            <rect key="frame" x="750" y="1" width="246" height="17"/>
+                                                            <rect key="frame" x="749.5" y="1" width="246" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vYf-JK-v2s">
