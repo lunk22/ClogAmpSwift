@@ -13,3 +13,6 @@
 "viewAfterSongLoadPDF" = "PDF";
 "beatsChangeBehaviourAdjustFollowing" = "Adjust following position";
 "beatsChangeBehaviourMoveAllFollowing" = "Move all following positions";
+"addPositionBehaviourAdjustBeats" = "Adjust Position time by beats";
+"addPositionBehaviourAdjustSeconds" = "Adjust Position time by seconds";
+"addPositionBehaviourNoChange" = "No adjustment";
