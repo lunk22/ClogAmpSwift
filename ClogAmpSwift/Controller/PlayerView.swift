@@ -48,8 +48,8 @@ class PlayerView: ViewController {
     }
     var avAudioPlayer: AVAudioPlayer? {
         didSet {
-            self.avAudioPlayer!.enableRate = true
             self.avAudioPlayer!.prepareToPlay()
+            self.avAudioPlayer!.enableRate = true
         }
     }
     

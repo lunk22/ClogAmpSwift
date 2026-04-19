@@ -759,7 +759,7 @@
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Songs" identifier="" id="84A-Vs-Rhv">
-                                        <view key="view" id="nyG-NY-YAM">
+                                        <view key="view" ambiguous="YES" id="nyG-NY-YAM">
                                             <rect key="frame" x="10" y="33" width="1066" height="394"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -774,7 +774,7 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Positions" identifier="" id="ruU-r9-Lws">
-                                        <view key="view" ambiguous="YES" id="eai-KZ-jSO">
+                                        <view key="view" id="eai-KZ-jSO">
                                             <rect key="frame" x="10" y="33" width="1066" height="394"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -1264,7 +1264,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="number" width="45" minWidth="10" maxWidth="3.4028234663852886e+38" id="QbV-gP-fHH" userLabel="#">
+                                                <tableColumn identifier="number" editable="NO" width="45" minWidth="10" maxWidth="3.4028234663852886e+38" id="QbV-gP-fHH" userLabel="#">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="#">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

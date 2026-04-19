@@ -16,6 +16,8 @@ class FileSystemUtils {
             return in.stringByAddingPercentEncodingWithAllowedCharacters(allowed)
         }*/
         
+        let sPathEncoded = sPath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
+        
         let fileManager = FileManager.default
         var aFileURLs = [URL]()
 
@@ -28,7 +30,7 @@ class FileSystemUtils {
         //convert strings to URLs
         for sFilePath in aPaths! {
             let sFilePathEncoded = sFilePath.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
-            let url = URL(string: "\(sPath)/\(sFilePathEncoded)")
+            let url = URL(string: "\(sPathEncoded)/\(sFilePathEncoded)")
             aFileURLs.append(url!)
         }
         
