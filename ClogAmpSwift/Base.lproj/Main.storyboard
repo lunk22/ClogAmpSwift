@@ -1167,7 +1167,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="655" height="128"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <box autoresizesSubviews="NO" fixedFrame="YES" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Buy-OH-BSf">
+                                                <box hidden="YES" autoresizesSubviews="NO" fixedFrame="YES" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Buy-OH-BSf">
                                                     <rect key="frame" x="233" y="8" width="188" height="114"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" id="8RT-h5-6fH">
@@ -1190,6 +1190,9 @@
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
+                                                                <connections>
+                                                                    <action selector="handleStartPlaylist:" target="Ol8-gc-8gz" id="7Xh-7f-2KM"/>
+                                                                </connections>
                                                             </button>
                                                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uF1-ba-42c">
                                                                 <rect key="frame" x="17" y="45" width="154" height="18"/>

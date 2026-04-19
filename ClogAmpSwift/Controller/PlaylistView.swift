@@ -49,8 +49,12 @@ class PlaylistView: ViewController {
         self.songTable.reloadData()
     }
     
-    func loadSong() {
-        self.playerView?.loadSong(song: self.aSongs[self.songTable.selectedRow])
+    func loadSong(_ index: Int = -1) {
+        if index < 0{
+            self.playerView?.loadSong(song: self.aSongs[self.songTable.selectedRow])
+        } else if self.aSongs.count - 1 >= index {
+            self.playerView?.loadSong(song: self.aSongs[index])
+        }
     }
     
     @IBAction func addNewPlaylist(_ sender: Any) {
@@ -117,7 +121,27 @@ class PlaylistView: ViewController {
     }
     
     @IBAction func handleRemoveSong(_ sender: Any) {
+        let selectedIndex = self.songTable.selectedRow
+        let song = self.aSongs[selectedIndex]
         
+        let removed = Database.removeSong(
+            fromPlaylist: self.oSelectedPlaylist!.plID,
+            withTitle:    song.getValueAsString("title"),
+            withDuration: Int32(song.duration),
+            withFileName: song.getValueAsString("fileName")
+        )
+        
+        if removed {
+            self.aSongs.remove(at: selectedIndex)
+            self.songTable.reloadData()
+        }
+    }
+    
+    @IBAction func handleStartPlaylist(_ sender: Any) {
+        if self.oSelectedPlaylist != nil {
+            self.loadSong(0)
+            self.playerView?.play()
+        }
     }
 }
  

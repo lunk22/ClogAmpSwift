@@ -35,6 +35,8 @@
 
 + (bool)updateSongOrderInPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName withOrder:(int)orderIndex;
 
++ (bool)removeSongFromPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName;
+
 + (NSArray *)getPlaylistSongs:(int)playlistID;
 
 + (bool)deletePlaylist:(int)plID;
