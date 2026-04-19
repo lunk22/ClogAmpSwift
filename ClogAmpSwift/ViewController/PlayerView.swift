@@ -38,7 +38,7 @@ class PlayerView: NSViewController {
                 //Text of selected song
                 self.descriptionField.stringValue = self.currentSong!.getValueAsString("title")
                 //Speed, Volume, Time
-                self.tick()
+                self.tick(single: true)
             } catch {
             }
         }
@@ -75,7 +75,7 @@ class PlayerView: NSViewController {
             closure()
         }
     }
-    func tick() {
+    func tick(single: Bool = false) {
         //Do Some Stuff while the track is playing to update the UI...
         self.updateRate()
         self.updateTime()
@@ -83,7 +83,7 @@ class PlayerView: NSViewController {
         
         
         //re-trigger the update while the player is playing
-        if self.avAudioPlayer?.isPlaying ?? false {
+        if (self.avAudioPlayer?.isPlaying ?? false) || !single {
             delayWithSeconds(0.01) {
                 self.tick()
             }
@@ -111,7 +111,7 @@ class PlayerView: NSViewController {
     }
     
     func updateVolume(){
-        self.avAudioPlayer?.volume     = Float(self.currentSong!.volume / 100)
+        self.avAudioPlayer?.volume     = Float(self.currentSong?.volume ?? 0) / 100
         self.volumeSlider.integerValue = Int(self.currentSong!.volume)
         self.volumeText.stringValue    = "\(self.currentSong!.volume)%"
     }
@@ -157,7 +157,7 @@ extension PlayerView: PlayerDelegate {
         if let oPosition = self.currentSong?.positions[index] {
             let timeInterval = (Double(oPosition.time) / 1000) as TimeInterval
             self.avAudioPlayer?.currentTime = timeInterval
-            self.tick()
+            self.tick(single: true)
         }
     } //func handlePositionSelected
     
@@ -183,14 +183,14 @@ extension PlayerView: PlayerDelegate {
     func stop() {
         self.avAudioPlayer?.stop()
         self.avAudioPlayer?.currentTime = 0.0
-        self.tick()
+        self.tick(single: true)
     }
     func increaseSpeed() {
         self.currentSong?.speed += 1
-        self.tick()
+        self.tick(single: true)
     }
     func decreaseSpeed() {
         self.currentSong?.speed -= 1
-        self.tick()
+        self.tick(single: true)
     }
 }
