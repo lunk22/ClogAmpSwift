@@ -41,9 +41,9 @@ extension PositionXmlParser: XMLParserDelegate {
         
         switch self.currentElement {
         case "name":
-            self.position?.name = string
+            self.position?.name = "\(self.position?.name ?? "")\(string)"
         case "comment":
-            self.position?.comment = string
+            self.position?.comment = "\(self.position?.comment ?? "")\(string)"
         case "jump":
             self.position?.jumpTo = string
         case "milliseconds":

@@ -316,6 +316,7 @@ class Song {
                 }
                 
                 oId3Wrapper.savePositions(posString)
+                
             }
             //-----------------------
             //----- Wait Beats ------

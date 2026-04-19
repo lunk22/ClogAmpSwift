@@ -358,11 +358,15 @@ class PlayerView: ViewController {
         if(self.avPlayer?.isPlaying() ?? false){
             //If play is called while the song is playing, it should start over
             self.avPlayer?.stop({ _ in
+                self.mainView?.positionTableView?.positionTable.scrollToBeginningOfDocument(nil)
                 self.avPlayer?.play()
                 //Update UI
                 self.tick()
             })
         }else{
+            if(self.avPlayer?.getCurrentTime() == 0.0){
+                self.mainView?.positionTableView?.positionTable.scrollToBeginningOfDocument(nil)
+            }
             self.avPlayer?.play()
             //Update UI
             self.tick()
@@ -373,7 +377,6 @@ class PlayerView: ViewController {
                object: nil
             ) // Add observer
         }
-        
         
     }
     func pause() {

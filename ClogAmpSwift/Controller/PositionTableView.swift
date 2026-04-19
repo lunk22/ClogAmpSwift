@@ -353,6 +353,7 @@ class PositionTableView: NSViewController {
                 if position.comment != text {
                     position.comment = text
                     song.positionsChanged = true
+                    self.refreshTable(single: true)
                 }
             case "jumpTo":
                 if position.jumpTo != text {
@@ -456,7 +457,6 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
             textField.drawsBackground = false
             
             if let song = self.mainView?.playerView?.getSong() {
-                
                 if song.positions.count <= row {
                     return nil
                 }
