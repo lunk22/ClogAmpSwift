@@ -23,48 +23,14 @@ class PreferenceView: ViewController {
     
     //Overrides
     override func viewDidLoad() {
-        
-        //Read Defaults / create them accordingly
-        var prefSkipForwardSeconds = UserDefaults.standard.integer(forKey: "prefSkipForwardSeconds")
-        if prefSkipForwardSeconds == 0 {
-            prefSkipForwardSeconds = 5
-        }
-        
-        var prefSkipBackSeconds = UserDefaults.standard.integer(forKey: "prefSkipBackSeconds")
-        if prefSkipBackSeconds == 0 {
-            prefSkipBackSeconds = 5
-        }
+        self.txtSkipForward.integerValue   = Defaults.skipForward
+        self.txtSkipBack.integerValue      = Defaults.skipBack
+        self.txtBpmUpperBound.integerValue = Defaults.bpmUpperBound
+        self.txtBpmLowerBound.integerValue = Defaults.bpmLowerBound
+        self.txtLoopDelay.doubleValue      = Defaults.loopDelay
                 
-        var prefBpmUpperBound = UserDefaults.standard.integer(forKey: "prefBpmUpperBound")
-        if prefBpmUpperBound == 0 {
-            prefBpmUpperBound = 140
-        }
-        
-        var prefBpmLowerBound = UserDefaults.standard.integer(forKey: "prefBpmLowerBound")
-        if prefBpmLowerBound == 0 {
-            prefBpmLowerBound = 70
-        }
-        
-        let prefLoopDelay        = UserDefaults.standard.double(forKey: "prefLoopDelay")
-                
-        var prefAppearance = UserDefaults.standard.integer(forKey: "prefAppearance")
-        var prefViewAfterSongLoad = UserDefaults.standard.integer(forKey: "prefViewAfterSongLoad")
-        
-        self.txtSkipForward.integerValue   = prefSkipForwardSeconds
-        self.txtSkipBack.integerValue      = prefSkipBackSeconds
-        self.txtBpmUpperBound.integerValue = prefBpmUpperBound
-        self.txtBpmLowerBound.integerValue = prefBpmLowerBound
-        self.txtLoopDelay.doubleValue      = prefLoopDelay
-        
-        if(prefAppearance < 0 || prefAppearance > 2){
-           prefAppearance = 0
-        }
-        self.ddlbAppearance.selectItem(at: prefAppearance)
-        
-        if(prefViewAfterSongLoad < 0 || prefViewAfterSongLoad > 2){
-            prefViewAfterSongLoad = 0
-        }
-        self.cbViewAfterSongLoad.selectItem(at: prefViewAfterSongLoad)
+        self.ddlbAppearance.selectItem(at: Defaults.appearance)
+        self.cbViewAfterSongLoad.selectItem(at: Defaults.viewAfterSongLoad)
         
         if #available(OSX 10.14, *) {
             self.boxAppearance.isHidden = false

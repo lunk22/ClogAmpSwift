@@ -12,7 +12,6 @@ import AVFoundation
 class PlayerView: ViewController {
     
     weak var mainView: MainView?
-    var countTimeDown: Bool = UserDefaults.standard.bool(forKey: "countTimeDown")
     
     //MARK: Outlets
     
@@ -22,6 +21,7 @@ class PlayerView: ViewController {
     @IBOutlet weak var volumeText: NSTextField!
     @IBOutlet weak var speedSlider: NSSlider!
     @IBOutlet weak var speedText: NSTextField!
+    
     @IBOutlet weak var timeSlider: NSSlider!
     @IBOutlet weak var bpmText: NSTextField!
     
@@ -39,15 +39,9 @@ class PlayerView: ViewController {
         didSet {
             self.doStop()
             self.currentSong!.loadPositions()
-            self.avPlayer = Player(song: self.currentSong!)
-            self.avPlayer?.addTimeObserverCallback(using: {
-                [weak self] time in
-                //Do stuff
-                self?.tick()
-                self?.updateTimeInUI()
-                self?.updatePositionTable(single: false)
-            })
-
+            
+            self.avPlayer?.song = self.currentSong!
+            
             let x = self.currentSong!.getValueAsString("path")
             UserDefaults.standard.set(x, forKey: "lastLoadedSongURL")
             
@@ -70,16 +64,24 @@ class PlayerView: ViewController {
                 fileName: self.currentSong?.filePathAsUrl.lastPathComponent ?? ""
             )
             
-            if UserDefaults.standard.bool(forKey: "prefAutoDetermineBPM") && self.currentSong!.bpm == 0 {
+            if Defaults.autoDetermineBpm && self.currentSong!.bpm == 0 {
                 self.determineBpmFCS()
             }
         }
     }
     
-    var avPlayer: Player?
+    var avPlayer: PlayerAudioEngine?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        self.avPlayer = PlayerAudioEngine()
+        self.avPlayer?.addTimeObserverCallback(using: {
+            _ in
+            //Do stuff
+            self.tick()
+            self.updatePositionTable(single: false)
+        })
     }
     
     /*
@@ -98,7 +100,7 @@ class PlayerView: ViewController {
     }
     
     func updatePlayerStateInUI() {
-        if UserDefaults.standard.bool(forKey: "prefColorPlayerState") {
+        if Defaults.colorizedPlayerState {
             if self.avPlayer?.isPlaying() ?? false {
                 self.btnPlay.image  = NSImage(named: "play")
                 self.btnPause.image = NSImage(named: "pauseGray")
@@ -107,7 +109,7 @@ class PlayerView: ViewController {
                 self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "play")
                 self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pauseGray")
                 self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stopGray")
-            }else if (self.avPlayer?.getCurrentTime() ?? 0.0) > 0.0 && !(self.avPlayer?.isPlaying() ?? false) {
+            } else if (self.avPlayer?.isPaused() ?? false) {
                 self.btnPlay.image  = NSImage(named: "playGray")
                 self.btnPause.image = NSImage(named: "pause")
                 self.btnStop.image  = NSImage(named: "stopGray")
@@ -115,7 +117,7 @@ class PlayerView: ViewController {
                 self.mainView?.mainWindow?.tbPlay.image  = NSImage(named: "playGray")
                 self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pause")
                 self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stopGray")
-            }else if (self.avPlayer?.getCurrentTime() ?? 0.0) == 0.0 && !(self.avPlayer?.isPlaying() ?? false) {
+            } else {
                 self.btnPlay.image  = NSImage(named: "playGray")
                 self.btnPause.image = NSImage(named: "pauseGray")
                 self.btnStop.image  = NSImage(named: "stop")
@@ -124,7 +126,7 @@ class PlayerView: ViewController {
                 self.mainView?.mainWindow?.tbPause.image = NSImage(named: "pauseGray")
                 self.mainView?.mainWindow?.tbStop.image  = NSImage(named: "stop")
             }
-        }else{
+        } else {
             self.btnPlay.image  = NSImage(named: "playGray")
             self.btnPause.image = NSImage(named: "pauseGray")
             self.btnStop.image  = NSImage(named: "stopGray")
@@ -158,7 +160,7 @@ class PlayerView: ViewController {
 
     func updateTimeInUI() {
         DispatchQueue.main.async(qos: .userInitiated) {
-            var percent: Int = 0;
+            var percent: Double = 0.0;
             if(self.currentSong != nil) {
                 var currentTime = self.avPlayer?.getCurrentTime() ?? 0
 
@@ -170,10 +172,10 @@ class PlayerView: ViewController {
                 let duration = self.currentSong?.duration ?? 0
 
                 if(duration > 0){
-                    percent = lround(Double(currentTime / Double(duration) * 10000))
+                    percent = currentTime / Double(duration) * 100
                 }
                 
-                if(self.countTimeDown) {
+                if(Defaults.countdownTime) {
                     currentTime = Double(duration) - currentTime
                 }
                 
@@ -184,14 +186,15 @@ class PlayerView: ViewController {
                 let sSeconds = durSeconds >= 10 ? "\(durSeconds)" : "0\(durSeconds)"
                 let sMinutes = durMinutes >= 10 ? "\(durMinutes)" : "\(durMinutes)"
                 
-                if self.countTimeDown {
+                if Defaults.countdownTime {
                     self.lengthField.stringValue = "- \(sMinutes):\(sSeconds)"
                 }else{
                     self.lengthField.stringValue = "\t\(sMinutes):\(sSeconds)"
                 }
             }
             
-            self.timeSlider.integerValue = percent
+            // timeSlider has a range of 0 - 100k, so multiply percent by 1000
+            self.timeSlider.integerValue = lround(percent * 1000)
         }
     }
     
@@ -241,9 +244,8 @@ class PlayerView: ViewController {
     }
     
     @IBAction func changeTimeDisplay(_ sender: NSButton) {
-        self.countTimeDown = !self.countTimeDown
+        UserDefaults.standard.set(!Defaults.countdownTime, forKey: "countTimeDown")
         self.updateTimeInUI()
-        UserDefaults.standard.set(self.countTimeDown, forKey: "countTimeDown")
     }
     
     @IBAction func increaseSpeedButtonClicked(_ sender: AnyObject) {
@@ -290,9 +292,7 @@ class PlayerView: ViewController {
         if let oPosition = self.currentSong?.getPositions()[index] {
             self.avPlayer?.seek(seconds: Float64(oPosition.time / 1000))
             
-            let prefPlayPositionOnSelection = UserDefaults.standard.bool(forKey: "prefPlayPositionOnSelection")
-            
-            if prefPlayPositionOnSelection && !(self.avPlayer?.isPlaying() ?? false){
+            if Defaults.playPositionOnSelection && !(self.avPlayer?.isPlaying() ?? false){
                 self.doPlay()
             }
             
@@ -323,7 +323,7 @@ class PlayerView: ViewController {
         
     }
     
-    func doPause() {
+    @objc func doPause() {
         if(self.avPlayer?.isPlaying() ?? false){
             self.avPlayer?.pause()
             self.tick()

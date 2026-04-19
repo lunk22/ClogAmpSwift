@@ -20,7 +20,6 @@ class ViewController : NSViewController {
     }
     
     override func keyDown(with event: NSEvent) {
-            
         switch event.keyCode {
             case 30: // +
                 self._playerView!.increaseSpeed()
@@ -35,20 +34,11 @@ class ViewController : NSViewController {
             case 49: // Space
                 self._playerView!.doPause()
             case 3: // F
-                var prefSkipForwardSeconds = UserDefaults.standard.integer(forKey: "prefSkipForwardSeconds")
-                if prefSkipForwardSeconds == 0 {
-                    prefSkipForwardSeconds = 5
-                }
-                self._playerView!.jump(prefSkipForwardSeconds)
+                self._playerView!.jump(Defaults.skipForward)
             case 11: // B
-                var prefSkipBackSeconds = UserDefaults.standard.integer(forKey: "prefSkipBackSeconds")
-                if prefSkipBackSeconds == 0 {
-                    prefSkipBackSeconds = 5
-                }
-                self._playerView!.jump((prefSkipBackSeconds * -1))
+                self._playerView!.jump((Defaults.skipBack * -1))
             default:
                 self.interpretKeyEvents([event])
         }
-
     }    
 }

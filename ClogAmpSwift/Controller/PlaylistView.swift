@@ -28,8 +28,6 @@ class PlaylistView: ViewController {
     var playerView: PlayerView?
     weak var mainView: MainView?
     
-    let prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
-    
     @IBOutlet weak var playlistTable: NSTableView!
     @IBOutlet weak var songTable: TableView!
     @IBOutlet weak var btnPlay: NSButton!
@@ -91,8 +89,7 @@ class PlaylistView: ViewController {
             self.playerView?.loadSong(song: self.aSongs[self.iSongIndex])
             self.songTable.reloadData()
             
-            let prefViewAfterSongLoad = UserDefaults.standard.integer(forKey: "prefViewAfterSongLoad")
-            switch prefViewAfterSongLoad {
+            switch Defaults.viewAfterSongLoad {
             case 1:
                 self.mainView?.tabView.selectTabViewItem(at: 1)
             case 2:
@@ -283,7 +280,7 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
             }
             
             
-            if prefMonoFontSongs {
+            if Defaults.songTableMonoFont {
                 textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(fontSize))
@@ -310,7 +307,7 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         if tableView == self.playlistTable{
             return CGFloat(24)
-        }else if prefMonoFontSongs {
+        }else if Defaults.songTableMonoFont {
             return CGFloat(round(Double(12) * 1.7))
         } else {
             return CGFloat(20)

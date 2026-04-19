@@ -21,7 +21,7 @@ class MainView: ViewController {
         
     override func viewWillAppear() {
         
-        if let iconName = UserDefaults.standard.string(forKey: "AppIconName") {
+        if let iconName = Defaults.appIconName {
             NSApplication.shared.applicationIconImage = NSImage(contentsOfFile: Bundle.main.path(forResource: iconName, ofType: "icns") ?? "")
         }
         
@@ -75,7 +75,7 @@ class MainView: ViewController {
     }
     
     @IBAction func playerBack(_ sender: AnyObject) {
-        self.playerView?.jump(5)
+        self.playerView?.jump(-5)
     }
     
     @IBAction func focusFilterField(_ sender: Any) {
@@ -87,30 +87,13 @@ class MainView: ViewController {
     }
     
     /*
-     --- Store ---
-     
-     UserDefaults.standard.set(true, forKey: "Key") //Bool
-     UserDefaults.standard.set(1, forKey: "Key")  //Integer
-     UserDefaults.standard.set("TEST", forKey: "Key") //setObject
-     
-     --- Retrieve ---
-     
-     UserDefaults.standard.bool(forKey: "Key")
-     UserDefaults.standard.integer(forKey: "Key")
-     UserDefaults.standard.string(forKey: "Key")
-     
-     --- Remove ---
-     
-     UserDefaults.standard.removeObject(forKey: "Key")
-     
      --- Remove all Keys ---
-     
+
      if let appDomain = Bundle.main.bundleIdentifier {
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
      }
-     
-    */
-    
+
+    */    
 }
 
 extension MainView: NSTabViewDelegate {

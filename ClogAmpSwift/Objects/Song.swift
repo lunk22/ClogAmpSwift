@@ -24,6 +24,7 @@ class Song {
     private var positions: Array<Position> { didSet {
         if self.positions.count > 0 {
             self.hasPositions = true
+            self.calculatePositionBeats()
         }else{
             self.hasPositions = false
         }
@@ -134,20 +135,55 @@ class Song {
         self.resetChangeFlags()
     }
     
+    // MARK: Positions
+    func loadPositions(_ force: Bool = true) {
+        if(force){
+            //Force read? => Free previously read positions
+            self.positions = []
+            self.positionsChanged = false
+            self.hasPositions = false
+        }
+        
+        if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){
+            var sPositions = ""
+            var count = 0
+            while sPositions == "" && count < 10 {
+                count += 1
+                sPositions = oId3Wrapper.loadPositions()
+                if(sPositions != ""){
+                    //Split string into single lines ($LS = Line Separator)
+                    let aLines = sPositions.components(separatedBy: "$LS")
+                    // Create temporary array to prevent calculating beats every time a new position gets read. Do it once at the end.
+                    var newPositions: Array<Position> = []
+                    for line in aLines {
+                        //Split string into single cells ($CS = Cell Separator)
+                        let aCells = line.components(separatedBy: "$CS")
+                        let position = Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0))
+                        
+                        newPositions.append(position)
+                        self.hasPositions = true
+                    }
+                    
+                    self.positions = newPositions
+                    self.positionsChanged = false
+                }
+            }
+        }
+        
+    } //func loadPositions
+    
     func setPositions(_ positions: Array<Position>) {
         self.positions = positions
         self.positionsChanged = true
         if(self.positions.count > 0) {
             self.hasPositions = true
         }
-        self.calculatePositionBeats()
     }
     
     func addPosition(_ position: Position) {
         self.positions.append(position)
         self.hasPositions = true
         self.positionsChanged = true
-        self.calculatePositionBeats()
     }
     
     func removePosition(at: Int) {
@@ -156,13 +192,17 @@ class Song {
         if(self.positions.count == 0) {
             self.hasPositions = false
         }
-        self.calculatePositionBeats()
     }
     
     func getPositions() -> Array<Position> {
         return self.positions
     }
     
+    func sortPositions() {
+        self.positions.sort(by: { return $0.time < $1.time })
+    }
+    
+    // MARK: Value Access
     func getValueAsString(_ property: String) -> String {
         switch property {
         case "path":
@@ -223,23 +263,14 @@ class Song {
         }
     } //func getValueAsString
     
+    // MARK: Beats & BPM
     func determineBassBPM( callback: @escaping (Float) -> Void ) {
         DispatchQueue.global(qos: .background).async {
             var bpm = BassWrapper.determineBPM(self.getValueAsString("path"), length: Int32(self.duration))
             
-            var prefBpmUpperBound = UserDefaults.standard.integer(forKey: "prefBpmUpperBound")
-            if prefBpmUpperBound == 0 {
-                prefBpmUpperBound = 140
-            }
-            
-            var prefBpmLowerBound = UserDefaults.standard.integer(forKey: "prefBpmLowerBound")
-            if prefBpmLowerBound == 0 {
-                prefBpmLowerBound = 70
-            }
-            
-            if bpm > Float(prefBpmUpperBound) {
+            if bpm > Float(Defaults.bpmUpperBound) {
                 bpm /= 2
-            }else if bpm < Float(prefBpmLowerBound) {
+            }else if bpm < Float(Defaults.bpmLowerBound) {
                 bpm *= 2
             }
             
@@ -252,44 +283,7 @@ class Song {
         }
     }
     
-    func loadPositions(_ force: Bool = true) {
-        if(force){
-            //Force read? => Free previously read positions
-            self.positions = []
-            self.positionsChanged = false
-            self.hasPositions = false
-        }
-        
-        if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){
-            var sPositions = ""
-            var count = 0
-            while sPositions == "" && count < 10 {
-                count += 1
-                sPositions = oId3Wrapper.loadPositions()
-                if(sPositions != ""){
-                    //Split string into single lines ($LS = Line Separator)
-                    let aLines = sPositions.components(separatedBy: "$LS")
-                    // Create temporary array to prevent calculating beats every time a new position gets read. Do it once at the end.
-                    var newPositions: Array<Position> = []
-                    for line in aLines {
-                        //Split string into single cells ($CS = Cell Separator)
-                        let aCells = line.components(separatedBy: "$CS")
-                        let position = Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0))
-                        
-                        newPositions.append(position)
-                        self.hasPositions = true
-                    }
-                    
-                    self.positions = newPositions
-                    self.positionsChanged = false
-                }
-            }
-        }
-
-    } //func loadPositions
-    
     func calculatePositionBeats () {
-        print("calculate position beats")
         let beatsPerMS = Double(self.bpm) / 60 / 1000; // 60 seconds in a minute, 1000 ms in a sec.
         var totalBeats: Int = 0
         
@@ -303,13 +297,11 @@ class Song {
                 
                 currentPosition.beats = Int(round((nextTime - Double(currentPosition.time)) * Double(beatsPerMS)));
                 totalBeats += currentPosition.beats
-//                print("BPMs in Position '\(currentPosition.name)': \(currentPosition.beats)")
             }
         }
-        
-//        print("Total Beats in Song: \(totalBeats)")
     }
     
+    // MARK: File
     func saveChanges() {
         if(!self.songChanged){ return; }
         
@@ -408,9 +400,5 @@ class Song {
         
         return false
 //        FileManager.default.fileExists(atPath: filePath, isDirectory: &isDir)
-    }
-    
-    func sortPositions() {
-        self.positions.sort(by: { return $0.time < $1.time })
     }
 }
