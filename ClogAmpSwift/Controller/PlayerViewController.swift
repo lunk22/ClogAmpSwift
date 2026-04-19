@@ -50,9 +50,17 @@ class PlayerViewController: ViewController {
         }
         didSet {
             PlayerAudioEngine.shared.stop()
+            
+            if self.currentSong == nil { return }
+            
             self.currentSong!.loadPositions()
             
             PlayerAudioEngine.shared.song = self.currentSong!
+            
+            if self.currentSong == nil {
+                self.descriptionField.stringValue = "---"
+                return
+            }
             
             let x = self.currentSong!.getValueAsString("path")
             UserDefaults.standard.set(x, forKey: "lastLoadedSongURL")
@@ -139,6 +147,10 @@ class PlayerViewController: ViewController {
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.volumeChanged, object: nil, queue: .current) { _ in
             self.updateVolumeInUI()
         }
+        
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.songNotFound, object: nil, queue: .current) { _ in
+            self.currentSong = nil
+        }
     }
     
     /*
@@ -150,6 +162,14 @@ class PlayerViewController: ViewController {
 //        let volume = UserDefaults.standard.integer(forKey: "playerVolume")
 //        self.volumeSlider.integerValue = volume > 0 ? volume : 100
 //        self.volumeText.stringValue    = "\(self.volumeSlider.integerValue)%"
+        
+        // Update slider styles
+        if #available(macOS 26.0, *) {
+            self.speedSlider.neutralValue = 0
+            self.volumeSlider.neutralValue = 0
+            self.timeSlider.neutralValue = 0
+        }
+        
     }
     
     // MARK: Update related stuff

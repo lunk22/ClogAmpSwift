@@ -480,8 +480,6 @@ class PositionTableViewController: NSViewController {
             
             sPdfHtml = sPdfHtml + "</div>"
             sPdfHtml = sPdfHtml + "<br/>"
-            sPdfHtml = sPdfHtml + "<br/>"
-            sPdfHtml = sPdfHtml + "<br/>"
 
             sPdfHtml = sPdfHtml + " <table>"
             

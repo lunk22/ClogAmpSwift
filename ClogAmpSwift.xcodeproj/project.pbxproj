@@ -15,16 +15,16 @@
 		502D65532CF9C690007C4E81 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502D65522CF9C690007C4E81 /* HyperlinkTextField.swift */; };
 		502D65552CF9CC86007C4E81 /* SettingsAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502D65542CF9CC86007C4E81 /* SettingsAboutViewController.swift */; };
 		504E5FA42080F4E0003DBA66 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E5FA32080F4E0003DBA66 /* Song.swift */; };
-		50556BFA2CFE3DD300F4C716 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 50556BF92CFE3DD300F4C716 /* Sparkle */; };
 		50A09BAC22104B0A00365544 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAB22104B0A00365544 /* TableView.swift */; };
 		50A09BAE22104BA800365544 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A09BAD22104BA800365544 /* TableViewDelegate.swift */; };
 		50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAA207FF03D0020E218 /* AppDelegate.swift */; };
 		50A37BAD207FF03D0020E218 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A37BAC207FF03D0020E218 /* MainViewController.swift */; };
 		50A37BB2207FF03E0020E218 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A37BB0207FF03E0020E218 /* Main.storyboard */; };
-		50A571BA2CEF85A600DB755B /* HtmlToPdf in Frameworks */ = {isa = PBXBuildFile; productRef = 50A571B92CEF85A600DB755B /* HtmlToPdf */; };
 		50A571BD2CEFA33E00DB755B /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A571BC2CEFA33E00DB755B /* NotificationDelegate.swift */; };
 		50A571BF2CF10EA600DB755B /* UpdateHistory.html in Resources */ = {isa = PBXBuildFile; fileRef = 50A571BE2CF10EA600DB755B /* UpdateHistory.html */; };
 		50AF239A2A5F2FAA0019A846 /* PlayerLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF23992A5F2FAA0019A846 /* PlayerLog.swift */; };
+		50BB501E2F55CA2900D41581 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 50BB501D2F55CA2900D41581 /* Sparkle */; };
+		50BB50202F55CA2D00D41581 /* HtmlToPdf in Frameworks */ = {isa = PBXBuildFile; productRef = 50BB501F2F55CA2D00D41581 /* HtmlToPdf */; };
 		50DC6D882081D68100B7C347 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC6D872081D68100B7C347 /* PlayerViewController.swift */; };
 		50ED82E72DFD5D7400B5E5C6 /* PlayFromBeginning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED82E62DFD5D7400B5E5C6 /* PlayFromBeginning.swift */; };
 		50ED82EA2DFEB35B00B5E5C6 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED82E92DFEB35B00B5E5C6 /* Bundle.swift */; };
@@ -223,11 +223,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50556BFA2CFE3DD300F4C716 /* Sparkle in Frameworks */,
 				B71364912B164A23009B800F /* CoreAudio.framework in Frameworks */,
 				B79853332217073500BDE678 /* libbass.dylib in Frameworks */,
-				50A571BA2CEF85A600DB755B /* HtmlToPdf in Frameworks */,
+				50BB50202F55CA2D00D41581 /* HtmlToPdf in Frameworks */,
 				B7B46608237046D800AA9419 /* PDFKit.framework in Frameworks */,
+				50BB501E2F55CA2900D41581 /* Sparkle in Frameworks */,
 				50113FF8272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib in Frameworks */,
 				B79853322217073500BDE678 /* libbass_fx.dylib in Frameworks */,
 			);
@@ -757,7 +757,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.10;
+				CURRENT_PROJECT_VERSION = 1.6.11;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
@@ -783,7 +783,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = "1.6.10 beta";
+				MARKETING_VERSION = "1.6.11 beta";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-fprofile-instr-generate";
 				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;
@@ -813,7 +813,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.6.10;
+				CURRENT_PROJECT_VERSION = 1.6.11;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
@@ -839,7 +839,7 @@
 				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = "1.6.10 beta";
+				MARKETING_VERSION = "1.6.11 beta";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-fprofile-instr-generate";
 				PRODUCT_BUNDLE_IDENTIFIER = de.pascalroessel.ClogAmpSwift;
@@ -897,12 +897,12 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		50556BF92CFE3DD300F4C716 /* Sparkle */ = {
+		50BB501D2F55CA2900D41581 /* Sparkle */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 50556BF82CFE3DD300F4C716 /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
 		};
-		50A571B92CEF85A600DB755B /* HtmlToPdf */ = {
+		50BB501F2F55CA2D00D41581 /* HtmlToPdf */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 50A571B82CEF85A600DB755B /* XCRemoteSwiftPackageReference "swift-html-to-pdf" */;
 			productName = HtmlToPdf;

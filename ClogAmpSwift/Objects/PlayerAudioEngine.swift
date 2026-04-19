@@ -21,6 +21,7 @@ class PlayerAudioEngine {
         static let volumeChanged = Notification.Name("PlayerAudioEngine_VolumeChanged")
         static let positionChanged = Notification.Name("PlayerAudioEngine_PositionChanged")
         static let songFinished = Notification.Name("PlayerAudioEngine_SongFinished")
+        static let songNotFound = Notification.Name("PlayerAudioEngine_SongUpdated")
         
         static let shutdown = Notification.Name("PlayerAudioEngine_Shutdown")
     }
@@ -34,14 +35,26 @@ class PlayerAudioEngine {
         }
         didSet {
             songHistoryWritten = false
+            readyToPlay = false
+            shouldPlay = false
+            
+            if song == nil {
+                return
+            }
             
             // load the file & prepare the player to play its file from the beginning
-            audioFile = try! AVAudioFile(forReading: song!.filePathAsUrl)
-            prepareAudioPlayer()
+            do {
+                audioFile = try AVAudioFile(forReading: song!.filePathAsUrl)
+                prepareAudioPlayer()
+                setRate(song!.speed)
+            } catch {
+                // clear song
+                song = nil
+                NotificationCenter.default.post(name: NotificationNames.songNotFound, object: nil)
+            }
             
             offset = AVAudioFramePosition(0)
             
-            setRate(song!.speed)
             let volume = UserDefaults.standard.integer(forKey: "playerVolume")
             setVolume( volume > 0 ? volume : 100)
             
@@ -66,6 +79,8 @@ class PlayerAudioEngine {
     }
     private var songHistoryWritten: Bool = false
     private var timeObserverCallback: ((Any) -> Void)? = nil
+    private var readyToPlay: Bool = false
+    private var shouldPlay: Bool = false
     private var playing: Bool = false {
         didSet {
             if playing {
@@ -260,20 +275,31 @@ class PlayerAudioEngine {
         
         if Settings.normalizeAudioLevels {
             print("Audio normalization started for file: \(audioFile!.url)", to: &normalizationLogger)
-            averagePowers(audioFileURL: audioFile!.url, forChannel: 0, completionHandler: { powers,success  in
-                if !success {
+            averagePowers(audioFileURL: audioFile!.url, forChannel: 0, completionHandler: { powers, success  in
+                if success {
+                    let maxValue = powers.max() ?? 0.0
+                    // Calc with -10 to not deviate too far from system volume. Calculate with base of 0 will increase the gain too much
+                    let adjustedGain = Settings.normalizeAudioBoost ? -5 - maxValue : -10 - maxValue
+                    self.equalizer.globalGain = adjustedGain
+                    print("Audio normalization completed. Gain adjustment: \(adjustedGain) - Boost active: \(Settings.normalizeAudioBoost)", to: &normalizationLogger)
+                    print("----------------------------------------------------", to: &normalizationLogger)
+                } else {
                     print("Failed to perform audio normalization.", to: &normalizationLogger)
                     print("----------------------------------------------------", to: &normalizationLogger)
-                    return
                 }
+                // No matter if it was successful, the file should still be playable
+                self.readyToPlay = true
                 
-                let maxValue = powers.max() ?? 0.0
-                // Calc with -10 to not deviate too far from system volume. Calculate with base of 0 will increase the gain too much
-                let adjustedGain = Settings.normalizeAudioBoost ? -5 - maxValue : -10 - maxValue
-                self.equalizer.globalGain = adjustedGain
-                print("Audio normalization completed. Gain adjustment: \(adjustedGain) - Boost active: \(Settings.normalizeAudioBoost)", to: &normalizationLogger)
-                print("----------------------------------------------------", to: &normalizationLogger)
+                if self.shouldPlay {
+                    self.play()
+                }
             })
+        } else {
+            readyToPlay = true
+            
+            if self.shouldPlay {
+                self.play()
+            }
         }
     }
     
@@ -428,6 +454,10 @@ class PlayerAudioEngine {
     
     // MARK: Controlling the Player
     func play() {
+        if !readyToPlay {
+            shouldPlay = true
+            return
+        }
         if isPlaying() { self.seek(seconds: 0.0); return }
         if let song = song {
             
