@@ -1,0 +1,7 @@
+1)
+npm install svgexport -g
+
+2)
+svgexport abc.svg xyz.png
+
+=> Execute script
