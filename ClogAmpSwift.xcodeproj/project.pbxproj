@@ -25,6 +25,7 @@
 		B72299212202C9FD00AEFA90 /* SongTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299202202C9FD00AEFA90 /* SongTableView.swift */; };
 		B72299232202D0EA00AEFA90 /* PositionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72299222202D0EA00AEFA90 /* PositionTableView.swift */; };
 		B7364FD7221537AA00FB9C64 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7364FD6221537AA00FB9C64 /* Player.swift */; };
+		B78780F42216A131002B74B4 /* BassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B78780F32216A131002B74B4 /* BassWrapper.m */; };
 		B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1721F760FB00532C1A /* Id3Wrapper.mm */; };
 		B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD8F1A21F9A87E00532C1A /* Position.swift */; };
 		B7D220EA2211C2AC00207F1D /* Player-AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D220E92211C2AC00207F1D /* Player-AVAudioPlayer.swift */; };
@@ -69,6 +70,8 @@
 		B72299202202C9FD00AEFA90 /* SongTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableView.swift; sourceTree = "<group>"; };
 		B72299222202D0EA00AEFA90 /* PositionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableView.swift; sourceTree = "<group>"; };
 		B7364FD6221537AA00FB9C64 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		B78780F32216A131002B74B4 /* BassWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BassWrapper.m; sourceTree = "<group>"; };
+		B78780F52216A13C002B74B4 /* BassWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BassWrapper.h; sourceTree = "<group>"; };
 		B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClogAmpSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		B7BD8F0621F7597800532C1A /* id3lib_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id3lib_frame.h; sourceTree = "<group>"; };
 		B7BD8F0721F7597800532C1A /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 				B7DDFCB422141F6B00637831 /* Database.h */,
 				B7D9C0622214513B00A70F4A /* SongHistoryItem.h */,
 				B7D9C0632214513B00A70F4A /* SongHistoryItem.m */,
+				B78780F32216A131002B74B4 /* BassWrapper.m */,
+				B78780F52216A13C002B74B4 /* BassWrapper.h */,
 			);
 			path = ObjCWrapper;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				50A37BAB207FF03D0020E218 /* AppDelegate.swift in Sources */,
 				B7BD8F1B21F9A87E00532C1A /* Position.swift in Sources */,
 				B7DDFCB322141F5F00637831 /* Database.m in Sources */,
+				B78780F42216A131002B74B4 /* BassWrapper.m in Sources */,
 				B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,6 +476,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_INPUT_FILETYPE = automatic;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ClogAmpSwift/ObjCWrapper/**",
@@ -508,6 +515,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 86S7CBP97U;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_INPUT_FILETYPE = automatic;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ClogAmpSwift/ObjCWrapper/**",
