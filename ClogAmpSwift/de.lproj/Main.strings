@@ -462,3 +462,15 @@
 
 /* Class = "NSMenuItem"; title = "Print..."; ObjectID = "hm1-1f-8uH"; */
 "hm1-1f-8uH.title" = "Drucken...";
+
+/* Class = "NSBox"; title = "Automatic Updates"; ObjectID = "Vhr-lk-94f"; */
+"Vhr-lk-94f.title" = "Automatische Updates";
+
+/* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "ESL-n6-OYF"; */
+"ESL-n6-OYF.title" = "Automatisch nach Updates suchen";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "2x0-m1-Ols"; */
+"2x0-m1-Ols.title" = "Hilfe";
+
+/* Class = "NSMenuItem"; title = "Check for Updates..."; ObjectID = "5YP-qf-1zO"; */
+"5YP-qf-1zO.title" = "Nach Updates suchen...";

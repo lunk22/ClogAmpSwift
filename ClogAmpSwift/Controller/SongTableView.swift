@@ -407,7 +407,7 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
             }
             
             textField.sizeToFit()
-            textField.setFrameOrigin(NSZeroPoint)
+            
             return cell
         }
         
@@ -415,8 +415,8 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        if prefMonoFontSongs {
-            return CGFloat(round(Double(self.fontSize) * 1.7))
+       if prefMonoFontSongs {
+            return CGFloat(round(Double(self.fontSize) * 2.7))
         } else {
             return CGFloat(self.fontSize + 8)
         }
