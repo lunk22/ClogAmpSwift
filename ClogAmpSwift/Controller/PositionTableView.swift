@@ -444,7 +444,7 @@ class PositionTableView: NSViewController {
     }
 }
 
-extension PositionTableView: NSTableViewDelegate, NSTableViewDataSource {
+extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
     
     func tableViewColumnDidResize(_ notification: Notification) {
         self.positionTable.reloadData()
