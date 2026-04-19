@@ -76,4 +76,10 @@ class PreferenceView: ViewController {
             UserDefaults.standard.set(sender.stringValue ?? 70, forKey: "prefBpmLowerBound")
         }
     }
+    @IBAction func setAppIcon(_ sender: NSButton) {
+        if let iconName = sender.identifier?.rawValue {
+            UserDefaults.standard.set(iconName, forKey: "AppIconName")
+            NSApplication.shared.applicationIconImage = NSImage(named: iconName)
+        }
+    }
 }
