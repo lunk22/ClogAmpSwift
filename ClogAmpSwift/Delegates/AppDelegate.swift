@@ -11,7 +11,6 @@ import Sparkle
 import MediaPlayer
 import IOKit
 import IOKit.pwr_mgt
-import AppIntents
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -43,7 +42,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // TESTING ONLY!!!
         //        UserDefaults.standard.reset() // Extension method - ONLY FOR TESTING
-        //        donateIntents()
         //        showMenuBarItem()  // just to play around a little
         
         Database.buildTablesIfNeeded()
@@ -66,20 +64,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //        return nil
 //    }
 //
-//    private func donateIntents() {
-//        let intent = PlayFromBeginningIntent()
-//        intent.suggestedInvocationPhrase = "Play from beginning"
-//        let interaction = INInteraction(intent: intent, response: nil)
-//        interaction.donate { (error) in
-//            if error != nil {
-//                if let error = error as NSError? {
-//                    print("Interaction donation failed: \(error.description)")
-//                } else {
-//                    print("Successfully donated interaction")
-//                }
-//            }
-//        }
-//    }
     
     func showMenuBarItem() {
         // Add a status bar item in the menu bar for our app
