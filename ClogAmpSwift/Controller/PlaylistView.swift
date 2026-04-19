@@ -85,8 +85,14 @@ class PlaylistView: ViewController {
             return
         }
         
-        self.playerView?.loadSong(song: self.aSongs[self.iSongIndex])
-        self.songTable.reloadData()
+//        print("Index: \(self.iSongIndex)")
+//        print("Count: \(self.aSongs.count)")
+//        print("######################")
+        
+        if(self.iSongIndex >= 0 && self.aSongs.count > self.iSongIndex){
+            self.playerView?.loadSong(song: self.aSongs[self.iSongIndex])
+            self.songTable.reloadData()
+        }
     }
     
     func updatePlaylist(oPL: Playlist? = nil) {
@@ -98,7 +104,7 @@ class PlaylistView: ViewController {
                 withPause: oPL!.pause,
                 withOrder: oPL!.order
             )
-        }else if let oPlaylist = self.oSelectedPlaylist {
+        } else if let oPlaylist = self.oSelectedPlaylist {
             Database.updatePlaylist(
                 oPlaylist.plID,
                 withDesc: oPlaylist.description,
