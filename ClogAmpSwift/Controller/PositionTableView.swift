@@ -21,7 +21,7 @@ class PositionTableView: NSViewController {
     
     weak var mainView: MainView?
     
-    let prefMonoFontPositons = UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
+    var prefMonoFontPositons = UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
     
     //MARK: Outlets
     @IBOutlet weak var positionTable: TableView!
@@ -38,6 +38,13 @@ class PositionTableView: NSViewController {
         self.fontSize = UserDefaults.standard.integer(forKey: "positionTableFontSize")
         if(self.fontSize == 0){
             self.fontSize = 12
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("monoChanged"), object: nil, queue: nil){ _ in
+            DispatchQueue.main.async {
+                self.prefMonoFontPositons = UserDefaults.standard.bool(forKey: "prefMonoFontPositons")
+                self.positionTable.reloadData()
+            }
         }
         
         super.viewDidLoad()

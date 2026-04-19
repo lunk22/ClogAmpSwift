@@ -19,7 +19,7 @@ class SongTableView: ViewController {
     
     var fontSize       = 0
     
-    let prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
+    var prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
     
     //Search stuff
     var lastSearchTime: UInt64 = 0
@@ -37,13 +37,13 @@ class SongTableView: ViewController {
     //MARK: Overrides
     override func viewDidLoad() {
         if !UserDefaults.standard.bool(forKey: "prefStartFocusFilter") {
-            self.delayWithSeconds(1.25, closure: {
+            delayWithSeconds(1.25, closure: {
                 DispatchQueue.main.async {
                     self.songTable.enclosingScrollView?.becomeFirstResponder()
                 }
             })
         } else {
-            self.delayWithSeconds(1.25, closure: {
+            delayWithSeconds(1.25, closure: {
                 DispatchQueue.main.async {
                     self.searchField.becomeFirstResponder()
                 }
@@ -89,6 +89,13 @@ class SongTableView: ViewController {
         
         //In case of first run, set title and ascending. In case the app already ran at least once, nothing changes the sort here
         self.songTable.sortDescriptors = [NSSortDescriptor(key: self.sSortBy, ascending: self.bSortAsc)]
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("monoChanged"), object: nil, queue: nil){ _ in
+            DispatchQueue.main.async {
+                self.prefMonoFontSongs = UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
+                self.songTable.reloadData()
+            }
+        }
         
         super.viewDidLoad()
     }

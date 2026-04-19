@@ -21,9 +21,6 @@ class ViewController : NSViewController {
     
     override func keyDown(with event: NSEvent) {
             
-    //        let keyPressed = (event.characters ?? "").lowercased()
-    //        print("Key: \(keyPressed) - Code: \(event.keyCode)")
-            
         switch event.keyCode {
             case 30: // +
                 self._playerView!.increaseSpeed()
@@ -53,10 +50,5 @@ class ViewController : NSViewController {
                 self.interpretKeyEvents([event])
         }
 
-    }
-    
-    func delayWithSeconds(_ seconds: Double, closure: @escaping () -> ()) {
-        Tools.delayWithSeconds(seconds, closure: closure)
-    }
-    
+    }    
 }

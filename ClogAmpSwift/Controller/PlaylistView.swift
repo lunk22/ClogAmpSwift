@@ -237,7 +237,7 @@ class PlaylistView: ViewController {
                 
                 if self.cbContPlayback.state == NSControl.StateValue.on {
 //
-                    self.delayWithSeconds(Double(self.txtPause.integerValue)){
+                    delayWithSeconds(Double(self.txtPause.integerValue)){
                         self.playerView?.play()
                     }
                 }

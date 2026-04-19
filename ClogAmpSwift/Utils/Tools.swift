@@ -8,12 +8,8 @@
 
 import Foundation
 
-class Tools {
-    
-    static func delayWithSeconds(_ seconds: Double, closure: @escaping () -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            closure()
-        }
+public func delayWithSeconds(_ seconds: Double, closure: @escaping () -> ()) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+        closure()
     }
-    
 }
