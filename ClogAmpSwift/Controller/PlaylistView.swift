@@ -10,9 +10,20 @@ import AppKit
 
 class PlaylistView: ViewController {
     
-    var aPlaylists = [Playlist]();
-    var aSongs     = [Song]();
+    var aPlaylists = [Playlist]()
+    var aSongs     = [Song]() {
+        didSet {
+            if self.aSongs.count > 0 {
+                self.btnPlay.isEnabled = true
+                self.btnStop.isEnabled = true
+                self.cbContPlayback.isEnabled = true
+                self.lblPause.isEnabled = true
+                self.txtPause.isEnabled = true
+            }
+        }
+    }
     var oSelectedPlaylist: Playlist?
+    var iSongIndex: Int = -1
     
     var playerView: PlayerView?
     
@@ -20,15 +31,28 @@ class PlaylistView: ViewController {
     
     @IBOutlet weak var playlistTable: NSTableView!
     @IBOutlet weak var songTable: TableView!
+    @IBOutlet weak var btnPlay: NSButton!
+    @IBOutlet weak var btnStop: NSButton!
+    @IBOutlet weak var cbContPlayback: NSButton!
+    @IBOutlet weak var lblPause: NSTextField!
+    @IBOutlet weak var txtPause: NSTextField!
+    
     
     override func viewDidLoad() {
         self.aPlaylists = Database.getPlaylists() as! [Playlist]
         
 //        // https://www.natethompson.io/2019/03/23/nstableview-drag-and-drop.html
 //        self.songTable.registerForDraggedTypes([.string, .tableViewIndex])
+        self.songTable.registerForDraggedTypes([.string])
         
         let viewController = NSApplication.shared.windows[0].contentViewController as! MainView
         self.playerView = viewController.playerView
+        
+        self.btnPlay.isEnabled = false
+        self.btnStop.isEnabled = false
+        self.cbContPlayback.isEnabled = false
+        self.lblPause.isEnabled = false
+        self.txtPause.isEnabled = false
         
         self.songTable.selectionDelegate = self
     }
@@ -51,10 +75,15 @@ class PlaylistView: ViewController {
     
     func loadSong(_ index: Int = -1) {
         if index < 0{
-            self.playerView?.loadSong(song: self.aSongs[self.songTable.selectedRow])
+            self.iSongIndex = self.songTable.selectedRow
         } else if self.aSongs.count - 1 >= index {
-            self.playerView?.loadSong(song: self.aSongs[index])
+            self.iSongIndex = index
+        } else {
+            return
         }
+        
+        self.playerView?.loadSong(song: self.aSongs[self.iSongIndex])
+        self.songTable.reloadData()
     }
     
     @IBAction func addNewPlaylist(_ sender: Any) {
@@ -138,9 +167,50 @@ class PlaylistView: ViewController {
     }
     
     @IBAction func handleStartPlaylist(_ sender: Any) {
-        if self.oSelectedPlaylist != nil {
-            self.loadSong(0)
+        if self.oSelectedPlaylist != nil && self.aSongs.count > 0 {
+            if self.iSongIndex == -1{
+                self.loadSong(0)
+            }
             self.playerView?.play()
+            
+            NotificationCenter.default.addObserver(self,
+               selector: #selector(songFinished),
+               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+               object: nil
+            ) // Add observer
+        }
+    }
+    
+    @IBAction func handleStopPlaylist(_ sender: Any?) {
+        self.playerView?.stop()
+        self.iSongIndex = -1
+        
+        self.songTable.reloadData()
+        
+        NotificationCenter.default.removeObserver(self,
+           name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+           object: nil
+        )
+    }
+    
+    @IBAction func changeContPlayback(_ sender: Any) {
+        self.txtPause.isEnabled = self.cbContPlayback.state == NSControl.StateValue.on
+    }
+    
+    @objc func songFinished() {
+        if self.oSelectedPlaylist != nil && self.iSongIndex >= 0 {
+            if self.iSongIndex < self.aSongs.count - 1 {
+                self.loadSong(self.iSongIndex + 1)
+                
+                if self.cbContPlayback.state == NSControl.StateValue.on {
+//
+                    self.delayWithSeconds(Double(self.txtPause.integerValue)){
+                        self.playerView?.play()
+                    }
+                }
+            } else {
+                self.handleStopPlaylist(nil)
+            }
         }
     }
 }
@@ -170,7 +240,18 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(fontSize))
             }
             
-            textField.sizeToFit()
+            textField.drawsBackground = false
+            textField.backgroundColor = NSColor.controlColor
+            textField.textColor       = NSColor.controlTextColor
+            
+            if(self.iSongIndex == row){
+                textField.drawsBackground = true
+                textField.backgroundColor = NSColor.systemOrange
+                textField.textColor       = NSColor.black
+            }
+            
+//            textField.sizeToFit()
+//            textField.setFrameOrigin(NSZeroPoint)
             
             return cell
         }
@@ -178,9 +259,15 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
         return nil
     }
     
-//    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-//        return CGFloat(20)
-//    }
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        if tableView == self.playlistTable{
+            return CGFloat(24)
+        }else if prefMonoFontSongs {
+            return CGFloat(round(Double(12) * 1.7))
+        } else {
+            return CGFloat(20)
+        }
+    }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.playlistTable{
