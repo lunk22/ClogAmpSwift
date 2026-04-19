@@ -58,9 +58,9 @@ class PlayerView: ViewController {
             //Time
             self.updateTime()
             
-//            if self.currentSong!.bpm == 0 {
-//                self.determineBpmFCS()
-//            }
+            if UserDefaults.standard.bool(forKey: "prefAutoDetermineBPM") && self.currentSong!.bpm == 0 {
+                self.determineBpmFCS()
+            }
         }
     }
     
