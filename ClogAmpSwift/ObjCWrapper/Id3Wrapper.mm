@@ -75,7 +75,7 @@
     //        isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
     char *testChar = (char *)positionsUChar;
     NSUInteger testLength = 0;
-    if (testChar != NULL && !strcmp(testChar,  @"".UTF8String)) {
+    if (testChar != NULL && ![@"" isEqualToString:[NSString stringWithUTF8String:testChar]]) {
         testLength = strlen(testChar);
     }
     if ((int)testLength > 0) {
@@ -125,7 +125,7 @@
     //        isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
     char *testChar = (char *)positionsUChar;
     NSUInteger testLength = 0;
-    if (testChar != NULL && !strcmp(testChar,  @"".UTF8String)) {
+    if (testChar != NULL && ![@"" isEqualToString:[NSString stringWithUTF8String:testChar]]) {
         testLength = strlen(testChar);
     }
     if ((int)testLength > 0) {
@@ -155,7 +155,7 @@
 //        isEmpty = [@"" isEqualToString:[NSString stringWithUTF8String:(char *)positionsUChar]];
     char *testChar = (char *)positionsUChar;
     NSUInteger testLength = 0;
-    if (testChar != NULL && !strcmp(testChar,  @"".UTF8String)) {
+    if (testChar != NULL && ![@"" isEqualToString:[NSString stringWithUTF8String:testChar]]) {
         testLength = strlen(testChar);
     }
     if ((int)testLength > 0) {
