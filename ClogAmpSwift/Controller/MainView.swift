@@ -41,11 +41,7 @@ class MainView: NSViewController {
             case 49: // Space
                 self.playerView!.pause()
             case 3: // F
-//                if(event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.shift]){
-//                    self.songTableView?.searchField.becomeFirstResponder()
-//                }else{
-                    self.playerView!.jump(5)
-//                }
+                self.playerView!.jump(5)
 //            case 48: // Tab
 //                
             case 11: // B

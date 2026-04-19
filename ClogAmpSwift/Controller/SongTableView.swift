@@ -50,7 +50,6 @@ class SongTableView: NSViewController {
                     }
                 }
 //            case 48: // Tab
-//                self.songTable.edit
             default:
                 self.mainView?.keyDown(with: event)
         }
