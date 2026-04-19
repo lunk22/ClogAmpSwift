@@ -9,7 +9,7 @@
 import AppKit
 import Sparkle
 
-class PreferenceView: ViewController {
+class PreferenceView: ViewController, NSTextFieldDelegate {
     
     //Outlets
     @IBOutlet weak var txtSkipForward: NSTextField!
@@ -20,29 +20,29 @@ class PreferenceView: ViewController {
     @IBOutlet weak var boxAppearance: NSBox!
     @IBOutlet weak var ddlbAppearance: NSComboBox!
     @IBOutlet weak var cbViewAfterSongLoad: NSComboBox!
-    @IBOutlet weak var cbBeatsChangeBehaviour: NSComboBox!
-    @IBOutlet weak var cbAddPositionBehaviour: NSComboBox!
+    @IBOutlet weak var cbBeatsChangeBehavior: NSComboBox!
+    @IBOutlet weak var cbAddPositionBehavior: NSComboBox!
     @IBOutlet weak var txtAddPositionOffset: NSTextField!
     @IBOutlet weak var cwHighlightColor: NSColorWell!
     @IBOutlet weak var cwTextColor: NSColorWell!
+    @IBOutlet weak var cbChangeMatchingPositions: NSButton!
     
-
     //Overrides
     override func viewDidLoad() {
-        self.txtSkipForward.integerValue   = AppPreferences.skipForward
-        self.txtSkipBack.integerValue      = AppPreferences.skipBack
-        self.txtBpmUpperBound.integerValue = AppPreferences.bpmUpperBound
-        self.txtBpmLowerBound.integerValue = AppPreferences.bpmLowerBound
-        self.txtLoopDelay.doubleValue      = AppPreferences.loopDelay
-        self.txtAddPositionOffset.integerValue = AppPreferences.addPositionOffset
+        self.txtSkipForward.integerValue   = Settings.skipForward
+        self.txtSkipBack.integerValue      = Settings.skipBack
+        self.txtBpmUpperBound.integerValue = Settings.bpmUpperBound
+        self.txtBpmLowerBound.integerValue = Settings.bpmLowerBound
+        self.txtLoopDelay.doubleValue      = Settings.loopDelay
+        self.txtAddPositionOffset.integerValue = Settings.addPositionOffset
 
-        self.ddlbAppearance.selectItem(at: AppPreferences.appearance)
-        self.cbViewAfterSongLoad.selectItem(at: AppPreferences.viewAfterSongLoad)
-        self.cbBeatsChangeBehaviour.selectItem(at: AppPreferences.beatsChangeBehaviour)
-        self.cbAddPositionBehaviour.selectItem(at: AppPreferences.addPositionBehaviour)
+        self.ddlbAppearance.selectItem(at: Settings.appearance)
+        self.cbViewAfterSongLoad.selectItem(at: Settings.viewAfterSongLoad)
+        self.cbBeatsChangeBehavior.selectItem(at: Settings.beatsChangeBehavior)
+        self.cbAddPositionBehavior.selectItem(at: Settings.addPositionBehavior)
         
-        self.cwHighlightColor.color = AppPreferences.positionHighlightColor
-        self.cwTextColor.color = AppPreferences.positionTextColor
+        self.cwHighlightColor.color = Settings.positionHighlightColor
+        self.cwTextColor.color = Settings.positionTextColor
 
         if #available(OSX 10.14, *) {
             self.boxAppearance.isHidden = false
@@ -123,9 +123,9 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
             return 3 //Dark, Light, System
         } else if comboBox.identifier?.rawValue == "cbViewAfterSongLoad" {
             return 3 //Empty, Positions, PDF
-        } else if comboBox.identifier?.rawValue == "cbBeatsChangeBehaviour" {
+        } else if comboBox.identifier?.rawValue == "cbBeatsChangeBehavior" {
             return 2 //Adjust next position, move all following positions
-        } else if comboBox.identifier?.rawValue == "cbPositionAddBehaviour" {
+        } else if comboBox.identifier?.rawValue == "cbPositionAddBehavior" {
             return 3 // Adjust by beats, by seconds, no adjustments
         }
 
@@ -155,23 +155,23 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
                 default:
                     return NSString(string: "")
             }
-        } else if comboBox.identifier?.rawValue == "cbBeatsChangeBehaviour" {
+        } else if comboBox.identifier?.rawValue == "cbBeatsChangeBehavior" {
             switch index {
                 case 0:
-                    return NSLocalizedString("beatsChangeBehaviourAdjustFollowing", bundle: Bundle.main, comment: "") as NSString
+                    return NSLocalizedString("beatsChangeBehaviorAdjustFollowing", bundle: Bundle.main, comment: "") as NSString
                 case 1:
-                    return NSLocalizedString("beatsChangeBehaviourMoveAllFollowing", bundle: Bundle.main, comment: "") as NSString
+                    return NSLocalizedString("beatsChangeBehaviorMoveAllFollowing", bundle: Bundle.main, comment: "") as NSString
                 default:
                     return NSString(string: "")
             }
-        } else if comboBox.identifier?.rawValue == "cbPositionAddBehaviour" {
+        } else if comboBox.identifier?.rawValue == "cbPositionAddBehavior" {
             switch index {
                 case 0:
-                    return NSLocalizedString("addPositionBehaviourNoChange", bundle: Bundle.main, comment: "") as NSString
+                    return NSLocalizedString("addPositionBehaviorNoChange", bundle: Bundle.main, comment: "") as NSString
                 case 1:
-                    return NSLocalizedString("addPositionBehaviourAdjustBeats", bundle: Bundle.main, comment: "") as NSString
+                    return NSLocalizedString("addPositionBehaviorAdjustBeats", bundle: Bundle.main, comment: "") as NSString
                 case 2:
-                    return NSLocalizedString("addPositionBehaviourAdjustSeconds", bundle: Bundle.main, comment: "") as NSString
+                    return NSLocalizedString("addPositionBehaviorAdjustSeconds", bundle: Bundle.main, comment: "") as NSString
                 default:
                     return NSString(string: "")
             }
@@ -187,10 +187,10 @@ extension PreferenceView : NSComboBoxDelegate, NSComboBoxDataSource {
             UserDefaults.standard.set(self.ddlbAppearance.indexOfSelectedItem, forKey: "prefAppearance")
         } else if uiElement.identifier?.rawValue == "cbViewAfterSongLoad" {
             UserDefaults.standard.set(self.cbViewAfterSongLoad.indexOfSelectedItem, forKey: "prefViewAfterSongLoad")
-        } else if uiElement.identifier?.rawValue == "cbBeatsChangeBehaviour" {
-            UserDefaults.standard.set(self.cbBeatsChangeBehaviour.indexOfSelectedItem, forKey: "prefBeatsChangeBehaviour")
-        } else if uiElement.identifier?.rawValue == "cbPositionAddBehaviour" {
-            UserDefaults.standard.set(self.cbAddPositionBehaviour.indexOfSelectedItem, forKey: "prefAddPositionBehaviour")
+        } else if uiElement.identifier?.rawValue == "cbBeatsChangeBehavior" {
+            UserDefaults.standard.set(self.cbBeatsChangeBehavior.indexOfSelectedItem, forKey: "prefBeatsChangeBehaviour")
+        } else if uiElement.identifier?.rawValue == "cbPositionAddBehavior" {
+            UserDefaults.standard.set(self.cbAddPositionBehavior.indexOfSelectedItem, forKey: "prefAddPositionBehaviour")
         }
 
     }

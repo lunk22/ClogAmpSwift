@@ -11,8 +11,8 @@
 "viewAfterSongLoadFileList" = "";
 "viewAfterSongLoadPositions" = "Positions";
 "viewAfterSongLoadPDF" = "PDF";
-"beatsChangeBehaviourAdjustFollowing" = "Adjust following position";
-"beatsChangeBehaviourMoveAllFollowing" = "Move all following positions";
-"addPositionBehaviourAdjustBeats" = "Adjust Position time by beats";
-"addPositionBehaviourAdjustSeconds" = "Adjust Position time by seconds";
-"addPositionBehaviourNoChange" = "No adjustment";
+"beatsChangeBehaviorAdjustFollowing" = "Adjust following position";
+"beatsChangeBehaviorMoveAllFollowing" = "Move all following positions";
+"addPositionBehaviorAdjustBeats" = "Adjust Position time by beats";
+"addPositionBehaviorAdjustSeconds" = "Adjust Position time by seconds";
+"addPositionBehaviorNoChange" = "No adjustment";

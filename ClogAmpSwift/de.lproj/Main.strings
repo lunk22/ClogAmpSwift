@@ -80,7 +80,7 @@
 /* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
 "bib-Uj-vzu.title" = "Datei";
 
-/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
+/* Class = "NSMenuItem"; title = "Settings..."; ObjectID = "BOF-NM-1cW"; */
 "BOF-NM-1cW.title" = "Einstellungen…";
 
 /* Class = "NSButtonCell"; title = "-"; ObjectID = "CcZ-zn-W5m"; */
@@ -143,7 +143,7 @@
 /* Class = "NSTextFieldCell"; title = "Upper Bound"; ObjectID = "l7c-qL-Ath"; */
 "l7c-qL-Ath.title" = "Obere Grenze";
 
-/* Class = "NSTextFieldCell"; title = "Wait a number of seconds before looping after the position finished (for example to avoid looping too early)"; ObjectID = "MQb-sL-sbJ"; */
+/* Class = "NSTextFieldCell"; title = "Wait a number of seconds before looping after the position finished"; ObjectID = "MQb-sL-sbJ"; */
 "MQb-sL-sbJ.title" = "Wartezeit in Sekunden bevor die Position wiederholt wird";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "n27-Ni-WE3"; */
@@ -176,7 +176,7 @@
 /* Class = "NSMenuItem"; title = "Player"; ObjectID = "QLk-u7-0rp"; */
 "QLk-u7-0rp.title" = "Player";
 
-/* Class = "NSWindow"; title = "Preferences"; ObjectID = "qmF-AN-kTn"; */
+/* Class = "NSWindow"; title = "Settings"; ObjectID = "qmF-AN-kTn"; */
 "qmF-AN-kTn.title" = "Einstellungen";
 
 /* Class = "NSTableColumn"; headerCell.title = "Jump To"; ObjectID = "qmK-aC-wnB"; */
@@ -215,7 +215,7 @@
 /* Class = "NSButtonCell"; title = "-"; ObjectID = "t1r-b8-GX7"; */
 "t1r-b8-GX7.title" = "-";
 
-/* Class = "NSViewController"; title = "Preferences"; ObjectID = "TPq-mw-tuz"; */
+/* Class = "NSViewController"; title = "Settings"; ObjectID = "TPq-mw-tuz"; */
 "TPq-mw-tuz.title" = "Einstellungen";
 
 /* Class = "NSButtonCell"; title = "Play on Selection"; ObjectID = "ttV-OR-48e"; */
@@ -469,7 +469,7 @@
 
 "z0e-vD-qbE.title" = "Anzeige nach Liedauswahl";
 
-"bdD-VI-P7y.title" = "Verhalten bei Beatänderung";
+"bdD-VI-P7y.title" = "Verhalten bei Beatänderungen";
 
 "u5w-Sf-Vic.title" = "Konformitätsfaktor:";
 
@@ -480,6 +480,10 @@
 "Z0V-8Y-vtk.title" = "Alles markieren";
 
 "iSe-Lz-p3s.title" = "Lied speichern";
+
+"Wwg-w1-8oT.title" = "Verhalten bei Positionsänderungen";
+
+"B50-03-hSt.title" = "Alle mit gleichem Namen anpassen";
 
 /* Tempo */
 "9ft-gW-ecw.headerCell.title" = "Tempo";

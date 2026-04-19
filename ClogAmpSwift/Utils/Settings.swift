@@ -8,14 +8,14 @@
 
 import Foundation
 
-class AppPreferences: NSObject {
+class Settings: NSObject {
     
-    static var addPositionBehaviour: Int {
-        var prefAddPositionBehaviour = UserDefaults.standard.integer(forKey: "prefAddPositionBehaviour")
-        if(prefAddPositionBehaviour < 0 || prefAddPositionBehaviour > 2){
-            prefAddPositionBehaviour = 0
+    static var addPositionBehavior: Int {
+        var prefAddPositionBehavior = UserDefaults.standard.integer(forKey: "prefAddPositionBehaviour")
+        if(prefAddPositionBehavior < 0 || prefAddPositionBehavior > 2){
+            prefAddPositionBehavior = 0
         }
-        return prefAddPositionBehaviour
+        return prefAddPositionBehavior
     }
 
     static var addPositionOffset: Int {
@@ -43,12 +43,12 @@ class AppPreferences: NSObject {
         return UserDefaults.standard.bool(forKey: "prefAutoDetermineBPM")
     }
     
-    static var beatsChangeBehaviour: Int {
-        var prefBeatsChangeBehaviour = UserDefaults.standard.integer(forKey: "prefBeatsChangeBehaviour")
-        if(prefBeatsChangeBehaviour < 0 || prefBeatsChangeBehaviour > 1){
-            prefBeatsChangeBehaviour = 0
+    static var beatsChangeBehavior: Int {
+        var prefBeatsChangeBehavior = UserDefaults.standard.integer(forKey: "prefBeatsChangeBehaviour")
+        if(prefBeatsChangeBehavior < 0 || prefBeatsChangeBehavior > 1){
+            prefBeatsChangeBehavior = 0
         }
-        return prefBeatsChangeBehaviour
+        return prefBeatsChangeBehavior
     }
     
     static var bpmLowerBound: Int {
@@ -221,6 +221,10 @@ class AppPreferences: NSObject {
     
     static var songTableMonoFont: Bool {
         return UserDefaults.standard.bool(forKey: "prefMonoFontSongs")
+    }
+    
+    static var updateNameMatchingPositions: Bool {
+        return UserDefaults.standard.bool(forKey: "prefUpdateNameMatchingPositions")
     }
     
     static var viewAfterSongLoad: Int {

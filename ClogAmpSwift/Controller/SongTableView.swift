@@ -36,7 +36,7 @@ class SongTableView: ViewController {
     // MARK: Overrides
     override func viewDidLoad() {
         let delay = 1.25
-        if AppPreferences.focusFilterOnAppStart {
+        if Settings.focusFilterOnAppStart {
             delayWithSeconds(delay) {
                 self.searchField.becomeFirstResponder()
             }
@@ -50,7 +50,7 @@ class SongTableView: ViewController {
         self.songTable.delegate          = self
         self.songTable.dataSource        = self
 
-        if let musicPath = AppPreferences.folderPathMusic {
+        if let musicPath = Settings.folderPathMusic {
 //            //############################################################################
 //            //Read Access Rights
 //            if let bookmarksUrl = FileManager.default.urls(for: FileManager.SearchPathDirectory.applicationSupportDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first?.appendingPathComponent("ClogAmpSwift/bookmarks"){
@@ -93,7 +93,7 @@ class SongTableView: ViewController {
     override func viewDidAppear() {
         if self.mainView?.playerView?.currentSong === nil {
             //Load previously loaded Song (Song that was loaded as the app was last closed)
-            if let lastLoadedSongURL = AppPreferences.lastLoadedSongURL {
+            if let lastLoadedSongURL = Settings.lastLoadedSongURL {
                 if FileManager.default.fileExists(atPath: lastLoadedSongURL) {
                     let url  = URL(string: lastLoadedSongURL.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!
                     let song = Song.retrieveSong(path: url)
@@ -127,7 +127,7 @@ class SongTableView: ViewController {
         
         if !openLoadView {return}
         
-        switch AppPreferences.viewAfterSongLoad {
+        switch Settings.viewAfterSongLoad {
             case 1:
                 self.mainView?.tabView.selectTabViewItem(at: 1)
             case 2:
@@ -245,7 +245,7 @@ class SongTableView: ViewController {
                     let titleScoreRounded = (titleScore*10).rounded(.toNearestOrAwayFromZero)/10
                     
                     let match = (
-                        titleScoreRounded >= AppPreferences.filterTitleFactor ||
+                        titleScoreRounded >= Settings.filterTitleFactor ||
                         $0.getValueAsString("artist").lowercased().contains(self.filterValue) ||
                         $0.getValueAsString("level").lowercased().contains(self.filterValue) ||
                         $0.getValueAsString("path").lowercased().contains(self.filterValue)
@@ -286,7 +286,7 @@ class SongTableView: ViewController {
         dialog.canCreateDirectories    = false
         dialog.allowsMultipleSelection = false
         
-        if let savedPath = AppPreferences.folderPathMusic {
+        if let savedPath = Settings.folderPathMusic {
             dialog.directoryURL        = URL(fileURLWithPath: savedPath)
         }
         
@@ -323,12 +323,12 @@ class SongTableView: ViewController {
     }
     
     @IBAction func handleIncreaseTextSize(_ sender: NSButton) {
-        UserDefaults.standard.set((AppPreferences.songTableFontSize + 1), forKey: "songTableFontSize")
+        UserDefaults.standard.set((Settings.songTableFontSize + 1), forKey: "songTableFontSize")
         self.refreshTable()
     }
     
     @IBAction func handleDecreaseTextSize(_ sender: NSButton) {
-        UserDefaults.standard.set((AppPreferences.songTableFontSize - 1), forKey: "songTableFontSize")
+        UserDefaults.standard.set((Settings.songTableFontSize - 1), forKey: "songTableFontSize")
         self.refreshTable()
     }
     @IBAction func handleSearchEnter(_ sender: NSTextField) {
@@ -386,7 +386,7 @@ class SongTableView: ViewController {
     }
     
     @IBAction func handleRefreshList(_ sender: Any) {
-        if let musicPath = AppPreferences.folderPathMusic {
+        if let musicPath = Settings.folderPathMusic {
             self.setMusicDirectory(musicPath)
         }
     }
@@ -409,10 +409,10 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
                 textField.stringValue = ""
             }
             
-            if AppPreferences.songTableMonoFont {
-                textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(AppPreferences.songTableFontSize))
+            if Settings.songTableMonoFont {
+                textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(Settings.songTableFontSize))
             } else {
-                textField.font = NSFont.systemFont(ofSize: CGFloat(AppPreferences.songTableFontSize))
+                textField.font = NSFont.systemFont(ofSize: CGFloat(Settings.songTableFontSize))
             }
             
             textField.sizeToFit()
@@ -424,10 +424,10 @@ extension SongTableView: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-       if AppPreferences.songTableMonoFont {
-           return CGFloat(round(Double(AppPreferences.songTableFontSize) * 1.7))
+       if Settings.songTableMonoFont {
+           return CGFloat(round(Double(Settings.songTableFontSize) * 1.7))
        } else {
-           return CGFloat(AppPreferences.songTableFontSize + 8)
+           return CGFloat(Settings.songTableFontSize + 8)
        }
     }
     

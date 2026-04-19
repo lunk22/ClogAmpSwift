@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol PositionDelegate: AnyObject {
+    func descriptionDidChange(name: String, description: String)
+}
+
 class Position {
     var name: String {
         didSet {
@@ -17,6 +21,9 @@ class Position {
     var comment: String {
         didSet {
             self.hasChanges = true
+            if !self.dontDelegalate {
+                self.delegate?.descriptionDidChange(name: self.name, description: self.comment)
+            }
         }
     }
     var jumpTo:  String {
@@ -30,20 +37,24 @@ class Position {
         }
     }
     var beats: Int
+    
+    var dontDelegalate: Bool = false
+    public var delegate: PositionDelegate?
     private(set) var hasChanges: Bool
     
     //  Initializer
-    init() {
+    init(delegate: PositionDelegate? = nil) {
         self.name       = ""
         self.comment    = ""
         self.jumpTo     = ""
         self.time       = 0
         self.beats      = 0 // Calculated
+        self.delegate   = delegate
         self.hasChanges = false
     }
     
-    convenience init(name: String, comment: String, time: UInt, new: Bool) {
-        self.init()
+    convenience init(name: String, comment: String, time: UInt, new: Bool, delegate: PositionDelegate? = nil) {
+        self.init(delegate: delegate)
         
         self.name    = name
         self.comment = comment
@@ -51,8 +62,8 @@ class Position {
         self.hasChanges = new
     }
     
-    convenience init(name: String, comment: String, jumpTo: String, time: UInt, new: Bool) {
-        self.init()
+    convenience init(name: String, comment: String, jumpTo: String, time: UInt, new: Bool, delegate: PositionDelegate? = nil) {
+        self.init(delegate: delegate)
         
         self.name    = name
         self.comment = comment

@@ -93,7 +93,7 @@ class PlaylistView: ViewController {
             self.playerView?.loadSong(song: self.aSongs[self.iSongIndex])
             self.songTable.reloadData()
             
-            switch AppPreferences.viewAfterSongLoad {
+            switch Settings.viewAfterSongLoad {
             case 1:
                 self.mainView?.tabView.selectTabViewItem(at: 1)
             case 2:
@@ -283,7 +283,7 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
             }
             
             
-            if AppPreferences.songTableMonoFont {
+            if Settings.songTableMonoFont {
                 textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(fontSize))
@@ -310,7 +310,7 @@ extension PlaylistView: NSTableViewDelegate, NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         if tableView == self.playlistTable{
             return CGFloat(24)
-        }else if AppPreferences.songTableMonoFont {
+        }else if Settings.songTableMonoFont {
             return CGFloat(round(Double(12) * 1.7))
         } else {
             return CGFloat(20)

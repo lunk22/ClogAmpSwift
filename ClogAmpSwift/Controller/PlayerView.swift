@@ -74,7 +74,7 @@ class PlayerView: ViewController {
                 fileName: self.currentSong?.filePathAsUrl.lastPathComponent ?? ""
             )
             
-            if AppPreferences.autoDetermineBpm && self.currentSong!.bpm == 0 {
+            if Settings.autoDetermineBpm && self.currentSong!.bpm == 0 {
                 self.determineBpmFCS()
             }
         }
@@ -101,33 +101,33 @@ class PlayerView: ViewController {
         }
 
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.playing, object: nil, queue: .current) { _ in
-            self.btnPlay.image  = AppPreferences.colorizedPlayerState ? self.imgPlay : self.imgPlayGray
+            self.btnPlay.image  = Settings.colorizedPlayerState ? self.imgPlay : self.imgPlayGray
             self.btnPause.image = self.imgPauseGray
             self.btnStop.image  = self.imgStopGray
             
-            self.mainView?.mainWindow?.tbPlay.image  = AppPreferences.colorizedPlayerState ? self.imgPlay : self.imgPlayGray
+            self.mainView?.mainWindow?.tbPlay.image  = Settings.colorizedPlayerState ? self.imgPlay : self.imgPlayGray
             self.mainView?.mainWindow?.tbPause.image = self.imgPauseGray
             self.mainView?.mainWindow?.tbStop.image  = self.imgStopGray
         }
         
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.paused, object: nil, queue: .current) { _ in
             self.btnPlay.image  = self.imgPlayGray
-            self.btnPause.image = AppPreferences.colorizedPlayerState ? self.imgPause : self.imgPauseGray
+            self.btnPause.image = Settings.colorizedPlayerState ? self.imgPause : self.imgPauseGray
             self.btnStop.image  = self.imgStopGray
             
             self.mainView?.mainWindow?.tbPlay.image  = self.imgPlayGray
-            self.mainView?.mainWindow?.tbPause.image = AppPreferences.colorizedPlayerState ? self.imgPause : self.imgPauseGray
+            self.mainView?.mainWindow?.tbPause.image = Settings.colorizedPlayerState ? self.imgPause : self.imgPauseGray
             self.mainView?.mainWindow?.tbStop.image  = self.imgStopGray
         }
         
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopped, object: nil, queue: .current) { _ in
             self.btnPlay.image  = self.imgPlayGray
             self.btnPause.image = self.imgPauseGray
-            self.btnStop.image  = AppPreferences.colorizedPlayerState ? self.imgStop : self.imgStopGray
+            self.btnStop.image  = Settings.colorizedPlayerState ? self.imgStop : self.imgStopGray
             
             self.mainView?.mainWindow?.tbPlay.image  = self.imgPlayGray
             self.mainView?.mainWindow?.tbPause.image = self.imgPauseGray
-            self.mainView?.mainWindow?.tbStop.image  = AppPreferences.colorizedPlayerState ? self.imgStop : self.imgStopGray
+            self.mainView?.mainWindow?.tbStop.image  = Settings.colorizedPlayerState ? self.imgStop : self.imgStopGray
         }
         
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.rateChanged, object: nil, queue: .current) { _ in
@@ -162,7 +162,7 @@ class PlayerView: ViewController {
     }
     
     func updateMeters() {
-        if AppPreferences.audioMetering {
+        if Settings.audioMetering {
             let meteringLevelImgHeight = Float(self.imgHeight) * (PlayerAudioEngine.shared.meteringLevel / 100)
             
             if PlayerAudioEngine.shared.isPlaying(){
@@ -202,7 +202,7 @@ class PlayerView: ViewController {
             let duration = PlayerAudioEngine.shared.getDuration()
             let percent: Double = currentTime / Double(duration) * 100
             
-            if(AppPreferences.countdownTime) {
+            if(Settings.countdownTime) {
                 currentTime = Double(duration) - currentTime
             }
             
@@ -213,7 +213,7 @@ class PlayerView: ViewController {
             let sSeconds = durSeconds >= 10 ? "\(durSeconds)" : "0\(durSeconds)"
             let sMinutes = durMinutes >= 10 ? "\(durMinutes)" : "\(durMinutes)"
             
-            if AppPreferences.countdownTime {
+            if Settings.countdownTime {
                 self.lengthField.stringValue = "- \(sMinutes):\(sSeconds)".asTime()
             }else{
                 self.lengthField.stringValue = "\(sMinutes):\(sSeconds)".asTime()
@@ -259,7 +259,7 @@ class PlayerView: ViewController {
     }
     
     @IBAction func changeTimeDisplay(_ sender: NSButton) {
-        UserDefaults.standard.set(!AppPreferences.countdownTime, forKey: "countTimeDown")
+        UserDefaults.standard.set(!Settings.countdownTime, forKey: "countTimeDown")
         self.updateTimeInUI()
     }
     

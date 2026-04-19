@@ -15,6 +15,7 @@ ClogAmp from Mac (Swift)
 - [SwiftyStringScore](https://github.com/yichizhang/SwiftyStringScore) - [License](https://github.com/yichizhang/SwiftyStringScore/blob/master/LICENSE) => Find matching PDFs
 - [CocoaPDFCreator](https://github.com/owlswipe/CocoaPDFCreator) - [License](https://github.com/owlswipe/CocoaPDFCreator/blob/master/LICENSE) => Export History as PDF
 - [Sparkle](https://sparkle-project.org/) - [GitHub](https://github.com/sparkle-project/Sparkle) - [License](https://github.com/sparkle-project/Sparkle/blob/master/LICENSE) => Version updates
+- [swift-html-to-pdf](https://github.com/coenttb/swift-html-to-pdf/) - [License](https://github.com/coenttb/swift-html-to-pdf/blob/main/LICENCE) => Convert Positions/History to PDF
 
 ## Used fonts:
 - [B612](https://github.com/polarsys/b612) - [License](https://github.com/polarsys/b612/blob/master/OFL.txt)

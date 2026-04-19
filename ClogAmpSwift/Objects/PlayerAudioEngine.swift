@@ -164,9 +164,9 @@ class PlayerAudioEngine {
         audioEngine.connect(equalizer, to: audioEngine.mainMixerNode, format: nil)
         
         let freqs = [
-            AppPreferences.eqFrequencyLowHz,
-            AppPreferences.eqFrequencyMidHz,
-            AppPreferences.eqFrequencyHighHz
+            Settings.eqFrequencyLowHz,
+            Settings.eqFrequencyMidHz,
+            Settings.eqFrequencyHighHz
         ]
         
         for i in 0...(freqs.count - 1) {
@@ -175,9 +175,9 @@ class PlayerAudioEngine {
             equalizer.bands[i].filterType = .parametric
         }
         
-        setFrequencyDbHigh(newTargetDb: AppPreferences.eqFrequencyHigh)
-        setFrequencyDbMid(newTargetDb: AppPreferences.eqFrequencyMid)
-        setFrequencyDbLow(newTargetDb: AppPreferences.eqFrequencyLow)
+        setFrequencyDbHigh(newTargetDb: Settings.eqFrequencyHigh)
+        setFrequencyDbMid(newTargetDb: Settings.eqFrequencyMid)
+        setFrequencyDbLow(newTargetDb: Settings.eqFrequencyLow)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(shutdown),
@@ -207,16 +207,16 @@ class PlayerAudioEngine {
         }
         
         MPRemoteCommandCenter.shared().skipForwardCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [AppPreferences.skipForward as NSNumber]
+        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [Settings.skipForward as NSNumber]
         MPRemoteCommandCenter.shared().skipForwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-            self.jump(AppPreferences.skipForward)
+            self.jump(Settings.skipForward)
             return .success
         }
         
         MPRemoteCommandCenter.shared().skipBackwardCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [AppPreferences.skipBack as NSNumber]
+        MPRemoteCommandCenter.shared().skipForwardCommand.preferredIntervals = [Settings.skipBack as NSNumber]
         MPRemoteCommandCenter.shared().skipBackwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-            self.jump((AppPreferences.skipBack * -1))
+            self.jump((Settings.skipBack * -1))
             return .success
         }
         
@@ -229,13 +229,13 @@ class PlayerAudioEngine {
         
         MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = true
         MPRemoteCommandCenter.shared().nextTrackCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-            self.jump(AppPreferences.skipForward)
+            self.jump(Settings.skipForward)
             return .success
         }
         
         MPRemoteCommandCenter.shared().previousTrackCommand.isEnabled = true
         MPRemoteCommandCenter.shared().previousTrackCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-            self.jump((AppPreferences.skipBack * -1))
+            self.jump((Settings.skipBack * -1))
             return .success
         }
         
@@ -281,7 +281,7 @@ class PlayerAudioEngine {
     func installMeteringTap() {
         let format = audioEngine.mainMixerNode.outputFormat(forBus: 0)
         audioEngine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _  in
-            if AppPreferences.audioMetering {
+            if Settings.audioMetering {
                 guard let channelData = buffer.floatChannelData else {
                     return
                 }

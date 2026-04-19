@@ -48,9 +48,9 @@ class EQView: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        freqHighSlider.floatValue = AppPreferences.eqFrequencyHigh
-        freqMidSlider.floatValue = AppPreferences.eqFrequencyMid
-        freqLowSlider.floatValue = AppPreferences.eqFrequencyLow
+        freqHighSlider.floatValue = Settings.eqFrequencyHigh
+        freqMidSlider.floatValue = Settings.eqFrequencyMid
+        freqLowSlider.floatValue = Settings.eqFrequencyLow
     }
     
 }

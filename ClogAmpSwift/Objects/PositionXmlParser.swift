@@ -59,6 +59,7 @@ extension PositionXmlParser: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "position" {
+            self.position?.delegate = self.song
             self.song?.addPosition(self.position!)
         }
     }

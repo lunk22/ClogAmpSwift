@@ -21,7 +21,7 @@ class MainView: ViewController {
         
     override func viewWillAppear() {
         
-        if let iconName = AppPreferences.appIconName {
+        if let iconName = Settings.appIconName {
             NSApplication.shared.applicationIconImage = NSImage(contentsOfFile: Bundle.main.path(forResource: iconName, ofType: "icns") ?? "")
         }
         

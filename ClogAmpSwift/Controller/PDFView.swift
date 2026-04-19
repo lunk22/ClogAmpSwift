@@ -32,7 +32,7 @@ class PDFViewController: NSViewController {
         dialog.canCreateDirectories    = false
         dialog.allowsMultipleSelection = false
         
-        if let savedPath = AppPreferences.folderPathPDF {
+        if let savedPath = Settings.folderPathPDF {
             dialog.directoryURL        = URL(fileURLWithPath: savedPath)
         }
         
@@ -62,7 +62,7 @@ class PDFViewController: NSViewController {
         dialog.allowsMultipleSelection = false
         dialog.allowedContentTypes     = [.pdf]
         
-        if let savedPath = AppPreferences.folderPathPDF {
+        if let savedPath = Settings.folderPathPDF {
             dialog.directoryURL        = URL(fileURLWithPath: savedPath)
         }
         
@@ -138,7 +138,7 @@ class PDFViewController: NSViewController {
         
         if let pdfPath = Database.getAssignedPDF(fileName) {
             self.openPdfInUi(URL(fileURLWithPath: pdfPath))
-        } else if let savedPath = AppPreferences.folderPathPDF {
+        } else if let savedPath = Settings.folderPathPDF {
             DispatchQueue.global(qos: .background).async {
                 if self.aPdfUrls.count == 0 {
                     self.aPdfUrls = FileSystemUtils.readFolderContentsAsURL(sPath: savedPath, filterExtension: "pdf")

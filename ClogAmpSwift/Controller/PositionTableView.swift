@@ -38,7 +38,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
         
         self.updateBeatsColumnVisibility()
         
-        self.fontSize = AppPreferences.positionTableFontSize
+        self.fontSize = Settings.positionTableFontSize
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("monoChanged"), object: nil, queue: nil){ _ in
             DispatchQueue.main.async(qos: .default) {
@@ -111,7 +111,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
     func updateBeatsColumnVisibility() {
         let beatsColumnIndex = self.positionTable.column(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "beats"))
         let beatsColumn = self.positionTable.tableColumns[beatsColumnIndex]
-        beatsColumn.isHidden = !AppPreferences.positionTableShowBeats
+        beatsColumn.isHidden = !Settings.positionTableShowBeats
     }
     
     func refreshTable(single: Bool = false) {
@@ -158,7 +158,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
                     if self.cbLoop.state == NSControl.StateValue.on {
                         if !(self.loopTimer?.isValid ?? false) {
                             let loopPos = self.currentPosition
-                            self.loopTimer = Timer.scheduledTimer(withTimeInterval: AppPreferences.loopDelay, repeats: false, block: {
+                            self.loopTimer = Timer.scheduledTimer(withTimeInterval: Settings.loopDelay, repeats: false, block: {
                                 _ in
                                 self.loopCount += 1
                                 
@@ -190,7 +190,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
         
         if let oPosition = PlayerAudioEngine.shared.song?.getPositions()[index] {
             PlayerAudioEngine.shared.seek(seconds: Float64(oPosition.time / 1000))
-            if AppPreferences.playPositionOnSelection && !(PlayerAudioEngine.shared.isPlaying()){
+            if Settings.playPositionOnSelection && !(PlayerAudioEngine.shared.isPlaying()){
                 PlayerAudioEngine.shared.play()
             }
         }
@@ -217,16 +217,16 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
         if let song = PlayerAudioEngine.shared.song {
             var currentTime = PlayerAudioEngine.shared.getCurrentTime() //Seconds
 
-            switch AppPreferences.addPositionBehaviour {
+            switch Settings.addPositionBehavior {
                 case 1: // Adjust by beats
                     if song.bpm > 0 {
                         let secPerBeat = Double(60)/Double(song.bpm)
-                        let offset = secPerBeat * Double(AppPreferences.addPositionOffset)
+                        let offset = secPerBeat * Double(Settings.addPositionOffset)
                         currentTime += offset
                     }
                     break
                 case 2: // Adjust by seconds
-                    currentTime += Double(AppPreferences.addPositionOffset)
+                    currentTime += Double(Settings.addPositionOffset)
                     break
                 default: // No adjustments
                     currentTime = currentTime * 1
@@ -415,7 +415,7 @@ class PositionTableView: NSViewController, WKNavigationDelegate {
                     if !text.isInteger() || text.asInteger() < 0 { self.refreshTable(single: true); return } // not an int or negative int? just refresh to get the old value
                     if text.asInteger() == position.beats { return } // no change?
                     
-                    switch AppPreferences.beatsChangeBehaviour {
+                    switch Settings.beatsChangeBehavior {
                         case 0: // Adjust Following
                             return updateBeatsByAdjusting(rowIndex: iRow, beats: Int(text)!)
                         case 1: // Move all following
@@ -609,11 +609,11 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 textField.backgroundColor = NSColor.controlColor
                 textField.textColor       = NSColor.controlTextColor
 
-                if AppPreferences.positionHighlight && !PlayerAudioEngine.shared.isStopped() {
+                if Settings.positionHighlight && !PlayerAudioEngine.shared.isStopped() {
                     if(self.currentPosition == row){
                         textField.drawsBackground = true
-                        textField.backgroundColor = AppPreferences.positionHighlightColor
-                        textField.textColor       = AppPreferences.positionTextColor
+                        textField.backgroundColor = Settings.positionHighlightColor
+                        textField.textColor       = Settings.positionTextColor
                     }
                 }
 
@@ -626,7 +626,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 textField.stringValue = ""
             }
 
-            if AppPreferences.positionTableMonoFont {
+            if Settings.positionTableMonoFont {
                 textField.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
             } else {
                 textField.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
@@ -654,7 +654,7 @@ extension PositionTableView: NSTableViewDataSource, NSTableViewDelegate {
                 let cell = textField.cell!
                 cell.wraps = true
                 
-                if AppPreferences.positionTableMonoFont {
+                if Settings.positionTableMonoFont {
                     cell.font = NSFont.init(name: "B612-Regular", size: CGFloat(self.fontSize))
                 } else {
                     cell.font = NSFont.systemFont(ofSize: CGFloat(self.fontSize))
