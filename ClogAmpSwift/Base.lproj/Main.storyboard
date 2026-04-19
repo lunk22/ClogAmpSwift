@@ -1127,8 +1127,9 @@
                     <window key="window" title="Playlists" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="tZH-HI-Hyz" customClass="Window" customModule="ClogAmpMac" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="294" y="313" width="480" height="270"/>
+                        <rect key="contentRect" x="294" y="313" width="960" height="540"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                        <value key="minSize" type="size" width="960" height="540"/>
                         <connections>
                             <outlet property="delegate" destination="0fg-Ju-sI0" id="bPH-WW-g2L"/>
                         </connections>
@@ -1153,30 +1154,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="264" height="651"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <box fixedFrame="YES" borderType="none" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O3q-Hy-0ct">
-                                        <rect key="frame" x="0.0" y="0.0" width="264" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" id="ZQ6-fX-F2y">
-                                            <rect key="frame" x="0.0" y="0.0" width="264" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OkY-i6-xPO">
-                                                    <rect key="frame" x="0.0" y="-1" width="63" height="23"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="adK-mZ-JtO">
-                                                        <font key="font" metaFont="system"/>
-                                                        <segments>
-                                                            <segment image="NSAddTemplate"/>
-                                                            <segment image="NSRemoveTemplate" tag="1"/>
-                                                        </segments>
-                                                    </segmentedCell>
-                                                    <connections>
-                                                        <action selector="handleAddRemovePlaylist:" target="Ol8-gc-8gz" id="3cx-Jm-xQX"/>
-                                                    </connections>
-                                                </segmentedControl>
-                                            </subviews>
-                                        </view>
-                                    </box>
                                     <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sgb-vi-LCC">
                                         <rect key="frame" x="0.0" y="20" width="264" height="631"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1252,6 +1229,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableHeaderView>
                                     </scrollView>
+                                    <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wd8-gA-6S6">
+                                        <rect key="frame" x="0.0" y="-1" width="69" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="Brg-bm-at0">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment image="NSAddTemplate" width="32"/>
+                                                <segment image="NSRemoveTemplate" width="32" tag="1"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="handleAddRemovePlaylist:" target="Ol8-gc-8gz" id="OM7-rt-2B8"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                             </customView>
                             <customView fixedFrame="YES" id="TxX-s4-jXn">
@@ -1265,15 +1256,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="649" height="128"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
+                                                <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BJH-pb-3d8">
+                                                    <rect key="frame" x="0.0" y="98" width="34" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="y5u-7V-CRB">
+                                                        <font key="font" metaFont="system"/>
+                                                        <segments>
+                                                            <segment image="NSRemoveTemplate" width="32"/>
+                                                        </segments>
+                                                    </segmentedCell>
+                                                    <connections>
+                                                        <action selector="handleRemoveSong:" target="Ol8-gc-8gz" id="ucP-aw-qMr"/>
+                                                    </connections>
+                                                </segmentedControl>
                                                 <box autoresizesSubviews="NO" fixedFrame="YES" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Buy-OH-BSf">
-                                                    <rect key="frame" x="0.0" y="6" width="649" height="114"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="0.0" y="7" width="649" height="114"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="8RT-h5-6fH">
                                                         <rect key="frame" x="0.0" y="0.0" width="649" height="114"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mCd-TN-kcq">
-                                                                <rect key="frame" x="250" y="65" width="74" height="32"/>
+                                                                <rect key="frame" x="249" y="70" width="74" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                                 <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="playGray" imagePosition="only" alignment="center" refusesFirstResponder="YES" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="goz-VW-bu6">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1284,7 +1288,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uF1-ba-42c">
-                                                                <rect key="frame" x="177" y="44" width="227" height="18"/>
+                                                                <rect key="frame" x="174" y="49" width="229" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="Continuous Playback" bezelStyle="regularSquare" imagePosition="right" alignment="right" refusesFirstResponder="YES" inset="2" id="wMT-zO-iZk">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1295,7 +1299,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoS-iV-A7d">
-                                                                <rect key="frame" x="331" y="65" width="74" height="32"/>
+                                                                <rect key="frame" x="330" y="70" width="74" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                                 <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="stopGray" imagePosition="only" alignment="center" refusesFirstResponder="YES" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="of3-B5-1ey">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1306,7 +1310,7 @@
                                                                 </connections>
                                                             </button>
                                                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LyR-1n-NNn">
-                                                                <rect key="frame" x="173" y="18" width="152" height="17"/>
+                                                                <rect key="frame" x="172" y="23" width="152" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Pause (in s)" id="6d0-dk-6iV">
                                                                     <font key="font" metaFont="system"/>
@@ -1315,7 +1319,7 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField identifier="pause" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lG4-hA-boy" userLabel="Text Field">
-                                                                <rect key="frame" x="330" y="15" width="72" height="22"/>
+                                                                <rect key="frame" x="329" y="20" width="72" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="0" drawsBackground="YES" id="LUl-sq-goW" userLabel="Text Field Cell">
                                                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="zog-2h-kWZ"/>
@@ -1327,19 +1331,6 @@
                                                                     <action selector="handlePauseChange:" target="Ol8-gc-8gz" id="IOq-vg-cce"/>
                                                                 </connections>
                                                             </textField>
-                                                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BJH-pb-3d8">
-                                                                <rect key="frame" x="0.0" y="92" width="34" height="23"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="y5u-7V-CRB">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <segments>
-                                                                        <segment image="NSRemoveTemplate" width="32"/>
-                                                                    </segments>
-                                                                </segmentedCell>
-                                                                <connections>
-                                                                    <action selector="handleRemoveSong:" target="Ol8-gc-8gz" id="ucP-aw-qMr"/>
-                                                                </connections>
-                                                            </segmentedControl>
                                                         </subviews>
                                                     </view>
                                                 </box>
@@ -1881,7 +1872,7 @@
         <scene sceneID="0p8-ZZ-9fE">
             <objects>
                 <viewController title="Song Table" id="uTS-cM-QNI" customClass="SongTableView" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" misplaced="YES" id="b06-Er-8KR">
+                    <view key="view" wantsLayer="YES" id="b06-Er-8KR">
                         <rect key="frame" x="0.0" y="0.0" width="973" height="195"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
