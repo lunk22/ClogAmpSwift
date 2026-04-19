@@ -176,7 +176,6 @@ class SongTableView: ViewController {
         self.pathControl.url = URL(fileURLWithPath: dir)
         
         DispatchQueue.global(qos: .background).async {
-            var positionLoaded = false
 
             FileSystemUtils.readFolderContentsAsSong(sPath: dir) {
                 let song    = $0
@@ -192,18 +191,9 @@ class SongTableView: ViewController {
                 
                 self.aSongs.append(song)
                 self.aSongsForTable = self.aSongs
-                
-                
-                
-                if !positionLoaded {
-                    self.aSongs[0].loadPositions(true)
-                    positionLoaded = true
-                }
             }
             
             if(self.aSongs.count > 0){
-                self.aSongs[0].loadPositions(true)
-                
                 self.aSongsForTable = self.aSongs
                 
                 DispatchQueue.main.async {

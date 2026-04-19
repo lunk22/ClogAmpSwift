@@ -52,11 +52,6 @@ class FileSystemUtils {
             aSongs.append(song)
             count = count + 1
             
-            //Load the positions for the first 9 songs to make sure the framework works alright
-            if count < 10 {
-                song.loadPositions()
-            }
-            
             block(song, (count*100)/aUrls.count)
         }
     }
