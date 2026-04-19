@@ -47,17 +47,13 @@
 		B73E0DF62C5A1D210064D4A3 /* DecibelTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E0DF52C5A1D210064D4A3 /* DecibelTransformer.swift */; };
 		B73E0DF82C5B67FD0064D4A3 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E0DF72C5B67FD0064D4A3 /* NSImage.swift */; };
 		B73E0DFA2C5CD3B40064D4A3 /* HertzTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E0DF92C5CD3B40064D4A3 /* HertzTransformer.swift */; };
+		B74B8D0A2F925B9200EB2D81 /* BPMDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B8D092F925B9200EB2D81 /* BPMDetector.swift */; };
 		B74E7FE623794E8C00569664 /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = B74E7FE523794E8C00569664 /* ObjC.m */; };
 		B75955862216D1A300D11E3F /* TimePanelWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75955852216D1A300D11E3F /* TimePanelWindowController.swift */; };
 		B75955882216DD5800D11E3F /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75955872216DD5800D11E3F /* MainWindowController.swift */; };
 		B7612AED2F8E665A00EACF2C /* PDFPreviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7612AEC2F8E665A00EACF2C /* PDFPreviewWindowController.swift */; };
 		B7612AEF2F8F5FD100EACF2C /* SettingsPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7612AEE2F8F5FD100EACF2C /* SettingsPDFViewController.swift */; };
 		B76C88CE2C57CB7200D68A87 /* EQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76C88CD2C57CB7200D68A87 /* EQViewController.swift */; };
-		B78780F42216A131002B74B4 /* BassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B78780F32216A131002B74B4 /* BassWrapper.m */; };
-		B79853322217073500BDE678 /* libbass_fx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B79853302217073500BDE678 /* libbass_fx.dylib */; };
-		B79853332217073500BDE678 /* libbass.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B79853312217073500BDE678 /* libbass.dylib */; };
-		B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B79853302217073500BDE678 /* libbass_fx.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B79853312217073500BDE678 /* libbass.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B7A3A9C0221AFCBD00CA5FE8 /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9BF221AFCBD00CA5FE8 /* CountdownViewController.swift */; };
 		B7A3A9C2221BE44400CA5FE8 /* CountdownWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C1221BE44400CA5FE8 /* CountdownWindowController.swift */; };
 		B7A3A9C4221C494600CA5FE8 /* PositionXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */; };
@@ -108,8 +104,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				50113FF9272AF58A00EEB9A1 /* libid3-3.8.3.0.0.dylib in Embed Libraries */,
-				B79853362217075500BDE678 /* libbass_fx.dylib in Embed Libraries */,
-				B79853372217075500BDE678 /* libbass.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +152,7 @@
 		B73E0DF52C5A1D210064D4A3 /* DecibelTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelTransformer.swift; sourceTree = "<group>"; };
 		B73E0DF72C5B67FD0064D4A3 /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		B73E0DF92C5CD3B40064D4A3 /* HertzTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HertzTransformer.swift; sourceTree = "<group>"; };
+		B74B8D092F925B9200EB2D81 /* BPMDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMDetector.swift; sourceTree = "<group>"; };
 		B74E7FE423794E5500569664 /* ObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjC.h; sourceTree = "<group>"; };
 		B74E7FE523794E8C00569664 /* ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjC.m; sourceTree = "<group>"; };
 		B75955852216D1A300D11E3F /* TimePanelWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePanelWindowController.swift; sourceTree = "<group>"; };
@@ -165,12 +160,6 @@
 		B7612AEC2F8E665A00EACF2C /* PDFPreviewWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPreviewWindowController.swift; sourceTree = "<group>"; };
 		B7612AEE2F8F5FD100EACF2C /* SettingsPDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPDFViewController.swift; sourceTree = "<group>"; };
 		B76C88CD2C57CB7200D68A87 /* EQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EQViewController.swift; sourceTree = "<group>"; };
-		B78780F32216A131002B74B4 /* BassWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BassWrapper.m; sourceTree = "<group>"; };
-		B78780F52216A13C002B74B4 /* BassWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BassWrapper.h; sourceTree = "<group>"; };
-		B79853302217073500BDE678 /* libbass_fx.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libbass_fx.dylib; sourceTree = "<group>"; };
-		B79853312217073500BDE678 /* libbass.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libbass.dylib; sourceTree = "<group>"; };
-		B79853342217074400BDE678 /* bass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bass.h; sourceTree = "<group>"; };
-		B79853352217074500BDE678 /* bass_fx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bass_fx.h; sourceTree = "<group>"; };
 		B7A3A9BF221AFCBD00CA5FE8 /* CountdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownViewController.swift; sourceTree = "<group>"; };
 		B7A3A9C1221BE44400CA5FE8 /* CountdownWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownWindowController.swift; sourceTree = "<group>"; };
 		B7A3A9C3221C494600CA5FE8 /* PositionXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionXmlParser.swift; sourceTree = "<group>"; };
@@ -228,12 +217,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B71364912B164A23009B800F /* CoreAudio.framework in Frameworks */,
-				B79853332217073500BDE678 /* libbass.dylib in Frameworks */,
 				50BB50202F55CA2D00D41581 /* HtmlToPdf in Frameworks */,
 				B7B46608237046D800AA9419 /* PDFKit.framework in Frameworks */,
 				50BB501E2F55CA2900D41581 /* Sparkle in Frameworks */,
 				50113FF8272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib in Frameworks */,
-				B79853322217073500BDE678 /* libbass_fx.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,8 +265,6 @@
 				50DC6D8B2081DA6400B7C347 /* Utils */,
 				50A37BB0207FF03E0020E218 /* Main.storyboard */,
 				B70F180E221D781800FE1149 /* Assets.xcassets */,
-				B79853302217073500BDE678 /* libbass_fx.dylib */,
-				B79853312217073500BDE678 /* libbass.dylib */,
 				50113FF7272AF57600EEB9A1 /* libid3-3.8.3.0.0.dylib */,
 				50A37BB3207FF03E0020E218 /* Info.plist */,
 				B7D7C4362B1A1E11007DCA96 /* PrimeAV.mp3 */,
@@ -346,6 +331,7 @@
 				B7B765362B0F3D6E0019BF7C /* Settings.swift */,
 				B73E0DF52C5A1D210064D4A3 /* DecibelTransformer.swift */,
 				B73E0DF92C5CD3B40064D4A3 /* HertzTransformer.swift */,
+				B74B8D092F925B9200EB2D81 /* BPMDetector.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -410,10 +396,6 @@
 			children = (
 				B7BD8F0521F7597800532C1A /* id3 */,
 				B7BD8F1321F7597900532C1A /* id3.h */,
-				B79853352217074500BDE678 /* bass_fx.h */,
-				B79853342217074400BDE678 /* bass.h */,
-				B78780F32216A131002B74B4 /* BassWrapper.m */,
-				B78780F52216A13C002B74B4 /* BassWrapper.h */,
 				B7BD8ED421F74B6900532C1A /* ClogAmpSwift-Bridging-Header.h */,
 				B7DDFCB222141F5F00637831 /* Database.m */,
 				B7DDFCB422141F6B00637831 /* Database.h */,
@@ -550,6 +532,7 @@
 				50AF239A2A5F2FAA0019A846 /* PlayerLog.swift in Sources */,
 				B7D9C0642214513B00A70F4A /* SongHistoryItem.m in Sources */,
 				50FDB7E12CF79693001A3054 /* SettingsGeneralViewController.swift in Sources */,
+				B74B8D0A2F925B9200EB2D81 /* BPMDetector.swift in Sources */,
 				B7D7C4352B17382D007DCA96 /* BpmClickViewController.swift in Sources */,
 				50113FFB27324F0A00EEB9A1 /* SongLog.swift in Sources */,
 				B75955862216D1A300D11E3F /* TimePanelWindowController.swift in Sources */,
@@ -599,7 +582,6 @@
 				B7DDFCB322141F5F00637831 /* Database.m in Sources */,
 				B7BB5518237FDBF800E153DF /* PlaylistSongItem.m in Sources */,
 				B7F48CA02390E37F00C3DB01 /* BeatPlayerViewController.swift in Sources */,
-				B78780F42216A131002B74B4 /* BassWrapper.m in Sources */,
 				B7BD8F1821F760FB00532C1A /* Id3Wrapper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

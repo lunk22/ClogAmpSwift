@@ -47,6 +47,7 @@ class PlayerViewController: ViewController {
     private var beatOverlayView: NSView!
     private var beatOverlayLabel: NSTextField!
     private var playedFromBeginning = false
+    private var beatCountdownActive = false
     
     var currentSong: Song? {
         willSet {
@@ -115,6 +116,7 @@ class PlayerViewController: ViewController {
             self.mainView?.mainWindow?.tbStop.image  = self.imgStopGray
 
             self.playedFromBeginning = PlayerAudioEngine.shared.getCurrentTime() < 0.5
+            self.beatCountdownActive = true
         }
         
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.paused, object: nil, queue: .current) { _ in
@@ -203,18 +205,20 @@ class PlayerViewController: ViewController {
     func tick() {
         self.updateTimeInUI()
         self.updatePositionTable(single: true)
-        self.updateBeatCountdown()
+        if beatCountdownActive {
+            self.updateBeatCountdown()
+        }
     }
 
     func updateBeatCountdown() {
         guard
             let song = self.currentSong,
             song.bpm > 0,
-            song.waitBeats > 0,
             Settings.showBeatCountdown,
             PlayerAudioEngine.shared.isPlaying()
         else {
-            // print("1")
+            print("1")
+            beatCountdownActive = false
             DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
             return
         }
@@ -224,7 +228,8 @@ class PlayerViewController: ViewController {
         // Use first named position as beat phase anchor to compensate for leading silence.
         // If no named positions exist, nothing to count down to.
         guard let anchorPosition = song.getPositions().first(where: { !$0.name.isEmpty }) else {
-            // print("2")
+            print("2")
+            beatCountdownActive = false
             DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
             return
         }
@@ -237,9 +242,17 @@ class PlayerViewController: ViewController {
         // Map to 1-8: beat 1 lands on the anchor
         let beatOffset = (currentTime - anchorTime) / beatDuration
 
-        // Only show during the last 16 beats before the anchor
-        guard currentTime < anchorTime && beatOffset >= -8 else {
-            // print("3")
+        // Deactivate only once the anchor position timestamp has passed
+        guard currentTime < anchorTime else {
+            print("3")
+            beatCountdownActive = false
+            DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
+            return
+        }
+
+        // Only show the overlay during the last 8 beats before the anchor
+        guard beatOffset >= -8 else {
+            print("4")
             DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
             return
         }
