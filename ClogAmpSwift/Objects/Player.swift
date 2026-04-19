@@ -109,8 +109,9 @@ class Player {
     }
     
     @objc func songFinished() {
+        self.stop()
         let x = self.theClosure!
-        x(CMTimeMake(value: -1, timescale: 1000))
+        x(CMTimeMake(value: 0, timescale: 1000))
         NotificationCenter.default.removeObserver(self)
     }
     

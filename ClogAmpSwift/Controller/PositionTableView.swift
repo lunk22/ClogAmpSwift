@@ -128,6 +128,7 @@ class PositionTableView: NSViewController {
                             self.loopTimer = Timer.scheduledTimer(withTimeInterval: prefLoopDelay, repeats: false, block: {
                                 _ in
                                 self.loopCount += 1
+                                print("Loop Count: \(self.loopCount)")
                                 
                                 if self.txtLoopTimes.integerValue != 0 && self.loopCount >= self.txtLoopTimes.integerValue {
                                     self.cbLoop.state = NSControl.StateValue.off
