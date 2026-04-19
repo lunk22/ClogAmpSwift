@@ -21,6 +21,7 @@ class Song {
     var bpm: Int { didSet { self.bpmChanged = true } }
     var volume: Int { didSet { self.volumeChanged = true } }
     var hasPositions: Bool
+    var hasId3Positions: Bool
     var positions: Array<Position>
     var waitBeats: Int { didSet { self.waitBeatsChanged = true } }
     
@@ -46,7 +47,7 @@ class Song {
     
     //MARK: Static Stuff
     static var songDict: Dictionary<String, Song> = [:] //Empty dictionary
-    static func retrieveSong(path: URL) -> Song{
+    static func retrieveSong(path: URL) -> Song{        
         let stringPath = path.absoluteString.removingPercentEncoding!
         if let song = songDict[stringPath] {
             return song
@@ -61,17 +62,22 @@ class Song {
     init(path: URL) {
         //Initial Values
         self.path          = path
-        self.filePathAsUrl = URL(fileURLWithPath: self.path.absoluteString.removingPercentEncoding!)
-        self.title         = path.deletingPathExtension().lastPathComponent
-        self.artist        = ""
-        self.level         = ""
-        self.duration      = 0
-        self.speed         = 0
-        self.bpm           = 0
-        self.volume        = 100
-        self.hasPositions  = false
-        self.positions     = []
-        self.waitBeats     = 0
+        if path.isFileURL == false{
+            self.filePathAsUrl = URL(fileURLWithPath: self.path.absoluteString.removingPercentEncoding!)
+        }else{
+            self.filePathAsUrl = path
+        }
+        self.title           = path.deletingPathExtension().lastPathComponent
+        self.artist          = ""
+        self.level           = ""
+        self.duration        = 0
+        self.speed           = 0
+        self.bpm             = 0
+        self.volume          = 100
+        self.hasPositions    = false
+        self.hasId3Positions = false
+        self.positions       = []
+        self.waitBeats       = 0
         
         let stringPath = self.getValueAsString("path")
         
@@ -109,7 +115,8 @@ class Song {
             self.level = map?.value(forKey: "cloggingLevel") as? String ?? ""
             
             //Has Positions
-            self.hasPositions = map?.value(forKey: "hasPositions") as? Bool ?? false
+            self.hasPositions    = map?.value(forKey: "hasPositions") as? Bool ?? false
+            self.hasId3Positions = self.hasPositions
             
             //Read Wait Beats
             self.waitBeats = Int(map?.value(forKey: "waitBeats") as? Int ?? 0)
@@ -210,31 +217,36 @@ class Song {
             //Force read? => Free previously read positions
             self.positions = []
             self.positionsChanged = false
+            self.hasPositions = false
         }
         
-        //If positions have been read, don't do it again
-        if(self.positions.count > 0){
+        //If positions have been read or no positions exist => return
+        if(self.positions.count > 0 || !self.hasId3Positions){
             return
         }
         
         if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){
-            if let sPositions = oId3Wrapper.loadPositions() {
-                if(sPositions == ""){
-                    return;
+            var sPositions = ""
+            var count = 0
+            while sPositions == "" && count < 10 {
+                count += 1
+                sPositions = oId3Wrapper.loadPositions()
+                if(sPositions != ""){
+                    //Split string into single lines ($LS = Line Separator)
+                    let aLines = sPositions.components(separatedBy: "$LS")
+                    
+                    for line in aLines{
+                        //Split string into single cells ($CS = Cell Separator)
+                        let aCells = line.components(separatedBy: "$CS")
+                        self.positions.append(Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0)))
+                        self.hasPositions = true
+                    }
+                    
+                    self.positionsChanged = false
                 }
-                
-                //Split string into single lines ($LS = Line Separator)
-                let aLines = sPositions.components(separatedBy: "$LS")
-                
-                for line in aLines{
-                    //Split string into single cells ($CS = Cell Separator)
-                    let aCells = line.components(separatedBy: "$CS")
-                    self.positions.append(Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0)))
-                }
-                
-                self.positionsChanged = false
             }
         }
+
     } //func loadPositions
     
     func saveChanges() {
