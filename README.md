@@ -1,7 +1,7 @@
 # ClogAmpMac
 ClogAmp from Mac (Swift) 
 
-<img src="https://raw.githubusercontent.com/lunk22/ClogAmpSwift/master/ClogAmpSwift/Assets.xcassets/Icon.imageset/256-mac.png" width="50" height="50">
+<img src="https://raw.githubusercontent.com/lunk22/ClogAmpSwift/master/ClogAmpMac/Assets.xcassets/Icon.imageset/256-mac.png" width="50" height="50">
 
 Built for Clogging Enthusiasts to play music, manipulate speed, edit positions, ...
 
@@ -24,8 +24,8 @@ Built for Clogging Enthusiasts to play music, manipulate speed, edit positions, 
 - Integrated with MacOS Media Keys and Control Center
 
 ## Screenshots
-<img src="https://raw.githubusercontent.com/lunk22/ClogAmpSwift/refs/heads/master/Screenshots/ClogAmpMacMainWindow.png" width="500">
-<img src="https://raw.githubusercontent.com/lunk22/ClogAmpSwift/refs/heads/master/Screenshots/ClogAmpMacPositions.png" width="500">
+<img src="https://raw.githubusercontent.com/lunk22/ClogAmpSwift/refs/heads/main/Screenshots/ClogAmpMacMainWindow.png" width="500">
+<img src="https://raw.githubusercontent.com/lunk22/ClogAmpSwift/refs/heads/main/Screenshots/ClogAmpMacPositions.png" width="500">
 
 
 ## Used libraries / Frameworks:
