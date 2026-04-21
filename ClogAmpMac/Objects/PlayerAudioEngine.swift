@@ -21,7 +21,10 @@ class PlayerAudioEngine {
         static let positionChanged = Notification.Name("PlayerAudioEngine_PositionChanged")
         static let songFinished = Notification.Name("PlayerAudioEngine_SongFinished")
         static let songNotFound = Notification.Name("PlayerAudioEngine_SongUpdated")
-        
+        static let playRequested = Notification.Name("PlayerAudioEngine_PlayRequested")
+        static let pauseRequested = Notification.Name("PlayerAudioEngine_PauseRequested")
+        static let stopRequested = Notification.Name("PlayerAudioEngine_StopRequested")
+
         static let shutdown = Notification.Name("PlayerAudioEngine_Shutdown")
     }
     
@@ -80,6 +83,7 @@ class PlayerAudioEngine {
     private var timeObserverCallback: ((Any) -> Void)? = nil
     private var readyToPlay: Bool = false
     private var shouldPlay: Bool = false
+    var suppressPlayRequestedNotification: Bool = false
     private var playing: Bool = false {
         didSet {
             if playing {
@@ -462,6 +466,11 @@ class PlayerAudioEngine {
             return
         }
         shouldPlay = false
+        if !suppressPlayRequestedNotification {
+            NotificationCenter.default.post(name: NotificationNames.playRequested, object: nil)
+            return
+        }
+        suppressPlayRequestedNotification = false
         if isPlaying() { self.seek(seconds: 0.0); return }
         if let song = song {
             
@@ -497,6 +506,7 @@ class PlayerAudioEngine {
     }
     
     func pause() {
+        NotificationCenter.default.post(name: NotificationNames.pauseRequested, object: nil)
         if(isPlaying()){
             // Set it first so it can remember the currentFrame as pauseFrame
             paused = true
@@ -514,6 +524,7 @@ class PlayerAudioEngine {
     }
     
     func stop() {
+        NotificationCenter.default.post(name: NotificationNames.stopRequested, object: nil)
         audioPlayer.stop()
         audioEngine.stop()
         removeMeteringTap()

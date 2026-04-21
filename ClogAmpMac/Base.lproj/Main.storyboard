@@ -2356,7 +2356,7 @@ IA
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="play:" target="XUw-5S-rFu" id="FpZ-Kp-WGS"/>
+                                    <action selector="play:" target="jBr-hw-2XV" id="FpZ-Kp-WGS"/>
                                 </connections>
                             </button>
                         </subviews>

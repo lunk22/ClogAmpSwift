@@ -46,6 +46,12 @@ class PlayerViewController: ViewController {
 
     private var beatOverlayView: NSView!
     private var beatOverlayLabel: NSTextField!
+
+    private var prePlayCountdownTimer: Timer? = nil
+    private var prePlayAudioStartTimer: Timer? = nil
+    private var prePlayBeatNumber: Int = 0
+    private var prePlaySeekTarget: Double = 0
+    private var prePlayAnchorTime: Double = 0  // suppress in-song countdown until anchor passes
     
     var currentSong: Song? {
         willSet {
@@ -104,6 +110,31 @@ class PlayerViewController: ViewController {
             self.updateMeters()
         }
 
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.playRequested, object: nil, queue: .current) { _ in
+            if PlayerAudioEngine.shared.isPlaying() {
+                // Stop playback first, then treat as a fresh play-from-start
+                PlayerAudioEngine.shared.stop()
+            }
+            if self.shouldStartPrePlayCountdown() {
+                self.startPrePlayCountdown()
+            } else {
+                PlayerAudioEngine.shared.suppressPlayRequestedNotification = true
+                PlayerAudioEngine.shared.play()
+            }
+        }
+
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopRequested, object: nil, queue: .current) { _ in
+            self.cancelPrePlayCountdown()
+        }
+
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.pauseRequested, object: nil, queue: .current) { _ in
+            if self.prePlayCountdownTimer != nil {
+                // Cancel countdown and suppress the play() call pause() makes when not playing
+                self.cancelPrePlayCountdown()
+                PlayerAudioEngine.shared.suppressPlayRequestedNotification = true
+            }
+        }
+
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.playing, object: nil, queue: .current) { _ in
             self.btnPlay.image  = Settings.colorizedPlayerState ? self.imgPlay : self.imgPlayGray
             self.btnPause.image = self.imgPauseGray
@@ -115,6 +146,11 @@ class PlayerViewController: ViewController {
         }
         
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.paused, object: nil, queue: .current) { _ in
+            // Only cancel if pre-play countdown isn't actively running
+            // (seek during countdown triggers a transient paused state)
+            if self.prePlayCountdownTimer == nil {
+                self.cancelPrePlayCountdown()
+            }
             self.btnPlay.image  = self.imgPlayGray
             self.btnPause.image = Settings.colorizedPlayerState ? self.imgPause : self.imgPauseGray
             self.btnStop.image  = self.imgStopGray
@@ -125,6 +161,7 @@ class PlayerViewController: ViewController {
         }
         
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopped, object: nil, queue: .current) { _ in
+            self.cancelPrePlayCountdown()
             self.btnPlay.image  = self.imgPlayGray
             self.btnPause.image = self.imgPauseGray
             self.btnStop.image  = Settings.colorizedPlayerState ? self.imgStop : self.imgStopGray
@@ -204,13 +241,22 @@ class PlayerViewController: ViewController {
     }
 
     func updateBeatCountdown() {
+        guard prePlayCountdownTimer == nil else { return } // pre-play countdown owns the overlay
+        // Suppress until anchor passes if we just did a pre-play countdown
+        if prePlayAnchorTime > 0 {
+            if PlayerAudioEngine.shared.getCurrentTime() < prePlayAnchorTime {
+                DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
+                return
+            } else {
+                prePlayAnchorTime = 0  // anchor passed, resume normal behavior
+            }
+        }
         guard
             let song = self.currentSong,
             song.bpm > 0,
             Settings.showBeatCountdown,
             PlayerAudioEngine.shared.isPlaying()
         else {
-            print("1")
             DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
             return
         }
@@ -220,7 +266,6 @@ class PlayerViewController: ViewController {
         // Use first named position as beat phase anchor to compensate for leading silence.
         // If no named positions exist, nothing to count down to.
         guard let anchorPosition = song.getPositions().first(where: { !$0.name.isEmpty }) else {
-            print("2")
             DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
             return
         }
@@ -234,14 +279,12 @@ class PlayerViewController: ViewController {
 
         // Deactivate only once the anchor position timestamp has passed
         guard currentTime < anchorTime else {
-            print("3")
             DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
             return
         }
 
         // Only show the overlay during the last 8 beats before the anchor
         guard beatOffset >= -8 else {
-            print("4")
             DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
             return
         }
@@ -251,6 +294,125 @@ class PlayerViewController: ViewController {
             self.beatOverlayLabel.stringValue = "\(beatInGroup)"
             self.beatOverlayView.isHidden = false
         }
+    }
+
+    // MARK: Pre-play countdown
+
+    @IBAction override func play(_ sender: AnyObject) {
+        PlayerAudioEngine.shared.play()
+    }
+
+    @IBAction override func pause(_ sender: AnyObject) {
+        cancelPrePlayCountdown()
+        super.pause(sender)
+    }
+
+    @IBAction override func stop(_ sender: AnyObject) {
+        cancelPrePlayCountdown()
+        super.stop(sender)
+    }
+
+    override func keyDown(with event: NSEvent) {
+        if event.keyCode == 49, prePlayCountdownTimer != nil { // Space during countdown
+            cancelPrePlayCountdown()
+            return
+        }
+        super.keyDown(with: event)
+    }
+
+    private func shouldStartPrePlayCountdown() -> Bool {
+        guard let song = currentSong else { return false }
+        guard song.bpm > 0 else { return false }
+        guard Settings.showBeatCountdown else { return false }
+        guard !PlayerAudioEngine.shared.isPlaying() else { return false }
+        guard !PlayerAudioEngine.shared.isPaused() else { return false }
+
+        guard let anchor = song.getPositions().first(where: { !$0.name.isEmpty }) else { return false }
+        let anchorTime   = Double(anchor.time) / 1000.0
+        let beatDuration = 60.0 / Double(song.bpm)
+        let currentTime  = PlayerAudioEngine.shared.getCurrentTime()
+        let beatOffset   = (currentTime - anchorTime) / beatDuration
+        return beatOffset > -8 && currentTime < anchorTime
+    }
+
+    private func startPrePlayCountdown() {
+        guard
+            let song = currentSong,
+            song.bpm > 0,
+            let anchor = song.getPositions().first(where: { !$0.name.isEmpty })
+        else { return }
+
+        let anchorTime   = Double(anchor.time) / 1000.0
+        let beatDuration = 60.0 / Double(song.bpm)
+        let currentTime  = PlayerAudioEngine.shared.getCurrentTime()
+
+        let leadIn = anchorTime - currentTime           // seconds of audio before anchor
+        let silentBeats = max(0, 8.0 - leadIn / beatDuration)  // silent countdown beats before audio starts
+        let audioStartDelay = silentBeats * beatDuration        // seconds until we fire play
+
+        // Where to seek before playing: 8 beats before anchor, or currentTime if not enough audio
+        prePlaySeekTarget = anchorTime - 8.0 * beatDuration
+        prePlayAnchorTime = anchorTime
+        if prePlaySeekTarget < currentTime {
+            prePlaySeekTarget = currentTime
+        }
+
+        prePlayBeatNumber = 1
+        DispatchQueue.main.async {
+            self.beatOverlayLabel.stringValue = "1"
+            self.beatOverlayView.isHidden = false
+        }
+
+        // Per-beat display timer
+        prePlayCountdownTimer?.invalidate()
+        prePlayCountdownTimer = Timer.scheduledTimer(withTimeInterval: beatDuration, repeats: true) { [weak self] _ in
+            self?.prePlayCountdownTick()
+        }
+
+        // One-shot timer to start audio at the right moment
+        prePlayAudioStartTimer?.invalidate()
+        if audioStartDelay <= 0 {
+            // Enough lead-in: seek and start immediately
+            PlayerAudioEngine.shared.seek(seconds: prePlaySeekTarget)
+        } else {
+            // Need silence first: schedule audio start after delay
+            prePlayAudioStartTimer = Timer.scheduledTimer(withTimeInterval: audioStartDelay, repeats: false) { [weak self] _ in
+                guard let self else { return }
+                PlayerAudioEngine.shared.seek(seconds: self.prePlaySeekTarget)
+                PlayerAudioEngine.shared.suppressPlayRequestedNotification = true
+                PlayerAudioEngine.shared.play()
+            }
+        }
+    }
+
+    private func prePlayCountdownTick() {
+        prePlayBeatNumber += 1
+        if prePlayBeatNumber > 8 {
+            prePlayCountdownTimer?.invalidate()
+            prePlayCountdownTimer = nil
+            prePlayAudioStartTimer?.invalidate()
+            prePlayAudioStartTimer = nil
+            DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
+            // If audio hasn't started yet (no lead-in at all), start it now
+            if !PlayerAudioEngine.shared.isPlaying() {
+                PlayerAudioEngine.shared.seek(seconds: prePlaySeekTarget)
+                PlayerAudioEngine.shared.suppressPlayRequestedNotification = true
+                PlayerAudioEngine.shared.play()
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.beatOverlayLabel.stringValue = "\(self.prePlayBeatNumber)"
+            }
+        }
+    }
+
+    private func cancelPrePlayCountdown() {
+        prePlayCountdownTimer?.invalidate()
+        prePlayCountdownTimer = nil
+        prePlayAudioStartTimer?.invalidate()
+        prePlayAudioStartTimer = nil
+        prePlayAnchorTime = 0
+        DispatchQueue.main.async { self.beatOverlayView.isHidden = true }
     }
     
     func updateMeters() {
