@@ -67,6 +67,7 @@ class PlayerAudioEngine {
     }
     
     var meteringLevel: Float = 0.0
+    private var tapInstalled: Bool = false
     
     private var audioFile: AVAudioFile? = nil
     private var audioEngine: AVAudioEngine
@@ -394,8 +395,10 @@ class PlayerAudioEngine {
     }
     
     func installMeteringTap() {
+        guard !tapInstalled else { return }
+        tapInstalled = true
         let format = audioEngine.mainMixerNode.outputFormat(forBus: 0)
-        
+
         audioEngine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _  in
             if Settings.audioMetering {
                 guard let channelData = buffer.floatChannelData else {
@@ -419,6 +422,8 @@ class PlayerAudioEngine {
     }
     
     func removeMeteringTap() {
+        guard tapInstalled else { return }
+        tapInstalled = false
         audioEngine.mainMixerNode.removeTap(onBus: 0)
         self.meteringLevel = 0.0
     }

@@ -98,6 +98,8 @@ extension UserDefaults {
 
         // NOT AVAILABLE IN SETTINGS
         case prefAudioMetering // defaults write de.pascalroessel.ClogAmpSwift prefAudioMetering -bool true
+
+        case prefTimeWindowOpen
     }
 
     func reset() {

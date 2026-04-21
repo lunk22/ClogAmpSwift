@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBarItem: NSStatusItem?
     var systemSleepDisabled: Bool = false
     var noSleepAssertionID: IOPMAssertionID = 0
+    var isTerminating: Bool = false
 
     
     override init() {
@@ -43,11 +44,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // TESTING ONLY!!!
         //        UserDefaults.standard.reset() // Extension method - ONLY FOR TESTING
         //        showMenuBarItem()  // just to play around a little
-        
+
         Database.buildTablesIfNeeded()
+
+        if UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefTimeWindowOpen.rawValue) {
+            let storyboard = NSStoryboard(name: "Main", bundle: nil)
+            if let wc = storyboard.instantiateController(withIdentifier: "Time Window") as? TimePanelWindowController {
+                wc.showWindow(nil)
+                NSApp.windows.first { $0.identifier?.rawValue == "mainWindow" }?.makeKeyAndOrderFront(nil)
+            }
+        }
     }
     
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        isTerminating = true
         NotificationCenter.default.post(name: PlayerAudioEngine.NotificationNames.shutdown, object: nil) // Shutdown Audio API
 
         reenableSystemSleep()
