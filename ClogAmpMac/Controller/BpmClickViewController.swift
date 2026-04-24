@@ -57,10 +57,13 @@ class BpmClickViewController: ViewController {
             prefEventDate = eventDate
         }
         
-        // Remove min/max distance
+        // Remove outliers: trim ~10% from each end, minimum 1 when enough data
         distances.sort()
-        distances.removeFirst()
-        distances.removeLast()
+        if distances.count > 2 {
+            let trimCount = max(1, distances.count / 10)
+            distances.removeFirst(trimCount)
+            distances.removeLast(trimCount)
+        }
         
         // Sum all distances and calculate average
         for distance in distances {
@@ -72,9 +75,7 @@ class BpmClickViewController: ViewController {
         // BPM = amount of average distance in 60 seconds
         let bpm = 60.0 / averageTime
                 
-        if eventArray.count % 2 == 0 {
-            calculatedBpmText.stringValue = "\(lround(bpm))"
-        }
+        calculatedBpmText.stringValue = "\(lround(bpm))"
         
         // Cancel timeout handler
         if timeoutWorkItem != nil {

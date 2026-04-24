@@ -18,25 +18,29 @@ class PositionTableViewController: NSViewController {
     var currentPosition     = -1
     
     var loopCount           = 0
-    
+    var loopPos             = -1
+    var loopTimerArmedAt    = -1.0          // playback time when the loop timer was last armed
+    var loopTimerArmedWallTime = Date()     // wall clock time when the loop timer was last armed
+
     var loopTimer: Timer?
     
     weak var mainView: MainViewController?
     
     //MARK: Outlets
     @IBOutlet weak var positionTable: TableView!
-    @IBOutlet weak var cbLoop: NSButton!
-    @IBOutlet weak var txtLoopTimes: NSTextField!
+    @IBOutlet weak var loopStepper: NSStepper!
+    @IBOutlet weak var lblLoopCount: NSTextField!
     @IBOutlet weak var cbAutoscroll: NSButton!
     
     //MARK: Overrides
     override func viewDidLoad() {
-        
+
         self.positionTable.selectionDelegate = self
         self.positionTable.delegate          = self
         self.positionTable.dataSource        = self
-        
+
         self.updateBeatsColumnVisibility()
+        self.lblLoopCount.stringValue = "\(self.loopStepper.intValue)"
         
         self.fontSize = Settings.positionTableFontSize
         
@@ -170,24 +174,21 @@ class PositionTableViewController: NSViewController {
                 }
                 
                 if(PlayerAudioEngine.shared.isPlaying() && self.currentPosition != currentPosition){
-                    if self.cbLoop.state == NSControl.StateValue.on {
-                        if !(self.loopTimer?.isValid ?? false) {
-                            let loopPos = self.currentPosition
-                            self.loopTimer = Timer.scheduledTimer(withTimeInterval: Settings.loopDelay, repeats: false, block: {
-                                _ in
-                                self.loopCount += 1
-                                
-                                if self.txtLoopTimes.integerValue != 0 && self.loopCount >= self.txtLoopTimes.integerValue {
-                                    self.cbLoop.state = NSControl.StateValue.off
-                                }
-                                
-                                self.handlePositionSelected(loopPos)
-                            })
-                        }
-                    }else{
-                        self.cbLoop.state = NSControl.StateValue.off
+                    if self.loopStepper.intValue > 0 {
+                        // Loop is active — don't advance currentPosition, let armLoopTimer handle seeking back
+                    } else {
                         self.currentPosition = currentPosition
                         performRefresh()
+                    }
+                }
+
+                // Re-arm loop timer if the user seeked while looping.
+                // If actual playback time differs from expected (armed time + wall time elapsed), a seek occurred.
+                if self.loopStepper.intValue > 0, let timer = self.loopTimer, timer.isValid, self.loopTimerArmedAt >= 0 {
+                    let wallElapsed = -self.loopTimerArmedWallTime.timeIntervalSinceNow
+                    let expectedTime = self.loopTimerArmedAt + wallElapsed
+                    if abs(currentTime - expectedTime) > 0.8 {
+                        self.armLoopTimer(loopPos: self.loopPos, fromTime: currentTime)
                     }
                 }
             }
@@ -226,6 +227,69 @@ class PositionTableViewController: NSViewController {
             }
         }
     }
+
+    func armLoopTimer(loopPos: Int, fromTime: Double? = nil) {
+        guard loopStepper.intValue > 0 else { return }
+        guard let song = PlayerAudioEngine.shared.song else { return }
+
+        let positions = song.getPositions()
+        guard loopPos >= 0 && loopPos < positions.count else { return }
+
+        // The looped position ends when the next position starts (or at end of song)
+        let nextPosTime: Double
+        if loopPos + 1 < positions.count {
+            nextPosTime = Double(positions[loopPos + 1].time) / 1000.0
+        } else {
+            nextPosTime = PlayerAudioEngine.shared.getDuration()
+        }
+
+        // fromTime is the actual playback start point (seek target or current time after manual seek)
+        // If not provided, compute it from the position + offset as normal
+        let startTime: Double
+        if let fromTime {
+            startTime = fromTime
+        } else {
+            let positionTime = Double(positions[loopPos].time) / 1000.0
+            var seekTime = positionTime
+            if Settings.playPositionOffsetValue != 0 {
+                switch Settings.playPositionOffset {
+                case 1:
+                    if song.bpm > 0 {
+                        seekTime += Double(Settings.playPositionOffsetValue) * 60.0 / Double(song.bpm)
+                    }
+                case 2:
+                    seekTime += Double(Settings.playPositionOffsetValue)
+                default:
+                    break
+                }
+                seekTime = max(0, seekTime)
+            }
+            startTime = seekTime
+        }
+
+        // Timer fires when remaining position duration + loopDelay has elapsed
+        let loopInterval = max(0, nextPosTime - startTime) + Settings.loopDelay
+
+        self.loopPos = loopPos
+        self.loopTimerArmedAt = startTime
+        self.loopTimerArmedWallTime = Date()
+
+        loopTimer?.invalidate()
+        loopTimer = Timer.scheduledTimer(withTimeInterval: loopInterval, repeats: false) { [weak self] _ in
+            guard let self, self.loopStepper.intValue > 0, PlayerAudioEngine.shared.isPlaying() else { return }
+
+            self.loopCount += 1
+            self.handlePositionSelected(loopPos)
+            self.armLoopTimer(loopPos: loopPos)
+
+            if self.loopCount >= Int(self.loopStepper.intValue) {
+                self.loopStepper.intValue = 0
+                self.lblLoopCount.stringValue = "0"
+                self.loopTimer?.invalidate()
+                self.loopTimer = nil
+            }
+        }
+    }
     
     //MARK: UI Selectors
     @IBAction func handleSelectPosition(_ sender: NSTableView?) {
@@ -242,6 +306,7 @@ class PositionTableViewController: NSViewController {
         self.currentPosition = self.positionTable.selectedRow
         self.refreshTable(single: true)
         self.handlePositionSelected(self.positionTable.selectedRow)
+        self.armLoopTimer(loopPos: self.positionTable.selectedRow)
     }
     
     @IBAction func handleAddPosition(_ sender: NSButton) {
@@ -344,6 +409,7 @@ class PositionTableViewController: NSViewController {
             saveDialog.canCreateDirectories    = true
             saveDialog.allowedContentTypes     = [.init(filenameExtension: "infoexport")!]
             saveDialog.allowsOtherFileTypes    = false
+            saveDialog.nameFieldStringValue    = song.title
             
             if saveDialog.runModal() == NSApplication.ModalResponse.OK {
                 //OK, save the positions to the desired file
@@ -460,10 +526,12 @@ class PositionTableViewController: NSViewController {
         }
     }
     
-    @IBAction func handleLoopChanged(_ sender: NSButton) {
+    @IBAction func handleLoopStepperChanged(_ sender: NSStepper) {
         self.loopCount = 0
+        self.loopTimerArmedAt = -1.0
         self.loopTimer?.invalidate()
         self.loopTimer = nil
+        self.lblLoopCount.stringValue = "\(sender.intValue)"
     }
     
     @IBAction func handleRefreshList(_ sender: Any) {
@@ -542,8 +610,8 @@ class PositionTableViewController: NSViewController {
 
             sPdfHtml = sPdfHtml + " </table>"
 
-            let suggestedName = [song.title, song.artist].filter { !$0.isEmpty }.joined(separator: " - ")
-            createPDF(htmlString: sPdfHtml, fileName: suggestedName.isEmpty ? song.getValueAsString("fileName") : suggestedName) { _ in }
+            let suggestedName = song.title.isEmpty ? song.getValueAsString("fileName") : song.title
+            createPDF(htmlString: sPdfHtml, fileName: suggestedName) { _ in }
         }
     }
     

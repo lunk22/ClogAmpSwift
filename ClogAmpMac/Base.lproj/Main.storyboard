@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="24006"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24506"/>
-        <plugIn identifier="com.apple.pdfkit.ibplugin" version="24506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="24701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
+        <plugIn identifier="com.apple.pdfkit.ibplugin" version="24765"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -3331,46 +3331,34 @@ IA
                                     <action selector="handleSetTime:" target="ogj-Ej-2Vt" id="giS-1w-kD6"/>
                                 </connections>
                             </button>
-                            <box fixedFrame="YES" boxType="custom" borderType="none" cornerRadius="4" translatesAutoresizingMaskIntoConstraints="NO" id="dcc-Gq-rTC">
-                                <rect key="frame" x="190" y="0.0" width="169" height="21"/>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lp7-loop-lbl">
+                                <rect key="frame" x="210" y="2" width="45" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" id="hen-3G-APg">
-                                    <rect key="frame" x="0.0" y="0.0" width="169" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="umW-Jo-zYE">
-                                            <rect key="frame" x="20" y="1" width="83" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Loop:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="bHI-pD-B57">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="handleLoopChanged:" target="ogj-Ej-2Vt" id="gzZ-VX-szu"/>
-                                            </connections>
-                                        </button>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwP-Hm-Nmw">
-                                            <rect key="frame" x="111" y="-1" width="25" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="a1v-IK-wFn">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r7o-BK-0BK">
-                                            <rect key="frame" x="136" y="1" width="11" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="x" id="n27-Ni-WE3">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                </view>
-                                <color key="fillColor" name="unemphasizedSelectedTextBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </box>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Loop:" id="Lp7-loop-lbl-cell">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <stepper verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lp7-loop-stp">
+                                <rect key="frame" x="258" y="1" width="19" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <stepperCell key="cell" alignment="left" maxValue="99" increment="1" id="Lp7-loop-stp-cell">
+                                    <behavior key="behavior" autorepeat="YES" valueWraps="NO"/>
+                                </stepperCell>
+                                <connections>
+                                    <action selector="handleLoopStepperChanged:" target="ogj-Ej-2Vt" id="Lp7-loop-stp-act"/>
+                                </connections>
+                            </stepper>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lp7-loop-cnt">
+                                <rect key="frame" x="279" y="2" width="30" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="Lp7-loop-cnt-cell">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ca-vy-kVk">
                                 <rect key="frame" x="393" y="2" width="200" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3386,9 +3374,9 @@ IA
                     </view>
                     <connections>
                         <outlet property="cbAutoscroll" destination="9Ca-vy-kVk" id="5Ms-fQ-dVP"/>
-                        <outlet property="cbLoop" destination="umW-Jo-zYE" id="ysa-Xq-J7B"/>
+                        <outlet property="lblLoopCount" destination="Lp7-loop-cnt" id="Lp7-loop-cnt-out"/>
+                        <outlet property="loopStepper" destination="Lp7-loop-stp" id="Lp7-loop-stp-out"/>
                         <outlet property="positionTable" destination="02w-V8-VKM" id="2nE-yZ-Exj"/>
-                        <outlet property="txtLoopTimes" destination="iwP-Hm-Nmw" id="182-gO-Dpd"/>
                     </connections>
                 </viewController>
                 <customObject id="Ipd-wm-y1w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
