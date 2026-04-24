@@ -417,11 +417,15 @@ extension SongTableViewController: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-       if Settings.songTableMonoFont {
-           return CGFloat(round(Double(Settings.songTableFontSize) * 1.7))
-       } else {
-           return CGFloat(Settings.songTableFontSize + 8)
-       }
+        let font: NSFont
+        if Settings.songTableMonoFont {
+            font = NSFont(name: Settings.monoFontName, size: CGFloat(Settings.songTableFontSize))
+                ?? NSFont.monospacedSystemFont(ofSize: CGFloat(Settings.songTableFontSize), weight: .regular)
+        } else {
+            font = NSFont(name: Settings.proportionalFontName, size: CGFloat(Settings.songTableFontSize))
+                ?? NSFont.systemFont(ofSize: CGFloat(Settings.songTableFontSize))
+        }
+        return font.boundingRectForFont.height.rounded(.up) + 3
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {

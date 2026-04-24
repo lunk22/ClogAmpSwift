@@ -812,38 +812,29 @@ extension PositionTableViewController: NSTableViewDataSource, NSTableViewDelegat
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        var heightOfRow: CGFloat = 100.0
-        
-        if let song = self.mainView?.playerView?.getSong() {
-            
-            if song.getPositions().count <= row {
-                return heightOfRow
-            }
-            
-            let string = song.getPositions()[row].getValueAsString("comment")
-            if let tableColumn = tableView.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "comment")){
-                let rect = NSMakeRect(0, 0, tableColumn.width, CGFLOAT_MAX)
-                let textField = NSTextField()
-                let cell = textField.cell!
-                
-//                cell.wraps = true
-                
-                if Settings.positionTableMonoFont {
-                    cell.font = NSFont.init(name: Settings.monoFontName, size: CGFloat(self.fontSize))
-                } else {
-                    cell.font = NSFont(name: Settings.proportionalFontName, size: CGFloat(self.fontSize)) ?? NSFont.systemFont(ofSize: CGFloat(self.fontSize))
-                }
-                
-                cell.stringValue = string
-                let size = cell.cellSize(forBounds: rect)
-                
-                heightOfRow = size.height
-            }
-            
+        let font: NSFont
+        if Settings.positionTableMonoFont {
+            font = NSFont(name: Settings.monoFontName, size: CGFloat(self.fontSize))
+                ?? NSFont.monospacedSystemFont(ofSize: CGFloat(self.fontSize), weight: .regular)
+        } else {
+            font = NSFont(name: Settings.proportionalFontName, size: CGFloat(self.fontSize))
+                ?? NSFont.systemFont(ofSize: CGFloat(self.fontSize))
         }
-        
-        return heightOfRow
-        
+        let lineHeight = font.boundingRectForFont.height.rounded(.up)
+
+        guard let song = self.mainView?.playerView?.getSong(), row < song.getPositions().count,
+              let column = tableView.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier("comment")),
+              column.width > 0 else {
+            return lineHeight + 3
+        }
+
+        let comment = song.getPositions()[row].getValueAsString("comment")
+        let attrString = NSAttributedString(string: comment, attributes: [.font: font])
+        let bounds = attrString.boundingRect(
+            with: NSSize(width: column.width, height: .greatestFiniteMagnitude),
+            options: [.usesLineFragmentOrigin, .usesFontLeading]
+        )
+        return bounds.height.rounded(.up) + 3
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
