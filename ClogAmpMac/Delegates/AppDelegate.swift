@@ -110,7 +110,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
         guard noSleepReturn == kIOReturnSuccess else { return }
         systemSleepDisabled = true
-        print("System Sleep disabled")
+//        print("System Sleep disabled")
     }
     
     func reenableSystemSleep() {
@@ -119,7 +119,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let noSleepReturn = IOPMAssertionRelease(noSleepAssertionID)
         guard noSleepReturn == kIOReturnSuccess else { return }
         systemSleepDisabled = false
-        print("System Sleep reenabled")
+//        print("System Sleep reenabled")
     }
     
     // MARK: Eventhandler / Menu Actions

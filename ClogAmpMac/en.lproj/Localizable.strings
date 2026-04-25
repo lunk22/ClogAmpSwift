@@ -35,3 +35,17 @@
 "pdfResetDefaults" = "Reset to Defaults";
 "beatCountdownTooltip" = "Shows a beat countdown overlay on the player when the song is playing before the first named position. The overlay displays which beat within the current group of 8 is playing, helping anticipate the start of the choreography.\n\nRequirements:\n• Song must have BPM set\n• Song must have a value in \"Wait\"\n• Song must have at least one named position. The first named position markes the start the countdown counts towards";
 "playbackOffsetTooltip" = "When enabled, the next position is highlighted in the position list before it actually starts. The highlight advances by the number of beats or seconds configured in the offset above.\n\nRequirements:\n• Offset type must be set to Beats or Seconds\n• Offset value must be greater than 0\n• For beats: song must have BPM set";
+
+"playlistCloseTitle" = "Stop Playlist?";
+"playlistCloseMessage" = "A playlist is currently playing. Closing this window will stop playback.";
+"playlistCloseConfirm" = "Close Window";
+"playlistCloseCancel" = "Cancel";
+
+"Play song" = "Play song";
+"Play the currently loaded song" = "Play the currently loaded song";
+"Pause song" = "Pause song";
+"Pause the currently playing song" = "Pause the currently playing song";
+"Stop song" = "Stop song";
+"Stop the currently playing song" = "Stop the currently playing song";
+"Play from beginning" = "Play from beginning";
+"Play the currently loaded song from the beginning" = "Play the currently loaded song from the beginning";

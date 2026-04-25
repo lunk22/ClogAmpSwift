@@ -622,7 +622,6 @@ class PlayerAudioEngine {
             self.executeTimeObserverCallback()
             
             if (self.remainingFrames <= 0) && !self.isStopped() {
-                print("Timer: song finished - \(self.remainingFrames)")
                 self.stop()
                 NotificationCenter.default.post(name: NotificationNames.songFinished, object: nil)
             }

@@ -35,3 +35,17 @@
 "pdfResetDefaults" = "Standardwerte wiederherstellen";
 "beatCountdownTooltip" = "Zeigt einen Beat-Countdown als Overlay im Player an, solange die Musik vor der ersten benannten Position spielt. Das Overlay zeigt den aktuellen Beat innerhalb der laufenden 8er-Gruppe und hilft, den Start der Choreographie zu antizipieren.\n\nVoraussetzungen:\n• Lied muss BPM haben\n• Lied muss einen Wert in \"Warten\" haben\n• Lied muss mindestens eine benannte Position haben. Die erste benannte Position markiert den Start, auf den der Countdown hinzählt";
 "playbackOffsetTooltip" = "Wenn aktiviert, wird die nächste Position in der Positionsliste bereits vor ihrem tatsächlichen Start hervorgehoben. Die Hervorhebung erfolgt um die oben konfigurierte Anzahl an Beats oder Sekunden früher.\n\nVoraussetzungen:\n• Versatztyp muss auf Beats oder Sekunden eingestellt sein\n• Versatzwert muss größer als 0 sein\n• Für Beats: Lied muss BPM haben";
+
+"playlistCloseTitle" = "Playlist stoppen?";
+"playlistCloseMessage" = "Eine Playlist wird gerade abgespielt. Das Schließen dieses Fensters beendet die Wiedergabe.";
+"playlistCloseConfirm" = "Fenster schließen";
+"playlistCloseCancel" = "Abbrechen";
+
+"Play song" = "Lied abspielen";
+"Play the currently loaded song" = "Das aktuell geladene Lied abspielen";
+"Pause song" = "Lied pausieren";
+"Pause the currently playing song" = "Das aktuell spielende Lied pausieren";
+"Stop song" = "Lied stoppen";
+"Stop the currently playing song" = "Das aktuell spielende Lied stoppen";
+"Play from beginning" = "Von Anfang abspielen";
+"Play the currently loaded song from the beginning" = "Das aktuell geladene Lied von Anfang abspielen";

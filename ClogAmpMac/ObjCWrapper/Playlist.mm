@@ -79,10 +79,8 @@
         description  = desc;
         order        = o;
         plID         = [Database addPlaylist:desc withContPlayback:false];
-        [Database updatePlaylist:plID withDesc:description withContPlayback:false withPause:0 withOrder:order];
     }
-    
-    
+
     return self;
 }
 

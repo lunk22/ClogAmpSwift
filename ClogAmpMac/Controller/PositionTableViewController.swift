@@ -41,6 +41,7 @@ class PositionTableViewController: NSViewController {
 
         self.updateBeatsColumnVisibility()
         self.lblLoopCount.stringValue = "\(self.loopStepper.intValue)"
+        self.loopStepper.frameCenterRotation = -90
         
         self.fontSize = Settings.positionTableFontSize
         

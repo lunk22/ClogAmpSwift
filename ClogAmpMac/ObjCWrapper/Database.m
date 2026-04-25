@@ -481,43 +481,35 @@
         return -1;
     }
 
-    NSString *exec = @"INSERT INTO Playlist (Description, ContPlayback, Pause, IOrder) VALUES(\"";
-    exec = [exec stringByAppendingString:desc];
-    exec = [exec stringByAppendingString:@"\","];
-    exec = [exec stringByAppendingString:[NSString stringWithFormat:@"%d, 0, 99)",contPlayback]];
-
-    //INSERT INTO Playlist (Description, ContPlayback, Pause) VALUES("description", 1, 0, 99)
-
-    //Run the insert
-    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
-    if (result != SQLITE_OK){
+    sqlite3_stmt *statement;
+    result = sqlite3_prepare_v2(database, "INSERT INTO Playlist (Description, ContPlayback, Pause, IOrder) VALUES(?, ?, 0, 99)", -1, &statement, nil);
+    if(result != SQLITE_OK){
         sqlite3_close(database);
         return -1;
     }
 
-    sqlite3_stmt *statement;
-    exec = @"SELECT MAX(ID) FROM Playlist";
+    sqlite3_bind_text(statement, 1, [desc cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(statement, 2, contPlayback ? 1 : 0);
 
-    result = sqlite3_prepare(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, nil);
+    result = sqlite3_step(statement);
+    sqlite3_finalize(statement);
+
+    if(result != SQLITE_DONE){
+        sqlite3_close(database);
+        return -1;
+    }
+
+    result = sqlite3_prepare_v2(database, "SELECT MAX(ID) FROM Playlist", -1, &statement, nil);
     if(result != SQLITE_OK){
         sqlite3_close(database);
         return -1;
     }
 
     sqlite3_step(statement);
-
-    NSString *id = nil;
-
-    @try {
-        id = [NSString stringWithCString:(char *)sqlite3_column_text(statement, 0) encoding:NSUTF8StringEncoding];
-    }
-    @catch (NSException *exception) {
-        id = @"0";
-    }
-
+    int newID = sqlite3_column_int(statement, 0);
     sqlite3_finalize(statement);
     sqlite3_close(database);
-    return [id intValue];
+    return newID;
 }
 
 + (bool)updatePlaylist:(int)plID withDesc:(NSString *)desc withContPlayback:(bool)contPlayback withPause:(int)pause withOrder:(int)order{
@@ -530,25 +522,23 @@
         return false;
     }
 
-    NSString *exec = @"UPDATE Playlist SET Description = \"";
-    exec = [exec stringByAppendingString:desc];
-    exec = [exec stringByAppendingString:@"\", ContPlayback = "];
-    exec = [exec stringByAppendingFormat:@"%d",contPlayback];
-    exec = [exec stringByAppendingString:@", Pause = "];
-    exec = [exec stringByAppendingFormat:@"%d",pause];
-    exec = [exec stringByAppendingString:@", IOrder = "];
-    exec = [exec stringByAppendingFormat:@"%d",order];
-    exec = [exec stringByAppendingFormat:@" WHERE ID = %d",plID];
-
-    //Run the update
-    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
-    if (result != SQLITE_OK){
+    sqlite3_stmt *statement;
+    result = sqlite3_prepare_v2(database, "UPDATE Playlist SET Description = ?, ContPlayback = ?, Pause = ?, IOrder = ? WHERE ID = ?", -1, &statement, nil);
+    if(result != SQLITE_OK){
         sqlite3_close(database);
         return false;
     }
 
+    sqlite3_bind_text(statement, 1, [desc cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(statement, 2, contPlayback ? 1 : 0);
+    sqlite3_bind_int(statement, 3, pause);
+    sqlite3_bind_int(statement, 4, order);
+    sqlite3_bind_int(statement, 5, plID);
+
+    result = sqlite3_step(statement);
+    sqlite3_finalize(statement);
     sqlite3_close(database);
-    return true;
+    return result == SQLITE_DONE;
 }
 
 + (bool)addSongToPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName withOrder:(int)orderIndex{
@@ -562,34 +552,23 @@
         return false;
     }
 
-//    //Delete already assigned songs
-//    NSString *deleteExec = [NSString stringWithFormat:@"DELETE FROM PlaylistSong WHERE PID = %d",plID];
-//
-//    result = sqlite3_exec(database, [deleteExec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
-//    if (result != SQLITE_OK){
-//        sqlite3_close(database);
-//        return false;
-//    }
-
-    NSString *exec = @"INSERT INTO PlaylistSong (PID, SongOrder, SongTitle, SongFileName, SongDuration) VALUES(";
-    exec = [exec stringByAppendingFormat:@"%d",plID];
-    exec = [exec stringByAppendingFormat:@", %d, \"",orderIndex];
-    exec = [exec stringByAppendingString:title];
-    exec = [exec stringByAppendingString:@"\", \""];
-    exec = [exec stringByAppendingString:fileName];
-    exec = [exec stringByAppendingString:@"\", \""];
-    exec = [exec stringByAppendingFormat:@"%d",duration];
-    exec = [exec stringByAppendingString:@"\")"];
-
-    //Run the update
-    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
-    if (result != SQLITE_OK){
+    sqlite3_stmt *statement;
+    result = sqlite3_prepare_v2(database, "INSERT INTO PlaylistSong (PID, SongOrder, SongTitle, SongFileName, SongDuration) VALUES(?, ?, ?, ?, ?)", -1, &statement, nil);
+    if(result != SQLITE_OK){
         sqlite3_close(database);
         return false;
     }
 
+    sqlite3_bind_int(statement, 1, plID);
+    sqlite3_bind_int(statement, 2, orderIndex);
+    sqlite3_bind_text(statement, 3, [title cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(statement, 4, [fileName cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(statement, 5, duration);
+
+    result = sqlite3_step(statement);
+    sqlite3_finalize(statement);
     sqlite3_close(database);
-    return true;
+    return result == SQLITE_DONE;
 }
 
 + (bool)updateSongOrderInPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName withOrder:(int)orderIndex{
@@ -603,28 +582,26 @@
         return false;
     }
 
-    NSString *exec = @"UPDATE PlaylistSong SET SongOrder = ";
-    exec = [exec stringByAppendingFormat:@"%d",orderIndex];
-    exec = [exec stringByAppendingString:@" WHERE PID = "];
-    exec = [exec stringByAppendingFormat:@"%d AND SongTitle = \"",plID];
-    exec = [exec stringByAppendingString:title];
-    exec = [exec stringByAppendingString:@"\" AND SongFileName = \""];
-    exec = [exec stringByAppendingString:fileName];
-    exec = [exec stringByAppendingString:@"\""];
-    
-    //Run the update
-    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
-    if (result != SQLITE_OK){
+    sqlite3_stmt *statement;
+    result = sqlite3_prepare_v2(database, "UPDATE PlaylistSong SET SongOrder = ? WHERE PID = ? AND SongTitle = ? AND SongFileName = ?", -1, &statement, nil);
+    if(result != SQLITE_OK){
         sqlite3_close(database);
         return false;
     }
 
+    sqlite3_bind_int(statement, 1, orderIndex);
+    sqlite3_bind_int(statement, 2, plID);
+    sqlite3_bind_text(statement, 3, [title cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(statement, 4, [fileName cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+
+    result = sqlite3_step(statement);
+    sqlite3_finalize(statement);
     sqlite3_close(database);
-    return true;
+    return result == SQLITE_DONE;
 }
 
 + (bool)removeSongFromPlaylist:(int)plID withTitle:(NSString *)title withDuration:(int)duration withFileName:(NSString *)fileName{
-    
+
     sqlite3 *database;
     int result;
 
@@ -634,23 +611,21 @@
         return false;
     }
 
-    NSString *exec = @"DELETE FROM PlaylistSong";
-    exec = [exec stringByAppendingString:@" WHERE PID = "];
-    exec = [exec stringByAppendingFormat:@"%d AND SongTitle = \"",plID];
-    exec = [exec stringByAppendingString:title];
-    exec = [exec stringByAppendingString:@"\" AND SongFileName = \""];
-    exec = [exec stringByAppendingString:fileName];
-    exec = [exec stringByAppendingString:@"\""];
-    
-    //Run the update
-    result = sqlite3_exec(database, [exec cStringUsingEncoding:NSUTF8StringEncoding], NULL, NULL, NULL);
-    if (result != SQLITE_OK){
+    sqlite3_stmt *statement;
+    result = sqlite3_prepare_v2(database, "DELETE FROM PlaylistSong WHERE PID = ? AND SongTitle = ? AND SongFileName = ?", -1, &statement, nil);
+    if(result != SQLITE_OK){
         sqlite3_close(database);
         return false;
     }
 
+    sqlite3_bind_int(statement, 1, plID);
+    sqlite3_bind_text(statement, 2, [title cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(statement, 3, [fileName cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+
+    result = sqlite3_step(statement);
+    sqlite3_finalize(statement);
     sqlite3_close(database);
-    return true;
+    return result == SQLITE_DONE;
 }
 
 + (NSArray *)getPlaylistSongs:(int)playlistID{

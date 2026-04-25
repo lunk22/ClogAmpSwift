@@ -1,0 +1,4 @@
+"Play ${applicationName} from the beginning" = "Spiele ${applicationName} von Anfang an";
+"Play ${applicationName}" = "Spiele ${applicationName}";
+"Pause ${applicationName}" = "Pausiere ${applicationName}";
+"Stop ${applicationName}" = "Stoppe ${applicationName}";

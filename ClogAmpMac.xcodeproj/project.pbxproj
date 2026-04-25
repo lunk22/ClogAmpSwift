@@ -60,6 +60,7 @@
 		B7B3A177237ACFC7009667CF /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3A176237ACFC7009667CF /* PlaylistViewController.swift */; };
 		B7B3A179237BDC70009667CF /* SwiftPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3A178237BDC70009667CF /* SwiftPlaylist.swift */; };
 		B7B3A17C237C09BC009667CF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7B3A17E237C09BC009667CF /* Localizable.strings */; };
+		B7CA9F0A2F0000AA009667CF /* AppShortcuts.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7CA9F0D2F0000DD009667CF /* AppShortcuts.strings */; };
 		B7B3A185237E726A009667CF /* Playlist.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B3A184237E726A009667CF /* Playlist.mm */; };
 		B7B3A189237EBCC0009667CF /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3A188237EBCC0009667CF /* Window.swift */; };
 		B7B3A18B237EC209009667CF /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3A18A237EC209009667CF /* Panel.swift */; };
@@ -167,6 +168,8 @@
 		B7B3A178237BDC70009667CF /* SwiftPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPlaylist.swift; sourceTree = "<group>"; };
 		B7B3A17D237C09BC009667CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B7B3A17F237C09CC009667CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7CA9F0B2F0000BB009667CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
+		B7CA9F0C2F0000CC009667CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
 		B7B3A183237E726A009667CF /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		B7B3A184237E726A009667CF /* Playlist.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Playlist.mm; sourceTree = "<group>"; };
 		B7B3A188237EBCC0009667CF /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
@@ -272,6 +275,7 @@
 				50A37BB4207FF03E0020E218 /* ClogAmpSwift.entitlements */,
 				50A571BE2CF10EA600DB755B /* UpdateHistory.html */,
 				B7B3A17E237C09BC009667CF /* Localizable.strings */,
+				B7CA9F0D2F0000DD009667CF /* AppShortcuts.strings */,
 			);
 			path = ClogAmpMac;
 			sourceTree = "<group>";
@@ -510,6 +514,7 @@
 				50A571BF2CF10EA600DB755B /* UpdateHistory.html in Resources */,
 				B7F48C9D238FE9F000C3DB01 /* Click.mp3 in Resources */,
 				B7B3A17C237C09BC009667CF /* Localizable.strings in Resources */,
+				B7CA9F0A2F0000AA009667CF /* AppShortcuts.strings in Resources */,
 				50A37BB2207FF03E0020E218 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,6 +610,15 @@
 				B7B3A17F237C09CC009667CF /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B7CA9F0D2F0000DD009667CF /* AppShortcuts.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7CA9F0B2F0000BB009667CF /* en */,
+				B7CA9F0C2F0000CC009667CF /* de */,
+			);
+			name = AppShortcuts.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
