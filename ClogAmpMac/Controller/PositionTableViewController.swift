@@ -62,6 +62,13 @@ class PositionTableViewController: NSViewController {
                 self.refreshTable(single: true)
             }
         }
+
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopped, object: nil, queue: nil) { _ in
+            DispatchQueue.main.async(qos: .default) {
+                self.currentPosition = -1
+                self.refreshTable(single: true)
+            }
+        }
         
         self.positionTable.enclosingScrollView?.becomeFirstResponder()
         
@@ -829,8 +836,10 @@ extension PositionTableViewController: NSTableViewDataSource, NSTableViewDelegat
             return lineHeight + 3
         }
 
-        let comment = song.getPositions()[row].getValueAsString("comment")
-        let attrString = NSAttributedString(string: comment, attributes: [.font: font])
+        let position = song.getPositions()[row]
+        let comment = position.getValueAsString("comment")
+        let measure = comment.isEmpty ? position.getValueAsString("time") : comment
+        let attrString = NSAttributedString(string: measure, attributes: [.font: font])
         let bounds = attrString.boundingRect(
             with: NSSize(width: column.width, height: .greatestFiniteMagnitude),
             options: [.usesLineFragmentOrigin, .usesFontLeading]

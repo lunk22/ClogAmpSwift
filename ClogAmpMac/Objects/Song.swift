@@ -27,11 +27,13 @@ class Song {
             self.speedChanged = true
         }
     } }
+    var suppressBpmNotification = false
     var bpm: Int { didSet {
         self.bpmChanged = true
         self.calculatePositionBeats()
-        
-        NotificationCenter.default.post(name: NotificationNames.bpmChanged, object: nil)
+        if !suppressBpmNotification {
+            NotificationCenter.default.post(name: NotificationNames.bpmChanged, object: nil)
+        }
     } }
     var hasPositions: Bool
     private var positions: Array<Position> { didSet {
@@ -119,47 +121,27 @@ class Song {
     //MARK: Instance Stuff
     func readBasicInfo() {
         let stringPath = self.getValueAsString("path")
-        
-        //Read ID3 Info
-        if let oId3Wrapper = Id3Wrapper(stringPath) {
-            let map = oId3Wrapper.readBasicInfo()
-            
-            //Title
-            self.title = map?.value(forKey: "title") as? String ?? ""
+
+        if let manager = TagLibWrapper(path: stringPath), let map = manager.readBasicInfo() {
+            self.title = map["title"] as? String ?? ""
             if self.title == "" {
                 self.title = self.path.deletingPathExtension().lastPathComponent
             }
-            
-            //Artist
-            self.artist = map?.value(forKey: "artist") as? String ?? ""
-            
-            //Read Tempo
-            if let sTempo = map?.value(forKey: "lastTempo") as? String{
-                if(sTempo != ""){
-                    if let dTempo = Double(sTempo) {
-                        self.speed = lround(dTempo);
-                    } else {
-                        self.speed = 0;
-                    }
-                }
+
+            self.artist   = map["artist"] as? String ?? ""
+            self.duration = map["duration"] as? Int ?? 0
+            self.suppressBpmNotification = true
+            self.bpm      = map["bpm"] as? Int ?? 0
+            self.suppressBpmNotification = false
+            self.level    = map["cloggingLevel"] as? String ?? ""
+            self.hasPositions = map["hasPositions"] as? Bool ?? false
+            self.waitBeats    = map["waitBeats"] as? Int ?? 0
+
+            if let sTempo = map["lastTempo"] as? String, !sTempo.isEmpty {
+                self.speed = lround(Double(sTempo) ?? 0)
             }
-            
-            //Duration
-            self.duration = Int(map?.value(forKey: "duration") as? Int ?? 0)
-            
-            //Read BPM
-            self.bpm = Int(map?.value(forKey: "bpm") as? Int ?? 0)
-            
-            //Read Level
-            self.level = map?.value(forKey: "cloggingLevel") as? String ?? ""
-            
-            //Has Positions
-            self.hasPositions    = map?.value(forKey: "hasPositions") as? Bool ?? false
-            
-            //Read Wait Beats
-            self.waitBeats = Int(map?.value(forKey: "waitBeats") as? Int ?? 0)
         }
-        
+
         self.resetChangeFlags()
     }
     
@@ -171,26 +153,22 @@ class Song {
             self.hasPositions = false
         }
         
-        if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){
+        if let manager = TagLibWrapper(path: self.getValueAsString("path")) {
             var sPositions = ""
             var count = 0
             while sPositions == "" && count < 10 {
                 count += 1
-                sPositions = oId3Wrapper.loadPositions()
-                if(sPositions != ""){
-                    //Split string into single lines ($LS = Line Separator)
+                sPositions = manager.loadPositions()
+                if !sPositions.isEmpty {
                     let aLines = sPositions.components(separatedBy: "$LS")
-                    // Create temporary array to prevent calculating beats every time a new position gets read. Do it once at the end.
                     var newPositions: Array<Position> = []
                     for line in aLines {
-                        //Split string into single cells ($CS = Cell Separator)
                         let aCells = line.components(separatedBy: "$CS")
-                        let position = Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2], time: (UInt(aCells[3]) ?? 0), new: false, delegate: self)
-                        
+                        let position = Position(name: aCells[0], comment: aCells[1], jumpTo: aCells[2],
+                                                time: (UInt(aCells[3]) ?? 0), new: false, delegate: self)
                         newPositions.append(position)
                         self.hasPositions = true
                     }
-                    
                     self.positions = newPositions
                 }
             }
@@ -328,79 +306,39 @@ class Song {
     func saveChanges() {
         if(!self.songChanged){ return; }
         
-        //Save ID3 Info
-        if let oId3Wrapper = Id3Wrapper(self.getValueAsString("path")){
-            //-----------------------
-            //------- Title ---------
-            //-----------------------
-            if(self.titleChanged){
-                oId3Wrapper.saveTitle(self.title)
-            }
-            //-----------------------
-            //------- Artist --------
-            //-----------------------
-            if(self.artistChanged){
-                oId3Wrapper.saveArtist(self.artist)
-            }
-            //-----------------------
-            //------- Level ---------
-            //-----------------------
-            if(self.levelChanged){
-                oId3Wrapper.saveUserText("CloggingLevel", sValue: self.level)
-            }
-            //-----------------------
-            //------- Speed ---------
-            //-----------------------
-            if(self.speedChanged){
-                oId3Wrapper.saveUserText("LastTempo", sValue: "\(self.speed)")
-            }
-            //-----------------------
-            //-------- BPM ----------
-            //-----------------------
-            if(self.bpmChanged){
-                oId3Wrapper.removeAllBpms()
-                oId3Wrapper.saveBPM(Int32(self.bpm))
-            }
-            //            if(self.volumeChanged){
-            //
-            //            }
-            //-----------------------
-            //------ Positions ------
-            //-----------------------
-            if(self.positionsChanged){
-                //Make sure they're in order
-                self.sortPositions()
-                
-                var posString = ""
-                
-                //Prepare for the id3 wrapper
-                for position in self.positions {
-                    if(posString != ""){
-                        posString.append("$LS") //$LS = Line Seperator
-                    }
-                    
-                    posString.append(position.name)
-                    posString.append("$CS") //$CS = Cell Seperator
-                    posString.append(position.comment)
-                    posString.append("$CS") //$CS = Cell Seperator
-                    posString.append(position.jumpTo)
-                    posString.append("$CS") //$CS = Cell Seperator
-                    posString.append("\(position.time)")
-                }
-                
-                oId3Wrapper.savePositions(posString)
-                
-            }
-            //-----------------------
-            //----- Wait Beats ------
-            //-----------------------
-            if(self.waitBeatsChanged){
-                oId3Wrapper.saveUserText("CloggingBeatsWait", sValue: "\(self.waitBeats)")
-            }
-            
-            //Reset change flags
-            self.resetChangeFlags()
+        guard let manager = TagLibWrapper(path: self.getValueAsString("path")) else { return }
+
+        if self.titleChanged  { manager.saveTitle(self.title) }
+        if self.artistChanged { manager.saveArtist(self.artist) }
+        if self.levelChanged  { manager.saveUserText("CloggingLevel", value: self.level) }
+        if self.speedChanged  { manager.saveUserText("LastTempo", value: "\(self.speed)") }
+
+        if self.bpmChanged {
+            manager.removeAllBpms()
+            manager.saveBPM(Int32(self.bpm))
         }
+
+        if self.positionsChanged {
+            self.sortPositions()
+            var posString = ""
+            for position in self.positions {
+                if !posString.isEmpty { posString.append("$LS") }
+                posString.append(position.name)
+                posString.append("$CS")
+                posString.append(position.comment)
+                posString.append("$CS")
+                posString.append(position.jumpTo)
+                posString.append("$CS")
+                posString.append("\(position.time)")
+            }
+            manager.savePositions(posString)
+        }
+
+        if self.waitBeatsChanged {
+            manager.saveUserText("CloggingBeatsWait", value: "\(self.waitBeats)")
+        }
+
+        self.resetChangeFlags()
     }
     
     func resetChangeFlags() {

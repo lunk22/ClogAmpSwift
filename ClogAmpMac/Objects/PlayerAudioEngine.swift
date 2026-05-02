@@ -612,7 +612,6 @@ class PlayerAudioEngine {
     private func executeTimeObserverCallback() {
         printTimes()
         timeObserverCallback?(0)
-        setMPNowPlayingInfoCenter()
     }
     
     private func startTimeObserver() {
@@ -665,6 +664,7 @@ class PlayerAudioEngine {
                 self.paused = true
                 executeTimeObserverCallback()
             }
+            setMPNowPlayingInfoCenter()
             
         } else {
             // Nothing done, just restore volume

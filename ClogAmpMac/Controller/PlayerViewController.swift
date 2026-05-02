@@ -236,7 +236,6 @@ class PlayerViewController: ViewController {
     
     func tick() {
         self.updateTimeInUI()
-        self.updatePositionTable(single: true)
         self.updateBeatCountdown()
     }
 

@@ -150,16 +150,15 @@ class SongTableViewController: ViewController {
         self.pathControl.url = URL(fileURLWithPath: dir)
         
         DispatchQueue.global(qos: .userInteractive).async {
-
+            var lastReportedPercent = -1
             self.aSongs = FileSystemUtils.readFolderContentsAsSong(sPath: dir, percentCallback: {
                 let percent = $0
-                if percent < 100 {
-                    DispatchQueue.main.async(qos: .default) {
-                        self.progressIndicator.doubleValue = Double(percent)
-                        self.progressIndicator.isHidden = false
-                    }
+                guard percent < 100, percent != lastReportedPercent else { return }
+                lastReportedPercent = percent
+                DispatchQueue.main.async(qos: .default) {
+                    self.progressIndicator.doubleValue = Double(percent)
+                    self.progressIndicator.isHidden = false
                 }
-                
             })
             
             if(self.aSongs.count > 0){

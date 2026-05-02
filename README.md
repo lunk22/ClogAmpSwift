@@ -10,11 +10,13 @@ Built for Clogging Enthusiasts to play music, manipulate speed, edit positions, 
 - Create (A) and maintain positions (with comment column for storing the cues)
     - Highlighting (customizable colors)
     - Beats column (editable for easier position creation)
+    - Beats countdown before a position starts
     - Autoscroll to have the current position always in view
     - Loop (with setting for an offset)
-    - PDF generation (Cmd+P)
+    - PDF generation (Cmd+P) with layout settings and preview
     - Export positions to share with others - Compatible with ClogAmp & [ClogAmp2](https://www.clogamp.de/en/) (Windows)
-- Resizable Clock (Cmd+T)
+- Resizable Clock with fixed aspect ratio and auto-scaling font (Cmd+T)
+- Pre-play countdown
 - Countdown (Cmd+D)
 - History (with PDF generation - Cmd+P)
 - Playlists (Cmd+L)
@@ -22,6 +24,7 @@ Built for Clogging Enthusiasts to play music, manipulate speed, edit positions, 
 - Calculate BPM (automatically or via Cmd+B)
 - Beats Player (experimental - hear how a step sounds like - Tools => Beats Player)
 - Integrated with MacOS Media Keys and Control Center
+- Mono/proportional font selection for the position table
 
 ## Screenshots
 <img src="https://raw.githubusercontent.com/lunk22/ClogAmpSwift/refs/heads/main/Screenshots/ClogAmpMacMainWindow.png" width="500">
@@ -29,8 +32,7 @@ Built for Clogging Enthusiasts to play music, manipulate speed, edit positions, 
 
 
 ## Used libraries / Frameworks:
-- [id3Lib](http://id3lib.sourceforge.net/) => Read mp3 info
-- [BASS & BASS FX](http://www.un4seen.com/) => Determine BPM
+- [TagLib](https://taglib.org/) - [GitHub](https://github.com/taglib/taglib) - [License](https://github.com/taglib/taglib/blob/master/COPYING.LGPL) => Read/write MP3 ID3 tags (bundled as a universal static library)
 - [SwiftyStringScore](https://github.com/yichizhang/SwiftyStringScore) - [License](https://github.com/yichizhang/SwiftyStringScore/blob/master/LICENSE) => Find matching PDFs
 - [Sparkle](https://sparkle-project.org/) - [GitHub](https://github.com/sparkle-project/Sparkle) - [License](https://github.com/sparkle-project/Sparkle/blob/master/LICENSE) => Version updates
 - [swift-html-to-pdf](https://github.com/coenttb/swift-html-to-pdf/) - [License](https://github.com/coenttb/swift-html-to-pdf/blob/main/LICENCE) => Convert Positions/History to PDF
