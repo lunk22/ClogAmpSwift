@@ -20,7 +20,7 @@ class TimePanelViewController: ViewController {
     private func naturalTextSize() -> NSSize {
         let fontName = self.textFieldTime.font?.fontName ?? "Monaco"
         let font = NSFont(name: fontName, size: 100) ?? NSFont.monospacedDigitSystemFont(ofSize: 100, weight: .regular)
-        return (" 00:00:00" as NSString).size(withAttributes: [.font: font])
+        return (" 00:00:00 " as NSString).size(withAttributes: [.font: font])
     }
 
     override func viewDidAppear() {
@@ -31,7 +31,7 @@ class TimePanelViewController: ViewController {
         window.contentAspectRatio = size
 
         // Snap current frame to the correct aspect ratio (width stays, height adjusts)
-        let ratio = size.width / size.height
+        let ratio = 3.7953 //size.width / size.height
         var contentRect = window.contentRect(forFrameRect: window.frame)
         contentRect.size.height = contentRect.size.width / ratio
         let newFrame = window.frameRect(forContentRect: contentRect)

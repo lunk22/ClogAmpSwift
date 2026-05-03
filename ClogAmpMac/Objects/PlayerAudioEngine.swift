@@ -279,23 +279,28 @@ class PlayerAudioEngine {
         
         if Settings.normalizeAudioLevels {
             print("Audio normalization started for file: \(audioFile!.url)", to: &normalizationLogger)
-            averagePowers(audioFileURL: audioFile!.url, forChannel: 0, completionHandler: { powers, success  in
-                if success {
-                    let maxValue = powers.max() ?? 0.0
-                    // Calc with -10 to not deviate too far from system volume. Calculate with base of 0 will increase the gain too much
-                    let adjustedGain = Settings.normalizeAudioBoost ? -5 - maxValue : -10 - maxValue
-                    self.equalizer.globalGain = adjustedGain
-                    print("Audio normalization completed. Gain adjustment: \(adjustedGain) - Boost active: \(Settings.normalizeAudioBoost)", to: &normalizationLogger)
-                    print("----------------------------------------------------", to: &normalizationLogger)
-                } else {
-                    print("Failed to perform audio normalization.", to: &normalizationLogger)
-                    print("----------------------------------------------------", to: &normalizationLogger)
-                }
-                // No matter if it was successful, the file should still be playable
-                self.readyToPlay = true
-                
-                if self.shouldPlay {
-                    self.play()
+            averagePowers(audioFileURL: audioFile!.url, completionHandler: { powers, success in
+                DispatchQueue.main.async {
+                    if success {
+                        let maxValue = powers.max() ?? 0.0
+                        // Calc with -10 to not deviate too far from system volume. Calculate with base of 0 will increase the gain too much
+                        let targetLevel: Float = Settings.normalizeAudioBoost ? -5 : -10
+                        let adjustedGain = targetLevel - maxValue
+                        // Cap ceiling so globalGain + max EQ band boost stays within the API limit
+                        let maxBandBoost = max(0.0, max(max(self.equalizer.bands[0].gain, self.equalizer.bands[1].gain), self.equalizer.bands[2].gain))
+                        let clampedGain = min(max(adjustedGain, -96.0), 24.0 - maxBandBoost)
+                        self.equalizer.globalGain = clampedGain
+                        print("Audio normalization completed. Gain adjustment: \(clampedGain) - Boost active: \(Settings.normalizeAudioBoost)", to: &normalizationLogger)
+                        print("----------------------------------------------------", to: &normalizationLogger)
+                    } else {
+                        print("Failed to perform audio normalization.", to: &normalizationLogger)
+                        print("----------------------------------------------------", to: &normalizationLogger)
+                    }
+                    // No matter if it was successful, the file should still be playable
+                    self.readyToPlay = true
+                    if self.shouldPlay {
+                        self.play()
+                    }
                 }
             })
         } else {
@@ -318,9 +323,8 @@ class PlayerAudioEngine {
     }
     
     // Metering
-    func averagePowers(audioFileURL: URL, forChannel channelNumber: Int, completionHandler: @escaping(_ powers: [Float], _ success: Bool) -> ()) {
+    func averagePowers(audioFileURL: URL, completionHandler: @escaping(_ powers: [Float], _ success: Bool) -> ()) {
         // Credits go to https://stackoverflow.com/a/52280271
-        // This is only slightly modified to handle errors
         let audioFile = try? AVAudioFile(forReading: audioFileURL)
         guard let audioFile = audioFile else {
             completionHandler([0], false)
@@ -328,56 +332,41 @@ class PlayerAudioEngine {
         }
         let audioFilePFormat = audioFile.processingFormat
         let audioFileLength = audioFile.length
-        
-        //Set the size of frames to read from the audio file, you can adjust this to your liking
-        let frameSizeToRead = Int(audioFilePFormat.sampleRate/20)
-        
-        //This is to how many frames/portions we're going to divide the audio file
-        let numberOfFrames = Int(audioFileLength)/frameSizeToRead
-        
-        //Create a pcm buffer the size of a frame
+        let channelCount = Int(audioFilePFormat.channelCount)
+
+        let frameSizeToRead = Int(audioFilePFormat.sampleRate / 20)
+        let numberOfFrames = Int(audioFileLength) / frameSizeToRead
+
         guard let audioBuffer = AVAudioPCMBuffer(pcmFormat: audioFilePFormat, frameCapacity: AVAudioFrameCount(frameSizeToRead)) else {
             completionHandler([0], false)
             return
         }
-        
-        //Do the calculations in a background thread, if you don't want to block the main thread for larger audio files
+
         DispatchQueue.global(qos: .userInitiated).async {
-            
-            //This is the array to be returned
-            var returnArray : [Float] = [Float]()
-            
-            //We're going to read the audio file, frame by frame
+            var returnArray: [Float] = []
+
             for i in 0..<numberOfFrames {
-                
-                //Change the position from which we are reading the audio file, since each frame starts from a different position in the audio file
                 audioFile.framePosition = AVAudioFramePosition(i * frameSizeToRead)
-                
-                //Read the frame from the audio file
+
                 do {
                     try audioFile.read(into: audioBuffer, frameCount: AVAudioFrameCount(frameSizeToRead))
                 } catch {
                     completionHandler([0], false)
                     return
                 }
-                
-                //Get the data from the chosen channel
-                let channelData = audioBuffer.floatChannelData![channelNumber]
-                
-                //This is the array of floats
-                let arr = Array(UnsafeBufferPointer(start:channelData, count: frameSizeToRead))
-                
-                //Calculate the mean value of the absolute values
-                let meanValue = arr.reduce(0, {$0 + abs($1)})/Float(arr.count)
-                
-                //Calculate the dB power (You can adjust this), if average is less than 0.000_000_01 we limit it to -160.0
-                let dbPower: Float = meanValue > 0.000_000_01 ? (20 * log10(meanValue)) : -160.0
-                
-                //append the db power in the current frame to the returnArray
-                returnArray.append(dbPower)
+
+                // Take the loudest channel per chunk so stereo peaks are not missed
+                var maxChannelDb: Float = -160.0
+                for channel in 0..<channelCount {
+                    let channelData = audioBuffer.floatChannelData![channel]
+                    let arr = Array(UnsafeBufferPointer(start: channelData, count: frameSizeToRead))
+                    let rms = sqrt(arr.map { $0 * $0 }.reduce(0, +) / Float(arr.count))
+                    let dbPower: Float = rms > 0.000_000_01 ? 20 * log10(rms) : -160.0
+                    maxChannelDb = max(maxChannelDb, dbPower)
+                }
+                returnArray.append(maxChannelDb)
             }
-            
-            //Return the dBPowers
+
             completionHandler(returnArray, true)
         }
     }
