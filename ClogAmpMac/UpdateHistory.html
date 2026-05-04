@@ -18,14 +18,31 @@
     <p>1.7.0</p>
     <div>
         <ul>
+            <li>
+                Pre-play countdown<br/>
+                When you press Play, an 8-beat visual countdown is displayed on the player
+                before the first named position in the song is reached, helping you anticipate
+                the start of the choreography.<br/><br/>
+
+                <b>Requirements:</b>
+                <ul>
+                    <li>The song must have its <b>BPM</b> set correctly so the beat timing is accurate.</li>
+                    <li>The song must have at least one <b>named position</b>. The first position
+                        that has a non-empty name is treated as the start of the choreography
+                        and is the point the countdown counts towards.</li>
+                    <li>"Show Beat Countdown" must be enabled in Settings &gt; Positions.</li>
+                </ul><br/>
+
+                The countdown can be cancelled at any time by pressing Space, Pause, or Stop.<br/>
+                <br/>
+            </li>
             <li>Playlist overhaul</li>
             <li>Loop rework</li>
-            <li>Pre-play countdown</li>
             <li>Clock window remembers open state and is now resizable with a fixed aspect ratio and auto-scaling font</li>
             <li>Beats countdown before a position starts</li>
             <li>PDF layout settings and preview for positions</li>
             <li>Mono/proportional font selection for the position table</li>
-            <li>Replaced id3lib and BASS/BASS FX with TagLib and native BPM detection</li>
+            <li>Replaced id3lib and BASS/BASS FX with TagLib (v. 2.2.1) and native BPM detection</li>
             <li>Faster Song load times</li>
         </ul>
     </div>
