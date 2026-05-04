@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var systemSleepDisabled: Bool = false
     var noSleepAssertionID: IOPMAssertionID = 0
     var isTerminating: Bool = false
+    var timePanelWindowController: TimePanelWindowController?
 
     
     override init() {
@@ -48,11 +49,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Database.buildTablesIfNeeded()
 
         if UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefTimeWindowOpen.rawValue) {
+            showTimeWindow()
+        }
+    }
+
+    private func showTimeWindow() {
+        if timePanelWindowController == nil {
             let storyboard = NSStoryboard(name: "Main", bundle: nil)
-            if let wc = storyboard.instantiateController(withIdentifier: "Time Window") as? TimePanelWindowController {
-                wc.showWindow(nil)
-                NSApp.windows.first { $0.identifier?.rawValue == "mainWindow" }?.makeKeyAndOrderFront(nil)
-            }
+            timePanelWindowController = storyboard.instantiateController(withIdentifier: "Time Window") as? TimePanelWindowController
+        }
+        timePanelWindowController?.showWindow(nil)
+        NSApp.windows.first { $0.identifier?.rawValue == "mainWindow" }?.makeKeyAndOrderFront(nil)
+    }
+
+    @IBAction func handleToggleTimeWindow(_ sender: Any) {
+        if timePanelWindowController?.window?.isVisible == true {
+            timePanelWindowController?.close()
+        } else {
+            showTimeWindow()
         }
     }
     
@@ -136,6 +150,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSWorkspace.shared.open(url)
         }
     }
-    
+
+}
+
+extension AppDelegate: NSMenuItemValidation {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(handleToggleTimeWindow(_:)) {
+            let isVisible = timePanelWindowController?.window?.isVisible ?? false
+            menuItem.title = NSLocalizedString(isVisible ? "hideTime" : "showTime", bundle: Bundle.main, comment: "")
+        }
+        return true
+    }
 }
 

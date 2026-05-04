@@ -82,17 +82,20 @@ class Song {
     }
     
     //MARK: Static Stuff
-    static var songDict: Dictionary<String, Song> = [:] //Empty dictionary
+    private static var songDict: Dictionary<String, Song> = [:]
+    private static let songDictQueue = DispatchQueue(label: "de.pascalroessel.ClogAmpSwift.songDict")
+
     static func retrieveSong(path: URL) -> Song{
         let stringPath = path.absoluteString.removingPercentEncoding!
-        if songDict.count > 0, let song = songDict[stringPath] {
+
+        if let song = songDictQueue.sync(execute: { songDict[stringPath] }) {
             song.readBasicInfo()
             return song
-        }else{
-            let newSong = Song(path: path)
-            songDict[stringPath] = newSong
-            return newSong
         }
+
+        let newSong = Song(path: path)
+        songDictQueue.sync { songDict[stringPath] = newSong }
+        return newSong
     }
     
     // Initializer

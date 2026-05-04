@@ -12,6 +12,11 @@ class TimePanelWindowController: NSWindowController, NSWindowDelegate {
     override func windowDidLoad() {
         window?.setFrameAutosaveName("timeWindowAutosave")
         window?.delegate = self
+        window?.isMovableByWindowBackground = true
+        window?.titleVisibility = .hidden
+        window?.standardWindowButton(.closeButton)?.isHidden = true
+        window?.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        window?.standardWindowButton(.zoomButton)?.isHidden = true
 
         super.windowDidLoad()
     }

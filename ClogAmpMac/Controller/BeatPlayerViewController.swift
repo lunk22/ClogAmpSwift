@@ -47,8 +47,6 @@ class BeatPlayerViewController: ViewController {
             self.player!.volume = 0.025
             self.player!.play()
             delayWithSeconds(0.1) {
-                self.player!.volume = 1
-
                 do {
                     self.player = try AVAudioPlayer(contentsOf: clickUrl)
                     self.player!.prepareToPlay()

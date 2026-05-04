@@ -8,6 +8,7 @@
 import Foundation
 import AppKit
 import AVFoundation
+import AudioToolbox
 import MediaPlayer
 
 class PlayerAudioEngine {
@@ -75,6 +76,7 @@ class PlayerAudioEngine {
     private var speedControl: AVAudioUnitVarispeed
     private var pitchControl: AVAudioUnitTimePitch
     private var equalizer: AVAudioUnitEQ
+    private var compressor: AVAudioUnitEffect
     private var offset: AVAudioFramePosition = AVAudioFramePosition(0) {
         didSet {
             pausedFrame = 0
@@ -168,18 +170,29 @@ class PlayerAudioEngine {
         pitchControl = AVAudioUnitTimePitch()
         audioPlayer = AVAudioPlayerNode()
         equalizer = AVAudioUnitEQ()
-        
+        compressor = AVAudioUnitEffect(audioComponentDescription: AudioComponentDescription(
+            componentType: kAudioUnitType_Effect,
+            componentSubType: kAudioUnitSubType_DynamicsProcessor,
+            componentManufacturer: kAudioUnitManufacturer_Apple,
+            componentFlags: 0,
+            componentFlagsMask: 0
+        ))
+
         // 2: connect the components to our playback engine
         audioEngine.attach(audioPlayer)
         audioEngine.attach(pitchControl)
         audioEngine.attach(speedControl)
         audioEngine.attach(equalizer)
-        
+        audioEngine.attach(compressor)
+
         // 3: arrange the parts so that output from one is input to another
         audioEngine.connect(audioPlayer, to: speedControl, format: nil)
         audioEngine.connect(speedControl, to: pitchControl, format: nil)
         audioEngine.connect(pitchControl, to: equalizer, format: nil)
-        audioEngine.connect(equalizer, to: audioEngine.mainMixerNode, format: nil)
+        audioEngine.connect(equalizer, to: compressor, format: nil)
+        audioEngine.connect(compressor, to: audioEngine.mainMixerNode, format: nil)
+
+        applyCompressorSettings()
         
         let freqs = [
             Settings.eqFrequencyLowHz,
@@ -429,6 +442,15 @@ class PlayerAudioEngine {
         equalizer.bands[2].gain = adjustFrequencyDb(newTargetDb)
     }
     
+    func applyCompressorSettings() {
+        compressor.bypass = !Settings.compressorEnabled
+        AudioUnitSetParameter(compressor.audioUnit, 0, kAudioUnitScope_Global, 0, Settings.compressorThreshold,  0) // threshold
+        AudioUnitSetParameter(compressor.audioUnit, 1, kAudioUnitScope_Global, 0, Settings.compressorHeadRoom,   0) // head room
+        AudioUnitSetParameter(compressor.audioUnit, 4, kAudioUnitScope_Global, 0, 0.001,                         0) // attack time
+        AudioUnitSetParameter(compressor.audioUnit, 5, kAudioUnitScope_Global, 0, 0.05,                          0) // release time
+        AudioUnitSetParameter(compressor.audioUnit, 6, kAudioUnitScope_Global, 0, Settings.compressorMasterGain, 0) // master gain
+    }
+
     func setRate(_ offset: Int) {
         song?.speed = offset
         let newRate = 1.0 + Float(offset) / 100

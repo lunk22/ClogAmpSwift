@@ -13,26 +13,31 @@ class EQViewController: ViewController {
     
     @IBAction func freqChangedLow(_ sender: NSSlider) {
         if isDoubleClickEvent() {
-            sender.floatValue = 0.0
+            resetSlider(sender)
         }
         UserDefaults.standard.set(sender.floatValue, forKey: "eqFrequencyLow")
         PlayerAudioEngine.shared.setFrequencyDbLow(newTargetDb: sender.floatValue)
     }
-    
+
     @IBAction func freqChangedMid(_ sender: NSSlider) {
         if isDoubleClickEvent() {
-            sender.floatValue = 0.0
+            resetSlider(sender)
         }
         UserDefaults.standard.set(sender.floatValue, forKey: "eqFrequencyMid")
         PlayerAudioEngine.shared.setFrequencyDbMid(newTargetDb: sender.floatValue)
     }
-    
+
     @IBAction func freqChangedHigh(_ sender: NSSlider) {
         if isDoubleClickEvent() {
-            sender.floatValue = 0.0
+            resetSlider(sender)
         }
         UserDefaults.standard.set(sender.floatValue, forKey: "eqFrequencyHigh")
         PlayerAudioEngine.shared.setFrequencyDbHigh(newTargetDb: sender.floatValue)
+    }
+
+    private func resetSlider(_ slider: NSSlider) {
+        slider.floatValue = 0.0
+        slider.display()
     }
     
     func isDoubleClickEvent() -> Bool {

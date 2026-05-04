@@ -32,6 +32,7 @@ class SongTableViewController: ViewController {
     @IBOutlet weak var searchField: NSTextField!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var pathControl: NSPathControl!
+    @IBOutlet weak var fileCountLabel: NSTextField!
 
     // MARK: Overrides
     override func viewDidLoad() {
@@ -217,10 +218,11 @@ class SongTableViewController: ViewController {
         DispatchQueue.main.async(qos: .default) {
             let selRow = self.songTable.selectedRow
             self.songTable.reloadData()
-//            self.filterTable()
             if rememberSelection {
                 self.songTable.selectRowIndexes([selRow], byExtendingSelection: false)
             }
+            let fmt = NSLocalizedString("songCount", bundle: Bundle.main, comment: "")
+            self.fileCountLabel?.stringValue = String(format: fmt, self.aSongsForTable.count)
         }
     }
     

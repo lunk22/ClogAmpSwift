@@ -792,3 +792,18 @@
 
 /* Class = "NSTextFieldCell"; title = "Mono Font:"; ObjectID = "mFL-ab-el2"; */
 "mFL-ab-el2.title" = "Mono-Schriftart:";
+
+/* Class = "NSButtonCell"; title = "Enable Compression (reload required)"; ObjectID = "cmp-en-cel"; */
+"cmp-en-cel.title" = "Kompression aktivieren (Neuladen erforderlich)";
+
+/* Class = "NSTextFieldCell"; title = "Threshold (dB)"; ObjectID = "thr-lb-cl0"; */
+"thr-lb-cl0.title" = "Schwellenwert (dB)";
+
+/* Class = "NSTextFieldCell"; title = "Head Room (dB)"; ObjectID = "hdr-lb-cl0"; */
+"hdr-lb-cl0.title" = "Kopfraum (dB)";
+
+/* Class = "NSTextFieldCell"; title = "Master Gain (dB)"; ObjectID = "mst-lb-cl0"; */
+"mst-lb-cl0.title" = "Master-Verstärkung (dB)";
+
+/* Class = "NSButtonCell"; title = "Time Window transparent when inactive"; ObjectID = "twt-in-cel"; */
+"twt-in-cel.title" = "Zeitfenster transparent wenn inaktiv";

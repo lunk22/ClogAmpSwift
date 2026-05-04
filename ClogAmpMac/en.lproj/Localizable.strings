@@ -34,12 +34,18 @@
 "pdfHeaderSpacing" = "Header spacing";
 "pdfResetDefaults" = "Reset to Defaults";
 "beatCountdownTooltip" = "Shows a beat countdown overlay on the player when the song is playing before the first named position. The overlay displays which beat within the current group of 8 is playing, helping anticipate the start of the choreography.\n\nRequirements:\n• Song must have BPM set\n• Song must have at least one named position. The first named position markes the start the countdown counts towards";
-"playbackOffsetTooltip" = "When enabled, the next position is highlighted in the position list before it actually starts. The highlight advances by the number of beats or seconds configured in the offset above.\n\nRequirements:\n• Offset type must be set to Beats or Seconds\n• Offset value must be greater than 0\n• For beats: song must have BPM set";
+"compressionTooltip" = "Dynamically reduces the volume difference between quiet and loud passages within a song, resulting in more consistent perceived loudness.\n\nThreshold (dB): The level above which compression begins. Lower values (e.g. -30) apply compression more broadly; higher values (e.g. -10) only compress the loudest peaks. Default: -18\n\nHead Room (dB): How far above the threshold before hard limiting kicks in. Higher values produce a softer, more gradual compression curve. Default: 5\n\nMaster Gain (dB): Makeup gain applied after compression to restore the overall output level. Increase this if the track sounds too quiet after compression. Default: 0\n\nNote: Changes take effect when the next song is loaded.";
+"playbackOffsetTooltip" ="When enabled, the next position is highlighted in the position list before it actually starts. The highlight advances by the number of beats or seconds configured in the offset above.\n\nRequirements:\n• Offset type must be set to Beats or Seconds\n• Offset value must be greater than 0\n• For beats: song must have BPM set";
 
 "playlistCloseTitle" = "Stop Playlist?";
 "playlistCloseMessage" = "A playlist is currently playing. Closing this window will stop playback.";
 "playlistCloseConfirm" = "Close Window";
 "playlistCloseCancel" = "Cancel";
+
+"songCount" = "%d files";
+
+"showTime" = "Show Time";
+"hideTime" = "Hide Time";
 
 "Play song" = "Play song";
 "Play the currently loaded song" = "Play the currently loaded song";

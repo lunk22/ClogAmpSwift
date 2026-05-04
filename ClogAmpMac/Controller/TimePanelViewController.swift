@@ -10,11 +10,11 @@ import AppKit
 class TimePanelViewController: ViewController {
     // MARK: Outlets
     @IBOutlet weak var textFieldTime: NSTextField!
-    
+
     // MARK: Properties
     var timer: Timer?
-    
-    
+    private var trackingArea: NSTrackingArea?
+
     // MARK: Functions
 
     private func naturalTextSize() -> NSSize {
@@ -30,12 +30,19 @@ class TimePanelViewController: ViewController {
         let size = naturalTextSize()
         window.contentAspectRatio = size
 
-        // Snap current frame to the correct aspect ratio (width stays, height adjusts)
-        let ratio = 3.7953 //size.width / size.height
+        let ratio = 3.7953
         var contentRect = window.contentRect(forFrameRect: window.frame)
         contentRect.size.height = contentRect.size.width / ratio
         let newFrame = window.frameRect(forContentRect: contentRect)
         window.setFrame(newFrame, display: true)
+
+        setupTrackingArea()
+        updateTransparency(mouseInside: isMouseInsideWindow())
+
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(defaultsDidChange),
+            name: UserDefaults.didChangeNotification,
+            object: nil)
     }
 
     override func viewDidLayout() {
@@ -49,8 +56,10 @@ class TimePanelViewController: ViewController {
         let fontName = self.textFieldTime.font?.fontName ?? "Monaco"
         self.textFieldTime.font = NSFont(name: fontName, size: newFontSize)
                                ?? NSFont.monospacedDigitSystemFont(ofSize: newFontSize, weight: .regular)
+
+        setupTrackingArea()
     }
-    
+
     override func viewWillAppear() {
         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
             let date     = Date()
@@ -67,8 +76,59 @@ class TimePanelViewController: ViewController {
             self.textFieldTime.stringValue = time.asTime()
         })
     }
-    
+
     override func viewDidDisappear() {
-        self.timer?.invalidate()
+        timer?.invalidate()
+        if let area = trackingArea {
+            view.removeTrackingArea(area)
+            trackingArea = nil
+        }
+        NotificationCenter.default.removeObserver(self, name: UserDefaults.didChangeNotification, object: nil)
+    }
+
+    // MARK: Transparency
+
+    private func setupTrackingArea() {
+        if let existing = trackingArea {
+            view.removeTrackingArea(existing)
+        }
+        let options: NSTrackingArea.Options = [.mouseEnteredAndExited, .activeAlways]
+        let area = NSTrackingArea(rect: view.bounds, options: options, owner: self, userInfo: nil)
+        view.addTrackingArea(area)
+        trackingArea = area
+    }
+
+    private func isMouseInsideWindow() -> Bool {
+        guard let window = view.window else { return false }
+        return window.frame.contains(NSEvent.mouseLocation)
+    }
+
+    override func mouseEntered(with event: NSEvent) {
+        setTransparent(false)
+    }
+
+    override func mouseExited(with event: NSEvent) {
+        updateTransparency(mouseInside: false)
+    }
+
+    @objc private func defaultsDidChange() {
+        updateTransparency(mouseInside: isMouseInsideWindow())
+    }
+
+    private func updateTransparency(mouseInside: Bool) {
+        setTransparent(Settings.timeWindowTransparentInactive && !mouseInside)
+    }
+
+    private func setTransparent(_ transparent: Bool) {
+        guard let window = view.window else { return }
+        if transparent {
+            window.isOpaque    = false
+            window.hasShadow   = false
+            window.backgroundColor = .clear
+        } else {
+            window.isOpaque    = false  // must stay false because titlebarAppearsTransparent
+            window.hasShadow   = true
+            window.backgroundColor = .windowBackgroundColor
+        }
     }
 }

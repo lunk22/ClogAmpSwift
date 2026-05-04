@@ -13,6 +13,7 @@ class SettingsGeneralViewController: NSViewController {
     // MARK: VARS
     @objc let defaults: UserDefaults = .standard
     @objc let version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    private weak var compressionInfoButton: NSButton?
     private weak var beatCountdownInfoButton: NSButton?
 
     // MARK: OUTLETS
@@ -20,6 +21,7 @@ class SettingsGeneralViewController: NSViewController {
     @IBOutlet weak var ddlbViewAfterSongLoad: NSComboBox!
     @IBOutlet weak var ddlbMonoFont: NSComboBox!
     @IBOutlet weak var ddlbProportionalFont: NSComboBox!
+    @IBOutlet weak var btnEnableCompression: NSButton!
     @IBOutlet weak var btnShowBeatCountdown: NSButton!
 
     // MARK: ACTIONS
@@ -29,6 +31,58 @@ class SettingsGeneralViewController: NSViewController {
 
     @IBAction func handleSleepPreventionChanged(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("preventSystemSleepChanged"), object: nil)
+    }
+
+    @objc func handleCompressionInfo(_ sender: NSButton) {
+
+        /* Claudes suggestions for the settings if the defaults are not enough:
+        
+        For reducing the gap between loud and quiet, the key lever is Threshold — lower it to catch more of the signal, not just the loudest peaks:
+
+           ┌────────────┬───────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+           │  Setting   │ Value │                                                          Why                                                          │
+           ├────────────┼───────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+           │ Threshold  │ −24   │ Catches a broader range of the signal, not just peaks. The default −18 only compresses the top 18 dB; −24 reaches     │
+           │            │ dB    │ further into the quieter passages.                                                                                    │
+           ├────────────┼───────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+           │ Head Room  │ 5 dB  │ Leave this as-is. It controls how gradually the compression kicks in — 5 dB gives a natural curve rather than an      │
+           │            │       │ abrupt clamp.                                                                                                         │
+           ├────────────┼───────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+           │ Master     │ 4 dB  │ Compensates for the overall level reduction that compression causes, which effectively lifts the quiet parts relative │
+           │ Gain       │       │  to the loud ones.                                                                                                    │
+           └────────────┴───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+  
+        If that feels too heavy (you hear the compression "pumping" on dynamic tracks):
+          Back the Threshold up to −21 and reduce Master Gain to 2.
+        If you want even more evening-out:
+          Push Threshold to −30 and Master Gain to 6.
+
+        The core tradeoff: lower Threshold = more dynamic range reduction but risks making the track sound "squashed" if overdone, especially on music
+        that was intentionally mastered with dynamics.
+        */
+        
+        let text = NSLocalizedString("compressionTooltip", bundle: Bundle.main, comment: "")
+
+        let label = NSTextField(wrappingLabelWithString: text)
+        label.isEditable = false
+        label.isBordered = false
+        label.drawsBackground = false
+        label.preferredMaxLayoutWidth = 260
+
+        let popover = NSPopover()
+        let vc = NSViewController()
+        vc.view = NSView(frame: NSRect(x: 0, y: 0, width: 280, height: 1))
+        label.translatesAutoresizingMaskIntoConstraints = false
+        vc.view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: vc.view.leadingAnchor, constant: 12),
+            label.trailingAnchor.constraint(equalTo: vc.view.trailingAnchor, constant: -12),
+            label.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: 12),
+            label.bottomAnchor.constraint(equalTo: vc.view.bottomAnchor, constant: -12),
+        ])
+        popover.contentViewController = vc
+        popover.behavior = .transient
+        popover.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
     }
 
     @objc func handleBeatCountdownInfo(_ sender: NSButton) {
@@ -58,7 +112,7 @@ class SettingsGeneralViewController: NSViewController {
 
     // MARK: View overrides
     override var preferredContentSize: NSSize {
-        get { NSSize(width: 804, height: 491) }
+        get { NSSize(width: 804, height: 623) }
         set { }
     }
 
@@ -69,6 +123,17 @@ class SettingsGeneralViewController: NSViewController {
         self.ddlbViewAfterSongLoad.selectItem(at: Settings.viewAfterSongLoad)
         self.ddlbMonoFont.stringValue = Settings.monoFontName
         self.ddlbProportionalFont.stringValue = Settings.proportionalFontName
+
+        let compressionInfo = NSButton(frame: NSRect(x: NSMaxX(btnEnableCompression.frame) + 4,
+                                                     y: btnEnableCompression.frame.origin.y - 2,
+                                                     width: 21, height: 21))
+        compressionInfo.bezelStyle = .helpButton
+        compressionInfo.title = ""
+        compressionInfo.toolTip = NSLocalizedString("compressionTooltip", bundle: Bundle.main, comment: "")
+        compressionInfo.target = self
+        compressionInfo.action = #selector(handleCompressionInfo(_:))
+        btnEnableCompression.superview?.addSubview(compressionInfo)
+        compressionInfoButton = compressionInfo
 
         let info = NSButton(frame: NSRect(x: NSMaxX(btnShowBeatCountdown.frame) + 4,
                                          y: btnShowBeatCountdown.frame.origin.y - 2,

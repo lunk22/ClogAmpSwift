@@ -60,6 +60,11 @@ extension UserDefaults {
         
         case prefNormalizeAudioLevels
         case prefNormalizeAudioBoost
+
+        case prefCompressorEnabled
+        case prefCompressorThreshold
+        case prefCompressorHeadRoom
+        case prefCompressorMasterGain
         
         // Settings - Positions
         case prefPlayPositionOnSelection
@@ -100,6 +105,7 @@ extension UserDefaults {
         case prefAudioMetering // defaults write de.pascalroessel.ClogAmpSwift prefAudioMetering -bool true
 
         case prefTimeWindowOpen
+        case prefTimeWindowTransparentInactive
     }
 
     func reset() {

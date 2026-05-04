@@ -171,9 +171,31 @@ class Settings: NSObject {
     static var normalizeAudioBoost: Bool {
         return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefNormalizeAudioBoost.rawValue)
     }
-    
+
     static var normalizeAudioLevels: Bool {
         return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefNormalizeAudioLevels.rawValue)
+    }
+
+    static var timeWindowTransparentInactive: Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefTimeWindowTransparentInactive.rawValue)
+    }
+
+    static var compressorEnabled: Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefCompressorEnabled.rawValue)
+    }
+
+    static var compressorThreshold: Float {
+        let v = UserDefaults.standard.float(forKey: UserDefaults.Keys.prefCompressorThreshold.rawValue)
+        return v == 0 ? -18 : v
+    }
+
+    static var compressorHeadRoom: Float {
+        let v = UserDefaults.standard.float(forKey: UserDefaults.Keys.prefCompressorHeadRoom.rawValue)
+        return v == 0 ? 5 : v
+    }
+
+    static var compressorMasterGain: Float {
+        return UserDefaults.standard.float(forKey: UserDefaults.Keys.prefCompressorMasterGain.rawValue) // default 0 (no makeup gain unless user sets it)
     }
     
     static var playPositionOnSelection: Bool {

@@ -391,7 +391,7 @@ CA
                                         <menuItem isSeparatorItem="YES" id="M5M-04-aHN"/>
                                         <menuItem title="Show Time" keyEquivalent="t" id="Scw-3x-0hP">
                                             <connections>
-                                                <segue destination="kFC-bL-dcm" kind="show" id="xku-6Z-S4A"/>
+                                                <action selector="handleToggleTimeWindow:" target="Voe-Tx-rLC" id="tww-tg-act"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Countdown" keyEquivalent="d" id="h6c-1T-6YU">
@@ -646,18 +646,18 @@ CA
             <objects>
                 <viewController showSeguePresentationStyle="single" id="qhU-Gw-geV" customClass="SettingsGeneralViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5uu-KJ-2DK">
-                        <rect key="frame" x="0.0" y="0.0" width="804" height="491"/>
+                        <rect key="frame" x="0.0" y="0.0" width="804" height="623"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" borderType="none" title="Music / Player" translatesAutoresizingMaskIntoConstraints="NO" id="1wl-xy-Xys">
-                                <rect key="frame" x="422" y="132" width="362" height="172"/>
+                                <rect key="frame" x="422" y="189" width="362" height="282"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="4el-aL-boa">
-                                    <rect key="frame" x="0.0" y="0.0" width="362" height="155"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362" height="265"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y9s-aY-xLF">
-                                            <rect key="frame" x="18" y="115" width="155" height="17"/>
+                                            <rect key="frame" x="18" y="225" width="155" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Skip Forward (s)" id="itN-re-5zf">
                                                 <font key="font" metaFont="system"/>
@@ -666,7 +666,7 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkC-hd-GX0">
-                                            <rect key="frame" x="18" y="86" width="155" height="17"/>
+                                            <rect key="frame" x="18" y="196" width="155" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Skip Back (s)" id="mAe-eI-NxQ">
                                                 <font key="font" metaFont="system"/>
@@ -675,7 +675,7 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ZT-up-1kk">
-                                            <rect key="frame" x="18" y="50" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="160" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Colorize Player Controls" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ejn-LS-Ki0">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -692,7 +692,7 @@ CA
                                             </connections>
                                         </button>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ej1-PC-kzq">
-                                            <rect key="frame" x="204" y="113" width="50" height="22"/>
+                                            <rect key="frame" x="204" y="223" width="50" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="0SR-WB-Plb">
                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -710,7 +710,7 @@ CA
                                             </connections>
                                         </textField>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mx6-ca-vTo">
-                                            <rect key="frame" x="204" y="83" width="50" height="22"/>
+                                            <rect key="frame" x="204" y="193" width="50" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GzG-lz-6oi">
                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -728,7 +728,7 @@ CA
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYf-kR-God">
-                                            <rect key="frame" x="18" y="26" width="324" height="20"/>
+                                            <rect key="frame" x="18" y="136" width="324" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Auto-Determine BPM" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="d47-zQ-8R8">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -745,7 +745,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ss1-Go-aGQ">
-                                            <rect key="frame" x="18" y="2" width="324" height="20"/>
+                                            <rect key="frame" x="18" y="112" width="324" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Normalize Audio (reload required)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Gts-oe-EAq">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -761,12 +761,161 @@ CA
                                                 </binding>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cmp-en-abl">
+                                            <rect key="frame" x="18" y="88" width="290" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Enable Compression (reload required)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cmp-en-cel">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefCompressorEnabled" id="cmp-en-bnd">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </button>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thr-lb-el0">
+                                            <rect key="frame" x="18" y="61" width="152" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Threshold (dB)" id="thr-lb-cl0">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thr-sl-id0">
+                                            <rect key="frame" x="174" y="58" width="110" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <sliderCell key="cell" continuous="YES" alignment="left" minValue="-40" doubleValue="-18" tickMarkPosition="below" sliderType="linear" id="thr-sl-cl0">
+                                                <font key="font" metaFont="system"/>
+                                            </sliderCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefCompressorThreshold" id="thr-sl-bn0">
+                                                    <dictionary key="options">
+                                                        <real key="NSNotApplicablePlaceholder" value="-18"/>
+                                                        <real key="NSNullPlaceholder" value="-18"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </slider>
+                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thr-tf-id0">
+                                            <rect key="frame" x="290" y="58" width="54" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="thr-tf-cl0">
+                                                <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="3" id="thr-tf-fm0"/>
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefCompressorThreshold" id="thr-tf-bn0">
+                                                    <dictionary key="options">
+                                                        <real key="NSNotApplicablePlaceholder" value="-18"/>
+                                                        <real key="NSNullPlaceholder" value="-18"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-lb-el0">
+                                            <rect key="frame" x="18" y="35" width="152" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Head Room (dB)" id="hdr-lb-cl0">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-sl-id0">
+                                            <rect key="frame" x="174" y="32" width="110" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <sliderCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="20" doubleValue="5" tickMarkPosition="below" sliderType="linear" id="hdr-sl-cl0">
+                                                <font key="font" metaFont="system"/>
+                                            </sliderCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefCompressorHeadRoom" id="hdr-sl-bn0">
+                                                    <dictionary key="options">
+                                                        <real key="NSNotApplicablePlaceholder" value="5"/>
+                                                        <real key="NSNullPlaceholder" value="5"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </slider>
+                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-tf-id0">
+                                            <rect key="frame" x="290" y="32" width="54" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="hdr-tf-cl0">
+                                                <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2" id="hdr-tf-fm0"/>
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefCompressorHeadRoom" id="hdr-tf-bn0">
+                                                    <dictionary key="options">
+                                                        <real key="NSNotApplicablePlaceholder" value="5"/>
+                                                        <real key="NSNullPlaceholder" value="5"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mst-lb-el0">
+                                            <rect key="frame" x="18" y="9" width="152" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Master Gain (dB)" id="mst-lb-cl0">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mst-sl-id0">
+                                            <rect key="frame" x="174" y="6" width="110" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <sliderCell key="cell" continuous="YES" alignment="left" maxValue="12" tickMarkPosition="below" sliderType="linear" id="mst-sl-cl0">
+                                                <font key="font" metaFont="system"/>
+                                            </sliderCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefCompressorMasterGain" id="mst-sl-bn0">
+                                                    <dictionary key="options">
+                                                        <real key="NSNotApplicablePlaceholder" value="0.0"/>
+                                                        <real key="NSNullPlaceholder" value="0.0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </slider>
+                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mst-tf-id0">
+                                            <rect key="frame" x="290" y="6" width="54" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="mst-tf-cl0">
+                                                <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2" id="mst-tf-fm0"/>
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefCompressorMasterGain" id="mst-tf-bn0">
+                                                    <dictionary key="options">
+                                                        <real key="NSNotApplicablePlaceholder" value="0.0"/>
+                                                        <real key="NSNullPlaceholder" value="0.0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
                                     </subviews>
                                 </view>
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Appearance" translatesAutoresizingMaskIntoConstraints="NO" id="8ec-RZ-uKL">
-                                <rect key="frame" x="20" y="190" width="362" height="72"/>
+                                <rect key="frame" x="20" y="300" width="362" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="f1l-Ud-8w9">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="55"/>
@@ -790,7 +939,7 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Song Selection" translatesAutoresizingMaskIntoConstraints="NO" id="TuS-Rv-Rbk">
-                                <rect key="frame" x="422" y="324" width="362" height="110"/>
+                                <rect key="frame" x="422" y="491" width="362" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="po4-0M-Pvq">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="93"/>
@@ -823,7 +972,7 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Filter" translatesAutoresizingMaskIntoConstraints="NO" id="KmJ-78-dCf">
-                                <rect key="frame" x="20" y="270" width="362" height="69"/>
+                                <rect key="frame" x="20" y="380" width="362" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="kUU-zj-vbR">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="52"/>
@@ -865,14 +1014,14 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="nQo-pP-bi7">
-                                <rect key="frame" x="20" y="359" width="362" height="132"/>
+                                <rect key="frame" x="20" y="447" width="362" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="d04-w1-YsF">
-                                    <rect key="frame" x="0.0" y="0.0" width="362" height="115"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362" height="137"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DHk-f7-xzm">
-                                            <rect key="frame" x="18" y="77" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="99" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Focus Filter" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="YQs-tI-kI4">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -888,7 +1037,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tzj-al-krK">
-                                            <rect key="frame" x="18" y="55" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="77" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Wka-4n-czd">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -905,7 +1054,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNv-Ja-9UA">
-                                            <rect key="frame" x="18" y="33" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="55" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Prevent sleep when active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8Lo-uH-DMG">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -923,7 +1072,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bCd-xY-k2Z">
-                                            <rect key="frame" x="18" y="11" width="300" height="18"/>
+                                            <rect key="frame" x="18" y="33" width="300" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Show beat countdown" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bCd-xY-k3Z">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -939,12 +1088,29 @@ CA
                                                 </binding>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="twt-in-abl">
+                                            <rect key="frame" x="18" y="11" width="324" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Time Window transparent when inactive" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="twt-in-cel">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefTimeWindowTransparentInactive" id="twt-in-bnd">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="BPM Correction" translatesAutoresizingMaskIntoConstraints="NO" id="naQ-Tx-ckp">
-                                <rect key="frame" x="422" y="4" width="362" height="108"/>
+                                <rect key="frame" x="422" y="61" width="362" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="4KK-xx-P85">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="91"/>
@@ -1009,7 +1175,7 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Font" translatesAutoresizingMaskIntoConstraints="NO" id="oXz-ew-IrA">
-                                <rect key="frame" x="20" y="6" width="362" height="187"/>
+                                <rect key="frame" x="20" y="116" width="362" height="187"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="tIX-l3-OYx">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="170"/>
@@ -1100,6 +1266,7 @@ CA
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="btnEnableCompression" destination="cmp-en-abl" id="cmp-en-out"/>
                         <outlet property="btnShowBeatCountdown" destination="bCd-xY-k2Z" id="bCd-xY-k7Z"/>
                         <outlet property="ddlbAppearance" destination="ZGb-gR-2yS" id="E2R-pf-o3H"/>
                         <outlet property="ddlbMonoFont" destination="mFN-cB-ox1" id="mFN-ou-tlt"/>
@@ -3007,6 +3174,14 @@ IA
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="magnifyingglass" catalog="system" id="xNU-v2-m5m"/>
                             </imageView>
+                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fct-lb-id0">
+                                <rect key="frame" x="8" y="8" width="200" height="13"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="" id="fct-lb-cl0">
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="kvU-es-0G5" firstAttribute="centerY" secondItem="b06-Er-8KR" secondAttribute="centerY" id="Uz0-Gp-qBl"/>
@@ -3014,6 +3189,7 @@ IA
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fileCountLabel" destination="fct-lb-id0" id="fct-lb-out"/>
                         <outlet property="pathControl" destination="RYs-DU-iVq" id="uzu-1I-SQ9"/>
                         <outlet property="progressIndicator" destination="kvU-es-0G5" id="Gjm-oP-bMN"/>
                         <outlet property="searchField" destination="9TZ-NU-mJx" id="I2x-7l-8sk"/>

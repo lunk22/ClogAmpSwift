@@ -34,12 +34,18 @@
 "pdfHeaderSpacing" = "Kopfzeilenabstand";
 "pdfResetDefaults" = "Standardwerte wiederherstellen";
 "beatCountdownTooltip" = "Zeigt einen Beat-Countdown als Overlay im Player an, solange die Musik vor der ersten benannten Position spielt. Das Overlay zeigt den aktuellen Beat innerhalb der laufenden 8er-Gruppe und hilft, den Start der Choreographie zu antizipieren.\n\nVoraussetzungen:\n• Lied muss BPM haben\n• Lied muss mindestens eine benannte Position haben. Die erste benannte Position markiert den Start, auf den der Countdown hinzählt";
-"playbackOffsetTooltip" = "Wenn aktiviert, wird die nächste Position in der Positionsliste bereits vor ihrem tatsächlichen Start hervorgehoben. Die Hervorhebung erfolgt um die oben konfigurierte Anzahl an Beats oder Sekunden früher.\n\nVoraussetzungen:\n• Versatztyp muss auf Beats oder Sekunden eingestellt sein\n• Versatzwert muss größer als 0 sein\n• Für Beats: Lied muss BPM haben";
+"compressionTooltip" = "Reduziert dynamisch den Lautstärkeunterschied zwischen leisen und lauten Passagen eines Liedes und sorgt so für eine gleichmäßigere wahrgenommene Lautstärke.\n\nSchwellenwert (dB): Der Pegel, ab dem die Kompression einsetzt. Niedrigere Werte (z. B. -30) komprimieren breiter; höhere Werte (z. B. -10) erfassen nur die lautesten Spitzen. Standard: -18\n\nKopfraum (dB): Wie weit über dem Schwellenwert, bevor eine harte Begrenzung greift. Höhere Werte erzeugen eine weichere, graduellere Kompressionskurve. Standard: 5\n\nMaster-Verstärkung (dB): Ausgleichsverstärkung nach der Kompression, um den Ausgangspegel wiederherzustellen. Erhöhen, wenn das Lied nach der Kompression zu leise klingt. Standard: 0\n\nHinweis: Änderungen werden beim Laden des nächsten Liedes wirksam.";
+"playbackOffsetTooltip" ="Wenn aktiviert, wird die nächste Position in der Positionsliste bereits vor ihrem tatsächlichen Start hervorgehoben. Die Hervorhebung erfolgt um die oben konfigurierte Anzahl an Beats oder Sekunden früher.\n\nVoraussetzungen:\n• Versatztyp muss auf Beats oder Sekunden eingestellt sein\n• Versatzwert muss größer als 0 sein\n• Für Beats: Lied muss BPM haben";
 
 "playlistCloseTitle" = "Playlist stoppen?";
 "playlistCloseMessage" = "Eine Playlist wird gerade abgespielt. Das Schließen dieses Fensters beendet die Wiedergabe.";
 "playlistCloseConfirm" = "Fenster schließen";
 "playlistCloseCancel" = "Abbrechen";
+
+"songCount" = "%d Dateien";
+
+"showTime" = "Zeit anzeigen";
+"hideTime" = "Zeit ausblenden";
 
 "Play song" = "Lied abspielen";
 "Play the currently loaded song" = "Das aktuell geladene Lied abspielen";
