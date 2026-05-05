@@ -13,10 +13,12 @@ class TimePanelWindowController: NSWindowController, NSWindowDelegate {
         window?.setFrameAutosaveName("timeWindowAutosave")
         window?.delegate = self
         window?.isMovableByWindowBackground = true
-        window?.titleVisibility = .hidden
-        window?.standardWindowButton(.closeButton)?.isHidden = true
-        window?.standardWindowButton(.miniaturizeButton)?.isHidden = true
-        window?.standardWindowButton(.zoomButton)?.isHidden = true
+        applyWindowStyle()
+
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(defaultsDidChange),
+            name: UserDefaults.didChangeNotification,
+            object: nil)
 
         super.windowDidLoad()
     }
@@ -29,6 +31,26 @@ class TimePanelWindowController: NSWindowController, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         guard !((NSApp.delegate as? AppDelegate)?.isTerminating ?? false) else { return }
         UserDefaults.standard.set(false, forKey: UserDefaults.Keys.prefTimeWindowOpen.rawValue)
+    }
+
+    @objc private func defaultsDidChange() {
+        applyWindowStyle()
+    }
+
+    private func applyWindowStyle() {
+        guard let window else { return }
+        if Settings.timeWindowTransparentInactive {
+            window.styleMask = [.borderless, .resizable]
+            window.titleVisibility = .hidden
+        } else {
+            window.styleMask = [.titled, .resizable, .fullSizeContentView]
+            window.titleVisibility = .hidden
+            window.titlebarAppearsTransparent = true
+            window.titlebarSeparatorStyle = .none
+            window.standardWindowButton(.closeButton)?.isHidden = true
+            window.standardWindowButton(.miniaturizeButton)?.isHidden = true
+            window.standardWindowButton(.zoomButton)?.isHidden = true
+        }
     }
 
 }

@@ -15,6 +15,53 @@
 
     <h1>ClogAmpMac Update History</h1>
     
+    <p>1.7.1</p>
+    <div>
+        <ul>
+            <li>
+                <b>Audio Compression</b><br/>
+                A dynamic compressor can now be enabled in Settings &gt; General to reduce the volume difference
+                between loud and quiet passages during playback.<br/><br/>
+
+                <b>How to enable:</b> Go to Settings &gt; General and check "Enable Compression". Then reload the
+                currently loaded song for the change to take effect.<br/><br/>
+
+                <b>Parameters:</b>
+                <ul>
+                    <li><b>Threshold (dB):</b> The volume level above which compression kicks in.
+                        A lower value (e.g. -24 dB) means more of the audio gets compressed.
+                        Default: -18 dB.</li>
+                    <li><b>Head Room (dB):</b> Controls how gently the compression is applied.
+                        A higher value results in softer, more gradual compression.
+                        Default: 5 dB.</li>
+                    <li><b>Master Gain (dB):</b> Makeup gain to restore overall volume after compression
+                        has reduced the louder parts. Increase this if the song sounds too quiet after
+                        compression. Default: 0 dB.</li>
+                </ul><br/>
+
+                Click the info button (?) next to the compression settings for a quick reference of
+                these parameters.<br/>
+                <br/>
+            </li>
+            <li>
+                <b>Improved Audio Normalization for stereo files</b><br/>
+                The normalization algorithm now correctly analyzes both channels of stereo files and uses
+                the peak of the louder channel to calculate the gain adjustment, preventing clipping on
+                either side.<br/>
+                <br/>
+            </li>
+            <li>
+                <b>Clock Window improvements</b><br/>
+                The title bar and traffic light buttons have been removed for a cleaner look.
+                Additionally, the clock window can now become fully transparent when it is not
+                being hovered with the mouse. Enable this in Settings &gt; General with the
+                "Transparent when inactive" option. When you move the mouse over the clock window
+                it returns to its normal appearance; move the mouse away and it fades back to
+                transparent.
+            </li>
+        </ul>
+    </div>
+
     <p>1.7.0</p>
     <div>
         <ul>

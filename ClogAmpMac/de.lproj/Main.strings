@@ -793,8 +793,8 @@
 /* Class = "NSTextFieldCell"; title = "Mono Font:"; ObjectID = "mFL-ab-el2"; */
 "mFL-ab-el2.title" = "Mono-Schriftart:";
 
-/* Class = "NSButtonCell"; title = "Enable Compression (reload required)"; ObjectID = "cmp-en-cel"; */
-"cmp-en-cel.title" = "Kompression aktivieren (Neuladen erforderlich)";
+/* Class = "NSButtonCell"; title = "Enable Compression"; ObjectID = "cmp-en-cel"; */
+"cmp-en-cel.title" = "Kompression aktivieren";
 
 /* Class = "NSTextFieldCell"; title = "Threshold (dB)"; ObjectID = "thr-lb-cl0"; */
 "thr-lb-cl0.title" = "Schwellenwert (dB)";

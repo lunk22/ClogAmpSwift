@@ -214,8 +214,16 @@ class PlayerAudioEngine {
                                                selector: #selector(shutdown),
                                                name: NotificationNames.shutdown,
                                                object: nil
-        ) // Add shutdown observer
-        
+        )
+
+        NotificationCenter.default.addObserver(
+            forName: UserDefaults.didChangeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.applyCompressorSettings()
+        }
+
         // Media Center
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
             print("MP Remote Command: Play/Pause")
@@ -489,23 +497,22 @@ class PlayerAudioEngine {
         suppressPlayRequestedNotification = false
         if isPlaying() { self.seek(seconds: 0.0); return }
         if let song = song {
-            
-            // Highest Prio for song playback
-            DispatchQueue.main.async(qos: .userInteractive) {
+
+            let startPlayback = {
                 do {
-                    
+
                     try self.audioEngine.start()
                     self.audioPlayer.play()
 
 //                    print("File: \(self.song?.title ?? "") | Gain: \(self.equalizer.globalGain)")
-                    
+
                     self.playing = true
                     MPNowPlayingInfoCenter.default().playbackState = .playing
-                    
+
                     self.startTimeObserver()
-                    
+
                     self.installMeteringTap()
-                    
+
                     if(!self.songHistoryWritten){
                         self.songHistoryWritten = true
                         Database.insertSong(
@@ -517,6 +524,13 @@ class PlayerAudioEngine {
                 } catch {
                     /* Handle the error. */
                 }
+            }
+
+            // Highest Prio for song playback
+            if Thread.isMainThread {
+                startPlayback()
+            } else {
+                DispatchQueue.main.async(qos: .userInteractive) { startPlayback() }
             }
         }
     }
@@ -641,10 +655,14 @@ class PlayerAudioEngine {
     
     private func endTimeObserver() {
         if let timeObserverTimer = self.timeObserverTimer {
-            DispatchQueue.main.async {
-                timeObserverTimer.invalidate()
-            }
             self.timeObserverTimer = nil
+            if Thread.isMainThread {
+                timeObserverTimer.invalidate()
+            } else {
+                DispatchQueue.main.async {
+                    timeObserverTimer.invalidate()
+                }
+            }
         }
     }
     

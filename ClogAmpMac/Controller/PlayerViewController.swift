@@ -110,7 +110,7 @@ class PlayerViewController: ViewController {
             self.updateMeters()
         }
 
-        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.playRequested, object: nil, queue: .current) { _ in
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.playRequested, object: nil, queue: nil) { _ in
             if PlayerAudioEngine.shared.isPlaying() {
                 // Stop playback first, then treat as a fresh play-from-start
                 PlayerAudioEngine.shared.stop()
@@ -123,11 +123,11 @@ class PlayerViewController: ViewController {
             }
         }
 
-        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopRequested, object: nil, queue: .current) { _ in
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopRequested, object: nil, queue: nil) { _ in
             self.cancelPrePlayCountdown()
         }
 
-        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.pauseRequested, object: nil, queue: .current) { _ in
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.pauseRequested, object: nil, queue: nil) { _ in
             if self.prePlayCountdownTimer != nil {
                 // Cancel countdown and suppress the play() call pause() makes when not playing
                 self.cancelPrePlayCountdown()
@@ -135,7 +135,7 @@ class PlayerViewController: ViewController {
             }
         }
 
-        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.playing, object: nil, queue: .current) { _ in
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.playing, object: nil, queue: nil) { _ in
             self.btnPlay.image  = Settings.colorizedPlayerState ? self.imgPlay : self.imgPlayGray
             self.btnPause.image = self.imgPauseGray
             self.btnStop.image  = self.imgStopGray
@@ -145,7 +145,7 @@ class PlayerViewController: ViewController {
             self.mainView?.mainWindow?.tbStop.image  = self.imgStopGray
         }
         
-        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.paused, object: nil, queue: .current) { _ in
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.paused, object: nil, queue: nil) { _ in
             // Only cancel if pre-play countdown isn't actively running
             // (seek during countdown triggers a transient paused state)
             if self.prePlayCountdownTimer == nil {
@@ -160,7 +160,7 @@ class PlayerViewController: ViewController {
             self.mainView?.mainWindow?.tbStop.image  = self.imgStopGray
         }
         
-        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopped, object: nil, queue: .current) { _ in
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopped, object: nil, queue: nil) { _ in
             self.cancelPrePlayCountdown()
             self.btnPlay.image  = self.imgPlayGray
             self.btnPause.image = self.imgPauseGray
@@ -171,19 +171,19 @@ class PlayerViewController: ViewController {
             self.mainView?.mainWindow?.tbStop.image  = Settings.colorizedPlayerState ? self.imgStop : self.imgStopGray
         }
         
-        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.rateChanged, object: nil, queue: .current) { _ in
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.rateChanged, object: nil, queue: nil) { _ in
             self.updateRateInUI()
         }
         
-        NotificationCenter.default.addObserver(forName: Song.NotificationNames.bpmChanged, object: nil, queue: .current) { _ in
+        NotificationCenter.default.addObserver(forName: Song.NotificationNames.bpmChanged, object: nil, queue: nil) { _ in
             self.updateRateInUI()
         }
         
-        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.volumeChanged, object: nil, queue: .current) { _ in
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.volumeChanged, object: nil, queue: nil) { _ in
             self.updateVolumeInUI()
         }
         
-        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.songNotFound, object: nil, queue: .current) { _ in
+        NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.songNotFound, object: nil, queue: nil) { _ in
             self.currentSong = nil
         }
     }
