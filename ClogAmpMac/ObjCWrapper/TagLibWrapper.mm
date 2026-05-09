@@ -12,6 +12,22 @@ static NSString *nsStr(const TagLib::String &s) {
     return c ? ([NSString stringWithUTF8String:c] ?: @"") : @"";
 }
 
+// Decode a TagLib::String that came from a frame whose stored encoding byte was Latin-1
+// but whose raw bytes are actually UTF-8 (written by old id3lib).
+// toCString(false) re-exports the internal wchar_t data as Latin-1, recovering the
+// original bytes; we then reinterpret those bytes as UTF-8.
+static NSString *nsStrLatin1AsUTF8(const TagLib::String &s) {
+    const char *raw = s.toCString(false);
+    if (raw) {
+        NSString *asUTF8 = [NSString stringWithUTF8String:raw];
+        if (asUTF8) return asUTF8;
+        // Raw bytes aren't valid UTF-8 either — genuine Latin-1, decode as such.
+        NSString *asLatin1 = [NSString stringWithCString:raw encoding:NSISOLatin1StringEncoding];
+        if (asLatin1) return asLatin1;
+    }
+    return @"";
+}
+
 static TagLib::String tlStr(NSString *s) {
     return TagLib::String(s.UTF8String ?: "", TagLib::String::UTF8);
 }
@@ -19,11 +35,14 @@ static TagLib::String tlStr(NSString *s) {
 // Position string format (ClogAmp): "name$CScomment$CSjumpTo$CSms" entries separated by "$LS"
 // SYLT text per entry: "name\tcomment", timestamp: milliseconds (uint)
 
-static NSString *parseSYLTEntries(const TagLib::ID3v2::SynchronizedLyricsFrame::SynchedTextList &entries) {
+static NSString *parseSYLTEntries(const TagLib::ID3v2::SynchronizedLyricsFrame *sylt) {
+    // id3lib wrote SYLT frames with encoding byte 0x00 (Latin-1) but UTF-8 bytes.
+    // When the stored encoding is Latin-1, reinterpret the raw bytes as UTF-8.
+    const bool latin1Frame = (sylt->textEncoding() == TagLib::String::Latin1);
     NSMutableString *result = [NSMutableString string];
-    for (const auto &entry : entries) {
+    for (const auto &entry : sylt->synchedText()) {
         if (result.length > 0) [result appendString:@"$LS"];
-        NSString *text = nsStr(entry.text);
+        NSString *text = latin1Frame ? nsStrLatin1AsUTF8(entry.text) : nsStr(entry.text);
         NSArray<NSString *> *parts = [text componentsSeparatedByString:@"\t"];
         NSString *name    = parts.count > 0 ? parts[0] : @"";
         NSString *comment = parts.count > 1 ? parts[1] : @"";
@@ -157,7 +176,7 @@ static void removeTXXXByDescription(TagLib::ID3v2::Tag *tag, NSString *descripti
         auto *sylt = dynamic_cast<TagLib::ID3v2::SynchronizedLyricsFrame *>(frame);
         if (!sylt) continue;
         if ([nsStr(sylt->description()) isEqualToString:@"ClogChoreoParts"])
-            return parseSYLTEntries(sylt->synchedText());
+            return parseSYLTEntries(sylt);
     }
     return @"";
 }
