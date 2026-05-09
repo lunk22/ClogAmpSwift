@@ -101,11 +101,16 @@ extension UserDefaults {
         case pdfCellPadding
         case pdfHeaderSpacing
 
+        // Settings - Keyboard Shortcuts
+        case prefKeyboardShortcuts
+
         // NOT AVAILABLE IN SETTINGS
         case prefAudioMetering // defaults write de.pascalroessel.ClogAmpSwift prefAudioMetering -bool true
 
         case prefTimeWindowOpen
         case prefTimeWindowTransparentInactive
+
+        case prefShowTimeline
     }
 
     func reset() {

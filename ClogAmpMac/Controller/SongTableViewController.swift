@@ -48,6 +48,7 @@ class SongTableViewController: ViewController {
         }
         
         self.songTable.selectionDelegate = self
+        self.songTable.shouldRowSelect = { KeyboardShortcutManager.shared.shortcut(for: .loadSong)?.matches($0) == true }
         self.songTable.delegate          = self
         self.songTable.dataSource        = self
 
@@ -107,18 +108,16 @@ class SongTableViewController: ViewController {
     }
     
     override func keyDown(with event: NSEvent) {
-    
-        switch event.keyCode {
-            case 36: // Enter
-                if songTable.selectedRow >= 0 {
-                    self.loadSong(self.aSongsForTable[songTable.selectedRow])
-                    
-                    DispatchQueue.main.async(qos: .default) {
-                        self.mainView?.positionTableView?.refreshTable()
-                    }
+        if KeyboardShortcutManager.shared.shortcut(for: .loadSong)?.matches(event) == true {
+            if songTable.selectedRow >= 0 {
+                self.loadSong(self.aSongsForTable[songTable.selectedRow])
+
+                DispatchQueue.main.async(qos: .default) {
+                    self.mainView?.positionTableView?.refreshTable()
                 }
-            default:
-                self.mainView?.keyDown(with: event)
+            }
+        } else {
+            self.mainView?.keyDown(with: event)
         }
     }
     

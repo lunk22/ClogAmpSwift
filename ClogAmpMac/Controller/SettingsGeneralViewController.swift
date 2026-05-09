@@ -23,6 +23,7 @@ class SettingsGeneralViewController: NSViewController {
     @IBOutlet weak var ddlbProportionalFont: NSComboBox!
     @IBOutlet weak var btnEnableCompression: NSButton!
     @IBOutlet weak var btnShowBeatCountdown: NSButton!
+    @IBOutlet weak var btnShowTimeline: NSButton!
 
     // MARK: ACTIONS
     @IBAction func handleMonoChanged(_ sender: Any) {
@@ -31,6 +32,10 @@ class SettingsGeneralViewController: NSViewController {
 
     @IBAction func handleSleepPreventionChanged(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("preventSystemSleepChanged"), object: nil)
+    }
+
+    @IBAction func handleTimelineChanged(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name("showTimelineChanged"), object: nil)
     }
 
     @objc func handleCompressionInfo(_ sender: NSButton) {

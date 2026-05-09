@@ -10,12 +10,14 @@ import AppKit
 class TableView: NSTableView, NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate {
     
     weak var selectionDelegate: TableViewDelegate? = nil
-    
+
+    /// Called on every keyDown to decide whether to fire rowSelected(). Defaults to Enter (keyCode 36).
+    var shouldRowSelect: (NSEvent) -> Bool = { $0.keyCode == 36 }
+
     override func keyDown(with event: NSEvent) {
-        if(event.keyCode == 36){
-            //Enter
+        if shouldRowSelect(event) {
             self.selectionDelegate?.rowSelected()
-        }else{
+        } else {
             super.keyDown(with: event)
         }
     }

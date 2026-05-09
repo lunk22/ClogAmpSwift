@@ -807,3 +807,9 @@
 
 /* Class = "NSButtonCell"; title = "Time Window transparent when inactive"; ObjectID = "twt-in-cel"; */
 "twt-in-cel.title" = "Zeitfenster transparent wenn inaktiv";
+
+/* Class = "NSTabViewItem"; label = "Shortcuts"; ObjectID = "kSB-5g-aW1"; */
+"kSB-5g-aW1.label" = "Tastaturkürzel";
+
+/* Class = "NSButtonCell"; title = "Show position timeline"; ObjectID = "tln-sh-cel"; */
+"tln-sh-cel.title" = "Positions-Timeline anzeigen";

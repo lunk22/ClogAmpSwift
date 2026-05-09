@@ -51,6 +51,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefTimeWindowOpen.rawValue) {
             showTimeWindow()
         }
+
+        KeyboardShortcutManager.shared.applyMenuShortcuts()
+
+        NotificationCenter.default.addObserver(forName: KeyboardShortcutManager.changed, object: nil, queue: .main) { _ in
+            KeyboardShortcutManager.shared.applyMenuShortcuts()
+        }
     }
 
     private func showTimeWindow() {

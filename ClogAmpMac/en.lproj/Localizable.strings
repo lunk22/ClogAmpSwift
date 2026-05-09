@@ -55,3 +55,56 @@
 "Stop the currently playing song" = "Stop the currently playing song";
 "Play from beginning" = "Play from beginning";
 "Play the currently loaded song from the beginning" = "Play the currently loaded song from the beginning";
+
+// MARK: - Keyboard Shortcuts Settings
+
+"shortcutSection.menuFile"   = "Menu — File";
+"shortcutSection.menuEdit"   = "Menu — Edit";
+"shortcutSection.menuTools"  = "Menu — Tools";
+"shortcutSection.menuPlayer" = "Menu — Player";
+"shortcutSection.others"     = "Others";
+
+"shortcutReset.button"       = "Reset to Defaults";
+"shortcutReset.alertTitle"   = "Reset Keyboard Shortcuts";
+"shortcutReset.alertMessage" = "All keyboard shortcuts will be reset to their defaults. This cannot be undone.";
+"shortcutReset.confirm"      = "Reset";
+"shortcutReset.cancel"       = "Cancel";
+
+"shortcutRecorder.recording" = "Type shortcut…";
+
+"shortcut.playPause"          = "Pause";
+"shortcut.loadSong"           = "Load Song";
+"shortcut.playPosition"       = "Play Selected Position";
+"shortcut.jumpToPosition1"    = "Jump to Position 1  (+ ⇧ → 11)";
+"shortcut.jumpToPosition2"    = "Jump to Position 2  (+ ⇧ → 12)";
+"shortcut.jumpToPosition3"    = "Jump to Position 3  (+ ⇧ → 13)";
+"shortcut.jumpToPosition4"    = "Jump to Position 4  (+ ⇧ → 14)";
+"shortcut.jumpToPosition5"    = "Jump to Position 5  (+ ⇧ → 15)";
+"shortcut.jumpToPosition6"    = "Jump to Position 6  (+ ⇧ → 16)";
+"shortcut.jumpToPosition7"    = "Jump to Position 7  (+ ⇧ → 17)";
+"shortcut.jumpToPosition8"    = "Jump to Position 8  (+ ⇧ → 18)";
+"shortcut.jumpToPosition9"    = "Jump to Position 9  (+ ⇧ → 19)";
+"shortcut.jumpToPosition10"   = "Jump to Position 10 (+ ⇧ → 20)";
+"shortcut.menuOpenFolder"     = "Open Song Folder…";
+"shortcut.menuSaveSong"       = "Save Song";
+"shortcut.menuGeneratePDF"    = "Generate PDF…";
+"shortcut.menuAddPosition"    = "Add Position";
+"shortcut.menuRemovePosition" = "Remove Position";
+"shortcut.menuFilter"         = "Filter...";
+"shortcut.menuDetermineBPM"        = "Determine BPM";
+"shortcut.menuDetermineBPMClick"   = "Determine BPM (click)";
+"shortcut.menuReloadList"     = "Reload List";
+"shortcut.menuShowTime"       = "Show Time";
+"shortcut.menuCountdown"      = "Countdown";
+"shortcut.menuHistory"        = "History...";
+"shortcut.menuPlaylists"      = "Playlists";
+"shortcut.menuPlay"           = "Play";
+"shortcut.menuStop"           = "Stop";
+"shortcut.menuSkipForward"    = "Skip Forward";
+"shortcut.menuSkipBack"       = "Skip Back";
+"shortcut.menuSpeedInc1"      = "Increase Speed 1%";
+"shortcut.menuSpeedInc5"      = "Increase Speed 5%";
+"shortcut.menuSpeedDec1"      = "Decrease Speed 1%";
+"shortcut.menuSpeedDec5"      = "Decrease Speed 5%";
+"shortcut.menuResetSpeed"     = "Reset Speed";
+"shortcut.menuEQ"             = "EQ";

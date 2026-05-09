@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="24006"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24506"/>
-        <plugIn identifier="com.apple.pdfkit.ibplugin" version="24506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="24701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
+        <plugIn identifier="com.apple.pdfkit.ibplugin" version="24765"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
@@ -249,13 +249,13 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="Open Song Folder…" keyEquivalent="o" id="IAo-SY-fd9">
+                                        <menuItem title="Open Song Folder…" tag="1001" keyEquivalent="o" identifier="menuOpenFolder" id="IAo-SY-fd9">
                                             <connections>
                                                 <action selector="handleSelectMusicDirectory:" target="Ady-hI-5gd" id="d5I-kJ-Zc1"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="S4W-id-kEY"/>
-                                        <menuItem title="Save Song" keyEquivalent="s" id="iSe-Lz-p3s">
+                                        <menuItem title="Save Song" tag="1002" keyEquivalent="s" identifier="menuSaveSong" id="iSe-Lz-p3s">
                                             <connections>
                                                 <action selector="saveSong:" target="Ady-hI-5gd" id="5S2-5Q-gMZ"/>
                                             </connections>
@@ -293,7 +293,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Ai3-w7-fsU"/>
-                                        <menuItem title="Generate PDF…" keyEquivalent="p" id="hm1-1f-8uH">
+                                        <menuItem title="Generate PDF…" tag="1003" keyEquivalent="p" identifier="menuGeneratePDF" id="hm1-1f-8uH">
                                             <connections>
                                                 <action selector="printList:" target="Ady-hI-5gd" id="PIW-8y-lz0"/>
                                             </connections>
@@ -344,13 +344,13 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="MrQ-un-zuX"/>
-                                        <menuItem title="Add Position" keyEquivalent="a" id="Wgk-gG-Efk">
+                                        <menuItem title="Add Position" tag="1004" keyEquivalent="a" identifier="menuAddPosition" id="Wgk-gG-Efk">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="handleAddPosition:" target="Ady-hI-5gd" id="8ct-wa-u4S"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Remove Position" id="GZP-5g-uFi">
+                                        <menuItem title="Remove Position" tag="1005" identifier="menuRemovePosition" id="GZP-5g-uFi">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
@@ -367,44 +367,44 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Tools" id="fIc-J5-6a6">
                                     <items>
-                                        <menuItem title="Filter..." keyEquivalent="f" id="VUf-no-TEU">
+                                        <menuItem title="Filter..." tag="1006" keyEquivalent="f" identifier="menuFilter" id="VUf-no-TEU">
                                             <connections>
                                                 <action selector="focusFilterField:" target="Ady-hI-5gd" id="3bV-MT-S6t"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Determine BPM" keyEquivalent="b" id="Zhg-Sn-7pH">
+                                        <menuItem title="Determine BPM" tag="1007" keyEquivalent="b" identifier="menuDetermineBPM" id="Zhg-Sn-7pH">
                                             <connections>
                                                 <action selector="determineBpm:" target="Ady-hI-5gd" id="ksC-du-SGg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Determine BPM (click)" id="0iU-M9-9sS">
+                                        <menuItem title="Determine BPM (click)" tag="1008" identifier="menuDetermineBPMClick" id="0iU-M9-9sS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <segue destination="3VX-T9-o44" kind="show" id="Q7x-zk-OGI"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Reload List" keyEquivalent="r" id="rJe-5J-acX">
+                                        <menuItem title="Reload List" tag="1009" keyEquivalent="r" identifier="menuReloadList" id="rJe-5J-acX">
                                             <connections>
                                                 <action selector="handleRefreshList:" target="Ady-hI-5gd" id="Qtb-du-c1k"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="M5M-04-aHN"/>
-                                        <menuItem title="Show Time" keyEquivalent="t" id="Scw-3x-0hP">
+                                        <menuItem title="Show Time" tag="1010" keyEquivalent="t" identifier="menuShowTime" id="Scw-3x-0hP">
                                             <connections>
                                                 <action selector="handleToggleTimeWindow:" target="Voe-Tx-rLC" id="tww-tg-act"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Countdown" keyEquivalent="d" id="h6c-1T-6YU">
+                                        <menuItem title="Countdown" tag="1011" keyEquivalent="d" identifier="menuCountdown" id="h6c-1T-6YU">
                                             <connections>
                                                 <segue destination="ELJ-6V-x4J" kind="show" id="SqF-z4-VYr"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="History..." keyEquivalent="h" id="sC0-Fk-FMh">
+                                        <menuItem title="History..." tag="1012" keyEquivalent="h" identifier="menuHistory" id="sC0-Fk-FMh">
                                             <connections>
                                                 <segue destination="Rx2-bm-TSd" kind="show" id="01v-Ll-Ffv"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Playlists" keyEquivalent="l" id="AWr-DK-5Se">
+                                        <menuItem title="Playlists" tag="1013" keyEquivalent="l" identifier="menuPlaylists" id="AWr-DK-5Se">
                                             <connections>
                                                 <segue destination="0fg-Ju-sI0" kind="show" id="aEP-nP-8xB"/>
                                             </connections>
@@ -422,32 +422,32 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Player" id="wgL-C6-NQV">
                                     <items>
-                                        <menuItem title="Play" keyEquivalent="p" id="vhe-J9-EqH">
+                                        <menuItem title="Play" tag="1014" keyEquivalent="p" identifier="menuPlay" id="vhe-J9-EqH">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="play:" target="Ady-hI-5gd" id="BVb-E6-028"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Pause" keyEquivalent=" " id="rYj-zB-AYc">
+                                        <menuItem title="Pause" tag="1015" keyEquivalent=" " identifier="playPause" id="rYj-zB-AYc">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="pause:" target="Ady-hI-5gd" id="4oc-RH-yGT"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Stop" keyEquivalent="s" id="b5K-ny-6MC">
+                                        <menuItem title="Stop" tag="1016" keyEquivalent="s" identifier="menuStop" id="b5K-ny-6MC">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="stop:" target="Ady-hI-5gd" id="UBF-y1-oi1"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4Cl-mq-aYl"/>
-                                        <menuItem title="Skip Forward" keyEquivalent="f" id="EZ4-Ig-6vu">
+                                        <menuItem title="Skip Forward" tag="1017" keyEquivalent="f" identifier="menuSkipForward" id="EZ4-Ig-6vu">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="playerForward:" target="Ady-hI-5gd" id="uzJ-U1-JKP"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Skip Back" keyEquivalent="b" id="P91-JH-KOo">
+                                        <menuItem title="Skip Back" tag="1018" keyEquivalent="b" identifier="menuSkipBack" id="P91-JH-KOo">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="playerBack:" target="Ady-hI-5gd" id="W28-f5-u1x"/>
@@ -458,31 +458,31 @@ CA
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Speed" id="KoQ-FZ-Rd9">
                                                 <items>
-                                                    <menuItem title="Increase Speed 1%" keyEquivalent="+" id="29Q-si-zFB">
+                                                    <menuItem title="Increase Speed 1%" tag="1019" keyEquivalent="+" identifier="menuSpeedInc1" id="29Q-si-zFB">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="increaseSpeed:" target="Ady-hI-5gd" id="V8C-EK-BKF"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Increase Speed 5%" keyEquivalent="+" id="dXQ-TJ-el7">
+                                                    <menuItem title="Increase Speed 5%" tag="1020" keyEquivalent="+" identifier="menuSpeedInc5" id="dXQ-TJ-el7">
                                                         <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
                                                         <connections>
                                                             <action selector="increaseSpeed5:" target="Ady-hI-5gd" id="7rf-oe-NHk"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Decrease Speed 1%" keyEquivalent="-" id="f7m-rQ-0TS">
+                                                    <menuItem title="Decrease Speed 1%" tag="1021" keyEquivalent="-" identifier="menuSpeedDec1" id="f7m-rQ-0TS">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="decreaseSpeed:" target="Ady-hI-5gd" id="MN1-YN-Rix"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Decrease Speed 5%" keyEquivalent="-" id="cHg-fz-2CY">
+                                                    <menuItem title="Decrease Speed 5%" tag="1022" keyEquivalent="-" identifier="menuSpeedDec5" id="cHg-fz-2CY">
                                                         <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
                                                         <connections>
                                                             <action selector="decreaseSpeed5:" target="Ady-hI-5gd" id="x9d-C1-pWo"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Reset Speed" keyEquivalent="n" id="7pX-sO-eAU">
+                                                    <menuItem title="Reset Speed" tag="1023" keyEquivalent="n" identifier="menuResetSpeed" id="7pX-sO-eAU">
                                                         <connections>
                                                             <action selector="resetPlayerSpeed:" target="Ady-hI-5gd" id="3Qm-yK-hOh"/>
                                                         </connections>
@@ -491,7 +491,7 @@ CA
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="iUY-fd-oS6"/>
-                                        <menuItem title="EQ" keyEquivalent="e" id="Eqq-iX-C4D">
+                                        <menuItem title="EQ" tag="1024" keyEquivalent="e" identifier="menuEQ" id="Eqq-iX-C4D">
                                             <connections>
                                                 <segue destination="AdM-We-86C" kind="show" id="iQj-g4-Kt3"/>
                                             </connections>
@@ -618,6 +618,7 @@ CA
                         <tabViewItem label="Icon" id="f15-0A-6o8">
                             <imageReference key="image" image="photo" catalog="system" symbolScale="large"/>
                         </tabViewItem>
+                        <tabViewItem label="Shortcuts" image="keyboard" catalog="system" id="kSB-5g-aW1"/>
                         <tabViewItem label="About" image="info.circle" catalog="system" id="o5K-Av-l1W"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="pZ2-jq-fV0">
@@ -634,6 +635,7 @@ CA
                         <segue destination="8JY-25-ZrM" kind="relationship" relationship="tabItems" id="IRd-R6-zNN"/>
                         <segue destination="Mji-cL-aWe" kind="relationship" relationship="tabItems" id="WQe-Wu-1oD"/>
                         <segue destination="t6I-ag-HhY" kind="relationship" relationship="tabItems" id="C8L-eF-tYm"/>
+                        <segue destination="kSB-5g-aW3" kind="relationship" relationship="tabItems" id="kSB-5g-aW6"/>
                         <segue destination="FmP-DM-yKz" kind="relationship" relationship="tabItems" id="XjT-1j-M2d"/>
                     </connections>
                 </tabViewController>
@@ -650,14 +652,14 @@ CA
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" borderType="none" title="Music / Player" translatesAutoresizingMaskIntoConstraints="NO" id="1wl-xy-Xys">
-                                <rect key="frame" x="422" y="189" width="362" height="282"/>
+                                <rect key="frame" x="422" y="136" width="362" height="335"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="4el-aL-boa">
-                                    <rect key="frame" x="0.0" y="0.0" width="362" height="265"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362" height="318"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y9s-aY-xLF">
-                                            <rect key="frame" x="18" y="225" width="155" height="17"/>
+                                            <rect key="frame" x="18" y="278" width="155" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Skip Forward (s)" id="itN-re-5zf">
                                                 <font key="font" metaFont="system"/>
@@ -666,7 +668,7 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkC-hd-GX0">
-                                            <rect key="frame" x="18" y="196" width="155" height="17"/>
+                                            <rect key="frame" x="18" y="249" width="155" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Skip Back (s)" id="mAe-eI-NxQ">
                                                 <font key="font" metaFont="system"/>
@@ -675,7 +677,7 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ZT-up-1kk">
-                                            <rect key="frame" x="18" y="160" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="213" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Colorize Player Controls" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ejn-LS-Ki0">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -692,7 +694,7 @@ CA
                                             </connections>
                                         </button>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ej1-PC-kzq">
-                                            <rect key="frame" x="204" y="223" width="50" height="22"/>
+                                            <rect key="frame" x="204" y="276" width="50" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="0SR-WB-Plb">
                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -710,7 +712,7 @@ CA
                                             </connections>
                                         </textField>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mx6-ca-vTo">
-                                            <rect key="frame" x="204" y="193" width="50" height="22"/>
+                                            <rect key="frame" x="204" y="246" width="50" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GzG-lz-6oi">
                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -728,7 +730,7 @@ CA
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYf-kR-God">
-                                            <rect key="frame" x="18" y="136" width="324" height="20"/>
+                                            <rect key="frame" x="18" y="189" width="324" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Auto-Determine BPM" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="d47-zQ-8R8">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -745,7 +747,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ss1-Go-aGQ">
-                                            <rect key="frame" x="18" y="112" width="324" height="20"/>
+                                            <rect key="frame" x="18" y="139" width="324" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Normalize Audio (reload required)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Gts-oe-EAq">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -762,7 +764,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cmp-en-abl">
-                                            <rect key="frame" x="18" y="88" width="290" height="20"/>
+                                            <rect key="frame" x="18" y="113" width="288" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Enable Compression" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cmp-en-cel">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -779,7 +781,7 @@ CA
                                             </connections>
                                         </button>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thr-lb-el0">
-                                            <rect key="frame" x="18" y="61" width="152" height="17"/>
+                                            <rect key="frame" x="18" y="86" width="152" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Threshold (dB)" id="thr-lb-cl0">
                                                 <font key="font" metaFont="system"/>
@@ -788,7 +790,7 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thr-sl-id0">
-                                            <rect key="frame" x="174" y="58" width="110" height="21"/>
+                                            <rect key="frame" x="174" y="85" width="110" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <sliderCell key="cell" continuous="YES" alignment="left" minValue="-40" doubleValue="-18" tickMarkPosition="below" sliderType="linear" id="thr-sl-cl0">
                                                 <font key="font" metaFont="system"/>
@@ -804,7 +806,7 @@ CA
                                             </connections>
                                         </slider>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thr-tf-id0">
-                                            <rect key="frame" x="290" y="58" width="54" height="22"/>
+                                            <rect key="frame" x="290" y="85" width="54" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="thr-tf-cl0">
                                                 <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="3" id="thr-tf-fm0"/>
@@ -823,7 +825,7 @@ CA
                                             </connections>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-lb-el0">
-                                            <rect key="frame" x="18" y="35" width="152" height="17"/>
+                                            <rect key="frame" x="18" y="60" width="152" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Head Room (dB)" id="hdr-lb-cl0">
                                                 <font key="font" metaFont="system"/>
@@ -832,7 +834,7 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-sl-id0">
-                                            <rect key="frame" x="174" y="32" width="110" height="21"/>
+                                            <rect key="frame" x="174" y="59" width="110" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <sliderCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="20" doubleValue="5" tickMarkPosition="below" sliderType="linear" id="hdr-sl-cl0">
                                                 <font key="font" metaFont="system"/>
@@ -848,7 +850,7 @@ CA
                                             </connections>
                                         </slider>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-tf-id0">
-                                            <rect key="frame" x="290" y="32" width="54" height="22"/>
+                                            <rect key="frame" x="290" y="59" width="54" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="hdr-tf-cl0">
                                                 <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2" id="hdr-tf-fm0"/>
@@ -867,7 +869,7 @@ CA
                                             </connections>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mst-lb-el0">
-                                            <rect key="frame" x="18" y="9" width="152" height="17"/>
+                                            <rect key="frame" x="18" y="34" width="152" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Master Gain (dB)" id="mst-lb-cl0">
                                                 <font key="font" metaFont="system"/>
@@ -876,7 +878,7 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mst-sl-id0">
-                                            <rect key="frame" x="174" y="6" width="110" height="21"/>
+                                            <rect key="frame" x="174" y="33" width="110" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <sliderCell key="cell" continuous="YES" alignment="left" maxValue="12" tickMarkPosition="below" sliderType="linear" id="mst-sl-cl0">
                                                 <font key="font" metaFont="system"/>
@@ -892,7 +894,7 @@ CA
                                             </connections>
                                         </slider>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mst-tf-id0">
-                                            <rect key="frame" x="290" y="6" width="54" height="22"/>
+                                            <rect key="frame" x="290" y="33" width="54" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="mst-tf-cl0">
                                                 <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2" id="mst-tf-fm0"/>
@@ -910,12 +912,30 @@ CA
                                                 </binding>
                                             </connections>
                                         </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tln-sh-btn">
+                                            <rect key="frame" x="18" y="165" width="324" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Show position timeline" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tln-sh-cel">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="handleTimelineChanged:" target="qhU-Gw-geV" id="tln-sh-act"/>
+                                                <binding destination="qhU-Gw-geV" name="value" keyPath="defaults.prefShowTimeline" id="tln-sh-bnd">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Appearance" translatesAutoresizingMaskIntoConstraints="NO" id="8ec-RZ-uKL">
-                                <rect key="frame" x="20" y="300" width="362" height="72"/>
+                                <rect key="frame" x="20" y="281" width="362" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="f1l-Ud-8w9">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="55"/>
@@ -972,7 +992,7 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Filter" translatesAutoresizingMaskIntoConstraints="NO" id="KmJ-78-dCf">
-                                <rect key="frame" x="20" y="380" width="362" height="69"/>
+                                <rect key="frame" x="20" y="361" width="362" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="kUU-zj-vbR">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="52"/>
@@ -1014,14 +1034,14 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="nQo-pP-bi7">
-                                <rect key="frame" x="20" y="447" width="362" height="154"/>
+                                <rect key="frame" x="20" y="425" width="362" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="d04-w1-YsF">
-                                    <rect key="frame" x="0.0" y="0.0" width="362" height="137"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362" height="159"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DHk-f7-xzm">
-                                            <rect key="frame" x="18" y="99" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="121" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Focus Filter" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="YQs-tI-kI4">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1037,7 +1057,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tzj-al-krK">
-                                            <rect key="frame" x="18" y="77" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="99" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Wka-4n-czd">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1054,7 +1074,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNv-Ja-9UA">
-                                            <rect key="frame" x="18" y="55" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="77" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Prevent sleep when active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8Lo-uH-DMG">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1072,7 +1092,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bCd-xY-k2Z">
-                                            <rect key="frame" x="18" y="33" width="300" height="18"/>
+                                            <rect key="frame" x="18" y="55" width="291" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Show beat countdown" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bCd-xY-k3Z">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1089,7 +1109,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="twt-in-abl">
-                                            <rect key="frame" x="18" y="11" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="33" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Time Window transparent when inactive" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="twt-in-cel">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1110,7 +1130,7 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="BPM Correction" translatesAutoresizingMaskIntoConstraints="NO" id="naQ-Tx-ckp">
-                                <rect key="frame" x="422" y="61" width="362" height="108"/>
+                                <rect key="frame" x="422" y="20" width="362" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="4KK-xx-P85">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="91"/>
@@ -1175,7 +1195,7 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Font" translatesAutoresizingMaskIntoConstraints="NO" id="oXz-ew-IrA">
-                                <rect key="frame" x="20" y="116" width="362" height="187"/>
+                                <rect key="frame" x="20" y="97" width="362" height="187"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="tIX-l3-OYx">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="170"/>
@@ -1268,6 +1288,7 @@ CA
                     <connections>
                         <outlet property="btnEnableCompression" destination="cmp-en-abl" id="cmp-en-out"/>
                         <outlet property="btnShowBeatCountdown" destination="bCd-xY-k2Z" id="bCd-xY-k7Z"/>
+                        <outlet property="btnShowTimeline" destination="tln-sh-btn" id="tln-sh-out"/>
                         <outlet property="ddlbAppearance" destination="ZGb-gR-2yS" id="E2R-pf-o3H"/>
                         <outlet property="ddlbMonoFont" destination="mFN-cB-ox1" id="mFN-ou-tlt"/>
                         <outlet property="ddlbProportionalFont" destination="pFN-cB-ox1" id="pFN-ou-tlt"/>
@@ -1278,7 +1299,7 @@ CA
                 <customObject id="fGK-JZ-b84" customClass="SPUStandardUpdaterController"/>
                 <userDefaultsController id="W8W-KL-Mk3"/>
             </objects>
-            <point key="canvasLocation" x="-8964" y="3535"/>
+            <point key="canvasLocation" x="-8964" y="3534.5"/>
         </scene>
         <!--Settings Icon View Controller-->
         <scene sceneID="pPK-JJ-f1h">
@@ -3177,7 +3198,7 @@ IA
                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fct-lb-id0">
                                 <rect key="frame" x="8" y="8" width="200" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="" id="fct-lb-cl0">
+                                <textFieldCell key="cell" lineBreakMode="clipping" id="fct-lb-cl0">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -4216,6 +4237,19 @@ IA
             </objects>
             <point key="canvasLocation" x="-8002" y="4019"/>
         </scene>
+        <!--Settings Shortcuts View Controller-->
+        <scene sceneID="kSB-sc-ShC">
+            <objects>
+                <viewController id="kSB-5g-aW3" customClass="SettingsShortcutsViewController" customModule="ClogAmpMac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="kSB-5g-aW4">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="kSB-5g-aW5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7535" y="4019"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Icon" width="256" height="256"/>
@@ -4232,6 +4266,7 @@ IA
         <image name="NSRevealFreestandingTemplate" width="20" height="20"/>
         <image name="gear" catalog="system" width="21" height="21"/>
         <image name="info.circle" catalog="system" width="15" height="15"/>
+        <image name="keyboard" catalog="system" width="19" height="13"/>
         <image name="list.number" catalog="system" width="21" height="17"/>
         <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="pause.fill" catalog="system" width="11" height="13"/>

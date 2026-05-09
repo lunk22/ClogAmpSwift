@@ -36,6 +36,7 @@ class PositionTableViewController: NSViewController {
     override func viewDidLoad() {
 
         self.positionTable.selectionDelegate = self
+        self.positionTable.shouldRowSelect = { KeyboardShortcutManager.shared.shortcut(for: .playPosition)?.matches($0) == true }
         self.positionTable.delegate          = self
         self.positionTable.dataSource        = self
 
@@ -76,46 +77,41 @@ class PositionTableViewController: NSViewController {
     }
     
     override func keyDown(with event: NSEvent) {
+        let manager = KeyboardShortcutManager.shared
         var positionIndex = -1
-        
-        switch(event.keyCode){
-            case 18: // 1
-                positionIndex = 0
-            case 19: // 2
-                positionIndex = 1
-            case 20: // 3
-                positionIndex = 2
-            case 21: // 4
-                positionIndex = 3
-            case 23: // 5
-                positionIndex = 4
-            case 22: // 6
-                positionIndex = 5
-            case 26: // 7
-                positionIndex = 6
-            case 28: // 8
-                positionIndex = 7
-            case 25: // 9
-                positionIndex = 8
-            case 29: // 0
-                positionIndex = 9
-            case 36: // Enter
-                positionIndex = self.positionTable.selectedRow
-            default:
-                self.mainView?.keyDown(with: event)
-                return
+
+        if manager.shortcut(for: .playPosition)?.matches(event) == true {
+            positionIndex = self.positionTable.selectedRow
+        } else {
+            let jumpActions: [ShortcutAction] = [
+                .jumpToPosition1, .jumpToPosition2, .jumpToPosition3, .jumpToPosition4,
+                .jumpToPosition5, .jumpToPosition6, .jumpToPosition7, .jumpToPosition8,
+                .jumpToPosition9, .jumpToPosition10,
+            ]
+            for (i, action) in jumpActions.enumerated() {
+                guard let shortcut = manager.shortcut(for: action) else { continue }
+                guard event.keyCode == shortcut.keyCode else { continue }
+                let mods = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+                let base = NSEvent.ModifierFlags(rawValue: shortcut.modifierFlags)
+                if mods == base {
+                    positionIndex = i
+                } else if mods == base.union(.shift) {
+                    positionIndex = i + 10
+                }
+                break
+            }
         }
-        
-        if(event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.shift]){
-            positionIndex += 10
+
+        guard positionIndex >= 0 else {
+            self.mainView?.keyDown(with: event)
+            return
         }
-        
-        if(positionIndex < self.mainView?.playerView?.currentSong?.getPositions().count ?? 0){
+
+        if positionIndex < self.mainView?.playerView?.currentSong?.getPositions().count ?? 0 {
             let indexSet = IndexSet(integer: positionIndex)
             self.positionTable.selectRowIndexes(indexSet, byExtendingSelection: false)
         }
-        
-        //Always use this one method to perform a position selection
+
         self.handleSelectPosition(nil)
     }
     

@@ -47,6 +47,59 @@
 "showTime" = "Zeit anzeigen";
 "hideTime" = "Zeit ausblenden";
 
+// MARK: - Tastaturkürzel-Einstellungen
+
+"shortcutSection.menuFile"   = "Menü — Datei";
+"shortcutSection.menuEdit"   = "Menü — Bearbeiten";
+"shortcutSection.menuTools"  = "Menü — Werkzeuge";
+"shortcutSection.menuPlayer" = "Menü — Player";
+"shortcutSection.others"     = "Sonstige";
+
+"shortcutReset.button"       = "Auf Standard zurücksetzen";
+"shortcutReset.alertTitle"   = "Tastaturkürzel zurücksetzen";
+"shortcutReset.alertMessage" = "Alle Tastaturkürzel werden auf ihre Standardwerte zurückgesetzt. Dies kann nicht rückgängig gemacht werden.";
+"shortcutReset.confirm"      = "Zurücksetzen";
+"shortcutReset.cancel"       = "Abbrechen";
+
+"shortcutRecorder.recording" = "Kürzel eingeben…";
+
+"shortcut.playPause"          = "Pause";
+"shortcut.loadSong"           = "Lied laden";
+"shortcut.playPosition"       = "Ausgewählte Position abspielen";
+"shortcut.jumpToPosition1"    = "Springe zu Position 1  (+ ⇧ → 11)";
+"shortcut.jumpToPosition2"    = "Springe zu Position 2  (+ ⇧ → 12)";
+"shortcut.jumpToPosition3"    = "Springe zu Position 3  (+ ⇧ → 13)";
+"shortcut.jumpToPosition4"    = "Springe zu Position 4  (+ ⇧ → 14)";
+"shortcut.jumpToPosition5"    = "Springe zu Position 5  (+ ⇧ → 15)";
+"shortcut.jumpToPosition6"    = "Springe zu Position 6  (+ ⇧ → 16)";
+"shortcut.jumpToPosition7"    = "Springe zu Position 7  (+ ⇧ → 17)";
+"shortcut.jumpToPosition8"    = "Springe zu Position 8  (+ ⇧ → 18)";
+"shortcut.jumpToPosition9"    = "Springe zu Position 9  (+ ⇧ → 19)";
+"shortcut.jumpToPosition10"   = "Springe zu Position 10 (+ ⇧ → 20)";
+"shortcut.menuOpenFolder"     = "Lied Ordner öffnen…";
+"shortcut.menuSaveSong"       = "Lied speichern";
+"shortcut.menuGeneratePDF"    = "PDF generieren…";
+"shortcut.menuAddPosition"    = "Position einfügen";
+"shortcut.menuRemovePosition" = "Position entfernen";
+"shortcut.menuFilter"         = "Filter...";
+"shortcut.menuDetermineBPM"        = "BPM ermitteln";
+"shortcut.menuDetermineBPMClick"   = "BPM ermitteln (click)";
+"shortcut.menuReloadList"     = "Liste neuladen";
+"shortcut.menuShowTime"       = "Zeit anzeigen";
+"shortcut.menuCountdown"      = "Countdown";
+"shortcut.menuHistory"        = "Verlauf...";
+"shortcut.menuPlaylists"      = "Playlisten";
+"shortcut.menuPlay"           = "Abspielen";
+"shortcut.menuStop"           = "Stop";
+"shortcut.menuSkipForward"    = "Vorwärts springen";
+"shortcut.menuSkipBack"       = "Zurück springen";
+"shortcut.menuSpeedInc1"      = "Tempo erhöhen (1%)";
+"shortcut.menuSpeedInc5"      = "Tempo erhöhen (5%)";
+"shortcut.menuSpeedDec1"      = "Tempo verringern (1%)";
+"shortcut.menuSpeedDec5"      = "Tempo verringern (5%)";
+"shortcut.menuResetSpeed"     = "Tempo zurücksetzen";
+"shortcut.menuEQ"             = "EQ";
+
 "Play song" = "Lied abspielen";
 "Play the currently loaded song" = "Das aktuell geladene Lied abspielen";
 "Pause song" = "Lied pausieren";

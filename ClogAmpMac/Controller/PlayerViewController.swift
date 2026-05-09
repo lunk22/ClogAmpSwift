@@ -53,6 +53,8 @@ class PlayerViewController: ViewController {
     private var prePlaySeekTarget: Double = 0
     private var prePlayAnchorTime: Double = 0  // suppress in-song countdown until anchor passes
     
+    private var timelineView: TimelineView!
+
     var currentSong: Song? {
         willSet {
             PlayerAudioEngine.shared.song?.saveChanges()
@@ -60,11 +62,15 @@ class PlayerViewController: ViewController {
         didSet {
             PlayerAudioEngine.shared.stop()
 
-            if self.currentSong == nil { return }
+            if self.currentSong == nil {
+                timelineView?.positions = []
+                return
+            }
 
             self.currentSong!.loadPositions()
 
             PlayerAudioEngine.shared.song = self.currentSong!
+            self.refreshTimelinePositions()
 
             let x = self.currentSong!.getValueAsString("path")
             UserDefaults.standard.set(x, forKey: "lastLoadedSongURL")
@@ -202,6 +208,7 @@ class PlayerViewController: ViewController {
         }
 
         setupBeatOverlay()
+        setupTimelineView()
     }
 
     private func setupBeatOverlay() {
@@ -231,7 +238,36 @@ class PlayerViewController: ViewController {
             beatOverlayLabel.centerYAnchor.constraint(equalTo: beatOverlayView.centerYAnchor),
         ])
     }
-    
+
+    private func setupTimelineView() {
+        timelineView = TimelineView()
+        timelineView.translatesAutoresizingMaskIntoConstraints = false
+        timelineView.seekCallback = { [weak self] fraction in
+            let duration = PlayerAudioEngine.shared.getDuration()
+            PlayerAudioEngine.shared.seek(seconds: duration * fraction)
+        }
+        view.addSubview(timelineView)
+
+        NSLayoutConstraint.activate([
+            timelineView.leadingAnchor.constraint(equalTo: timeSlider.leadingAnchor),
+            timelineView.trailingAnchor.constraint(equalTo: timeSlider.trailingAnchor),
+            timelineView.centerYAnchor.constraint(equalTo: timeSlider.centerYAnchor),
+            timelineView.heightAnchor.constraint(equalToConstant: 48),
+        ])
+
+        applyTimelineSetting()
+
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("showTimelineChanged"), object: nil, queue: .main) { [weak self] _ in
+            self?.applyTimelineSetting()
+        }
+    }
+
+    private func applyTimelineSetting() {
+        let show = Settings.showTimeline
+        timelineView.isHidden = !show
+        timeSlider.isHidden = show
+    }
+
     // MARK: Update related stuff
     
     func tick() {
@@ -452,8 +488,9 @@ class PlayerViewController: ViewController {
         
         DispatchQueue.main.async(qos: .default) {
             var currentTime = PlayerAudioEngine.shared.getCurrentTime(rounded: true)
+            let currentTimeExact = PlayerAudioEngine.shared.getCurrentTime(rounded: false)
             let duration = PlayerAudioEngine.shared.getDuration()
-            let percent: Double = currentTime / Double(duration) * 100
+            let percent: Double = currentTimeExact / Double(duration) * 100
             
             if(Settings.countdownTime) {
                 currentTime = Double(duration) - currentTime
@@ -476,6 +513,9 @@ class PlayerViewController: ViewController {
             
             // timeSlider has a range of 0 - 100k, so multiply percent by 1000
             self.timeSlider.integerValue = lround(percent * 1000)
+
+            // Drive the timeline view
+            self.timelineView?.progress = percent / 100.0
         }
     }
     
@@ -490,6 +530,19 @@ class PlayerViewController: ViewController {
     
     func updatePositionTable(single: Bool){
         self.mainView?.positionTableView?.refreshTable(single: single)
+        self.refreshTimelinePositions()
+    }
+
+    private func refreshTimelinePositions() {
+        guard let song = currentSong else {
+            timelineView?.positions = []
+            return
+        }
+        let duration = PlayerAudioEngine.shared.getDuration()
+        guard duration > 0 else { return }
+        timelineView?.positions = song.getPositions().map {
+            (time: Double($0.time) / 1000.0 / duration, name: $0.name)
+        }
     }
     
     func updateSongTable(){

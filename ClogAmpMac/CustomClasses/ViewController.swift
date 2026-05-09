@@ -10,11 +10,10 @@ import AppKit
 class ViewController : NSViewController {
     
     override func keyDown(with event: NSEvent) {
-        switch event.keyCode {
-            case 49: // Space
-                PlayerAudioEngine.shared.pause() // Menu doesn't react to space bar as key equivalent
-            default:
-                super.keyDown(with: event)
+        if KeyboardShortcutManager.shared.shortcut(for: .playPause)?.matches(event) == true {
+            PlayerAudioEngine.shared.pause() // Menu doesn't react to space bar as key equivalent
+        } else {
+            super.keyDown(with: event)
         }
     }
     

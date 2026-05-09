@@ -100,6 +100,13 @@ class Settings: NSObject {
     static var countdownTime: Bool {
         return UserDefaults.standard.bool(forKey: UserDefaults.Keys.countTimeDown.rawValue)
     }
+
+    static var showTimeline: Bool {
+        if UserDefaults.standard.value(forKey: UserDefaults.Keys.prefShowTimeline.rawValue) == nil {
+            UserDefaults.standard.set(true, forKey: UserDefaults.Keys.prefShowTimeline.rawValue)
+        }
+        return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefShowTimeline.rawValue)
+    }
     
     static var eqFrequencyLow: Float {
         return UserDefaults.standard.float(forKey: UserDefaults.Keys.eqFrequencyLow.rawValue)
