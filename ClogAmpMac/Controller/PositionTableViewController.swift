@@ -16,7 +16,9 @@ class PositionTableViewController: NSViewController {
     var rowHeight : CGFloat = 1.0
     var visible             = false
     var currentPosition     = -1
-    
+    var countdownRow        = -1
+    var countdownBeat       = 0
+
     var loopCount           = 0
     var loopPos             = -1
     var loopTimerArmedAt    = -1.0          // playback time when the loop timer was last armed
@@ -67,6 +69,8 @@ class PositionTableViewController: NSViewController {
         NotificationCenter.default.addObserver(forName: PlayerAudioEngine.NotificationNames.stopped, object: nil, queue: nil) { _ in
             DispatchQueue.main.async(qos: .default) {
                 self.currentPosition = -1
+                self.countdownRow = -1
+                self.countdownBeat = 0
                 self.refreshTable(single: true)
             }
         }
@@ -122,6 +126,21 @@ class PositionTableViewController: NSViewController {
         beatsColumn.isHidden = !Settings.positionTableShowBeats
     }
     
+    func updatePositionCountdown(row: Int, beat: Int) {
+        guard countdownRow != row || countdownBeat != beat else { return }
+        let oldRow = countdownRow
+        countdownRow = row
+        countdownBeat = beat
+        let colIdx = positionTable.column(withIdentifier: NSUserInterfaceItemIdentifier("name"))
+        guard colIdx >= 0 else { return }
+        var rows = IndexSet()
+        if oldRow >= 0 { rows.insert(oldRow) }
+        if row >= 0 { rows.insert(row) }
+        if !rows.isEmpty {
+            positionTable.reloadData(forRowIndexes: rows, columnIndexes: IndexSet(integer: colIdx))
+        }
+    }
+
     func refreshTable(single: Bool = false) {
         func performRefresh() {
             let selRow = self.positionTable.selectedRow
@@ -794,9 +813,12 @@ extension PositionTableViewController: NSTableViewDataSource, NSTableViewDelegat
                     }
                 }
 
-                if(tableColumn!.identifier.rawValue == "number"){
+                if tableColumn!.identifier.rawValue == "number" {
                     textField.stringValue = "\(row + 1)"
-                }else{
+                } else if tableColumn!.identifier.rawValue == "name" && Settings.showBeatCountdown && row == countdownRow && countdownBeat > 0 {
+                    let name = song.getPositions()[row].getValueAsString("name")
+                    textField.stringValue = "in \(countdownBeat)"
+                } else {
                     textField.stringValue = song.getPositions()[row].getValueAsString(tableColumn!.identifier.rawValue)
                 }
             }else{

@@ -23,6 +23,7 @@ class SettingsGeneralViewController: NSViewController {
     @IBOutlet weak var ddlbProportionalFont: NSComboBox!
     @IBOutlet weak var btnEnableCompression: NSButton!
     @IBOutlet weak var btnShowBeatCountdown: NSButton!
+    @IBOutlet weak var ddlbBeatCountdownDirection: NSComboBox!
     @IBOutlet weak var btnShowTimeline: NSButton!
 
     // MARK: ACTIONS
@@ -126,6 +127,7 @@ class SettingsGeneralViewController: NSViewController {
 
         self.ddlbAppearance.selectItem(at: Settings.appearance)
         self.ddlbViewAfterSongLoad.selectItem(at: Settings.viewAfterSongLoad)
+        self.ddlbBeatCountdownDirection.selectItem(at: Settings.beatCountdownDirection)
         self.ddlbMonoFont.stringValue = Settings.monoFontName
         self.ddlbProportionalFont.stringValue = Settings.proportionalFontName
 
@@ -176,6 +178,8 @@ extension SettingsGeneralViewController : NSComboBoxDelegate, NSComboBoxDataSour
             return Settings.monoAvailableFonts.count
         } else if comboBox.identifier?.rawValue == "cbProportionalFont" {
             return Settings.proportionalAvailableFonts.count
+        } else if comboBox.identifier?.rawValue == "cbBeatCountdownDirection" {
+            return 2
         }
 
         return 0
@@ -210,6 +214,8 @@ extension SettingsGeneralViewController : NSComboBoxDelegate, NSComboBoxDataSour
         } else if comboBox.identifier?.rawValue == "cbProportionalFont" {
             guard index >= 0 && index < Settings.proportionalAvailableFonts.count else { return NSString(string: "") }
             return Settings.proportionalAvailableFonts[index] as NSString
+        } else if comboBox.identifier?.rawValue == "cbBeatCountdownDirection" {
+            return (index == 0 ? "1 → 8" : "8 → 1") as NSString
         }
 
         return NSString(string: "")
@@ -218,7 +224,9 @@ extension SettingsGeneralViewController : NSComboBoxDelegate, NSComboBoxDataSour
 
     func comboBoxSelectionDidChange(_ notification: Notification) {
         let uiElement: NSControl = notification.object as! NSControl
-        if uiElement.identifier?.rawValue == "cbApperance" {
+        if uiElement.identifier?.rawValue == "cbBeatCountdownDirection" {
+            UserDefaults.standard.set(self.ddlbBeatCountdownDirection.indexOfSelectedItem, forKey: UserDefaults.Keys.prefBeatCountdownDirection.rawValue)
+        } else if uiElement.identifier?.rawValue == "cbApperance" {
             UserDefaults.standard.set(self.ddlbAppearance.indexOfSelectedItem, forKey: UserDefaults.Keys.prefAppearance.rawValue)
         } else if uiElement.identifier?.rawValue == "cbViewAfterSongLoad" {
             UserDefaults.standard.set(self.ddlbViewAfterSongLoad.indexOfSelectedItem, forKey: UserDefaults.Keys.prefViewAfterSongLoad.rawValue)

@@ -273,6 +273,7 @@ class PlayerViewController: ViewController {
     func tick() {
         self.updateTimeInUI()
         self.updateBeatCountdown()
+        self.updatePositionCountdown()
     }
 
     func updateBeatCountdown() {
@@ -329,6 +330,40 @@ class PlayerViewController: ViewController {
             self.beatOverlayLabel.stringValue = "\(beatInGroup)"
             self.beatOverlayView.isHidden = false
         }
+    }
+
+    func updatePositionCountdown() {
+        guard
+            let song = self.currentSong,
+            song.bpm > 0,
+            Settings.showBeatCountdown,
+            PlayerAudioEngine.shared.isPlaying()
+        else {
+            mainView?.positionTableView?.updatePositionCountdown(row: -1, beat: 0)
+            return
+        }
+
+        let currentTime = PlayerAudioEngine.shared.getCurrentTime()
+        let beatDuration = 60.0 / Double(song.bpm)
+        let positions = song.getPositions()
+
+        guard let nextIdx = positions.firstIndex(where: { !$0.name.isEmpty && Double($0.time) / 1000.0 > currentTime }) else {
+            mainView?.positionTableView?.updatePositionCountdown(row: -1, beat: 0)
+            return
+        }
+
+        let secondsUntil = Double(positions[nextIdx].time) / 1000.0 - currentTime
+        let beatsUntil = secondsUntil / beatDuration
+
+        guard beatsUntil <= 8 else {
+            mainView?.positionTableView?.updatePositionCountdown(row: -1, beat: 0)
+            return
+        }
+
+        let displayBeat = Settings.beatCountdownDirection == 0
+            ? max(1, 8 - Int(floor(beatsUntil)))
+            : max(1, Int(floor(beatsUntil)) + 1)
+        mainView?.positionTableView?.updatePositionCountdown(row: nextIdx, beat: displayBeat)
     }
 
     // MARK: Pre-play countdown

@@ -44,6 +44,10 @@ class Settings: NSObject {
         return UserDefaults.standard.bool(forKey: UserDefaults.Keys.prefShowBeatCountdown.rawValue)
     }
 
+    static var beatCountdownDirection: Int {
+        return UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefBeatCountdownDirection.rawValue)
+    }
+
     static var appearance: Int {
         var prefAppearance = UserDefaults.standard.integer(forKey: UserDefaults.Keys.prefAppearance.rawValue)
         if(prefAppearance < 0 || prefAppearance > 2){

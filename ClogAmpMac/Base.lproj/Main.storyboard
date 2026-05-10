@@ -935,7 +935,7 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Appearance" translatesAutoresizingMaskIntoConstraints="NO" id="8ec-RZ-uKL">
-                                <rect key="frame" x="20" y="281" width="362" height="72"/>
+                                <rect key="frame" x="20" y="263" width="362" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="f1l-Ud-8w9">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="55"/>
@@ -992,7 +992,7 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Filter" translatesAutoresizingMaskIntoConstraints="NO" id="KmJ-78-dCf">
-                                <rect key="frame" x="20" y="361" width="362" height="69"/>
+                                <rect key="frame" x="20" y="343" width="362" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="kUU-zj-vbR">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="52"/>
@@ -1041,7 +1041,7 @@ CA
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DHk-f7-xzm">
-                                            <rect key="frame" x="18" y="121" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="127" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Focus Filter" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="YQs-tI-kI4">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1057,7 +1057,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tzj-al-krK">
-                                            <rect key="frame" x="18" y="99" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="105" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Wka-4n-czd">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1074,7 +1074,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNv-Ja-9UA">
-                                            <rect key="frame" x="18" y="77" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="83" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Prevent sleep when active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8Lo-uH-DMG">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1092,7 +1092,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bCd-xY-k2Z">
-                                            <rect key="frame" x="18" y="55" width="291" height="18"/>
+                                            <rect key="frame" x="18" y="35" width="291" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Show beat countdown" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bCd-xY-k3Z">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1108,8 +1108,30 @@ CA
                                                 </binding>
                                             </connections>
                                         </button>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z1A-bC-lbl">
+                                            <rect key="frame" x="36" y="8" width="95" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Countdown:" id="z1A-bC-lc1">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <comboBox identifier="cbBeatCountdownDirection" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z1A-bC-cmb">
+                                            <rect key="frame" x="135" y="3" width="160" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="2" id="z1A-bC-cc1">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </comboBoxCell>
+                                            <connections>
+                                                <outlet property="dataSource" destination="qhU-Gw-geV" id="z1A-bC-ds1"/>
+                                                <outlet property="delegate" destination="qhU-Gw-geV" id="z1A-bC-dl1"/>
+                                            </connections>
+                                        </comboBox>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="twt-in-abl">
-                                            <rect key="frame" x="18" y="33" width="324" height="18"/>
+                                            <rect key="frame" x="18" y="59" width="324" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Time Window transparent when inactive" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="twt-in-cel">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1195,7 +1217,7 @@ CA
                                 <font key="titleFont" textStyle="title3" name=".SFNS-Regular"/>
                             </box>
                             <box fixedFrame="YES" borderType="none" title="Font" translatesAutoresizingMaskIntoConstraints="NO" id="oXz-ew-IrA">
-                                <rect key="frame" x="20" y="97" width="362" height="187"/>
+                                <rect key="frame" x="20" y="79" width="362" height="187"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="tIX-l3-OYx">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="170"/>
@@ -1290,6 +1312,7 @@ CA
                         <outlet property="btnShowBeatCountdown" destination="bCd-xY-k2Z" id="bCd-xY-k7Z"/>
                         <outlet property="btnShowTimeline" destination="tln-sh-btn" id="tln-sh-out"/>
                         <outlet property="ddlbAppearance" destination="ZGb-gR-2yS" id="E2R-pf-o3H"/>
+                        <outlet property="ddlbBeatCountdownDirection" destination="z1A-bC-cmb" id="z1A-bC-out"/>
                         <outlet property="ddlbMonoFont" destination="mFN-cB-ox1" id="mFN-ou-tlt"/>
                         <outlet property="ddlbProportionalFont" destination="pFN-cB-ox1" id="pFN-ou-tlt"/>
                         <outlet property="ddlbViewAfterSongLoad" destination="UCv-us-uE5" id="M1e-yf-yn9"/>
