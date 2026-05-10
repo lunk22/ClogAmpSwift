@@ -339,7 +339,7 @@ class Settings: NSObject {
 
     // MARK: PDF Layout
 
-    static let pdfAvailableFonts = ["Arial", "Helvetica", "Georgia", "Times New Roman", "Courier", "Monaco", "Palatino"]
+    static let pdfAvailableFonts: [String] = NSFontManager.shared.availableFontFamilies.sorted()
 
     static var pdfFontFamily: String {
         let v = UserDefaults.standard.string(forKey: UserDefaults.Keys.pdfFontFamily.rawValue) ?? ""
