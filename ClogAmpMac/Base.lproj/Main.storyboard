@@ -2161,19 +2161,6 @@ IA
                                             <rect key="frame" x="0.0" y="0.0" width="650" height="128"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BJH-pb-3d8">
-                                                    <rect key="frame" x="0.0" y="98" width="34" height="23"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="y5u-7V-CRB">
-                                                        <font key="font" metaFont="system"/>
-                                                        <segments>
-                                                            <segment image="NSRemoveTemplate" width="32"/>
-                                                        </segments>
-                                                    </segmentedCell>
-                                                    <connections>
-                                                        <action selector="handleRemoveSong:" target="Ol8-gc-8gz" id="ucP-aw-qMr"/>
-                                                    </connections>
-                                                </segmentedControl>
                                                 <box autoresizesSubviews="NO" fixedFrame="YES" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Buy-OH-BSf">
                                                     <rect key="frame" x="0.0" y="7" width="650" height="114"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -2193,7 +2180,7 @@ IA
                                                                 </connections>
                                                             </button>
                                                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uF1-ba-42c">
-                                                                <rect key="frame" x="174" y="49" width="229" height="18"/>
+                                                                <rect key="frame" x="175" y="44" width="229" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="Continuous Playback" bezelStyle="regularSquare" imagePosition="right" alignment="right" refusesFirstResponder="YES" inset="2" id="wMT-zO-iZk">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2236,6 +2223,19 @@ IA
                                                                     <action selector="handlePauseChange:" target="Ol8-gc-8gz" id="IOq-vg-cce"/>
                                                                 </connections>
                                                             </textField>
+                                                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BJH-pb-3d8">
+                                                                <rect key="frame" x="0.0" y="91" width="34" height="23"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="y5u-7V-CRB">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <segments>
+                                                                        <segment image="NSRemoveTemplate" width="32"/>
+                                                                    </segments>
+                                                                </segmentedCell>
+                                                                <connections>
+                                                                    <action selector="handleRemoveSong:" target="Ol8-gc-8gz" id="ucP-aw-qMr"/>
+                                                                </connections>
+                                                            </segmentedControl>
                                                         </subviews>
                                                     </view>
                                                 </box>

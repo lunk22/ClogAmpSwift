@@ -126,6 +126,18 @@ class PositionTableViewController: NSViewController {
         beatsColumn.isHidden = !Settings.positionTableShowBeats
     }
     
+    private func activeEditingRow() -> Int {
+        guard let fr = positionTable.window?.firstResponder as? NSView else { return -1 }
+        var view: NSView? = fr
+        while let v = view {
+            let row = positionTable.row(for: v)
+            if row >= 0 { return row }
+            if v === positionTable { break }
+            view = v.superview
+        }
+        return -1
+    }
+
     func updatePositionCountdown(row: Int, beat: Int) {
         guard countdownRow != row || countdownBeat != beat else { return }
         let oldRow = countdownRow
@@ -200,8 +212,19 @@ class PositionTableViewController: NSViewController {
                     if self.loopStepper.intValue > 0 {
                         // Loop is active — don't advance currentPosition, let armLoopTimer handle seeking back
                     } else {
+                        let oldPosition = self.currentPosition
                         self.currentPosition = currentPosition
-                        performRefresh()
+                        var rowsToReload = IndexSet()
+                        if oldPosition >= 0 { rowsToReload.insert(oldPosition) }
+                        if currentPosition >= 0 { rowsToReload.insert(currentPosition) }
+                        let editRow = activeEditingRow()
+                        if editRow >= 0 { rowsToReload.remove(editRow) }
+                        if !rowsToReload.isEmpty {
+                            positionTable.reloadData(
+                                forRowIndexes: rowsToReload,
+                                columnIndexes: IndexSet(integersIn: 0..<positionTable.numberOfColumns)
+                            )
+                        }
                     }
                 }
 
@@ -816,8 +839,8 @@ extension PositionTableViewController: NSTableViewDataSource, NSTableViewDelegat
                 if tableColumn!.identifier.rawValue == "number" {
                     textField.stringValue = "\(row + 1)"
                 } else if tableColumn!.identifier.rawValue == "name" && Settings.showBeatCountdown && row == countdownRow && countdownBeat > 0 {
-                    let name = song.getPositions()[row].getValueAsString("name")
-                    textField.stringValue = "in \(countdownBeat)"
+//                    let name = song.getPositions()[row].getValueAsString("name")
+                    textField.stringValue = "\(countdownBeat)"
                 } else {
                     textField.stringValue = song.getPositions()[row].getValueAsString(tableColumn!.identifier.rawValue)
                 }
