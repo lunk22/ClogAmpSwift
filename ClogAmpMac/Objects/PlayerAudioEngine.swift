@@ -76,6 +76,7 @@ class PlayerAudioEngine {
     private var speedControl: AVAudioUnitVarispeed
     private var pitchControl: AVAudioUnitTimePitch
     private var equalizer: AVAudioUnitEQ
+    private var normalizerEQ: AVAudioUnitEQ
     private var compressor: AVAudioUnitEffect
     private var offset: AVAudioFramePosition = AVAudioFramePosition(0) {
         didSet {
@@ -170,6 +171,7 @@ class PlayerAudioEngine {
         pitchControl = AVAudioUnitTimePitch()
         audioPlayer = AVAudioPlayerNode()
         equalizer = AVAudioUnitEQ()
+        normalizerEQ = AVAudioUnitEQ(numberOfBands: 0)
         compressor = AVAudioUnitEffect(audioComponentDescription: AudioComponentDescription(
             componentType: kAudioUnitType_Effect,
             componentSubType: kAudioUnitSubType_DynamicsProcessor,
@@ -180,15 +182,18 @@ class PlayerAudioEngine {
 
         // 2: connect the components to our playback engine
         audioEngine.attach(audioPlayer)
-        audioEngine.attach(pitchControl)
         audioEngine.attach(speedControl)
+        audioEngine.attach(pitchControl)
+        audioEngine.attach(normalizerEQ)
         audioEngine.attach(equalizer)
         audioEngine.attach(compressor)
 
         // 3: arrange the parts so that output from one is input to another
+        // normalizer sits after the user EQ so the two don't compete for headroom
         audioEngine.connect(audioPlayer, to: speedControl, format: nil)
         audioEngine.connect(speedControl, to: pitchControl, format: nil)
-        audioEngine.connect(pitchControl, to: equalizer, format: nil)
+        audioEngine.connect(pitchControl, to: normalizerEQ, format: nil)
+        audioEngine.connect(normalizerEQ, to: equalizer, format: nil)
         audioEngine.connect(equalizer, to: compressor, format: nil)
         audioEngine.connect(compressor, to: audioEngine.mainMixerNode, format: nil)
 
@@ -286,8 +291,8 @@ class PlayerAudioEngine {
     }
     
     private func prepareAudioPlayer() {
-        // Reset gain
-        equalizer.globalGain = 0
+        // Reset normalization gain
+        normalizerEQ.globalGain = 0
         
         audioEngine.disconnectNodeInput(audioPlayer)
         audioEngine.detach(audioPlayer)
@@ -299,19 +304,24 @@ class PlayerAudioEngine {
         audioPlayer.scheduleFile(audioFile!, at: nil)
         
         if Settings.normalizeAudioLevels {
-            print("Audio normalization started for file: \(audioFile!.url)", to: &normalizationLogger)
-            averagePowers(audioFileURL: audioFile!.url, completionHandler: { powers, success in
+            let normalizeURL = audioFile!.url
+            print("Audio normalization started for file: \(normalizeURL)", to: &normalizationLogger)
+            averagePowers(audioFileURL: normalizeURL, completionHandler: { powers, success in
                 DispatchQueue.main.async {
+                    // Guard against stale callbacks from a previously loaded song
+                    guard self.audioFile?.url == normalizeURL else { return }
                     if success {
-                        let maxValue = powers.max() ?? 0.0
+                        // Use 99th-percentile RMS instead of max to avoid single-chunk outliers
+                        // (e.g. a loud transient or recording artifact) from skewing the reference level
+                        let sortedPowers = powers.sorted()
+                        let index99 = min(Int(Double(sortedPowers.count) * 0.99), sortedPowers.count - 1)
+                        let referenceLevel = sortedPowers.isEmpty ? 0.0 : sortedPowers[index99]
                         // Calc with -10 to not deviate too far from system volume. Calculate with base of 0 will increase the gain too much
                         let targetLevel: Float = Settings.normalizeAudioBoost ? -5 : -10
-                        let adjustedGain = targetLevel - maxValue
-                        // Cap ceiling so globalGain + max EQ band boost stays within the API limit
-                        let maxBandBoost = max(0.0, max(max(self.equalizer.bands[0].gain, self.equalizer.bands[1].gain), self.equalizer.bands[2].gain))
-                        let clampedGain = min(max(adjustedGain, -96.0), 24.0 - maxBandBoost)
-                        self.equalizer.globalGain = clampedGain
-                        print("Audio normalization completed. Gain adjustment: \(clampedGain) - Boost active: \(Settings.normalizeAudioBoost)", to: &normalizationLogger)
+                        let adjustedGain = targetLevel - referenceLevel
+                        let clampedGain = min(max(adjustedGain, -96.0), 24.0)
+                        self.normalizerEQ.globalGain = clampedGain
+                        print("Audio normalization completed. Reference level: \(referenceLevel) dB → Gain adjustment: \(clampedGain) \(clampedGain == 24.0 ? "(max. possible)" : "") - Boost active: \(Settings.normalizeAudioBoost)", to: &normalizationLogger)
                         print("----------------------------------------------------", to: &normalizationLogger)
                     } else {
                         print("Failed to perform audio normalization.", to: &normalizationLogger)
@@ -504,7 +514,7 @@ class PlayerAudioEngine {
                     try self.audioEngine.start()
                     self.audioPlayer.play()
 
-//                    print("File: \(self.song?.title ?? "") | Gain: \(self.equalizer.globalGain)")
+                    print("Playback started | normalizerGain: \(self.normalizerEQ.globalGain) \(self.normalizerEQ.globalGain == 24.0 ? "(max. possible)" : "") | bypass: \(self.normalizerEQ.bypass)", to: &normalizationLogger)
 
                     self.playing = true
                     MPNowPlayingInfoCenter.default().playbackState = .playing
