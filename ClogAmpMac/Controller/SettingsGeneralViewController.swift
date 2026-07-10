@@ -136,7 +136,6 @@ class SettingsGeneralViewController: NSViewController {
                                                      width: 21, height: 21))
         compressionInfo.bezelStyle = .helpButton
         compressionInfo.title = ""
-        compressionInfo.toolTip = NSLocalizedString("compressionTooltip", bundle: Bundle.main, comment: "")
         compressionInfo.target = self
         compressionInfo.action = #selector(handleCompressionInfo(_:))
         btnEnableCompression.superview?.addSubview(compressionInfo)
