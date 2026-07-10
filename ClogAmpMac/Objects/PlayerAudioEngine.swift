@@ -171,7 +171,7 @@ class PlayerAudioEngine {
         pitchControl = AVAudioUnitTimePitch()
         audioPlayer = AVAudioPlayerNode()
         equalizer = AVAudioUnitEQ()
-        normalizerEQ = AVAudioUnitEQ(numberOfBands: 0)
+        normalizerEQ = AVAudioUnitEQ()
         compressor = AVAudioUnitEffect(audioComponentDescription: AudioComponentDescription(
             componentType: kAudioUnitType_Effect,
             componentSubType: kAudioUnitSubType_DynamicsProcessor,
@@ -180,7 +180,7 @@ class PlayerAudioEngine {
             componentFlagsMask: 0
         ))
 
-        // 2: connect the components to our playback engine
+        // 2: connect the components
         audioEngine.attach(audioPlayer)
         audioEngine.attach(speedControl)
         audioEngine.attach(pitchControl)
