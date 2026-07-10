@@ -42,8 +42,8 @@ class TimelineView: NSView {
     private var trackColor:    NSColor { NSColor(white: 0.25, alpha: 1) }
     private var fillColor:     NSColor { NSColor.systemBlue }
     private var playheadColor: NSColor { NSColor.white }
-    private var markerColor:   NSColor { NSColor.white.withAlphaComponent(0.85) }
-    private var labelColor:    NSColor { NSColor.white.withAlphaComponent(0.8) }
+    private var markerColor:   NSColor { NSColor.labelColor.withAlphaComponent(0.7) }
+    private var labelColor:    NSColor { NSColor.secondaryLabelColor }
 
     // MARK: - Init
 

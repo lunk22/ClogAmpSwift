@@ -43,6 +43,14 @@ class TimePanelViewController: ViewController {
             selector: #selector(defaultsDidChange),
             name: UserDefaults.didChangeNotification,
             object: nil)
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(appDidResignActive),
+            name: NSApplication.didResignActiveNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(appDidBecomeActive),
+            name: NSApplication.didBecomeActiveNotification,
+            object: nil)
     }
 
     override func viewDidLayout() {
@@ -84,6 +92,8 @@ class TimePanelViewController: ViewController {
             trackingArea = nil
         }
         NotificationCenter.default.removeObserver(self, name: UserDefaults.didChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSApplication.didResignActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSApplication.didBecomeActiveNotification, object: nil)
     }
 
     // MARK: Transparency
@@ -115,8 +125,17 @@ class TimePanelViewController: ViewController {
         updateTransparency(mouseInside: isMouseInsideWindow())
     }
 
+    @objc private func appDidResignActive() {
+        updateTransparency(mouseInside: isMouseInsideWindow())
+    }
+
+    @objc private func appDidBecomeActive() {
+        updateTransparency(mouseInside: isMouseInsideWindow())
+    }
+
     private func updateTransparency(mouseInside: Bool) {
-        setTransparent(Settings.timeWindowTransparentInactive && !mouseInside)
+        // Transparent when the setting is on AND (app is in background OR mouse is outside)
+        setTransparent(Settings.timeWindowTransparentInactive && (!NSApp.isActive || !mouseInside))
     }
 
     private func setTransparent(_ transparent: Bool) {
